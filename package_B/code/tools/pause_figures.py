@@ -23,6 +23,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from evidence_lib import EVIDENCE, REPO, figure, sha256_bytes, utc_now, write_json  # noqa: E402
+import pause_experiment as pe  # noqa: E402  (the registered thresholds as the analysis code applies them)
 
 GENERATOR = "tools/pause_figures.py"
 SESSIONS = REPO / "experiments" / "pause" / "sessions.json"
@@ -38,6 +39,36 @@ def blocked(msg: str) -> None:
 def _load(path: Path) -> tuple[Any, bytes]:
     raw = Path(path).read_bytes().replace(b"\r\n", b"\n")
     return raw.decode("utf-8"), raw
+
+
+def pause_rewrite(row: dict[str, Any]) -> int:
+    """Re-written tokens of the first request after a pause, by the paper's positional model
+    (tools/cache_writes.py): max(0, min(C, read + write) - read), C = the cached prefix before it."""
+    pre, rd = row["prefix_before"], row["read_after"]
+    return max(0, min(pre, rd + row["write_after"]) - rd)
+
+
+def half_rewritten(rows: list[dict[str, Any]]) -> int:
+    """Registered (H3, 'also reported'): pauses followed by a re-write of at least half the cached prefix."""
+    return sum(1 for r in rows if r["prefix_before"] > 0
+               and pause_rewrite(r) >= pe.EXPIRED_SHARE * r["prefix_before"])
+
+
+def thresholds(flat: str) -> tuple[int, int, int]:
+    """H1 lower bound, H3 minimum precision/recall (percent) and the CI level, from the pre-registration;
+    BLOCKED unless they equal the constants the analysis code applied."""
+    h1 = re.search(r"(\d+)% bootstrap lower bound above (\d+)%", flat)
+    h3 = re.search(r"precision >= (0\.\d+) and recall >= (0\.\d+)", flat)
+    half = "at least half the cached prefix" in flat
+    if not h1 or not h3 or not half:
+        blocked("registered H1/H3 thresholds or the half-prefix outcome not found in the pre-registration")
+    level, lo = int(h1.group(1)), int(h1.group(2))
+    prec, rec = float(h3.group(1)), float(h3.group(2))
+    if (lo / 100, prec, rec, pe.EXPIRED_SHARE) != (pe.H1_READ_SHARE_LO, pe.H3_PRECISION, pe.H3_RECALL, 0.5):
+        blocked(f"registered thresholds {lo}%/{prec}/{rec} differ from the analysis code")
+    if prec != rec:
+        blocked("precision and recall thresholds differ; one macro cannot state both")
+    return lo, round(prec * 100), level
 
 
 def derive(a: dict[str, Any], sessions: dict[str, Any], prereg: str) -> dict[str, Any]:
@@ -64,6 +95,25 @@ def derive(a: dict[str, Any], sessions: dict[str, Any], prereg: str) -> dict[str
     shared = set(b.get("exploratory_read_after_values") or [])
     if len(shared) != 1:
         blocked(f"read-back after the pauses is not one constant value: {sorted(shared)}")
+    h1_lo, h3_min, level = thresholds(flat)
+    rows_b, rows_c = b["pauses"], c["pauses"]
+    if len(rows_b) != b["n"] or len(rows_c) != c["n"]:
+        blocked("direct-expiry rows differ from their counts")
+    if b["n"] != a["pauses"]["injected"] or c["n"] != a["condition_c"]["injected_pauses"]:
+        blocked("direct-expiry rows differ from the injected pauses")
+    half_b, half_c = half_rewritten(rows_b), half_rewritten(rows_c)
+    if half_b != a["pauses"]["expired_after_pause"]:
+        blocked(f"half-prefix re-writes after B pauses: {half_b} from the rows, "
+                f"{a['pauses']['expired_after_pause']} in the analysis")
+    per_pause_b = sum(pause_rewrite(r) for r in rows_b) / len(rows_b) if rows_b else None
+    per_session = a["paired"]["reconciliation"]["per_session"]
+    if any(r["a_point_rewrite"] for r in per_session):
+        blocked("condition A re-wrote tokens at a planned point; per-pause figure would not be pause-caused")
+    point_total = sum(r["b_point_rewrite"] for r in per_session)
+    if per_pause_b is None or abs(point_total / len(rows_b) - per_pause_b) > 0.5:
+        blocked(f"mean re-write per B pause {per_pause_b} differs from the point re-writes "
+                f"{point_total} / {len(rows_b)}")
+    r_, rc = a["rule"], a["condition_c"]["rule"]
     ci = lambda k: (a["composition"][k]["read_share_ci"]["lo"] * 100,  # noqa: E731
                     a["composition"][k]["read_share_ci"]["hi"] * 100)
     return {
@@ -84,6 +134,12 @@ def derive(a: dict[str, Any], sessions: dict[str, Any], prereg: str) -> dict[str
         "rest_rewritten_n": round(b["exploratory_rest_rewritten_share"] * b["n"]
                                   + c["exploratory_rest_rewritten_share"] * c["n"]),
         "shared_prefix_tokens": shared.pop(),
+        "h1_lower_bound_pct": h1_lo, "h3_min_pct": h3_min, "ci_level_pct": level,
+        "rule_tp": r_["tp"], "rule_fp": r_["fp"], "rule_fn": r_["fn"], "precision_pct": r_["precision"] * 100,
+        "idle_share_a_pct": r_["false_idle_share_a"] * 100,
+        "c_events": rc["events"], "c_tp": rc["tp"], "c_fp": rc["fp"], "c_fn": rc["fn"],
+        "half_rewrite_b": half_b, "pauses_b": b["n"], "half_rewrite_c": half_c, "pauses_c": c["n"],
+        "rewrite_per_pause_b": per_pause_b,
     }
 
 
@@ -123,6 +179,28 @@ def build() -> dict[str, Any]:
                                       "pauses after which everything not read back was re-written (exploratory)"),
         "PauseSharedPrefixTokens": figure(f["shared_prefix_tokens"], "int", src,
                                           "tokens read back after every five-minute pause (shared head)"),
+        "PauseHOneLoPct": figure(f["h1_lower_bound_pct"], "pct0", "prereg",
+                                 "H1 threshold: bootstrap lower bound of the cache-read share above this percent"),
+        "PauseHThreeMinPct": figure(f["h3_min_pct"], "pct0", "prereg",
+                                    "H3 threshold: precision and recall at least this percent (point estimates)"),
+        "PauseCiLevelPct": figure(f["ci_level_pct"], "pct0", "prereg", "registered bootstrap interval level, percent"),
+        "PauseRuleTP": figure(f["rule_tp"], "int", src, "H3 events: re-writes after an injected pause labelled idle"),
+        "PauseRuleFN": figure(f["rule_fn"], "word", src, "H3 events: re-writes after an injected pause not labelled idle"),
+        "PausePrecisionOnePct": figure(f["precision_pct"], "pct1", src, "H3 precision, one decimal"),
+        "PauseIdleSharePctA": figure(f["idle_share_a_pct"], "pct0", src,
+                                     "condition A: share of re-written tokens labelled idle (registered)"),
+        "PauseCEvents": figure(f["c_events"], "word", src, "H3-C re-write events"),
+        "PauseCRuleTP": figure(f["c_tp"], "word", src, "H3-C events after the pause labelled expiry after over an hour"),
+        "PauseCRuleFP": figure(f["c_fp"], "word", src, "H3-C false positives"),
+        "PauseCRuleFN": figure(f["c_fn"], "word", src, "H3-C false negatives"),
+        "PauseHalfRewriteB": figure(f["half_rewrite_b"], "int", src,
+                                    "B pauses followed by a re-write of at least half the cached prefix (registered)"),
+        "PausePausesB": figure(f["pauses_b"], "int", src, "injected five-minute-plus pauses (B)"),
+        "PauseHalfRewriteC": figure(f["half_rewrite_c"], "word", src,
+                                    "C pauses followed by a re-write of at least half the cached prefix (registered)"),
+        "PausePausesC": figure(f["pauses_c"], "word", src, "injected 61-minute pauses (C)"),
+        "PauseRewritePerPauseB": figure(f["rewrite_per_pause_b"], "kilo", src,
+                                        "mean re-written tokens per injected B pause (point re-write per pause)"),
     }
     return {
         "schema_version": 1, "kind": "pause_figures",

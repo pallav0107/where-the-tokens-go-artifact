@@ -1,15 +1,28 @@
 {
   "aggregates": {
+    "c_events": 5,
+    "c_fn": 0,
+    "c_fp": 0,
+    "c_tp": 5,
+    "ci_level_pct": 95,
     "client_version": "2.1.326",
     "direct_pauses": 35,
     "false_positives": 3,
     "full_rewrite_n": 0,
+    "h1_lower_bound_pct": 80,
+    "h3_min_pct": 90,
+    "half_rewrite_b": 21,
+    "half_rewrite_c": 4,
+    "idle_share_a_pct": 100.0,
     "model": "claude-sonnet-5-5",
     "natural_long_gaps": 3,
+    "pauses_b": 30,
+    "pauses_c": 5,
     "pilot_runs": 3,
     "precision_any_gap_pct": 100.0,
     "precision_hi_pct": 100.0,
     "precision_lo_pct": 76.92307692307693,
+    "precision_pct": 90.9090909090909,
     "read_ci_a": [
       95.15925368428579,
       96.3251450120451
@@ -20,6 +33,10 @@
     ],
     "recall_any_gap_pct": 100.0,
     "rest_rewritten_n": 35,
+    "rewrite_per_pause_b": 18319.233333333334,
+    "rule_fn": 0,
+    "rule_fp": 3,
+    "rule_tp": 30,
     "sessions_c": 5,
     "sessions_failed": 0,
     "sessions_paired": 10,
@@ -31,6 +48,36 @@
     "tasks_total": 40
   },
   "figures": {
+    "PauseCEvents": {
+      "desc": "H3-C re-write events",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 5
+    },
+    "PauseCRuleFN": {
+      "desc": "H3-C false negatives",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 0
+    },
+    "PauseCRuleFP": {
+      "desc": "H3-C false positives",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 0
+    },
+    "PauseCRuleTP": {
+      "desc": "H3-C events after the pause labelled expiry after over an hour",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 5
+    },
+    "PauseCiLevelPct": {
+      "desc": "registered bootstrap interval level, percent",
+      "format": "pct0",
+      "source": "prereg",
+      "value": 95
+    },
     "PauseClientVersion": {
       "desc": "registered Claude Code version",
       "format": "text",
@@ -55,6 +102,36 @@
       "source": "pause_experiment",
       "value": 0
     },
+    "PauseHOneLoPct": {
+      "desc": "H1 threshold: bootstrap lower bound of the cache-read share above this percent",
+      "format": "pct0",
+      "source": "prereg",
+      "value": 80
+    },
+    "PauseHThreeMinPct": {
+      "desc": "H3 threshold: precision and recall at least this percent (point estimates)",
+      "format": "pct0",
+      "source": "prereg",
+      "value": 90
+    },
+    "PauseHalfRewriteB": {
+      "desc": "B pauses followed by a re-write of at least half the cached prefix (registered)",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 21
+    },
+    "PauseHalfRewriteC": {
+      "desc": "C pauses followed by a re-write of at least half the cached prefix (registered)",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 4
+    },
+    "PauseIdleSharePctA": {
+      "desc": "condition A: share of re-written tokens labelled idle (registered)",
+      "format": "pct0",
+      "source": "pause_experiment",
+      "value": 100.0
+    },
     "PauseModel": {
       "desc": "registered model",
       "format": "text",
@@ -66,6 +143,18 @@
       "format": "word",
       "source": "pause_experiment",
       "value": 3
+    },
+    "PausePausesB": {
+      "desc": "injected five-minute-plus pauses (B)",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 30
+    },
+    "PausePausesC": {
+      "desc": "injected 61-minute pauses (C)",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 5
     },
     "PausePilotRuns": {
       "desc": "excluded pilot runs",
@@ -90,6 +179,12 @@
       "format": "pct0",
       "source": "pause_experiment",
       "value": 76.92307692307693
+    },
+    "PausePrecisionOnePct": {
+      "desc": "H3 precision, one decimal",
+      "format": "pct1",
+      "source": "pause_experiment",
+      "value": 90.9090909090909
     },
     "PauseReadCiHiA": {
       "desc": "A: cache-read share, 95% bootstrap high",
@@ -126,6 +221,24 @@
       "format": "int",
       "source": "pause_experiment",
       "value": 35
+    },
+    "PauseRewritePerPauseB": {
+      "desc": "mean re-written tokens per injected B pause (point re-write per pause)",
+      "format": "kilo",
+      "source": "pause_experiment",
+      "value": 18319.233333333334
+    },
+    "PauseRuleFN": {
+      "desc": "H3 events: re-writes after an injected pause not labelled idle",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 0
+    },
+    "PauseRuleTP": {
+      "desc": "H3 events: re-writes after an injected pause labelled idle",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 30
     },
     "PauseSessionsC": {
       "desc": "one-hour-caching sessions (C)",
@@ -184,7 +297,7 @@
   },
   "kind": "pause_figures",
   "provenance": {
-    "generated_at": "2026-11-19T06:14:10Z",
+    "generated_at": "2026-11-19T07:01:01Z",
     "generator": "tools/pause_figures.py",
     "notes": [
       "Restates and regroups committed pause-experiment evidence; no new measurement."

@@ -1,6 +1,6 @@
 {
   "title": "AGENT 2027 workshop paper: open-science material (redacted)",
-  "status": "Release candidate, round 6 (2026-11-19). Published only after the author has reviewed and approved it; until then nothing here is in a public repository or archive.",
+  "status": "Release, round 7 (2026-11-19). Every round was reviewed and approved by the author before publication.",
   "creator": {
     "creator_name": "Pallav Pokhriyal",
     "creator_affiliation": "Kfintech",
@@ -1716,12 +1716,22 @@
       "identical_to_source": true
     },
     {
+      "path": "package_B/code/tests/test_pause_figure_data.py",
+      "sha256": "cb1c3720d8871865bfdec07b4f093eeff1a8ccd4ecef67d4d29831d2836a110a",
+      "bytes": 3438,
+      "source": "tests/test_pause_figure_data.py@3bd6629",
+      "source_blob": "c65a773fc1d6e0c4dd81c09a87a17c35c10dddcc",
+      "lines": 76,
+      "redaction_rows": 0,
+      "identical_to_source": true
+    },
+    {
       "path": "package_B/code/tests/test_pause_figures.py",
-      "sha256": "4dd9d709075dd423508a7666397f41c7540bf59488de8038ab17e2be6832b1e6",
-      "bytes": 3737,
-      "source": "tests/test_pause_figures.py@1c815e9",
-      "source_blob": "0ce7fef02ef060c070065c7529a80958a1af51ca",
-      "lines": 80,
+      "sha256": "39f2804a358f03d6e5d3896198632a2cf65873bc56caefa277c7ed2e3db28699",
+      "bytes": 7517,
+      "source": "tests/test_pause_figures.py@3bd6629",
+      "source_blob": "037b1ef086ed68e4b9e659c7d45071d29679dc72",
+      "lines": 141,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1882,12 +1892,22 @@
       "identical_to_source": true
     },
     {
+      "path": "package_B/code/tools/pause_figure_data.py",
+      "sha256": "c3dbb32f9aeb6cb2d80ead3e3d68b723a6e08f17e300c45f77524d06ac2c95ef",
+      "bytes": 4221,
+      "source": "tools/pause_figure_data.py@3bd6629",
+      "source_blob": "adb1b9701b581e4c4d42e3da905df64501d47736",
+      "lines": 96,
+      "redaction_rows": 0,
+      "identical_to_source": true
+    },
+    {
       "path": "package_B/code/tools/pause_figures.py",
-      "sha256": "292d63f4ccd0abc6b40a8314a8374c5c5a76f914230e5c0dfce6b5db788d3a0e",
-      "bytes": 9044,
-      "source": "tools/pause_figures.py@1c815e9",
-      "source_blob": "31383d3698b33ee15cc45617f90f424f58f714f4",
-      "lines": 152,
+      "sha256": "bc4a74b0cd3a83a450897180c2e4ab326cff645fecf0d854499803ddb9bc55b1",
+      "bytes": 14780,
+      "source": "tools/pause_figures.py@3bd6629",
+      "source_blob": "4784eb799d83330633f47b1d1867f1011f70e651",
+      "lines": 230,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -2763,6 +2783,16 @@
       "identical_to_source": true
     },
     {
+      "path": "package_B/evidence/generated/pause_points.dat",
+      "sha256": "cbbed380509ea0d55643664b9216ca1c04835e1b4998d028bf5d8014d29a3a9f",
+      "bytes": 1308,
+      "source": "papers/agent2027-cost/generated/pause_points.dat@3bd6629",
+      "source_blob": "0cb7f1bf9bbbaae939415ad2059b98cbf512e147",
+      "lines": 38,
+      "redaction_rows": 0,
+      "identical_to_source": true
+    },
+    {
       "path": "package_B/evidence/heldout.json",
       "sha256": "4307bbd48c6992d76fe6bc9451e64acf99dff5a3d4b9366a99e5a1eda2c7cc6c",
       "bytes": 21464,
@@ -2813,11 +2843,11 @@
     },
     {
       "path": "package_B/evidence/pause_figures.json",
-      "sha256": "78b540aefd088820773bd32449850a8ace16350194e8bbeb82806f5dfc999793",
-      "bytes": 6119,
-      "source": "evidence/pause_figures.json@1c815e9",
-      "source_blob": "cab6cdf6f6ae319fa11f941c69f3ee62ced8557d",
-      "lines": 217,
+      "sha256": "536fc1ae4b660d2e15a385cd3303753ea82d7ff231078bac58e84e708668863f",
+      "bytes": 9377,
+      "source": "evidence/pause_figures.json@3bd6629",
+      "source_blob": "9dae4f3c66efbeebb0327e2b65477cb95d609019",
+      "lines": 330,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -3042,5 +3072,22 @@
       }
     ],
     "note": "package_A/PREREG_pause.md is byte-identical to preregistrations/PREREG_pause.md in the public pre-registration repository. pause_figures.json records the sha256 of the unredacted registration, so its 'prereg' source hash matches the private original, not the released file."
+  },
+  "redaction_round_7": {
+    "date": "2026-11-19",
+    "source_commit": "3bd6629",
+    "source_commit_full": "3bd6629f8d9b9130c8720f0a8b51d915effb59b9",
+    "scope": "The per-pause figure (Fig. 1 of the revised paper): its producer pause_figure_data.py, test and data file, and the refreshed pause_figures producer, test and evidence. All byte-identical to the source; no redaction needed.",
+    "added": [
+      "package_B/code/tools/pause_figure_data.py",
+      "package_B/code/tests/test_pause_figure_data.py",
+      "package_B/evidence/generated/pause_points.dat"
+    ],
+    "refreshed": [
+      "package_B/code/tools/pause_figures.py",
+      "package_B/code/tests/test_pause_figures.py",
+      "package_B/evidence/pause_figures.json"
+    ],
+    "rows": 0
   }
 }

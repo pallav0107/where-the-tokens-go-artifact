@@ -15,7 +15,7 @@ Release note: this material is published only after the author, who owns the sou
 has reviewed and approved it.
 
 Source: private repository; available to the programme chairs on request. Files come from commits
-`de84195`, `9e86a6b` and `1c815e9`; each file's source commit and git blob hash are in `MANIFEST.json`.
+`de84195`, `9e86a6b`, `1c815e9` and `3bd6629`; each file's source commit and git blob hash are in `MANIFEST.json`.
 
 ## Layout
 
@@ -33,9 +33,9 @@ Source: private repository; available to the programme chairs on request. Files 
 | `package_B/data/` | The controlled experiment's per-request and per-run records: every v3 shard directory (test, dev rounds 0 and 1, smoke, failed smoke) and the superseded v2 dev round 0. Also `provenance_by_dispatch/`, which holds the provenance of each of the 15 CI dispatches, including every salt nonce. |
 | `package_B/code/` | `agent/` (the agent, arms, harness and grid runner, with tests), the analysis scripts in `experiments/` with their configs, tests and offline inputs, the evidence producers in `tools/`, and `contrib/`, a zero-dependency contributor script that computes the paper's figures from anyone's own Claude Code logs and writes aggregates only. |
 | `package_B/code/experiments/pause/` | The controlled pause experiment (`PREREG_pause.md`): the dispatcher `runner.py`, the allowlist egress proxy, the API stub for dry runs, the cost ledger and budget stop, task and session selection with the selected `tasks.json` and `sessions.json`, SWE-bench grading, and `image/` (the two Dockerfiles, the container entry and session scripts, and the pause hook). |
-| `package_B/code/tools/` | The evidence producers, among them `pause_experiment.py` (the pause analysis; it needs the run directories, which are not released), `pause_figures.py`, `practice_rule.py` and `cost_figure_data.py`, which run on the released evidence alone. |
-| `package_B/code/tests/` | Tests of the pause experiment's code, of its analysis and figures, and of `practice_rule.py` and `cost_figure_data.py` (standard library only). |
-| `package_B/evidence/` | The aggregate evidence files behind the paper's numbers, including `pause_experiment.json` and `pause_figures.json` (the pause experiment), `practice_rule.json`, and `cost_table.json`, `cache_writes.json` and `share_robustness.json`, which those producers read. `generated/cost_shares.dat` is the data of the cost-share figure. |
+| `package_B/code/tools/` | The evidence producers, among them `pause_experiment.py` (the pause analysis; it needs the run directories, which are not released), `pause_figures.py`, `pause_figure_data.py`, `practice_rule.py` and `cost_figure_data.py`, which run on the released evidence alone. |
+| `package_B/code/tests/` | Tests of the pause experiment's code, of its analysis and figures (including `pause_figure_data.py`), and of `practice_rule.py` and `cost_figure_data.py` (standard library only). |
+| `package_B/evidence/` | The aggregate evidence files behind the paper's numbers, including `pause_experiment.json` and `pause_figures.json` (the pause experiment), `practice_rule.json`, and `cost_table.json`, `cache_writes.json` and `share_robustness.json`, which those producers read. `generated/cost_shares.dat` is the data of the cost-share figure and `generated/pause_points.dat` that of the per-pause figure (Fig. 1). |
 | `package_B/verify/compare_evidence.py` | Compares a re-computed evidence file with a published one. |
 | `MANIFEST.json` | One record per registration or amendment: the commit, the author date, GitHub's server-side first-push time, the original file's git blob hash and the released file's sha256. It also lists every file's sha256 and source, the Actions run times and the hashes of the archived CI artifacts. |
 | `REDACTION_LOG.md` | Each changed line, with its category and the reason. The removed text is never shown. |
@@ -141,12 +141,14 @@ python ../verify/compare_evidence.py ../evidence/pause_figures.json /tmp/pause_f
 python ../verify/compare_evidence.py ../evidence/practice_rule.json /tmp/practice_rule.json
 python -c "import sys; from pathlib import Path; sys.path.insert(0, 'tools'); import cost_figure_data as c; \
 sys.exit(c.dat_command(Path('../evidence/cost_table.json'), Path('../evidence/generated/cost_shares.dat'), True))"
+python -c "import sys; from pathlib import Path; sys.path.insert(0, 'tools'); import pause_figure_data as p; \nsys.exit(p.dat_command(Path('../evidence/pause_experiment.json'), Path('../evidence/generated/pause_points.dat'), True))"
 ```
 
-Result on a Linux CPU machine (Python 3.12.3, clean virtual environment, 19 Nov 2026): 71 tests
+Result on a Linux CPU machine (Python 3.12.3, clean virtual environment, 19 Nov 2026, round 7): 82 tests
 pass, none skipped (the pause-hook tests need `bash` and `flock`). Both comparisons report
-`aggregates: IDENTICAL` and `figures: IDENTICAL` (25 figures in `pause_figures.json`, 20 in
-`practice_rule.json`), and the last command prints `PASS: cost_shares.dat matches cost_table.json`.
+`aggregates: IDENTICAL` and `figures: IDENTICAL` (41 figures in `pause_figures.json`, 20 in
+`practice_rule.json`), and the last two commands print `PASS: cost_shares.dat matches cost_table.json`
+and `PASS: pause_points.dat matches pause_experiment.json`.
 Two source hashes in the provenance differ, as expected: `prereg` in `pause_figures.json` (the
 recorded hash is that of the unredacted registration; the released copy differs on line 48) and
 `h2h3_test_r1_s0` in `practice_rule.json` (the hash of the unredacted `agent_h2h_v3.json`; see the
