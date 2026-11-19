@@ -21,7 +21,7 @@ Source: private repository; available to the programme chairs on request. Files 
 
 | Path | What it is |
 |---|---|
-| `package_A/` | The pre-registrations. Publishable soon. |
+| `package_A/` | The pre-registrations (also public in their own repository, linked above). |
 | `package_A/PREREG_heldout.md` | Held-out test of context x turns against prompt size (registration, never amended). |
 | `package_A/PREREG.md` | v1, with Amendment 1. Never run. |
 | `package_A/PREREG_v2.md` | v2, with Amendment 2. Superseded after dev round 0. |
