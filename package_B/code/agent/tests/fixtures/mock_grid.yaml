@@ -1,0 +1,24 @@
+# Test-only grid: mock provider + keyless cloud cells over a synthetic HotpotQA-shaped fixture.
+experiment: mock-e2e
+dataset:
+  parquet_url: null
+  sha256: null
+  cache_dir: null
+  fixture: agent/tests/fixtures/hotpot_tiny.jsonl
+  sample_seed: 20261115
+  n_questions: 3
+  n_smoke: 1
+agent:
+  max_steps: 10
+  temperature: 0
+  seed: 42
+  cell_order_seed: 20261116
+policies: [carry_all, reset_summary]
+ks: [2, 8]
+models:
+  - {provider: mock, model: mock-scripted}
+  - {provider: gemini, model: gemini-2.5-flash, thinking_budget: 0, max_output_tokens: 4096}
+budget:
+  max_usd: 5.0
+  est_input_tokens_per_run: 30000
+  est_output_tokens_per_run: 2000

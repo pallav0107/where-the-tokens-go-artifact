@@ -1,0 +1,28 @@
+{
+  "source": {
+    "title": "Pricing (Claude Developer Platform documentation), section 'Model pricing'",
+    "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "accessed": "2026-11-15",
+    "retrieved_as": "the page's markdown rendering (pricing.md)",
+    "sha256_of_retrieved_page": "048ccb65c7aa39a16f8475d92bec1730bc9e42c63b79085e2f0f1e6e5f867cd1",
+    "notes": [
+      "Prices are the page's 'Model pricing' table: base input, 5m cache writes, 1h cache writes, cache hits and refreshes, output tokens.",
+      "Cache hits on Claude Fable 5.1 are 0.025x and on Claude Opus 5.5 / Sonnet 5.5 0.05x the base input price (page footnotes 1 and 2); all other models 0.1x.",
+      "Claude Sonnet 5's $2/$10 is the standard price (page footnote 3).",
+      "All requests in the data used standard speed, standard service tier and global or unreported inference geography, so no fast-mode, priority or data-residency multiplier applies.",
+      "Current list prices are applied to every request regardless of its date; they weight token kinds and models, they are not the operator's bill (the operator is on a subscription)."
+    ]
+  },
+  "unit": "USD per million tokens",
+  "models": {
+    "claude-fable-5-1": {"input": 10.0, "cache_write_5m": 12.5, "cache_write_1h": 20.0, "cache_hit": 0.25, "output": 50.0},
+    "claude-fable-5":   {"input": 10.0, "cache_write_5m": 12.5, "cache_write_1h": 20.0, "cache_hit": 1.0,  "output": 50.0},
+    "claude-opus-5-5":  {"input": 4.0,  "cache_write_5m": 5.0,  "cache_write_1h": 8.0,  "cache_hit": 0.2,  "output": 20.0},
+    "claude-opus-5":    {"input": 5.0,  "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_hit": 0.5,  "output": 25.0},
+    "claude-opus-4-8":  {"input": 5.0,  "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_hit": 0.5,  "output": 25.0},
+    "claude-sonnet-5-5": {"input": 2.0, "cache_write_5m": 2.5,  "cache_write_1h": 4.0,  "cache_hit": 0.1,  "output": 10.0},
+    "claude-sonnet-5":  {"input": 2.0,  "cache_write_5m": 2.5,  "cache_write_1h": 4.0,  "cache_hit": 0.2,  "output": 10.0},
+    "claude-sonnet-4-6": {"input": 3.0, "cache_write_5m": 3.75, "cache_write_1h": 6.0,  "cache_hit": 0.3,  "output": 15.0},
+    "claude-haiku-4-5": {"input": 1.0,  "cache_write_5m": 1.25, "cache_write_1h": 2.0,  "cache_hit": 0.1,  "output": 5.0}
+  }
+}

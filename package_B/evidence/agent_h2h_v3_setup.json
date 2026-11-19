@@ -1,0 +1,127 @@
+{
+  "aggregates": {
+    "setup": {
+      "max_output_tokens": 4096,
+      "model": "gpt-6-luna",
+      "price_cache_write": 0.125,
+      "price_cached_input": 0.01,
+      "price_input": 0.1,
+      "price_output": 0.5,
+      "price_retrieved": "2026-11-16",
+      "provider": "openai",
+      "reasoning_effort": "none",
+      "seed": 42,
+      "temperature": 0
+    }
+  },
+  "figures": {
+    "VthreeBudgetAmended": {
+      "desc": "v3 spend stop after Amendment 5, USD project total.",
+      "format": "float2",
+      "source": "config",
+      "value": 3.5
+    },
+    "VthreeBudgetRegistered": {
+      "desc": "v3 spend stop at the freeze, USD project total.",
+      "format": "float2",
+      "source": "config_frozen",
+      "value": 3.04
+    },
+    "VthreeFOneLowerBy": {
+      "desc": "H8: how many F1 points AoB was below B* (minus HthreeFOneDiff).",
+      "format": "float2",
+      "source": "h2h_v3",
+      "value": 2.337128055555553
+    },
+    "VthreePriceCached": {
+      "desc": "Cached-input (cache read) price, USD per million tokens.",
+      "format": "float2",
+      "source": "prices",
+      "value": 0.01
+    },
+    "VthreePriceInput": {
+      "desc": "Input price, USD per million tokens.",
+      "format": "float2",
+      "source": "prices",
+      "value": 0.1
+    },
+    "VthreePriceOutput": {
+      "desc": "Output price, USD per million tokens.",
+      "format": "float2",
+      "source": "prices",
+      "value": 0.5
+    },
+    "VthreePriceRetrieved": {
+      "desc": "Price sheet retrieval date.",
+      "format": "date",
+      "source": "prices",
+      "value": "2026-11-16"
+    },
+    "VthreePriceWrite": {
+      "desc": "Cache-write price, USD per million tokens.",
+      "format": "float3",
+      "source": "prices",
+      "value": 0.125
+    },
+    "VthreeSetupMaxOutput": {
+      "desc": "Output-token cap per request.",
+      "format": "int",
+      "source": "config",
+      "value": 4096
+    },
+    "VthreeSetupReasoning": {
+      "desc": "Reasoning effort of every v3 arm.",
+      "format": "text",
+      "source": "config",
+      "value": "none"
+    },
+    "VthreeSetupSeed": {
+      "desc": "Sampling seed of every v3 arm.",
+      "format": "int",
+      "source": "config",
+      "value": 42
+    },
+    "VthreeSetupTemperature": {
+      "desc": "Sampling temperature of every v3 arm.",
+      "format": "int",
+      "source": "config",
+      "value": 0
+    }
+  },
+  "kind": "agent_h2h_v3_setup",
+  "provenance": {
+    "generated_at": "2026-11-17T04:11:38Z",
+    "generator": "experiments/setup_v3.py",
+    "sources": [
+      {
+        "command": "experiments/configs/h2h_v3.yaml",
+        "description": "registered v3 run configuration (PREREG_v3; agent settings and model)",
+        "grade": "documented-record",
+        "id": "config",
+        "sha256": "370eaee3274e07d12acedac3c44aad907a26a393a3a3d2ab45a351bc5adb9dd0"
+      },
+      {
+        "command": "agent/prices.yaml",
+        "description": "price sheet used by the spend guard and the billed-cost analysis (provider pricing page)",
+        "grade": "model-parameter",
+        "id": "prices",
+        "sha256": "dba9e8449b77696991e4001aa463d68b176ba49776310d9b58ca38e0b76a8754"
+      },
+      {
+        "command": "git show e274b76:experiments/configs/h2h_v3.yaml",
+        "description": "the v3 run configuration at the registered freeze (budget stop before Amendment 5)",
+        "grade": "documented-record",
+        "id": "config_frozen",
+        "sha256": "a6384cc63fe6d91758932d10af99ceed13f7eaaf7a1f87713a354bb0e6cfdc4f"
+      },
+      {
+        "command": "evidence/agent_h2h_v3.json",
+        "description": "the registered H8 analysis (figure HthreeFOneDiff), restated as a shortfall",
+        "grade": "measured",
+        "id": "h2h_v3",
+        "sha256": "ad5dd69a1053e4f68253bf755b14ef67352230ffdc570c1a7af2e7bda2576b47"
+      }
+    ]
+  },
+  "schema_version": 1
+}

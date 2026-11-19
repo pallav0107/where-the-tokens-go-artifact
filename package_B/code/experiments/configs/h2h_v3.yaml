@@ -1,0 +1,59 @@
+# PREREG_v3 head-to-head: AoB (Answer-or-Batch) against faithful re-implementations of
+# published agents, on OpenAI gpt-6-luna. Every setting here is registered in
+# experiments/PREREG_v3.md; a change after registration is a DECISIONS.md entry.
+# Run with: python -m agent.run_grid --config experiments/configs/h2h_v3.yaml --split dev|test
+experiment: h2h_v3
+harness: v3   # H1 per-cell cache salt, H2 per-question cell order, H3 answer contract, blocks
+run_label: r1   # output-dir label; dev round 1 (D42: the "always" in AoB's next instruction)
+dataset:
+  parquet_url: https://huggingface.co/datasets/hotpotqa/hotpot_qa/resolve/main/distractor/validation-00000-of-00001.parquet
+  sha256: c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6
+  cache_dir: ~/.cache/ieee-agent-exp
+  fixture: null
+  sample_seed: 20261115   # positions index default_rng(20261115).permutation(7405), ids sorted
+  n_questions: 48         # v1 bookkeeping only (positions 0-47 are not used by v3)
+  n_smoke: 6
+  n_dev: 0
+  # Inclusive permutation positions; each block is one 48-question KB (PREREG_v3 section 2).
+  blocks:
+    dev: [[54, 101], [102, 149]]
+    test: [[4000, 4047], [4048, 4095], [4096, 4143], [4144, 4191], [4192, 4239]]
+agent:
+  max_steps: 10           # harness cap; react overrides it with its source setting
+  temperature: 0
+  seed: 42
+  cell_order_seed: 20261117
+  repeats: {dev: 3, test: 3}   # independent repeats of every (cell, question), own salts
+arms:
+  # published baselines (B*-eligible)
+  - {name: react, k: [2, 8]}
+  - {name: notes_reset, k: [2, 8]}
+  - {name: window2, k: [8]}
+  - {name: memgpt, k: [8]}
+  - {name: agentless, k: [8]}
+  # reference points (never B*)
+  - {name: rag1, k: [8]}
+  - {name: closed_book, k: [0]}
+  # the agent and its one-variable ablations (never B*)
+  - {name: aob}
+  - {name: aob_nogate}
+  - {name: aob_nohop}
+  - {name: aob_nopack}
+  - {name: aob_llmq}
+  # superseded v2 controller at its v2 start values (never B*)
+  - {name: pbc}
+react: {max_steps: 7}     # ReAct (Yao et al. 2023): 7 steps for HotpotQA
+memgpt: {threshold: 6000}
+pbc: {k0: 3, k_hi: 8, e_max: 6000}
+aob: {k1: 6, m2: 4, budget: 3500, r_max: 3, n_next: 2, m3: 4, hop: true, llm_query: false,
+      thought: false}
+models:
+  # PREREG_v2 Amendment 2, unchanged: temperature 0, seed 42, reasoning effort none, JSON mode,
+  # max_completion_tokens 4096, store false, service tier default, no cache option (B4).
+  - {provider: openai, model: gpt-6-luna, reasoning_effort: none, max_output_tokens: 4096}
+budget:
+  max_usd: 3.50           # v3 spend stop: project total incl. the 0.041781 spent before v3
+  # block pre-check only (the per-request guard is the real limit): v2 dev round 0 measured
+  # 1,415 input and 143 output tokens per run, priced here at the cache-write rate (Amendment 1)
+  est_input_tokens_per_run: 1500
+  est_output_tokens_per_run: 150

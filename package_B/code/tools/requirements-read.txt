@@ -1,0 +1,2 @@
+# READ stage (local workstation only): the paper's measuring instrument, pinned to the version the paper states.
+tokenledger-llm==0.2.0

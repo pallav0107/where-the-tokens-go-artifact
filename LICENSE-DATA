@@ -1,0 +1,18 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Pallav Pokhriyal
+
+Applies to the data and documents in this package: package_A/ (pre-registrations and
+decision-log excerpt), package_B/data/, package_B/evidence/, MANIFEST.json,
+REDACTION_LOG.md, VERIFICATION.md and README.md. Software is licensed separately under
+the MIT License (see LICENSE).
+
+You are free to share (copy and redistribute the material in any medium or format) and
+adapt (remix, transform, and build upon the material) for any purpose, even commercially,
+under the following term: Attribution. You must give appropriate credit, provide a link to
+the license, and indicate if changes were made.
+
+Please cite: Pallav Pokhriyal, "Where the Tokens Go: How Prompt Caching Shapes the Cost of
+an LLM Coding Agent", AGENT 2027 workshop at ICSE 2027.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode

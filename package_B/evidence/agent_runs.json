@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "kind": "agent_runs",
+  "provenance": {
+    "generated_at": "2026-11-15T23:34:04Z",
+    "generator": "experiments/analyze.py",
+    "notes": [
+      "Requests are deduplicated per run_id to the final attempt (max `attempt`).",
+      "Analysable runs whose request steps != range(turns) are excluded and counted under 'request log mismatch'.",
+      "Control runs (broken_reset, smoke) never enter H1-H5 and are reported separately in exclusions.control_runs.",
+      "Amendment 1: H1-H4 use all analysable custom-agent runs regardless of provider; H5 uses analysable runs whose cached_input_tokens are non-null; per-model results are reported alongside.",
+      "All CIs are 95% percentile intervals from a cluster bootstrap over questions; a CI with <95% valid replicates is marked unstable and demotes the decision to 'not supported (unstable CI)'."
+    ],
+    "sources": [
+      {
+        "id": "probe_43717325485",
+        "grade": "measured",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": "python -m agent.run_grid --out out/probe_43717325485",
+        "description": "Grid output 'probe_43717325485': 0 run records, 0 request records; Actions run: 43717325485 ([REDACTED: infrastructure] private repository; available to the programme chairs on request)"
+      },
+      {
+        "id": "prereg",
+        "grade": "documented-record",
+        "sha256": "3a973e3df9b71f1d42aae6739dc0ef529f8a9f7f3121be8c57a1b9ca855c6587",
+        "command": "git show 1f63cd0c11963fff8b98422135b174d79f39d677:experiments/PREREG.md",
+        "description": "Pre-registration experiments/PREREG.md, sections 6-10 specify this analysis; registration commit 1f63cd0c11963fff8b98422135b174d79f39d677"
+      }
+    ]
+  },
+  "aggregates": {
+    "prereg": {
+      "sha": "1f63cd0c11963fff8b98422135b174d79f39d677"
+    },
+    "provenance": {
+      "analysis_git_sha": "d4bef08d935de7c80ed8f6ca06b70ad6d0737a57",
+      "inputs": [
+        {
+          "github_run_url": "43717325485 ([REDACTED: infrastructure] private repository; available to the programme chairs on request)",
+          "github_run_id": "43717325485",
+          "git_sha": "8d3466045e33d58f0f242b8b4036004d0b8d998c",
+          "prereg_sha": "1f63cd0c11963fff8b98422135b174d79f39d677",
+          "note": "probe job: control 1 only; no experiment run (GEMINI_API_KEY not set)",
+          "dir": "probe_43717325485"
+        }
+      ]
+    },
+    "n_runs_analysable": 0,
+    "n_questions": 0,
+    "cells": [],
+    "not_run": [],
+    "exclusions": {
+      "n_excluded": 0,
+      "n_error_status": 0,
+      "n_truncated": 0,
+      "n_request_log_mismatch": 0,
+      "by_reason": {},
+      "by_cell": {},
+      "control_runs": {
+        "n": 0,
+        "by_control": {},
+        "run_ids": []
+      }
+    },
+    "tokenledger": {
+      "overall": null,
+      "per_model": {},
+      "cache_read_reported": false,
+      "version": "0.2.0"
+    },
+    "hypotheses": {
+      "H1": {
+        "status": "not yet run",
+        "reason": "no analysable runs in the train or test split"
+      },
+      "H2": {
+        "status": "not yet run",
+        "reason": "no analysable runs with T >= 3 and request records"
+      },
+      "H3": {
+        "status": "not yet run",
+        "reason": "no (question, model) with all four policy x k cells"
+      },
+      "H4": {
+        "status": "not yet run",
+        "reason": "no analysable runs with accuracy metrics"
+      },
+      "H5": {
+        "status": "not yet run",
+        "reason": "no analysable runs yet"
+      }
+    },
+    "controls": {
+      "C1_token_accounting": {
+        "passed": true,
+        "detail": "5 passed, 5 deselected in 0.03s"
+      },
+      "C2_broken_policy": {
+        "status": "not run",
+        "reason": "no broken_reset control runs present"
+      },
+      "C3_label_shuffle": {
+        "status": "not yet run",
+        "reason": "H1 not evaluable on the inputs"
+      }
+    },
+    "cloud_spend_usd": 0.0,
+    "run_usd_total": 0.0,
+    "agent_models": {
+      "flash": null,
+      "lite": null
+    }
+  },
+  "figures": {
+    "AgentNQuestions": {
+      "value": 48,
+      "format": "int",
+      "source": "prereg",
+      "desc": "Pre-registered number of sampled questions (PREREG section 4)."
+    },
+    "AgentTurnCap": {
+      "value": 10,
+      "format": "int",
+      "source": "prereg",
+      "desc": "Per-run turn cap, max_steps = 10 (PREREG section 2)."
+    },
+    "AgentKLow": {
+      "value": 2,
+      "format": "int",
+      "source": "prereg",
+      "desc": "Retrieval top-k, low level (PREREG section 3)."
+    },
+    "AgentKHigh": {
+      "value": 8,
+      "format": "int",
+      "source": "prereg",
+      "desc": "Retrieval top-k, high level (PREREG section 3)."
+    },
+    "AgentNTestQuestions": {
+      "value": 16,
+      "format": "int",
+      "source": "prereg",
+      "desc": "Held-out test questions for H1: p mod 3 == 2 over 48 positions."
+    },
+    "AgentNBoot": {
+      "value": 2000,
+      "format": "int",
+      "source": "prereg",
+      "desc": "Cluster bootstrap replicates over questions (PREREG section 7)."
+    },
+    "AgentNPerm": {
+      "value": 200,
+      "format": "int",
+      "source": "prereg",
+      "desc": "Label-shuffle permutations for control 3 (PREREG section 8)."
+    },
+    "AgentPreregShaShort": {
+      "value": "1f63cd0",
+      "format": "text",
+      "source": "prereg",
+      "desc": "First 7 characters of the PREREG.md registration commit SHA."
+    },
+    "AgentNRunsAnalysed": {
+      "value": 0,
+      "format": "int",
+      "source": "probe_43717325485",
+      "desc": "Runs entering the hypothesis analyses after exclusions."
+    },
+    "AgentNRunsExcluded": {
+      "value": 0,
+      "format": "int",
+      "source": "probe_43717325485",
+      "desc": "Runs excluded from the analysed arms (status, truncation, request-log mismatch)."
+    },
+    "AgentNControlRuns": {
+      "value": 0,
+      "format": "int",
+      "source": "probe_43717325485",
+      "desc": "Control runs (broken_reset, smoke), reported separately from the analysed arms."
+    },
+    "AgentNQuestionsAnalysed": {
+      "value": 0,
+      "format": "int",
+      "source": "probe_43717325485",
+      "desc": "Distinct questions with analysable runs."
+    },
+    "AgentCloudSpendUsd": {
+      "value": 0.0,
+      "format": "float2",
+      "source": "probe_43717325485",
+      "desc": "Total cloud API spend (USD): sum of cloud_spend_total over the input provenance files (0 when none is recorded)."
+    },
+    "AgentModelFlashId": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Exact Gemini model id(s) of the flash-tier cells found in the runs."
+    },
+    "AgentModelLiteId": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Exact Gemini model id(s) of the flash-lite-tier cells found in the runs."
+    },
+    "AgentTlTotalInput": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Total input tokens over analysable requests (tokenledger accounting)."
+    },
+    "AgentTlRequests": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Number of analysable requests (tokenledger accounting)."
+    },
+    "AgentTlCacheReadPct": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Cache-read share of input tokens over analysable requests."
+    },
+    "AgentHOneDecision": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H1 not evaluated."
+    },
+    "AgentHOneRsqCtx": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H1 not evaluated."
+    },
+    "AgentHOneMapeCtx": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H1 not evaluated."
+    },
+    "AgentHOneMapePrompt": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H1 not evaluated."
+    },
+    "AgentHOneDeltaMape": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H1 not evaluated."
+    },
+    "AgentHOneDeltaMapeCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H1 not evaluated."
+    },
+    "AgentHOneDeltaMapeCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H1 not evaluated."
+    },
+    "AgentHTwoDecision": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoBCarry": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoBCarryCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoBCarryCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoBReset": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoBResetCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoBResetCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoDiffBCarryMinusBReset": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoDiffBCarryMinusBResetCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHTwoDiffBCarryMinusBResetCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H2 not evaluated."
+    },
+    "AgentHThreeDecision": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H3 not evaluated."
+    },
+    "AgentHThreeIMean": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H3 not evaluated."
+    },
+    "AgentHThreeIMeanCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H3 not evaluated."
+    },
+    "AgentHThreeIMeanCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H3 not evaluated."
+    },
+    "AgentHThreeRho": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H3 not evaluated."
+    },
+    "AgentHThreeRhoCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H3 not evaluated."
+    },
+    "AgentHThreeRhoCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H3 not evaluated."
+    },
+    "AgentHFourStatus": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H4 not evaluated."
+    },
+    "AgentHFiveDecision": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H5 not evaluated."
+    },
+    "AgentHFiveCachedSlopeCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H5 not evaluated."
+    },
+    "AgentHFiveCachedSlopeCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H5 not evaluated."
+    },
+    "AgentHFiveUsdSlopeCIlo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H5 not evaluated."
+    },
+    "AgentHFiveUsdSlopeCIhi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "H5 not evaluated."
+    },
+    "AgentCOneStatus": {
+      "value": "passed",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Control 1 (token accounting reproduces a hand-computed prefix sum): passed/failed/not run."
+    },
+    "AgentCTwoStatus": {
+      "value": "not run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Control 2 (broken policy) status: passed/failed/inconclusive/not run."
+    },
+    "AgentCThreeFracSupported": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Control 3 not run."
+    },
+    "AgentCThreePassed": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "probe_43717325485",
+      "desc": "Control 3 not run."
+    }
+  }
+}

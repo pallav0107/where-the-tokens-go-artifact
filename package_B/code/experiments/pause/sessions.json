@@ -1,0 +1,425 @@
+{
+ "dataset": "princeton-nlp/SWE-bench_Verified",
+ "split": "test",
+ "seed": 2027,
+ "sources": [
+  {
+   "file": "rows_0.json",
+   "sha256": "1c3850da017bd530532c42f80035df75ecc6ed7943e1494d0a5302c60d67ff3d"
+  },
+  {
+   "file": "rows_100.json",
+   "sha256": "ad2828da9a1a8ab3be3000672f287393ce83bc0102dc48be114e5e60ed0e18cb"
+  },
+  {
+   "file": "rows_200.json",
+   "sha256": "b0f1a84aa338d3ca7fdfc387d49435deb52dfa6cef00899b299cc5f7844a9370"
+  },
+  {
+   "file": "rows_300.json",
+   "sha256": "1e4db401e4969ddd52a497872be782d252fa5207c2988d3b139064f07222e28f"
+  },
+  {
+   "file": "rows_400.json",
+   "sha256": "a99ab0683594b82169e5a5531451f8cebddcbb6b6a0895654e7ed6e50ad80b0e"
+  }
+ ],
+ "tasks_per_session": 4,
+ "n_sessions": 10,
+ "n_c": 5,
+ "excluded_repos": [
+  "astropy/astropy",
+  "scikit-learn/scikit-learn",
+  "matplotlib/matplotlib"
+ ],
+ "excluded_ids": [
+  "django__django-16631"
+ ],
+ "hard_tasks": 26,
+ "fill_tasks": 14,
+ "pilot": {
+  "session_id": "sympy-1.6",
+  "repo": "sympy/sympy",
+  "version": "1.6",
+  "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-19040:latest",
+  "image_task": "sympy__sympy-19040",
+  "tasks": [
+   {
+    "instance_id": "sympy__sympy-18199",
+    "difficulty": "1-4 hours",
+    "base_commit": "ba80d1e493f21431b4bf729b3e0452cd47eb9566",
+    "problem_sha256": "fb429ef2a603c20980fa2ed7dc66d00cc148ca8103d92b69662bb6c687f2e162"
+   },
+   {
+    "instance_id": "sympy__sympy-18211",
+    "difficulty": "15 min - 1 hour",
+    "base_commit": "b4f1aa3540fe68d078d76e78ba59d022dd6df39f",
+    "problem_sha256": "e2e6d8d8bb9ce663b29aaccb73683ba91e87ceb98a7d613750de91f2d4b245a5"
+   },
+   {
+    "instance_id": "sympy__sympy-18698",
+    "difficulty": "15 min - 1 hour",
+    "base_commit": "3dff1b98a78f28c953ae2140b69356b8391e399c",
+    "problem_sha256": "cd81e74232a1271cd69ffe8a0ed157acd609e130503b78ae962414616718a537"
+   },
+   {
+    "instance_id": "sympy__sympy-19040",
+    "difficulty": "15 min - 1 hour",
+    "base_commit": "b9179e80d2daa1bb6cba1ffe35ca9e6612e115c9",
+    "problem_sha256": "42bb887eb79aa3dcd7183824fdce7ccc38d867dff8242d8edad92a705e0bbd58"
+   }
+  ]
+ },
+ "sessions": [
+  {
+   "session_id": "django-4.0",
+   "repo": "django/django",
+   "version": "4.0",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-14631:latest",
+   "image_task": "django__django-14631",
+   "tasks": [
+    {
+     "instance_id": "django__django-14007",
+     "difficulty": "1-4 hours",
+     "base_commit": "619f26d2895d121854b1bed1b535d42b722e2eba",
+     "problem_sha256": "61950a482ff12ae94f13cdf0032eeb04986240655411db0358161491ad853e0a"
+    },
+    {
+     "instance_id": "django__django-14631",
+     "difficulty": "1-4 hours",
+     "base_commit": "84400d2e9db7c51fee4e9bb04c028f665b8e7624",
+     "problem_sha256": "1d3f964a6347e618040724052803c6e2011af7a3288f08293494b40da803118d"
+    },
+    {
+     "instance_id": "django__django-14011",
+     "difficulty": "1-4 hours",
+     "base_commit": "e4430f22c8e3d29ce5d9d0263fba57121938d06d",
+     "problem_sha256": "be59236cc1523a08327292712cb4cb8f939a49866e7355254a3efa586ae4fdd2"
+    },
+    {
+     "instance_id": "django__django-14434",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "5e04e84d67da8163f365e9f5fcd169e2630e2873",
+     "problem_sha256": "069b0d7ba8ebff2f277a626aec1231cfee3546478a755fd268df7ecf2e4ee766"
+    }
+   ],
+   "order": 1,
+   "condition_c": true
+  },
+  {
+   "session_id": "django-4.2",
+   "repo": "django/django",
+   "version": "4.2",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-16315:latest",
+   "image_task": "django__django-16315",
+   "tasks": [
+    {
+     "instance_id": "django__django-16263",
+     "difficulty": "1-4 hours",
+     "base_commit": "321ecb40f4da842926e1bc07e11df4aabe53ca4b",
+     "problem_sha256": "ef08a5be58ef19907c5ccbc08283ca421442f12cf119e39a33cc4d0224911e56"
+    },
+    {
+     "instance_id": "django__django-15957",
+     "difficulty": "1-4 hours",
+     "base_commit": "f387d024fc75569d2a4a338bfda76cc2f328f627",
+     "problem_sha256": "676a7fa58acee1293e62f431bfea0ddd001785e0efd2051bb50d7314027e9213"
+    },
+    {
+     "instance_id": "django__django-16032",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "0c3981eb5094419fe200eb46c71b5376a2266166",
+     "problem_sha256": "a6962d82b41042e5d8c3ddd56535e25107582436685e7ab9efc78b0da6df86c1"
+    },
+    {
+     "instance_id": "django__django-16315",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "7d5329852f19c6ae78c6f6f3d3e41835377bf295",
+     "problem_sha256": "1e77d04330a04cec33e1085c3641b845bddc133ae3c5102cdd71b9fd61023fa9"
+    }
+   ],
+   "order": 2,
+   "condition_c": true
+  },
+  {
+   "session_id": "django-3.0",
+   "repo": "django/django",
+   "version": "3.0",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-11400:latest",
+   "image_task": "django__django-11400",
+   "tasks": [
+    {
+     "instance_id": "django__django-11400",
+     "difficulty": "1-4 hours",
+     "base_commit": "1f8382d34d54061eddc41df6994e20ee38c60907",
+     "problem_sha256": "3add264d5b3fc0e287b7bfe3c5b1179263d4a811de6caeb2a739b918bb049a21"
+    },
+    {
+     "instance_id": "django__django-11138",
+     "difficulty": "1-4 hours",
+     "base_commit": "c84b91b7603e488f7171fdff8f08368ef3d6b856",
+     "problem_sha256": "b33c129178156fdb6d35f4d406ac6090bc6fbb7b220893ec068c0d76d7bca1ea"
+    },
+    {
+     "instance_id": "django__django-10554",
+     "difficulty": "1-4 hours",
+     "base_commit": "14d026cccb144c6877294ba4cd4e03ebf0842498",
+     "problem_sha256": "2f72fa6137f1d53983cff629a05e06c42a2ad477ea4557746c4688cbd6aeb724"
+    },
+    {
+     "instance_id": "django__django-11211",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "ba726067604ce5a8ca3919edf653496722b433ab",
+     "problem_sha256": "658b186e181f63e4cf92e146a414b8f30b0fc898e5bb698a7a45bcd900fce010"
+    }
+   ],
+   "order": 3,
+   "condition_c": true
+  },
+  {
+   "session_id": "django-4.1",
+   "repo": "django/django",
+   "version": "4.1",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-15629:latest",
+   "image_task": "django__django-15629",
+   "tasks": [
+    {
+     "instance_id": "django__django-15503",
+     "difficulty": "1-4 hours",
+     "base_commit": "859a87d873ce7152af73ab851653b4e1c3ffea4c",
+     "problem_sha256": "ae5996a2ff543fb4739d14e1d0080c854ac289205e0abe1d687645bc14af2123"
+    },
+    {
+     "instance_id": "django__django-15629",
+     "difficulty": "1-4 hours",
+     "base_commit": "694cf458f16b8d340a3195244196980b2dec34fd",
+     "problem_sha256": "f0d48bfd83441c3935b06e4a92bcdb578150b817ce17a73b3275233796473aa6"
+    },
+    {
+     "instance_id": "django__django-15268",
+     "difficulty": "1-4 hours",
+     "base_commit": "0ab58c120939093fea90822f376e1866fc714d1f",
+     "problem_sha256": "d924c4fce88325ef036717d83eec6886a45e706bcdb2990f20049ed3d6377f07"
+    },
+    {
+     "instance_id": "django__django-15128",
+     "difficulty": "1-4 hours",
+     "base_commit": "cb383753c0e0eb52306e1024d32a782549c27e61",
+     "problem_sha256": "45a25eccc76c2a4696cf8ae4ddc4b1d8ccaf016a096c077f16d0db237f16a8f4"
+    }
+   ],
+   "order": 4,
+   "condition_c": true
+  },
+  {
+   "session_id": "django-5.0",
+   "repo": "django/django",
+   "version": "5.0",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-16950:latest",
+   "image_task": "django__django-16950",
+   "tasks": [
+    {
+     "instance_id": "django__django-16560",
+     "difficulty": "1-4 hours",
+     "base_commit": "51c9bb7cd16081133af4f0ab6d06572660309730",
+     "problem_sha256": "55bdf0c9598df4bb15567401559ad47ae47a817a1a61031101d6d4105e3e2da3"
+    },
+    {
+     "instance_id": "django__django-16662",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "0eb3e9bd754e4c9fac8b616b705178727fc8031e",
+     "problem_sha256": "42e240ffdb04350697f828e621ac52538d02097c07e3bd29e2e48e7005968beb"
+    },
+    {
+     "instance_id": "django__django-16527",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "bd366ca2aeffa869b7dbc0b0aa01caea75e6dc31",
+     "problem_sha256": "d9bcb36c05a8542b01cc22ded3b6545b090ccac64f969ddee3981d62c6e74e10"
+    },
+    {
+     "instance_id": "django__django-16950",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "f64fd47a7627ed6ffe2df2a32ded6ee528a784eb",
+     "problem_sha256": "f269742c4cfd7938fbc0c71820914948ed127d5ce9750df52c33f7a340b91f34"
+    }
+   ],
+   "order": 5,
+   "condition_c": true
+  },
+  {
+   "session_id": "sympy-1.5",
+   "repo": "sympy/sympy",
+   "version": "1.5",
+   "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-17630:latest",
+   "image_task": "sympy__sympy-17630",
+   "tasks": [
+    {
+     "instance_id": "sympy__sympy-17630",
+     "difficulty": "1-4 hours",
+     "base_commit": "58e78209c8577b9890e957b624466e5beed7eb08",
+     "problem_sha256": "1edfd6e1183bb765b9186e8d8fdfe541d80ef44766baf7b722b7626235719599"
+    },
+    {
+     "instance_id": "sympy__sympy-16597",
+     "difficulty": "1-4 hours",
+     "base_commit": "6fd65310fa3167b9626c38a5487e171ca407d988",
+     "problem_sha256": "1b04ffa8e91360cc91e2397541d3f8c5f34ffc0cb5cd84b0015747240c26932c"
+    },
+    {
+     "instance_id": "sympy__sympy-17318",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "d4e0231b08147337745dcf601e62de7eefe2fb2d",
+     "problem_sha256": "8a310f20c7a096a6254d15f08997beaed275576879e726690cc2a8de13e47e3c"
+    },
+    {
+     "instance_id": "sympy__sympy-16792",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "09786a173e7a0a488f46dd6000177c23e5d24eed",
+     "problem_sha256": "48b3d6d8e3ddfc9a78b57d8f79cf5ca78ba55a990f1eba937b998fd9160a77a8"
+    }
+   ],
+   "order": 6,
+   "condition_c": false
+  },
+  {
+   "session_id": "xarray-2022.06",
+   "repo": "pydata/xarray",
+   "version": "2022.06",
+   "image": "swebench/sweb.eval.x86_64.pydata_1776_xarray-6992:latest",
+   "image_task": "pydata__xarray-6992",
+   "tasks": [
+    {
+     "instance_id": "pydata__xarray-6992",
+     "difficulty": ">4 hours",
+     "base_commit": "45c0a114e2b7b27b83c9618bc05b36afac82183c",
+     "problem_sha256": "2fd625e5f58b6b7b7c292b9ba90307e8583cad9d4ddb395fe9805bb06c74208b"
+    },
+    {
+     "instance_id": "pydata__xarray-6744",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "7cc6cc991e586a6158bb656b8001234ccda25407",
+     "problem_sha256": "8bdb6741fb6506b53a5a6bd32fb48ce9a45a92641394f0624c98635856bc4ed4"
+    },
+    {
+     "instance_id": "pydata__xarray-6721",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "cc183652bf6e1273e985e1c4b3cba79c896c1193",
+     "problem_sha256": "8885a8e303e07d8e74f13a24134ecd7d051a2e2ded38ac313d6667e68b93a021"
+    },
+    {
+     "instance_id": "pydata__xarray-6938",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "c4e40d991c28be51de9ac560ce895ac7f9b14924",
+     "problem_sha256": "80200279ed4af4b8b73e3d9bf2ec5a39dbded0c3e337b1b944253fd7b7b04248"
+    }
+   ],
+   "order": 7,
+   "condition_c": false
+  },
+  {
+   "session_id": "django-3.2",
+   "repo": "django/django",
+   "version": "3.2",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-13837:latest",
+   "image_task": "django__django-13837",
+   "tasks": [
+    {
+     "instance_id": "django__django-13837",
+     "difficulty": "1-4 hours",
+     "base_commit": "415f50298f97fb17f841a9df38d995ccf347dfcc",
+     "problem_sha256": "34e44d1cfd0354cf9ed68afafef69789c59418e2ea0620e23b6402522a2ae4ac"
+    },
+    {
+     "instance_id": "django__django-13449",
+     "difficulty": "1-4 hours",
+     "base_commit": "2a55431a5678af52f669ffe7dff3dd0bd21727f8",
+     "problem_sha256": "b082782316bb4c8f2899f9f31d81edd84d4ded60ed7627073f56014db30da0d9"
+    },
+    {
+     "instance_id": "django__django-13128",
+     "difficulty": "1-4 hours",
+     "base_commit": "2d67222472f80f251607ae1b720527afceba06ad",
+     "problem_sha256": "d05584e584d668d3bc05dac8dc889140cbec5336c30912ddf99cb5fc0f8f9716"
+    },
+    {
+     "instance_id": "django__django-13344",
+     "difficulty": "1-4 hours",
+     "base_commit": "e39e727ded673e74016b5d3658d23cbe20234d11",
+     "problem_sha256": "fa0d64caaae3c17b9e52c447593c2c8ac3354046b1df2ceb293645b293b06090"
+    }
+   ],
+   "order": 8,
+   "condition_c": false
+  },
+  {
+   "session_id": "sympy-1.1",
+   "repo": "sympy/sympy",
+   "version": "1.1",
+   "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-14248:latest",
+   "image_task": "sympy__sympy-14248",
+   "tasks": [
+    {
+     "instance_id": "sympy__sympy-14248",
+     "difficulty": "1-4 hours",
+     "base_commit": "9986b38181cdd556a3f3411e553864f11912244e",
+     "problem_sha256": "056549bbb76a727325fc85b052ecb5d1c9ba9d70d702cf011b407e3877e5c383"
+    },
+    {
+     "instance_id": "sympy__sympy-13878",
+     "difficulty": ">4 hours",
+     "base_commit": "7b127bdf71a36d85216315f80c1b54d22b060818",
+     "problem_sha256": "5ed83f5e24361e5ca95f9c3dfcff3ba9ce9775f1fd9a2a10ac3a4511370b6d75"
+    },
+    {
+     "instance_id": "sympy__sympy-13852",
+     "difficulty": "1-4 hours",
+     "base_commit": "c935e1d106743efd5bf0705fbeedbd18fadff4dc",
+     "problem_sha256": "51eca986eb401e0dc2856252c823632a51285a5a0d70bd046d46c39362d0df02"
+    },
+    {
+     "instance_id": "sympy__sympy-13877",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "1659712001810f5fc563a443949f8e3bb38af4bd",
+     "problem_sha256": "e8eb7f7fe32ffe357b6a54186c56ae0f9326084bf90504838895599d08e0dbc8"
+    }
+   ],
+   "order": 9,
+   "condition_c": false
+  },
+  {
+   "session_id": "django-3.1",
+   "repo": "django/django",
+   "version": "3.1",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-12708:latest",
+   "image_task": "django__django-12708",
+   "tasks": [
+    {
+     "instance_id": "django__django-11885",
+     "difficulty": "1-4 hours",
+     "base_commit": "04ac9b45a34440fa447feb6ae934687aacbfc5f4",
+     "problem_sha256": "bd6ce8dcb4e3ccf23898a9f244352cc8d464c3f6e5fff1f656d5a30446a6ea10"
+    },
+    {
+     "instance_id": "django__django-12325",
+     "difficulty": "1-4 hours",
+     "base_commit": "29c126bb349526b5f1cd78facbe9f25906f18563",
+     "problem_sha256": "8f920ccb5f6169fecd052cc74e6c0149701d063e78802c8f33d585a69bb18c02"
+    },
+    {
+     "instance_id": "django__django-12708",
+     "difficulty": "1-4 hours",
+     "base_commit": "447980e72ac01da1594dd3373a03ba40b7ee6f80",
+     "problem_sha256": "773681998993eff75a3b69f04821e4e8683f89cfffdee38f19fe11cb3c7a98be"
+    },
+    {
+     "instance_id": "django__django-12039",
+     "difficulty": "15 min - 1 hour",
+     "base_commit": "58c1acb1d6054dfec29d0f30b1033bae6ef62aec",
+     "problem_sha256": "2d2bf1ab2eecd3ede142cda952d8b44ef51fab8febe416c2a85636fd4e13ea3d"
+    }
+   ],
+   "order": 10,
+   "condition_c": false
+  }
+ ]
+}

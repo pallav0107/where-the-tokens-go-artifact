@@ -1,0 +1,41 @@
+# Price sheet: USD per 1M tokens, retrieved by hand on 2026-11-15 from the cited pages.
+# agent/budget.py refuses any cloud run whose model entry is missing or has verified: false.
+# Gemini: paid tier, text input; "cached_input" is the context-caching rate, which is what
+#   implicit cache hits are billed at (storage charges apply only to explicit caches, which
+#   this agent never creates). 3.6/3.8 Flash prices are the rates in force through 2026-12-31.
+# DashScope International (Singapore): tier 0 < input <= 256K tokens per request (our requests
+#   are far below 256K); non-thinking output. Implicit cache hits are billed at 20% of the input
+#   price per the Context Cache page (last updated 2026-11-11).
+retrieved: "2026-11-15"
+providers:
+  gemini:
+    source: https://ai.google.dev/gemini-api/docs/pricing  # 301 -> https://aistudio.google.com/docs/pricing
+    models:
+      gemini-3.8-flash: {input: 0.75, cached_input: 0.075, output: 3.75, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+      gemini-3.6-flash: {input: 0.75, cached_input: 0.075, output: 3.75, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+      gemini-2.5-flash: {input: 0.30, cached_input: 0.03, output: 2.50, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+      gemini-3.5-flash-lite: {input: 0.30, cached_input: 0.03, output: 2.50, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+      gemini-3.1-flash-lite: {input: 0.25, cached_input: 0.025, output: 1.50, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+      gemini-2.5-flash-lite: {input: 0.10, cached_input: 0.01, output: 0.40, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+      # Embeddings (input only; output price 0).
+      gemini-embedding-2: {input: 0.20, cached_input: 0.20, output: 0.0, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+      gemini-embedding-001: {input: 0.15, cached_input: 0.15, output: 0.0, source_url: "https://aistudio.google.com/docs/pricing", retrieved: "2026-11-15", verified: true}
+  dashscope:
+    source: https://www.alibabacloud.com/help/en/model-studio/model-pricing  # page last updated 2026-11-12
+    cache_source: https://www.alibabacloud.com/help/en/model-studio/context-cache  # implicit hit = 20% of input
+    models:
+      qwen-flash: {input: 0.05, cached_input: 0.01, output: 0.40, source_url: "https://www.alibabacloud.com/help/en/model-studio/model-pricing", retrieved: "2026-11-15", verified: true}
+      qwen-plus: {input: 0.40, cached_input: 0.08, output: 1.20, source_url: "https://www.alibabacloud.com/help/en/model-studio/model-pricing", retrieved: "2026-11-15", verified: true}
+      # qwen-max price not yet located on the International price page: refused until verified.
+      qwen-max: {input: null, cached_input: null, output: null, source_url: "https://www.alibabacloud.com/help/en/model-studio/model-pricing", retrieved: "2026-11-15", verified: false}
+  # OpenAI (PREREG_v2 Amendment 2, B2), retrieved 2026-11-16: standard tier, short context
+  # (<= 272K input tokens; max_input_tokens makes the spend guard refuse anything longer).
+  # cache_write = the 30-minute cache-write rate (1.25x input): per the prompt-caching guide,
+  # GPT-5.6 and later bill implicit cache writes at it, reported as
+  # usage.prompt_tokens_details.cache_write_tokens; cached_tokens are billed reads only.
+  # service_tiers: a response served on any other tier (Fast = 2x, Flex) is unpriced.
+  openai:
+    source: https://developers.openai.com/api/docs/pricing
+    cache_source: https://developers.openai.com/api/docs/guides/prompt-caching
+    models:
+      gpt-6-luna: {input: 0.10, cached_input: 0.01, cache_write: 0.125, output: 0.50, max_input_tokens: 272000, service_tiers: [default], source_url: "https://developers.openai.com/api/docs/pricing", retrieved: "2026-11-16", verified: true}

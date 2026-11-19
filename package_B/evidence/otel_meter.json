@@ -1,0 +1,820 @@
+{
+  "aggregates": {
+    "by_client_version": {
+      "2.1.220": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 2.0,
+        "matched": 1,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 2
+      },
+      "2.1.326": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 2.2493595217762596,
+        "matched": 1171,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 1177
+      }
+    },
+    "by_model": {
+      "claude-haiku-4-5-20251001": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 2.0,
+        "matched": 1,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 2
+      },
+      "claude-haiku-5-5": {
+        "matched": 0,
+        "telemetry": 1
+      },
+      "claude-opus-4-8": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 2.9130434782608696,
+        "matched": 23,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 23
+      },
+      "claude-opus-5-5": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 2.2572727272727273,
+        "matched": 1100,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 1105
+      },
+      "claude-sonnet-5-5": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 1.75,
+        "matched": 48,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 48
+      }
+    },
+    "by_query_source": {
+      "agent:builtin:general-purpose": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 2.3417533432392275,
+        "matched": 673,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 673
+      },
+      "agent:custom": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 1.7857142857142858,
+        "matched": 56,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 56
+      },
+      "generate_session_title": {
+        "matched": 0,
+        "telemetry": 2
+      },
+      "prompt_suggestion": {
+        "matched": 0,
+        "telemetry": 5
+      },
+      "sdk": {
+        "first_line_output_ratio": 1.0,
+        "lines_per_request": 2.1670428893905194,
+        "matched": 443,
+        "paper": {
+          "cache_read": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "cache_write": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "input": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          },
+          "output": {
+            "exact_share": 1.0,
+            "ratio": 1.0
+          }
+        },
+        "telemetry": 443
+      }
+    },
+    "client_versions": [
+      "2.1.220",
+      "2.1.326"
+    ],
+    "matching": {
+      "duplicate_request_ids": 0,
+      "longest_request_ms": 189623,
+      "matched": 1172,
+      "matched_outside_window": 0,
+      "model_mismatch": 0,
+      "telemetry_only": {
+        "by_class": {
+          "query_source_never_matched": 7,
+          "session_without_transcript": 0,
+          "unexplained": 0
+        },
+        "by_model": {
+          "claude-haiku-4-5-20251001": 1,
+          "claude-haiku-5-5": 1,
+          "claude-opus-5-5": 5
+        },
+        "by_query_source": {
+          "generate_session_title": 2,
+          "prompt_suggestion": 5
+        },
+        "total": 7
+      },
+      "transcript_only": {
+        "by_class": {
+          "after_session_last_event": 0,
+          "before_session_first_event": 94,
+          "in_flight_at_window_end": 0,
+          "no_request_id": 0,
+          "session_not_emitting": 170,
+          "unexplained": 0
+        },
+        "by_model": {
+          "claude-opus-5-5": 257,
+          "claude-sonnet-5-5": 7
+        },
+        "total": 264
+      }
+    },
+    "rules": {
+      "first_line": {
+        "max_over_first": 1.0,
+        "output": {
+          "above": 0,
+          "below": 0,
+          "exact_share": 1.0,
+          "largest_abs_diffs": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_abs_diff": 0,
+          "n": 1172,
+          "ratio": 1.0,
+          "telemetry_sum": 1460666,
+          "transcript_sum": 1460666
+        },
+        "telemetry_over_first": 1.0
+      },
+      "line_count": {
+        "cache_read": {
+          "above": 867,
+          "below": 0,
+          "exact_share": 0.26023890784982934,
+          "largest_abs_diffs": [
+            3742284,
+            3177783,
+            2932470,
+            2618478,
+            2263164
+          ],
+          "max_abs_diff": 3742284,
+          "n": 1172,
+          "ratio": 2.399113759221306,
+          "telemetry_sum": 257549873,
+          "transcript_sum": 617891444
+        },
+        "cache_write": {
+          "above": 878,
+          "below": 0,
+          "exact_share": 0.2508532423208191,
+          "largest_abs_diffs": [
+            1689198,
+            913588,
+            892156,
+            846792,
+            532388
+          ],
+          "max_abs_diff": 1689198,
+          "n": 1172,
+          "ratio": 2.481661677397105,
+          "telemetry_sum": 6982318,
+          "transcript_sum": 17327751
+        },
+        "input": {
+          "above": 878,
+          "below": 0,
+          "exact_share": 0.2508532423208191,
+          "largest_abs_diffs": [
+            24,
+            20,
+            16,
+            14,
+            14
+          ],
+          "max_abs_diff": 24,
+          "n": 1172,
+          "ratio": 2.2660699755899105,
+          "telemetry_sum": 2458,
+          "transcript_sum": 5570
+        },
+        "lines": 2636,
+        "lines_per_request": 2.249146757679181,
+        "output": {
+          "above": 878,
+          "below": 0,
+          "exact_share": 0.2508532423208191,
+          "largest_abs_diffs": [
+            76955,
+            57822,
+            49780,
+            45354,
+            37572
+          ],
+          "max_abs_diff": 76955,
+          "n": 1172,
+          "ratio": 2.7706922732506953,
+          "telemetry_sum": 1460666,
+          "transcript_sum": 4047056
+        },
+        "requests": 1172,
+        "single_line_share": 0.2508532423208191
+      },
+      "paper": {
+        "cache_read": {
+          "above": 0,
+          "below": 0,
+          "exact_share": 1.0,
+          "largest_abs_diffs": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_abs_diff": 0,
+          "n": 1172,
+          "ratio": 1.0,
+          "telemetry_sum": 257549873,
+          "transcript_sum": 257549873
+        },
+        "cache_write": {
+          "above": 0,
+          "below": 0,
+          "exact_share": 1.0,
+          "largest_abs_diffs": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_abs_diff": 0,
+          "n": 1172,
+          "ratio": 1.0,
+          "telemetry_sum": 6982318,
+          "transcript_sum": 6982318
+        },
+        "input": {
+          "above": 0,
+          "below": 0,
+          "exact_share": 1.0,
+          "largest_abs_diffs": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_abs_diff": 0,
+          "n": 1172,
+          "ratio": 1.0,
+          "telemetry_sum": 2458,
+          "transcript_sum": 2458
+        },
+        "output": {
+          "above": 0,
+          "below": 0,
+          "exact_share": 1.0,
+          "largest_abs_diffs": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_abs_diff": 0,
+          "n": 1172,
+          "ratio": 1.0,
+          "telemetry_sum": 1460666,
+          "transcript_sum": 1460666
+        }
+      }
+    },
+    "telemetry": {
+      "after_until": 0,
+      "api_request_records": 1179,
+      "bad_lines": 0,
+      "conflicting_duplicates": 0,
+      "duplicates": 0,
+      "files": 1,
+      "inputs": [
+        {
+          "bytes": 9700758,
+          "sha256": "239104ab62eb3a850c95f0307123b7afd996036a137e07597c9c9d67ee858e6d"
+        }
+      ],
+      "lines": 1120,
+      "log_batches": 1119,
+      "no_request_id": 0,
+      "no_timestamp": 0,
+      "records": 5430
+    },
+    "telemetry_only_token_share": {
+      "cache_read": {
+        "all": 259436190,
+        "share": 0.007270832184206837,
+        "telemetry_only": 1886317
+      },
+      "cache_write": {
+        "all": 6984790,
+        "share": 0.00035391185704938875,
+        "telemetry_only": 2472
+      },
+      "input": {
+        "all": 6693,
+        "share": 0.6327506349917824,
+        "telemetry_only": 4235
+      },
+      "output": {
+        "all": 1460748,
+        "share": 5.613562366677894e-05,
+        "telemetry_only": 82
+      }
+    },
+    "transcript_window_replication": {
+      "lines": 3100,
+      "lines_per_request": 2.1587743732590527,
+      "max_over_first_output": 1.0,
+      "requests": 1436
+    },
+    "transcripts": {
+      "cross_file_duplicates": 29,
+      "files_read": 1434,
+      "files_rescanned": 60,
+      "records_rescanned": 14227,
+      "records_total": 96716,
+      "records_without_line_details": 0,
+      "request_id_conflicts": 0,
+      "synthetic_lines": 385
+    },
+    "window": {
+      "after_snapshot_freeze": true,
+      "end_minute": "2026-11-18T11:54Z",
+      "hours": 22.715,
+      "snapshot_freeze": "2026-11-15T00:00:00Z",
+      "start_minute": "2026-11-17T13:11Z",
+      "telemetry_requests": 1179,
+      "telemetry_sessions": 5,
+      "transcript_in_window": 1436
+    }
+  },
+  "figures": {
+    "OtelClientVersion": {
+      "desc": "Claude Code versions emitting the events",
+      "format": "text",
+      "source": "otel_telemetry",
+      "value": "2.1.220, 2.1.326"
+    },
+    "OtelExactInputPct": {
+      "desc": "matched requests whose uncached input agree exactly, paper rule",
+      "format": "pct1",
+      "source": "otel_transcripts",
+      "value": 100.0
+    },
+    "OtelExactOutputPct": {
+      "desc": "matched requests whose output agree exactly, paper rule",
+      "format": "pct1",
+      "source": "otel_transcripts",
+      "value": 100.0
+    },
+    "OtelExactReadPct": {
+      "desc": "matched requests whose cache reads agree exactly, paper rule",
+      "format": "pct1",
+      "source": "otel_transcripts",
+      "value": 100.0
+    },
+    "OtelExactWritePct": {
+      "desc": "matched requests whose cache writes agree exactly, paper rule",
+      "format": "pct1",
+      "source": "otel_transcripts",
+      "value": 100.0
+    },
+    "OtelFirstLineExactPct": {
+      "desc": "matched requests whose first-line output equals telemetry output",
+      "format": "pct1",
+      "source": "otel_transcripts",
+      "value": 100.0
+    },
+    "OtelFirstLineFactor": {
+      "desc": "telemetry output / first-line output (first-line undercount factor)",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelFirstLineRatio": {
+      "desc": "first-line output / telemetry output",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelLineFactor": {
+      "desc": "transcript usage lines per telemetry request",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 2.249146757679181
+    },
+    "OtelLineOutputRatio": {
+      "desc": "line counter: summed output over all lines / telemetry output",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 2.7706922732506953
+    },
+    "OtelLineReadRatio": {
+      "desc": "line counter: summed cache reads over all lines / telemetry cache reads",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 2.399113759221306
+    },
+    "OtelLongestRequestSec": {
+      "desc": "longest api_request duration in the window, seconds",
+      "format": "int",
+      "source": "otel_telemetry",
+      "value": 189.623
+    },
+    "OtelMatched": {
+      "desc": "requests matched on request id (telemetry and transcript)",
+      "format": "int",
+      "source": "otel_telemetry",
+      "value": 1172
+    },
+    "OtelMatchedPct": {
+      "desc": "matched share of telemetry requests",
+      "format": "pct1",
+      "source": "otel_telemetry",
+      "value": 99.40627650551315
+    },
+    "OtelMaxAbsDiff": {
+      "desc": "largest absolute per-request difference, any token field, paper rule",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 0
+    },
+    "OtelMaxOverFirst": {
+      "desc": "matched requests: output max over lines / first-line output",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelModelMismatch": {
+      "desc": "matched requests whose model ids differ",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 0
+    },
+    "OtelModels": {
+      "desc": "model ids among matched requests",
+      "format": "text",
+      "source": "otel_telemetry",
+      "value": "claude-haiku-4-5-20251001, claude-opus-4-8, claude-opus-5-5, claude-sonnet-5-5"
+    },
+    "OtelRatioInput": {
+      "desc": "uncached input: transcript / telemetry, paper rule",
+      "format": "float3",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelRatioOutput": {
+      "desc": "output: transcript / telemetry, paper rule",
+      "format": "float3",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelRatioRead": {
+      "desc": "cache reads: transcript / telemetry, paper rule",
+      "format": "float3",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelRatioWrite": {
+      "desc": "cache writes: transcript / telemetry, paper rule",
+      "format": "float3",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelReadGapPct": {
+      "desc": "cache reads: |transcript / telemetry - 1|, percent, paper rule",
+      "format": "pct2",
+      "source": "otel_transcripts",
+      "value": 0.0
+    },
+    "OtelRequests": {
+      "desc": "api_request events in the window (de-duplicated by request id)",
+      "format": "int",
+      "source": "otel_telemetry",
+      "value": 1179
+    },
+    "OtelSessions": {
+      "desc": "sessions that emitted api_request events",
+      "format": "word",
+      "source": "otel_telemetry",
+      "value": 5
+    },
+    "OtelSingleLinePct": {
+      "desc": "matched requests written as a single usage line",
+      "format": "pct1",
+      "source": "otel_transcripts",
+      "value": 25.085324232081913
+    },
+    "OtelTelemetryOnly": {
+      "desc": "telemetry requests with no transcript record",
+      "format": "int",
+      "source": "otel_telemetry",
+      "value": 7
+    },
+    "OtelTelemetryOnlyInputPct": {
+      "desc": "share of all telemetry uncached input on requests no transcript records",
+      "format": "pctlt1",
+      "source": "otel_telemetry",
+      "value": 63.275063499178245
+    },
+    "OtelTelemetryOnlyNoTranscript": {
+      "desc": "telemetry-only requests of sessions with no transcript record",
+      "format": "int",
+      "source": "otel_telemetry",
+      "value": 0
+    },
+    "OtelTelemetryOnlyOutputPct": {
+      "desc": "share of all telemetry output on requests no transcript records",
+      "format": "pctlt1",
+      "source": "otel_telemetry",
+      "value": 0.005613562366677894
+    },
+    "OtelTelemetryOnlySide": {
+      "desc": "telemetry-only requests whose query source never reaches transcripts (side calls such as session-title generation)",
+      "format": "int",
+      "source": "otel_telemetry",
+      "value": 7
+    },
+    "OtelTelemetryOnlyUnexplained": {
+      "desc": "telemetry-only requests, unexplained",
+      "format": "int",
+      "source": "otel_telemetry",
+      "value": 0
+    },
+    "OtelTranscriptInWindow": {
+      "desc": "transcript requests (paper rule) inside the telemetry window",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 1436
+    },
+    "OtelTranscriptOnly": {
+      "desc": "in-window transcript requests absent from telemetry",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 264
+    },
+    "OtelTranscriptOnlyAfterLast": {
+      "desc": "transcript-only requests after their session's last exported event",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 0
+    },
+    "OtelTranscriptOnlyInFlight": {
+      "desc": "transcript-only requests whose first line lies within the longest request duration of the window end (response may have completed after the telemetry was copied)",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 0
+    },
+    "OtelTranscriptOnlyNoId": {
+      "desc": "transcript-only requests without request id",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 0
+    },
+    "OtelTranscriptOnlyNotEmitting": {
+      "desc": "transcript-only requests from processes that did not emit (started before telemetry was enabled)",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 264
+    },
+    "OtelTranscriptOnlyUnexplained": {
+      "desc": "transcript-only requests inside their session's telemetry span",
+      "format": "int",
+      "source": "otel_transcripts",
+      "value": 0
+    },
+    "OtelWindowEndDate": {
+      "desc": "telemetry window end (UTC date)",
+      "format": "date",
+      "source": "otel_telemetry",
+      "value": "2026-11-18"
+    },
+    "OtelWindowEndUTC": {
+      "desc": "telemetry window end, UTC, to the minute",
+      "format": "text",
+      "source": "otel_telemetry",
+      "value": "2026-11-18 11:54"
+    },
+    "OtelWindowHours": {
+      "desc": "telemetry window length, hours",
+      "format": "float1",
+      "source": "otel_telemetry",
+      "value": 22.715
+    },
+    "OtelWindowLineFactor": {
+      "desc": "all in-window transcript requests: usage lines per request",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 2.1587743732590527
+    },
+    "OtelWindowMaxOverFirst": {
+      "desc": "all in-window transcript requests: output max over lines / first line",
+      "format": "float2",
+      "source": "otel_transcripts",
+      "value": 1.0
+    },
+    "OtelWindowStartDate": {
+      "desc": "telemetry window start (UTC date)",
+      "format": "date",
+      "source": "otel_telemetry",
+      "value": "2026-11-17"
+    },
+    "OtelWindowStartUTC": {
+      "desc": "telemetry window start, UTC, to the minute",
+      "format": "text",
+      "source": "otel_telemetry",
+      "value": "2026-11-17 13:11"
+    }
+  },
+  "kind": "otel_meter",
+  "provenance": {
+    "generated_at": "2026-11-18T11:55:55Z",
+    "generator": "tools/otel_meter.py",
+    "notes": [
+      "Telemetry window (UTC, to the minute): 2026-11-17T13:11Z to 2026-11-18T11:54Z UTC; later than the frozen snapshot (freeze 2026-11-15T00:00:00Z).",
+      "Ratios are transcript / telemetry over matched requests; exact share = share of matched requests whose value is identical.",
+      "Both channels come from the same client process: telemetry carries the API response's usage, the transcripts what the client wrote to disk. Agreement tests the transcripts against the API's reported usage, not against the provider's billing."
+    ],
+    "sources": [
+      {
+        "command": "python tools/otel_meter.py --telemetry $OTEL_DIR/claude_code_otel.jsonl",
+        "description": "Claude Code OpenTelemetry api_request events (the usage the API response reported, as the client exports it), window 2026-11-17T13:11Z to 2026-11-18T11:54Z UTC, 1179 requests from 1 telemetry file(s); sha256 of the files concatenated in file-name order. Read: request id, model, query source, four token counts, duration, timestamp, and the session id hashed in memory for classification; nothing else",
+        "grade": "measured",
+        "id": "otel_telemetry",
+        "sha256": "239104ab62eb3a850c95f0307123b7afd996036a137e07597c9c9d67ee858e6d"
+      },
+      {
+        "command": "python tools/otel_meter.py --telemetry $OTEL_DIR/claude_code_otel.jsonl",
+        "description": "1434 transcript files read with tools/claude_usage.py (one record per message id: input fields from the first line, output the maximum over lines, synthetic dropped); 60 files modified since the window start re-read for request ids and the alternative rules; sha256 of the aggregate comparison record",
+        "grade": "measured",
+        "id": "otel_transcripts",
+        "sha256": "51deb5032b9b3724611beb43fde6de00ef26b9a54ddd1c97fbd92225df8d1e17"
+      }
+    ]
+  },
+  "schema_version": 1
+}

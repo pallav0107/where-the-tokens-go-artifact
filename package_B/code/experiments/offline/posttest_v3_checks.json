@@ -1,0 +1,406 @@
+{
+  "checks": [
+    {
+      "check": "dataset sha256",
+      "pass": true,
+      "detail": "c20b638ca82b21d0"
+    },
+    {
+      "check": "test positions = 4000-4239",
+      "pass": true,
+      "detail": "4000-4239 n=240"
+    },
+    {
+      "check": "test disjoint from touched positions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "each run's block matches its position",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "10,800 ok runs, one per (cell, question, repeat)",
+      "pass": true,
+      "detail": "ok=10800 unique=10800 cells=15"
+    },
+    {
+      "check": "no errored or NOT RUN run",
+      "pass": true,
+      "detail": "runs=10800"
+    },
+    {
+      "check": "20 shard nonces, all distinct",
+      "pass": true,
+      "detail": "20"
+    },
+    {
+      "check": "cumulative ok runs = 1,080 x k per dispatch",
+      "pass": true,
+      "detail": "[1080, 2160, 3240, 4320, 5400, 6480, 7560, 8640, 9720, 10800]"
+    },
+    {
+      "check": "every run's salt traces to a shard nonce",
+      "pass": true,
+      "detail": "untraced=0"
+    },
+    {
+      "check": "salts distinct between cells within each dispatch nonce",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "model gpt-6-luna on every request",
+      "pass": true,
+      "detail": "Counter({'gpt-6-luna': 20248})"
+    },
+    {
+      "check": "tier default, finish stop",
+      "pass": true,
+      "detail": "Counter({('default', 'stop'): 20248})"
+    },
+    {
+      "check": "no parameter rejected; reasoning tokens 0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cache_write_tokens field reported on every request",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cross-run cached tokens = 0",
+      "pass": false,
+      "detail": "9000"
+    },
+    {
+      "check": "request USD = B2 formula from usage",
+      "pass": true,
+      "detail": "max abs diff 0.00e+00"
+    },
+    {
+      "check": "run usd_list = sum of its request USD",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no orphan requests (every requests.jsonl row belongs to an ok run)",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "analyze_v3 re-run outside CI reproduces the CI JSON (H8 and every point)",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "dispatch_table": [
+    {
+      "run_id": "43846158602",
+      "questions": 24,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "dc7509da3dc5030882d075d041de119e",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.089843
+      },
+      "cum_ok": 1080,
+      "s1": {
+        "nonce": "6133513ae2816aad9d6a160555b3db80",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.096819
+      }
+    },
+    {
+      "run_id": "43853944620",
+      "questions": 48,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "7348825f2882a3a80766e72368144606",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.093108
+      },
+      "cum_ok": 2160,
+      "s1": {
+        "nonce": "de26e430e67ca537382d9b590c7a3ba1",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.104211
+      }
+    },
+    {
+      "run_id": "43874434099",
+      "questions": 72,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "a94661dc6b309c00b7636e9756f2976b",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.131901
+      },
+      "cum_ok": 3240,
+      "s1": {
+        "nonce": "572acef22762082c14a4c7bbbaead36d",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.103071
+      }
+    },
+    {
+      "run_id": "43899808690",
+      "questions": 96,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "7860a5e0da13acc905b864e680ec482a",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.099784
+      },
+      "cum_ok": 4320,
+      "s1": {
+        "nonce": "ded5205bdc1747c1f91abb21d830c9b3",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.137165
+      }
+    },
+    {
+      "run_id": "43922204997",
+      "questions": 120,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "35d113ce6d68d785412571f686084314",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.108898
+      },
+      "cum_ok": 5400,
+      "s1": {
+        "nonce": "c56154d6cb2144622b85fa9591b88a3c",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.11198
+      }
+    },
+    {
+      "run_id": "43939566725",
+      "questions": 144,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "0cf6e240f40b2cf8518b75f8a715fc34",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.10591
+      },
+      "cum_ok": 6480,
+      "s1": {
+        "nonce": "2232cc18a335928ea38bf8116febfca1",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.092685
+      }
+    },
+    {
+      "run_id": "43951333068",
+      "questions": 168,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "df96a584ca263b2d5507d8c31bb89795",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.100933
+      },
+      "cum_ok": 7560,
+      "s1": {
+        "nonce": "cff282cb5e911ad1cecfa497ea7a2c8f",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.090983
+      }
+    },
+    {
+      "run_id": "43958703608",
+      "questions": 192,
+      "git_sha": "f6bb4184e877bc28550a9d614bb6b077fee3a013",
+      "s0": {
+        "nonce": "6c09f4845d27bcceb533bc795076769e",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.087228
+      },
+      "cum_ok": 8640,
+      "s1": {
+        "nonce": "6589b96046d2a9eae280a63c216a7036",
+        "config_sha256": "a6384cc63fe6d917",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.087815
+      }
+    },
+    {
+      "run_id": "43967192969",
+      "questions": 216,
+      "git_sha": "dcaa2e0f9574088c90127de4b8b8d012bced69bc",
+      "s0": {
+        "nonce": "2d66a5108d8922a24a04605fbfbb45e4",
+        "config_sha256": "370eaee3274e07d1",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.088207
+      },
+      "cum_ok": 9720,
+      "s1": {
+        "nonce": "fb1afa8ff649252cba00f25f0ad29790",
+        "config_sha256": "370eaee3274e07d1",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.089545
+      }
+    },
+    {
+      "run_id": "43975815163",
+      "questions": 240,
+      "git_sha": "dcaa2e0f9574088c90127de4b8b8d012bced69bc",
+      "s0": {
+        "nonce": "bdf5c391ddeb32321eac656040b6350a",
+        "config_sha256": "370eaee3274e07d1",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.083072
+      },
+      "cum_ok": 10800,
+      "s1": {
+        "nonce": "eba315e665d92bd7a0fb6b5bca66a9ff",
+        "config_sha256": "370eaee3274e07d1",
+        "prereg_v3_sha": "bfcde41",
+        "spend_this_run": 0.093515
+      }
+    }
+  ],
+  "gate_without_unrecorded": {
+    "arm": "aob",
+    "n_runs": 720,
+    "answer_requests_per_run": 1.0833333333333333,
+    "share_committed_at": {
+      "1": 0.9319444444444445,
+      "2": 0.05277777777777778,
+      "3": 0.015277777777777777
+    },
+    "supported_share": 0.9097222222222222,
+    "f1_supported": 0.7793276427480916,
+    "f1_unsupported": 0.3234864307692308,
+    "n_requests": 780,
+    "share_requests_at_or_over_cache_min": 0.0,
+    "median_prompt_tokens": 793.0,
+    "max_prompt_tokens": 939,
+    "aob_requests": 780,
+    "gate_fail": 125,
+    "gate_fail_no_next": 56,
+    "parse_errors": 0
+  },
+  "attempts_per_arm": {
+    "agentless": {
+      "unconfirmed_attempts": 7,
+      "unrecorded_charges": 2,
+      "failed_request_records": 1
+    },
+    "aob": {
+      "unconfirmed_attempts": 2,
+      "unrecorded_charges": 1
+    },
+    "aob_llmq": {
+      "unconfirmed_attempts": 3,
+      "unrecorded_charges": 1
+    },
+    "aob_nogate": {
+      "unconfirmed_attempts": 4,
+      "unrecorded_charges": 1
+    },
+    "aob_nohop": {
+      "unconfirmed_attempts": 1,
+      "unrecorded_charges": 0
+    },
+    "aob_nopack": {
+      "unconfirmed_attempts": 1,
+      "unrecorded_charges": 1
+    },
+    "closed_book": {
+      "unconfirmed_attempts": 1,
+      "unrecorded_charges": 0
+    },
+    "memgpt": {
+      "unconfirmed_attempts": 7,
+      "unrecorded_charges": 1
+    },
+    "notes_reset": {
+      "unconfirmed_attempts": 10,
+      "unrecorded_charges": 4,
+      "failed_request_records": 1
+    },
+    "pbc": {
+      "unconfirmed_attempts": 8,
+      "unrecorded_charges": 2
+    },
+    "rag1": {
+      "unconfirmed_attempts": 1,
+      "unrecorded_charges": 1
+    },
+    "react": {
+      "unconfirmed_attempts": 7,
+      "unrecorded_charges": 2
+    },
+    "window2": {
+      "unconfirmed_attempts": 1,
+      "unrecorded_charges": 0
+    }
+  },
+  "unrecorded_records": 16,
+  "failed_records": 2,
+  "sensitivity_timeouts_at_retry_cost": {
+    "runs_with_timeouts": 52,
+    "added_usd_total": 0.00424085,
+    "decision": "not supported",
+    "cost_ratio": 0.45480613455402263,
+    "cost_ratio_ci": [
+      0.43622646484459854,
+      0.47706672161217356
+    ],
+    "rules": [
+      true,
+      false,
+      true,
+      true
+    ],
+    "bstar": {
+      "arm": "agentless",
+      "k": 8,
+      "f1": 0.7615465916666667,
+      "cost": 0.00021132569444444444
+    }
+  },
+  "charged_spend_total_from_records": 2.779132,
+  "local_h8": {
+    "decision": "not supported",
+    "cost_ratio": 0.48725412005505164,
+    "cost_ratio_ci": [
+      0.4686052259548836,
+      0.5097985168081149
+    ],
+    "f1_diff": -0.02337128055555553,
+    "f1_diff_ci": [
+      -0.0554583756597222,
+      0.008099439513888843
+    ],
+    "rule_a": true,
+    "rule_b": false,
+    "rule_c": true,
+    "rule_d": true,
+    "bstar": {
+      "arm": "agentless",
+      "k": 8,
+      "f1": 0.7615465916666667,
+      "cost": 0.00019678472222222222
+    }
+  }
+}

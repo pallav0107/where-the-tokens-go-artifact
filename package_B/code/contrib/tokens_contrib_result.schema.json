@@ -1,0 +1,126 @@
+{
+  "$comment": "Contract for a contributor's tokens_contrib_result.json (written by contrib/tokens_contrib.py, read by tools/contrib_aggregate.py). Every object is closed (additionalProperties false); the only strings allowed are the fixed kind, the kit's sha256, months, Claude model names and Claude Code version numbers. Patterns use [0-9] and end in \\Z (Python re: no trailing newline, ASCII digits only), as the kit's fullmatch allowlists do. Validated with the dependency-free subset in tools/evidence_lib.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "script_sha256", "client_versions_seen", "selection", "counts", "tokens",
+               "input_shares_pct", "cache_write_1h_share_pct", "list_price_cost_shares_pct", "cache_read_largest_cost",
+               "unpriced", "rewrites", "line_factor", "checks"],
+  "properties": {
+    "schema_version": {"type": "integer", "enum": [1]},
+    "kind": {"type": "string", "enum": ["tokens_contrib_result"]},
+    "script_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}\\Z"},
+    "client_versions_seen": {"type": "array",
+                             "items": {"type": "string", "pattern": "^(?:other|[0-9]{1,4}\\.[0-9]{1,4}\\.[0-9]{1,6})\\Z"}},
+    "selection": {"type": "object", "additionalProperties": false, "required": ["since_filter", "until_filter"],
+                  "properties": {"since_filter": {"type": "boolean"}, "until_filter": {"type": "boolean"}}},
+    "counts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requests", "sessions", "subagent_runs", "months_covered", "months", "model_count", "models"],
+      "properties": {
+        "requests": {"type": "integer", "minimum": 1},
+        "sessions": {"type": "integer", "minimum": 0},
+        "subagent_runs": {"type": "integer", "minimum": 0},
+        "months_covered": {"type": "integer", "minimum": 1},
+        "months": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])\\Z"}},
+        "model_count": {"type": "integer", "minimum": 1},
+        "models": {"type": "array", "minItems": 1,
+                   "items": {"type": "string", "pattern": "^(?:other|(?:(?:us|eu|apac|global|jp|au|ca|uk|us-gov)\\.)?(?:anthropic\\.)?claude-(?:(?:opus|sonnet|haiku|fable|mythos)(?:-[0-9]{1,2}){0,3}|[0-9](?:-[0-9])?-(?:opus|sonnet|haiku))(?:-[0-9]{8})?(?:-v[0-9]{1,2}:[0-9]{1,2})?(?:-fast)?(?:@[0-9]{8})?)\\Z"}}
+      }
+    },
+    "tokens": {
+      "type": "object", "additionalProperties": false,
+      "required": ["uncached_input", "cache_read", "cache_write_5m", "cache_write_1h", "output", "input_total"],
+      "properties": {
+        "uncached_input": {"type": "integer", "minimum": 0},
+        "cache_read": {"type": "integer", "minimum": 0},
+        "cache_write_5m": {"type": "integer", "minimum": 0},
+        "cache_write_1h": {"type": "integer", "minimum": 0},
+        "output": {"type": "integer", "minimum": 0},
+        "input_total": {"type": "integer", "minimum": 0}
+      }
+    },
+    "input_shares_pct": {
+      "type": "object", "additionalProperties": false, "required": ["cache_read", "cache_write", "uncached"],
+      "properties": {
+        "cache_read": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "cache_write": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "uncached": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+      }
+    },
+    "cache_write_1h_share_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "list_price_cost_shares_pct": {
+      "type": "object", "additionalProperties": false, "required": ["uncached_input", "cache_read", "cache_write", "output"],
+      "properties": {
+        "uncached_input": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "cache_read": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "cache_write": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "output": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+      }
+    },
+    "cache_read_largest_cost": {"type": ["boolean", "null"]},
+    "unpriced": {
+      "type": "object", "additionalProperties": false, "required": ["requests", "input_share_pct"],
+      "properties": {
+        "requests": {"type": "integer", "minimum": 0},
+        "input_share_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+      }
+    },
+    "rewrites": {
+      "type": "object", "additionalProperties": false,
+      "required": ["written_tokens", "new_suffix_tokens", "rewrite_tokens", "rewrite_share_of_written_pct",
+                   "rewrite_share_of_write_cost_pct", "rewrite_share_of_total_cost_pct", "by_gap_pct", "by_cause_pct",
+                   "expiry_gt_60min_net_of_base_rate_pct"],
+      "properties": {
+        "written_tokens": {"type": "integer", "minimum": 0},
+        "new_suffix_tokens": {"type": "integer", "minimum": 0},
+        "rewrite_tokens": {"type": "integer", "minimum": 0},
+        "rewrite_share_of_written_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "rewrite_share_of_write_cost_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "rewrite_share_of_total_cost_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "by_gap_pct": {
+          "type": "object", "additionalProperties": false, "required": ["le_5min", "5_to_60min", "gt_60min"],
+          "properties": {
+            "le_5min": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+            "5_to_60min": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+            "gt_60min": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+          }
+        },
+        "by_cause_pct": {
+          "type": "object", "additionalProperties": false,
+          "required": ["model_change", "compaction", "config_change", "gap_gt_60min", "gap_5_to_60min", "within_lifetime"],
+          "properties": {
+            "model_change": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+            "compaction": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+            "config_change": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+            "gap_gt_60min": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+            "gap_5_to_60min": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+            "within_lifetime": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+          }
+        },
+        "expiry_gt_60min_net_of_base_rate_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+      }
+    },
+    "line_factor": {
+      "type": "object", "additionalProperties": false, "required": ["usage_lines", "requests", "lines_per_request"],
+      "properties": {
+        "usage_lines": {"type": "integer", "minimum": 0},
+        "requests": {"type": "integer", "minimum": 1},
+        "lines_per_request": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "checks": {
+      "type": "object", "additionalProperties": false,
+      "required": ["log_files", "unreadable_files", "synthetic_lines_dropped", "unparseable_lines", "lines_without_id",
+                   "cross_file_duplicates", "write_split_mismatch"],
+      "properties": {
+        "log_files": {"type": "integer", "minimum": 0},
+        "unreadable_files": {"type": "integer", "minimum": 0},
+        "synthetic_lines_dropped": {"type": "integer", "minimum": 0},
+        "unparseable_lines": {"type": "integer", "minimum": 0},
+        "lines_without_id": {"type": "integer", "minimum": 0},
+        "cross_file_duplicates": {"type": "integer", "minimum": 0},
+        "write_split_mismatch": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

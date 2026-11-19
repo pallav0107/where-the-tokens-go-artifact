@@ -1,0 +1,4 @@
+# sha256 of every released contrib/tokens_contrib.py (CRLF read as LF), one per line.
+# tools/contrib_aggregate.py accepts only contributions carrying one of these.
+# tests/test_contrib_kit.py fails if the kit in the repo is not the last line.
+b08c5e1538d0746df4353be144cb5e77c1e73f2ad4d1cd4485a759822597bd40  v1 (sent 18 Nov 2026)

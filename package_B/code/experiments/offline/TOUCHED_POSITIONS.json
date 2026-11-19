@@ -1,0 +1,15 @@
+{
+  "permutation": "numpy.random.default_rng(20261115).permutation(7405) over HotpotQA distractor validation rows sorted by id",
+  "note": "Every position range that any computation of this project used before the PREREG_v3 registration, with or without gold labels. The v3 test split must be disjoint from all of them (agent/tests/test_v3_splits.py). Ranges are inclusive.",
+  "ranges": [
+    {"start": 0, "end": 47, "what": "v1 sample = PREREG_v2 designated test; no v2 test run happened; excluded from the v3 test by the clean rule rather than by a known touch"},
+    {"start": 48, "end": 53, "what": "v1 smoke questions"},
+    {"start": 54, "end": 77, "what": "PREREG_v2 dev split; LLM runs in dev round 0 (D31) and offline analyses of that artifact"},
+    {"start": 54, "end": 461, "what": "design-stage retrieval statistics with gold labels: hop2.py, pack.py, retr1.py (blocks 78-461), synth_scripts/calib_v3.py, support1/2.py, reconstruct.py, dev_questions.py (54-77)"},
+    {"start": 78, "end": 1037, "what": "design-stage scripts recall_sim.py, recall_sim2.py, assemble_sim.py, assemble_tool_only.py, tool_variants.py (start/end are CLI arguments that were not logged; both design judges report 78-1037 / 54-1037)"},
+    {"start": 102, "end": 197, "what": "designer A's simulated T2/T3 blocks (judge 1 report)"},
+    {"start": 54, "end": 149, "what": "PREREG_v3 dev split (two 48-question blocks)"}
+  ],
+  "max_touched": 1037,
+  "v3_test_rule": "positions 4000-4239 (five 48-question blocks); the gap of 2,962 positions above the largest reported touch guards against an unlogged larger CLI range"
+}

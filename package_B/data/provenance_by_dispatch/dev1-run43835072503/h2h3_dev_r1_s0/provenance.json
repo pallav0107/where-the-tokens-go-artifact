@@ -1,0 +1,64 @@
+{
+  "git_sha": "7869033ca86d9adb0150d62509c827d051c7139c",
+  "prereg_sha": "1f63cd0c11963fff8b98422135b174d79f39d677",
+  "config_sha256": "a6384cc63fe6d91758932d10af99ceed13f7eaaf7a1f87713a354bb0e6cfdc4f",
+  "dataset_sha256": "c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6",
+  "python": "3.12.13",
+  "tokenledger": "0.2.0",
+  "github_run_id": "43835072503",
+  "github_run_url": "[REDACTED: infrastructure] private repository; available to the programme chairs on request",
+  "hostname": "[REDACTED: infrastructure]",
+  "started": "2026-11-16T08:59:51+00:00",
+  "ended": "2026-11-16T09:04:36+00:00",
+  "cloud_spend_total": 0.768791,
+  "cloud_spend_this_run": 0.013426,
+  "prior_spend_usd": 0.755365,
+  "prior_spend": {
+    "requests": {
+      "out/h2h3_smoke_8d8bc79/requests.jsonl": 0.0,
+      "out/h2h3_smoke_8d8bc79/requests_failed.jsonl": 0.0,
+      "out/h2h3_dev_r0_s0/requests.jsonl": 0.337508,
+      "out/h2h3_dev_r0_s0/requests_failed.jsonl": 0.0,
+      "out/h2h_dev/requests.jsonl": 0.041538,
+      "out/h2h_dev/requests_failed.jsonl": 0.0,
+      "out/h2h3_smoke_r0/requests.jsonl": 3.6e-05,
+      "out/h2h3_smoke_r0/requests_failed.jsonl": 0.0,
+      "out/h2h3_dev_r0_s1/requests.jsonl": 0.37604,
+      "out/h2h3_dev_r0_s1/requests_failed.jsonl": 0.0,
+      "out/h2h3_dev_r1_s1/requests.jsonl": 0.0,
+      "out/h2h3_dev_r1_s1/requests_failed.jsonl": 0.0,
+      "experiments/spend/spend_ledger.jsonl": 0.000243
+    },
+    "embedding_logs": {},
+    "flag_usd": 0.0,
+    "n_unpriced_requests": 0,
+    "total": 0.755365
+  },
+  "max_usd": 1.897683,
+  "budget_estimates": {},
+  "halted": null,
+  "harness": "v3",
+  "split": "dev",
+  "prereg_v3_sha": "bfcde416dcd7779e571bd8917afad1d003a7bbf7",
+  "salt_nonce": "b9accfcd62ba9ff6a2f39789a0d2a1c5",
+  "salts": {
+    "aob|k=6|rep1": "57718d331f67a0ae",
+    "aob|k=6|rep2": "c6540f58d9e8c026",
+    "aob|k=6|rep3": "b93851baf599effd"
+  },
+  "repeats": 3,
+  "shard": [
+    0,
+    2
+  ],
+  "blocks": [
+    [
+      54,
+      101
+    ],
+    [
+      102,
+      149
+    ]
+  ]
+}

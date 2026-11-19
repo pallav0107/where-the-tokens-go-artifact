@@ -1,0 +1,34 @@
+# PREREG_v3 section 7: the one smoke request before any v3 data. Synthetic text only (the
+# invented fixture agent/tests/fixtures/hotpot_tiny.jsonl; no HotpotQA question of any split),
+# the aob arm with the registered harness (salt, prompt, packing) and r_max 1, so exactly one
+# request. Labelled control "smoke"; never data. Its cost enters the spend chain like any run.
+# Run with: python -m agent.run_grid --config experiments/configs/h2h_v3_smoke.yaml --split smoke --questions 1
+experiment: h2h_v3_smoke
+harness: v3
+run_label: r0   # output-dir label; a dev round bumps it with its one change (r1, r2)
+dataset:
+  parquet_url: null
+  sha256: null
+  cache_dir: null
+  fixture: agent/tests/fixtures/hotpot_tiny.jsonl
+  sample_seed: 20261115
+  n_questions: 1
+  n_smoke: 0
+  n_dev: 0
+  blocks:
+    smoke: [[0, 3]]
+agent:
+  max_steps: 10
+  temperature: 0
+  seed: 42
+  cell_order_seed: 20261117
+arms:
+  - {name: aob}
+aob: {k1: 6, m2: 4, budget: 3500, r_max: 1, n_next: 2, m3: 4, hop: true, llm_query: false,
+      thought: false}
+models:
+  - {provider: openai, model: gpt-6-luna, reasoning_effort: none, max_output_tokens: 4096}
+budget:
+  max_usd: 3.04
+  est_input_tokens_per_run: 3000
+  est_output_tokens_per_run: 300

@@ -1,0 +1,18 @@
+{
+  "n_requests": 1,
+  "n_turns": 1,
+  "steps_per_turn": {
+    "1": 1
+  },
+  "total_input": 287,
+  "total_output": 14,
+  "total_cache_read": 0,
+  "cache_read_pct": 0.0,
+  "priming_total": 287,
+  "priming_pct": 1.0,
+  "conversation_total": 0,
+  "conversation_pct": 0.0,
+  "mean_prefix": 287.0,
+  "max_prefix": 287,
+  "prefix_reread_cost": 0
+}

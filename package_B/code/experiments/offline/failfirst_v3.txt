@@ -1,0 +1,142 @@
+# PREREG_v3 fail-first evidence (2026-11-16, before the registration commit)
+
+## fail-first: agent/tests/test_v3_harness.py against the v2 run_grid.py (git 9e2b4b0 version of agent/run_grid.py), 2026-11-16T04:04:03Z
+E       AssertionError: assert 1 > 1
+E        +  where 1 = len({(('notes_reset', 8), ('notes_reset', 2), ('window2', 8), ('agentless', 8), ('react', 2), ('react', 8))})
+E           AssertionError: {'role': 'system', 'content': 'You are a careful research assistant answering one question with a small tool set.
+E             
+E             T...ations may no longer be visible.
+E             - When you have enough information, call finish with the shortest correct answer.
+E             '}
+E           assert ('system' == 'system'
+E             
+E               system and None)
+E            +  where None = <built-in method match of re.Pattern object at 0x000001A97EC2A9B0>('You are a careful research assistant answering one question with a small tool set.\n\nTools:\n- search(query) -> retu...vat
+E            +    where <built-in method match of re.Pattern object at 0x000001A97EC2A9B0> = re.compile('^session [0-9a-f]{16}$').match
+E               AssertionError: assert 'You are a careful research assistant answering one question with a small tool set.\n\nTools:\n- search(query) -> retu...vations may no longer be visible.\n- When you have enough in
+E       SystemExit: 2
+E       KeyError: 'block'
+E       AssertionError: assert ('Take at most 7 steps.' in 'Question: Which river flows past town1 hill1?')
+FAILED agent/tests/test_v3_harness.py::test_cell_order_is_reshuffled_per_question
+FAILED agent/tests/test_v3_harness.py::test_every_request_starts_with_its_cells_salt_and_cells_never_share_one
+FAILED agent/tests/test_v3_harness.py::test_no_two_cells_share_a_request_prefix
+FAILED agent/tests/test_v3_harness.py::test_salts_change_with_the_invocation_nonce_and_are_recorded
+FAILED agent/tests/test_v3_harness.py::test_each_block_has_its_own_kb_and_questions_carry_their_block
+FAILED agent/tests/test_v3_harness.py::test_react_v3_runs_under_its_source_step_cap_and_without_notes
+6 failed in 1.48s
+
+## fail-first: split disjointness
+E       AssertionError: [1000, 1001, 1002, 1003, 1004, 1005, ...]
+E       assert ({1000, 1001, 1002, 1003, 1004, 1005, ...} and not ({1000, 1001, 1002, 1003, 1004, 1005, ...} & {0, 1, 2, 3, 4, 5, ...}))
+FAILED agent/tests/test_v3_splits.py::test_test_split_touches_no_earlier_position
+1 failed, 3 passed in 0.66s
+
+## fail-first by mutation: agent/arms.py, agent/prompts.py, agent/run_grid.py (each mutation restored after its run)
+- mutation: gate always commits (agent/arms.py) -> 11 failed, 25 passed in 0.60s
+    FAILED agent/tests/test_aob.py::test_gate_is_normalised_contiguous_token_containment[Yes--yesno]
+    FAILED agent/tests/test_aob.py::test_gate_is_normalised_contiguous_token_containment[no.-anything-yesno]
+    FAILED agent/tests/test_aob.py::test_gate_is_normalised_contiguous_token_containment[Mount-Mountain view-None]
+    FAILED agent/tests/test_aob.py::test_gate_is_normalised_contiguous_token_containment[Beta Mount-Mount Beta-None]
+    FAILED agent/tests/test_aob.py::test_gate_is_normalised_contiguous_token_containment[-text-None]
+    FAILED agent/tests/test_aob.py::test_gate_is_normalised_contiguous_token_containment[   -text-None]
+    FAILED agent/tests/test_aob.py::test_unsupported_answer_runs_one_batched_follow_up_with_the_retry_line
+    FAILED agent/tests/test_aob.py::test_never_supported_stops_at_r_max_flagged_unsupported
+    FAILED agent/tests/test_aob.py::test_no_new_chunk_commits_unsupported
+    FAILED agent/tests/test_aob.py::test_every_request_stays_within_the_character_budget
+    FAILED agent/tests/test_aob.py::test_nogate_ablation_always_commits_after_one_request
+- mutation: character budget ignored (agent/arms.py) -> 2 failed, 34 passed in 0.50s
+    FAILED agent/tests/test_aob.py::test_pack_skips_what_does_not_fit_and_keeps_trying
+    FAILED agent/tests/test_aob.py::test_every_request_stays_within_the_character_budget
+- mutation: PRF hop may repeat E1 documents (agent/arms.py) -> 2 failed, 34 passed in 0.62s
+    FAILED agent/tests/test_aob.py::test_prefetch_hop_adds_new_documents_only
+    FAILED agent/tests/test_aob.py::test_every_request_stays_within_the_character_budget
+- mutation: no retry line on escalation (agent/arms.py) -> 1 failed, 35 passed in 0.48s
+    FAILED agent/tests/test_aob.py::test_unsupported_answer_runs_one_batched_follow_up_with_the_retry_line
+- mutation: follow-up uses only the first next query (agent/arms.py) -> 1 failed, 35 passed in 0.45s
+    FAILED agent/tests/test_aob.py::test_unsupported_answer_runs_one_batched_follow_up_with_the_retry_line
+- mutation: answer contract missing from the react prompt (agent/prompts.py) -> 3 failed, 33 passed in 0.49s
+    FAILED agent/tests/test_aob.py::test_every_v3_arm_carries_the_same_answer_contract[react-8]
+    FAILED agent/tests/test_aob.py::test_every_v3_arm_carries_the_same_answer_contract[window2-8]
+    FAILED agent/tests/test_aob.py::test_every_v3_arm_carries_the_same_answer_contract[memgpt-8]
+- mutation: react v3 keeps the notes field (agent/arms.py) -> 3 failed, 41 passed in 2.19s
+    FAILED agent/tests/test_aob.py::test_react_family_v3_prompts_have_no_notes_field[react]
+    FAILED agent/tests/test_aob.py::test_react_family_v3_prompts_have_no_notes_field[window2]
+    FAILED agent/tests/test_v3_harness.py::test_react_v3_runs_under_its_source_step_cap_and_without_notes
+- mutation: ablation overrides two parameters (agent/arms.py) -> 1 failed, 35 passed in 0.50s
+    FAILED agent/tests/test_aob.py::test_each_ablation_changes_exactly_one_parameter
+- mutation: salt ignores the repeat (agent/run_grid.py) -> 1 failed, 7 passed in 2.05s
+    FAILED agent/tests/test_v3_harness.py::test_repeats_are_independent_runs_with_their_own_salts
+- mutation: one cell order for every question (v2 behaviour) (agent/run_grid.py) -> 1 failed, 7 passed in 2.07s
+    FAILED agent/tests/test_v3_harness.py::test_cell_order_is_reshuffled_per_question
+- mutation: no salt message (agent/run_grid.py) -> 4 failed, 4 passed in 1.85s
+    FAILED agent/tests/test_v3_harness.py::test_every_request_starts_with_its_cells_salt_and_cells_never_share_one
+    FAILED agent/tests/test_v3_harness.py::test_no_two_cells_share_a_request_prefix
+    FAILED agent/tests/test_v3_harness.py::test_react_v3_runs_under_its_source_step_cap_and_without_notes
+    FAILED agent/tests/test_v3_harness.py::test_repeats_are_independent_runs_with_their_own_salts
+
+## fail-first by mutation: experiments/analyze_v3.py
+- mutation: B* may be a reference, ablation or pbc -> 1 failed, 14 passed in 0.71s
+    FAILED experiments/tests/test_analyze_v3.py::test_bstar_is_the_highest_f1_published_baseline_only
+- mutation: rule (b) ignores the CI lower bound -> 1 failed, 14 passed in 0.69s
+    FAILED experiments/tests/test_analyze_v3.py::test_rule_b_also_needs_the_ci_lower_bound_at_least_minus_five_points
+- mutation: rule (b) strict at -2 points -> 1 failed, 14 passed in 0.72s
+    FAILED experiments/tests/test_analyze_v3.py::test_rule_b_point_estimate_is_inclusive_at_minus_two_points
+- mutation: rule (c) ignores the references -> 1 failed, 14 passed in 0.70s
+    FAILED experiments/tests/test_analyze_v3.py::test_rule_c_counts_the_reference_points
+- mutation: rule (d) dropped -> 1 failed, 14 passed in 0.71s
+    FAILED experiments/tests/test_analyze_v3.py::test_rule_d_every_close_published_cell_must_also_be_at_most_070
+- mutation: rule (a) CI not required -> 1 failed, 14 passed in 0.72s
+    FAILED experiments/tests/test_analyze_v3.py::test_rule_a_also_needs_the_cost_ratio_ci_entirely_below_one
+- mutation: bootstrap not stratified by block -> 1 failed, 14 passed in 0.72s
+    FAILED experiments/tests/test_analyze_v3.py::test_bootstrap_resamples_within_blocks
+- mutation: isolation check counts reads after an own cacheable request -> 1 failed, 14 passed in 0.70s
+    FAILED experiments/tests/test_analyze_v3.py::test_cross_run_cache_reads_flags_reads_without_an_own_earlier_cacheable_request
+- mutation: no fallback to cache-neutral when isolation fails -> 1 failed, 14 passed in 0.65s
+    FAILED experiments/tests/test_analyze_v3.py::test_failed_isolation_check_switches_the_primary_cost_to_cache_neutral
+- mutation: no-write repricing charges reads at the input rate -> 1 failed, 14 passed in 0.83s
+    FAILED experiments/tests/test_analyze_v3.py::test_counterfactual_repricings
+- mutation: repeats not averaged per question -> 1 failed, 14 passed in 0.66s
+    FAILED experiments/tests/test_analyze_v3.py::test_repeats_are_averaged_per_question_and_their_variance_reported
+- mutation: cache hit rate counts writes as hits -> 1 failed, 14 passed in 0.69s
+    FAILED experiments/tests/test_analyze_v3.py::test_cache_hit_rate_turns_and_cell_cis
+
+## PREREG_v3 Amendment 1: new tests against the registered dc9634d versions of agent/run_grid.py and experiments/analyze_v3.py
+E       assert [{2, 4, 6}, {3, 5, 7}] == [{2, 4}, {3, 5}]
+E         
+E         At index 0 diff: {2, 4, 6} != {2, 4}
+E         Use -v to get more diff
+E       SystemExit: 2
+        _Recorder.sent, _FailFirst.failed = [], False
+E   TypeError: cell_salt() takes from 3 to 4 positional arguments but 5 were given
+E       AssertionError: assert ('memgpt', 8) == ('notes_reset', 8)
+E         
+E         At index 0 diff: 'memgpt' != 'notes_reset'
+E         Use -v to get more diff
+FAILED agent/tests/test_v3_harness.py::test_questions_is_a_total_applied_before_sharding
+FAILED agent/tests/test_v3_harness.py::test_a_billing_stop_writes_the_halt_file_and_nothing_is_sent_while_it_exists
+FAILED agent/tests/test_v3_harness.py::test_a_retried_run_gets_a_new_salt - T...
+FAILED experiments/tests/test_analyze_v3.py::test_a_partly_run_cell_cannot_be_bstar
+4 failed, 1 passed, 24 deselected in 1.23s
+(float tolerance, re-run with a case that shows the artefact)
+E       assert (False is True)
+FAILED experiments/tests/test_analyze_v3.py::test_inclusive_thresholds_are_float_safe
+1 failed, 16 deselected in 0.38s
+## PREREG_v3 Amendment 2: 401 halt test against the dc9634d agent/providers.py
+E       ImportError: cannot import name 'ProviderAuthInvalid' from 'agent.providers' (<LOCAL_PATH>)
+FAILED agent/tests/test_openai_provider.py::test_an_invalidated_key_halts_like_a_billing_stop_and_is_never_retried
+1 failed, 27 deselected in 0.64s
+
+## PREREG_v3 Amendment 4: agent/tests/test_v3_operational.py against the e274b76 versions of run_grid.py, job.sh, run_in_container.sh and experiment.yml (and without the two new modules)
+E       FileNotFoundError: [Errno 2] No such file or directory: '<LOCAL_PATH>'
+E       StopIteration
+E       ImportError: cannot import name 'check_prev_v3' from 'experiments.ci' (unknown location)
+E       ValueError: substring not found
+        failed = _lines(out / "requests_failed.jsonl")
+        unrec = [r for r in failed if r.get("role") == "unrecorded_charge"]
+E       assert ([])
+FAILED agent/tests/test_v3_operational.py::test_finished_runs_are_on_disk_when_the_job_is_killed
+FAILED agent/tests/test_v3_operational.py::test_outputs_are_copied_out_of_the_container_before_upload_and_cleanup
+FAILED agent/tests/test_v3_operational.py::test_resume_check_refuses_a_hollow_artifact
+FAILED agent/tests/test_v3_operational.py::test_job_runs_the_resume_check_before_any_request
+FAILED agent/tests/test_v3_operational.py::test_an_unrecorded_charge_is_recorded_counted_in_spend_and_per_arm
+5 failed in 0.88s

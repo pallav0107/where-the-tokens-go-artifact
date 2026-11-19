@@ -1,0 +1,631 @@
+{
+  "aggregates": {
+    "exact_aggregates": [
+      {
+        "aggregate": "orchestrator_snapshot.input_tokens.fresh",
+        "kit": 731996,
+        "match": true,
+        "paper": 731996
+      },
+      {
+        "aggregate": "orchestrator_snapshot.input_tokens.cache_read",
+        "kit": 29932804878,
+        "match": true,
+        "paper": 29932804878
+      },
+      {
+        "aggregate": "orchestrator_snapshot.input_tokens.cache_write",
+        "kit": 791979469,
+        "match": true,
+        "paper": 791979469
+      },
+      {
+        "aggregate": "orchestrator_snapshot.cache_write_tokens_1h",
+        "kit": 577954784,
+        "match": true,
+        "paper": 577954784
+      },
+      {
+        "aggregate": "orchestrator_snapshot.output_tokens",
+        "kit": 101078875,
+        "match": true,
+        "paper": 101078875
+      },
+      {
+        "aggregate": "orchestrator_snapshot.reconciliation.line_level_requests_frozen",
+        "kit": 205073,
+        "match": true,
+        "paper": 205073
+      },
+      {
+        "aggregate": "orchestrator_snapshot.extraction.cross_file_duplicates",
+        "kit": 732,
+        "match": true,
+        "paper": 732
+      },
+      {
+        "aggregate": "orchestrator_snapshot.extraction.write_split_mismatch",
+        "kit": 4,
+        "match": true,
+        "paper": 4
+      },
+      {
+        "aggregate": "orchestrator_snapshot.unpriced_requests",
+        "kit": 0,
+        "match": true,
+        "paper": 0
+      },
+      {
+        "aggregate": "orchestrator_snapshot: cache reads the largest cost component (paper prices)",
+        "kit": true,
+        "match": true,
+        "paper": true
+      },
+      {
+        "aggregate": "cache_writes.write_tokens",
+        "kit": 791979469,
+        "match": true,
+        "paper": 791979469
+      },
+      {
+        "aggregate": "cache_writes.new_suffix",
+        "kit": 242408180,
+        "match": true,
+        "paper": 242408180
+      },
+      {
+        "aggregate": "cache_writes.rewrite",
+        "kit": 549571289,
+        "match": true,
+        "paper": 549571289
+      }
+    ],
+    "figures": [
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "int",
+        "kit_printed": "92{,}147",
+        "kit_value": 92147,
+        "paper_macro": "RequestCount",
+        "paper_printed": "92{,}147",
+        "paper_value": 92147,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "int",
+        "kit_printed": "1{,}232",
+        "kit_value": 1232,
+        "paper_macro": "TranscriptCount",
+        "paper_printed": "1{,}232",
+        "paper_value": 1232,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "int",
+        "kit_printed": "35",
+        "kit_value": 35,
+        "paper_macro": "OrchMainTranscripts",
+        "paper_printed": "35",
+        "paper_value": 35,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "int",
+        "kit_printed": "1{,}197",
+        "kit_value": 1197,
+        "paper_macro": "OrchSubagentTranscripts",
+        "paper_printed": "1{,}197",
+        "paper_value": 1197,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "int",
+        "kit_printed": "9",
+        "kit_value": 9,
+        "paper_macro": "OrchModelCount",
+        "paper_printed": "9",
+        "paper_value": 9,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "share_robustness.json",
+        "format": "int",
+        "kit_printed": "6",
+        "kit_value": 6,
+        "paper_macro": "RbMonthAll",
+        "paper_printed": "6",
+        "paper_value": 6,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "billions1",
+        "kit_printed": "30.7~billion",
+        "kit_value": 30725516343,
+        "paper_macro": "TotalInputTokens",
+        "paper_printed": "30.7~billion",
+        "paper_value": 30725516343,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct1",
+        "kit_printed": "97.4\\%",
+        "kit_value": 97.42,
+        "paper_macro": "CacheReadSharePct",
+        "paper_printed": "97.4\\%",
+        "paper_value": 97.42002231581505,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct1",
+        "kit_printed": "2.6\\%",
+        "kit_value": 2.5776,
+        "paper_macro": "CacheWriteSharePct",
+        "paper_printed": "2.6\\%",
+        "paper_value": 2.5775953125045907,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct3",
+        "kit_printed": "0.002\\%",
+        "kit_value": 0.0024,
+        "paper_macro": "FreshInputSharePct",
+        "paper_printed": "0.002\\%",
+        "paper_value": 0.0023823716803599492,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct0",
+        "kit_printed": "73\\%",
+        "kit_value": 72.976,
+        "paper_macro": "CacheWriteLongSharePct",
+        "paper_printed": "73\\%",
+        "paper_value": 72.97598064376085,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct1",
+        "kit_printed": "55.0\\%",
+        "kit_value": 54.9867,
+        "paper_macro": "CostShareCacheReadPct",
+        "paper_printed": "55.0\\%",
+        "paper_value": 54.98666692117602,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct1",
+        "kit_printed": "33.4\\%",
+        "kit_value": 33.4079,
+        "paper_macro": "CostShareCacheWritePct",
+        "paper_printed": "33.4\\%",
+        "paper_value": 33.407919281715735,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct1",
+        "kit_printed": "11.6\\%",
+        "kit_value": 11.5853,
+        "paper_macro": "CostShareOutputPct",
+        "paper_printed": "11.6\\%",
+        "paper_value": 11.58526087374571,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "pct3",
+        "kit_printed": "0.020\\%",
+        "kit_value": 0.0202,
+        "paper_macro": "CostShareFreshPct",
+        "paper_printed": "0.020\\%",
+        "paper_value": 0.020152923362536542,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "orchestrator_snapshot.json",
+        "format": "float1",
+        "kit_printed": "2.2",
+        "kit_value": 2.2255,
+        "paper_macro": "ReconLineFactor",
+        "paper_printed": "2.2",
+        "paper_value": 2.2254983884445507,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "31\\%",
+        "kit_value": 30.6079,
+        "paper_macro": "CwNewSharePct",
+        "paper_printed": "31\\%",
+        "paper_value": 30.607886881976736,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "69\\%",
+        "kit_value": 69.3921,
+        "paper_macro": "CwRewriteSharePct",
+        "paper_printed": "69\\%",
+        "paper_value": 69.39211311802327,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "74\\%",
+        "kit_value": 73.6355,
+        "paper_macro": "CwRewriteCostSharePct",
+        "paper_printed": "74\\%",
+        "paper_value": 73.63548831094212,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "25\\%",
+        "kit_value": 24.6001,
+        "paper_macro": "CwRewriteTotalCostPct",
+        "paper_printed": "25\\%",
+        "paper_value": 24.600084497617438,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "7\\%",
+        "kit_value": 7.2579,
+        "paper_macro": "CwRewriteShortGapPct",
+        "paper_printed": "7\\%",
+        "paper_value": 7.257858224831683,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "16\\%",
+        "kit_value": 15.6592,
+        "paper_macro": "CwRewriteMidGapPct",
+        "paper_printed": "16\\%",
+        "paper_value": 15.659172835719225,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "77\\%",
+        "kit_value": 77.083,
+        "paper_macro": "CwRewriteLongGapPct",
+        "paper_printed": "77\\%",
+        "paper_value": 77.08296893944909,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "4\\%",
+        "kit_value": 3.8677,
+        "paper_macro": "CwCauseModelPct",
+        "paper_printed": "4\\%",
+        "paper_value": 3.8677388039461427,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "2\\%",
+        "kit_value": 1.7152,
+        "paper_macro": "CwCauseCompactPct",
+        "paper_printed": "2\\%",
+        "paper_value": 1.7151723877627822,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "14\\%",
+        "kit_value": 14.2967,
+        "paper_macro": "CwCauseConfigPct",
+        "paper_printed": "14\\%",
+        "paper_value": 14.296670072224243,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "63\\%",
+        "kit_value": 63.34,
+        "paper_macro": "CwCauseLongGapPct",
+        "paper_printed": "63\\%",
+        "paper_value": 63.33995060648083,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "9\\%",
+        "kit_value": 9.2717,
+        "paper_macro": "CwCauseMidGapPct",
+        "paper_printed": "9\\%",
+        "paper_value": 9.271711790606297,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "8\\%",
+        "kit_value": 7.5088,
+        "paper_macro": "CwCauseWithinPct",
+        "paper_printed": "8\\%",
+        "paper_value": 7.508756338979709,
+        "printed_match": true,
+        "value_match": true
+      },
+      {
+        "evidence_file": "cache_writes.json",
+        "format": "pct0",
+        "kit_printed": "63\\%",
+        "kit_value": 63.2646,
+        "paper_macro": "CwCauseLongGapNetPct",
+        "paper_printed": "63\\%",
+        "paper_value": 63.26459217253395,
+        "printed_match": true,
+        "value_match": true
+      }
+    ],
+    "kit_result": {
+      "cache_read_largest_cost": true,
+      "cache_write_1h_share_pct": 72.976,
+      "checks": {
+        "cross_file_duplicates": 732,
+        "lines_without_id": 0,
+        "log_files": 1540,
+        "synthetic_lines_dropped": 403,
+        "unparseable_lines": 0,
+        "unreadable_files": 0,
+        "write_split_mismatch": 4
+      },
+      "client_versions_seen": [
+        "2.1.165",
+        "2.1.170",
+        "2.1.173",
+        "2.1.177",
+        "2.1.183",
+        "2.1.185",
+        "2.1.195",
+        "2.1.196",
+        "2.1.198",
+        "2.1.204",
+        "2.1.205",
+        "2.1.207",
+        "2.1.211",
+        "2.1.215",
+        "2.1.220",
+        "2.1.222",
+        "2.1.224",
+        "2.1.225",
+        "2.1.226",
+        "2.1.227",
+        "2.1.228",
+        "2.1.229",
+        "2.1.231",
+        "2.1.236",
+        "2.1.237",
+        "2.1.245",
+        "2.1.263",
+        "2.1.283",
+        "2.1.286",
+        "2.1.287",
+        "2.1.288",
+        "2.1.292",
+        "2.1.293",
+        "2.1.296",
+        "2.1.299",
+        "2.1.301",
+        "2.1.312",
+        "2.1.314",
+        "2.1.318",
+        "2.1.319",
+        "2.1.322"
+      ],
+      "counts": {
+        "model_count": 9,
+        "models": [
+          "claude-fable-5",
+          "claude-fable-5-1",
+          "claude-haiku-4-5-20251001",
+          "claude-opus-4-8",
+          "claude-opus-5",
+          "claude-opus-5-5",
+          "claude-sonnet-4-6",
+          "claude-sonnet-5",
+          "claude-sonnet-5-5"
+        ],
+        "months": [
+          "2026-06",
+          "2026-07",
+          "2026-08",
+          "2026-09",
+          "2026-10",
+          "2026-11"
+        ],
+        "months_covered": 6,
+        "requests": 92147,
+        "sessions": 35,
+        "subagent_runs": 1197
+      },
+      "input_shares_pct": {
+        "cache_read": 97.42,
+        "cache_write": 2.5776,
+        "uncached": 0.0024
+      },
+      "kind": "tokens_contrib_result",
+      "line_factor": {
+        "lines_per_request": 2.2255,
+        "requests": 92147,
+        "usage_lines": 205073
+      },
+      "list_price_cost_shares_pct": {
+        "cache_read": 54.9867,
+        "cache_write": 33.4079,
+        "output": 11.5853,
+        "uncached_input": 0.0202
+      },
+      "rewrites": {
+        "by_cause_pct": {
+          "compaction": 1.7152,
+          "config_change": 14.2967,
+          "gap_5_to_60min": 9.2717,
+          "gap_gt_60min": 63.34,
+          "model_change": 3.8677,
+          "within_lifetime": 7.5088
+        },
+        "by_gap_pct": {
+          "5_to_60min": 15.6592,
+          "gt_60min": 77.083,
+          "le_5min": 7.2579
+        },
+        "expiry_gt_60min_net_of_base_rate_pct": 63.2646,
+        "new_suffix_tokens": 242408180,
+        "rewrite_share_of_total_cost_pct": 24.6001,
+        "rewrite_share_of_write_cost_pct": 73.6355,
+        "rewrite_share_of_written_pct": 69.3921,
+        "rewrite_tokens": 549571289,
+        "written_tokens": 791979469
+      },
+      "schema_version": 1,
+      "script_sha256": "b08c5e1538d0746df4353be144cb5e77c1e73f2ad4d1cd4485a759822597bd40",
+      "selection": {
+        "since_filter": false,
+        "until_filter": true
+      },
+      "tokens": {
+        "cache_read": 29932804878,
+        "cache_write_1h": 577954784,
+        "cache_write_5m": 214024685,
+        "input_total": 30725516343,
+        "output": 101078875,
+        "uncached_input": 731996
+      },
+      "unpriced": {
+        "input_share_pct": 0.0,
+        "requests": 0
+      }
+    },
+    "log_sha256_identical": true
+  },
+  "figures": {
+    "ContribEquivCounts": {
+      "desc": "token totals and counts compared exactly (all equal)",
+      "format": "int",
+      "source": "kit_result",
+      "value": 13
+    },
+    "ContribEquivFigures": {
+      "desc": "paper figures the contributor kit was checked against on the author's logs",
+      "format": "int",
+      "source": "orchestrator_snapshot",
+      "value": 30
+    },
+    "ContribEquivMatched": {
+      "desc": "of those, figures the kit reproduced (printed rounding and within 5e-5 points)",
+      "format": "int",
+      "source": "kit_result",
+      "value": 30
+    }
+  },
+  "kind": "contrib_equivalence",
+  "provenance": {
+    "generated_at": "2026-11-17T21:54:46Z",
+    "generator": "tools/contrib_equivalence.py",
+    "notes": [
+      "Local check (18 Nov 2026), not pre-registered: CI has no transcripts, so this file is its record. tests/test_contrib_kit.py runs the same comparison against the repo tools on synthetic logs in CI.",
+      "Selection: the kit's --until filter at the paper's freeze (requests before 2026-11-15T00:00:00Z), applied per request before cross-file de-duplication, as tools/claude_usage.py applies the freeze.",
+      "Shares: the kit rounds to four decimals; a figure matches when it is within 5e-5 points of the evidence value and prints identically at the paper's rounding. Counts and token totals must be equal."
+    ],
+    "sources": [
+      {
+        "command": "python tools/contrib_equivalence.py",
+        "description": "per-request log rebuilt from the kit's records with --until 2026-11-15; identical to the orchestrator snapshot's tokenledger_log (same sha256)",
+        "grade": "measured",
+        "id": "tokenledger_log",
+        "sha256": "7f1ae9cf1dabd080ba0c3e98bbb53124351adb963bca1c4c21db85ab59a47bd9"
+      },
+      {
+        "command": "contrib/tokens_contrib.py",
+        "description": "the contributor kit under test (the released version, contrib/KIT_SHA256.txt)",
+        "grade": "documented-record",
+        "id": "contrib_kit",
+        "sha256": "b08c5e1538d0746df4353be144cb5e77c1e73f2ad4d1cd4485a759822597bd40"
+      },
+      {
+        "command": "python contrib/tokens_contrib.py --until 2026-11-15",
+        "description": "the kit's tokens_contrib_result.json for the paper's window (aggregates.kit_result)",
+        "grade": "measured",
+        "id": "kit_result",
+        "sha256": "54f01d6a03a8ab8fa64eb2cd4587ab5c2cab4401fe6b50239568f8c364dc5c25"
+      },
+      {
+        "command": "evidence/orchestrator_snapshot.json",
+        "description": "paper figures compared (snapshot)",
+        "grade": "documented-record",
+        "id": "orchestrator_snapshot",
+        "sha256": "3a15c22d8737e4edd9d4ba4b3579572c131dd5b4972eb589c7de8c3939518078"
+      },
+      {
+        "command": "evidence/cache_writes.json",
+        "description": "paper figures compared (cache writes, causes)",
+        "grade": "documented-record",
+        "id": "cache_writes",
+        "sha256": "88c677ef6b7c14402edd1c3a2fb353cec8ef9c52751862edcb1b32eb03010bf1"
+      },
+      {
+        "command": "evidence/share_robustness.json",
+        "description": "paper figure compared (months with requests)",
+        "grade": "documented-record",
+        "id": "share_robustness",
+        "sha256": "123066193d94bc68484576f4ca2425d1509fe8b0d20a8b810af12935dced90aa"
+      }
+    ]
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,569 @@
+{
+  "schema_version": 1,
+  "kind": "agent_h2h",
+  "provenance": {
+    "generated_at": "2026-11-16T00:03:13Z",
+    "generator": "experiments/analyze_v2.py",
+    "notes": [
+      "Cost = mean USD per question at the cited list prices (usd_list: every request incl. summariser requests). PREREG_v2 Amendment 2: OpenAI gpt-6-luna, standard tier, so this is the billed amount; cache writes are priced at 1.25x input and cached reads at 0.1x.",
+      "H7: paired cluster bootstrap over questions, 2000 replicates, seed 7; B* = highest-F1 baseline point, ties lower cost.",
+      "Analysed split: dev."
+    ],
+    "sources": [
+      {
+        "id": "h2h_dev",
+        "grade": "measured",
+        "sha256": "8f165bcb4bb5df3c3165c0d60588ab640d91d90ce44109487b088536c8ea7d8a",
+        "command": "python -m agent.run_grid --out out/h2h_dev",
+        "description": "Grid output 'h2h_dev': 192 run records, 422 request records; Actions run: 43777353380 ([REDACTED: infrastructure] private repository; available to the programme chairs on request)"
+      },
+      {
+        "id": "prereg",
+        "grade": "documented-record",
+        "sha256": "861a45e88d18d90bc5fe05b0918da5b9bb392c184bddc82cc43ee6d832b65c23",
+        "command": "experiments/PREREG_v2.md",
+        "description": "Pre-registration experiments/PREREG_v2.md, section 6 specifies H7"
+      }
+    ]
+  },
+  "aggregates": {
+    "split": "dev",
+    "n_runs": 192,
+    "points": [
+      {
+        "arm": "agentless",
+        "k": 8,
+        "n": 24,
+        "cost": 0.0002535,
+        "input": 1994.0833333333333,
+        "cached": 0.0,
+        "output": 62.333333333333336,
+        "reasoning": 0.0,
+        "cache_write": 915.1666666666666,
+        "turns": 2.0,
+        "requests": 2.0,
+        "em": 0.5,
+        "f1": 0.650960875,
+        "grounded": 1.0
+      },
+      {
+        "arm": "memgpt",
+        "k": 8,
+        "n": 24,
+        "cost": 0.00023079166666666666,
+        "input": 1518.3333333333333,
+        "cached": 142.5,
+        "output": 149.66666666666666,
+        "reasoning": 0.0,
+        "cache_write": 677.625,
+        "turns": 2.0833333333333335,
+        "requests": 2.1666666666666665,
+        "em": 0.5,
+        "f1": 0.6772866249999999,
+        "grounded": null
+      },
+      {
+        "arm": "notes_reset",
+        "k": 2,
+        "n": 24,
+        "cost": 0.00017966666666666665,
+        "input": 989.5833333333334,
+        "cached": 0.0,
+        "output": 161.375,
+        "reasoning": 0.0,
+        "cache_write": 0.0,
+        "turns": 2.4166666666666665,
+        "requests": 2.4166666666666665,
+        "em": 0.4166666666666667,
+        "f1": 0.602286625,
+        "grounded": null
+      },
+      {
+        "arm": "notes_reset",
+        "k": 8,
+        "n": 24,
+        "cost": 0.00022325,
+        "input": 1371.5,
+        "cached": 0.0,
+        "output": 138.375,
+        "reasoning": 0.0,
+        "cache_write": 676.5416666666666,
+        "turns": 2.0416666666666665,
+        "requests": 2.0416666666666665,
+        "em": 0.5416666666666666,
+        "f1": 0.6856199583333332,
+        "grounded": null
+      },
+      {
+        "arm": "pbc",
+        "k": 3,
+        "n": 24,
+        "cost": 0.00025058333333333334,
+        "input": 1495.9166666666667,
+        "cached": 0.0,
+        "output": 194.83333333333334,
+        "reasoning": 0.0,
+        "cache_write": 145.5,
+        "turns": 2.4583333333333335,
+        "requests": 2.4583333333333335,
+        "em": 0.4583333333333333,
+        "f1": 0.6422050416666667,
+        "grounded": 1.0
+      },
+      {
+        "arm": "react",
+        "k": 2,
+        "n": 24,
+        "cost": 0.00018566666666666666,
+        "input": 1052.8333333333333,
+        "cached": 0.0,
+        "output": 160.41666666666666,
+        "reasoning": 0.0,
+        "cache_write": 0.0,
+        "turns": 2.375,
+        "requests": 2.375,
+        "em": 0.375,
+        "f1": 0.590923,
+        "grounded": null
+      },
+      {
+        "arm": "react",
+        "k": 8,
+        "n": 24,
+        "cost": 0.00019495833333333333,
+        "input": 1407.0416666666667,
+        "cached": 278.7083333333333,
+        "output": 134.83333333333334,
+        "reasoning": 0.0,
+        "cache_write": 473.7916666666667,
+        "turns": 2.0416666666666665,
+        "requests": 2.0416666666666665,
+        "em": 0.5,
+        "f1": 0.6755640416666666,
+        "grounded": null
+      },
+      {
+        "arm": "window2",
+        "k": 8,
+        "n": 24,
+        "cost": 0.00021258333333333331,
+        "input": 1489.1666666666667,
+        "cached": 239.54166666666666,
+        "output": 140.91666666666666,
+        "reasoning": 0.0,
+        "cache_write": 590.9583333333334,
+        "turns": 2.0833333333333335,
+        "requests": 2.0833333333333335,
+        "em": 0.4583333333333333,
+        "f1": 0.66339775,
+        "grounded": null
+      }
+    ],
+    "model": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "label": "OpenAI gpt-6-luna",
+      "returned": [
+        "gpt-6-luna"
+      ]
+    },
+    "frontier": [
+      [
+        "notes_reset",
+        2
+      ],
+      [
+        "notes_reset",
+        8
+      ],
+      [
+        "react",
+        8
+      ]
+    ],
+    "H7": {
+      "decision": "not supported",
+      "reason": null,
+      "bstar": {
+        "arm": "notes_reset",
+        "k": 8,
+        "f1": 0.6856199583333332,
+        "cost": 0.00022325
+      },
+      "pbc": {
+        "k": 3,
+        "f1": 0.6422050416666667,
+        "cost": 0.00025058333333333334
+      },
+      "n_paired_questions": 24,
+      "cost_ratio": 1.1224337439343042,
+      "cost_ratio_ci": {
+        "ci": [
+          0.9576825931150518,
+          1.3448744764415665
+        ],
+        "n_valid_boot": 2000,
+        "n_boot": 2000,
+        "unstable": false
+      },
+      "f1_diff": -0.04341491666666656,
+      "f1_diff_ci": {
+        "ci": [
+          -0.13811187499999988,
+          0.019230750000000036
+        ],
+        "n_valid_boot": 2000,
+        "n_boot": 2000,
+        "unstable": false
+      },
+      "rule_a": false,
+      "rule_b": false,
+      "rule_c": false,
+      "dominated_by": [
+        "memgpt:8",
+        "notes_reset:8",
+        "react:8",
+        "window2:8"
+      ]
+    },
+    "not_run": []
+  },
+  "figures": {
+    "HthModel": {
+      "value": "OpenAI gpt-6-luna",
+      "format": "text",
+      "source": "prereg",
+      "desc": "Model of every arm (PREREG_v2 Amendment 2; experiments/configs/h2h.yaml)."
+    },
+    "HthDecision": {
+      "value": "not supported",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "H7 decision (PREREG_v2 section 6)."
+    },
+    "HthCostRatio": {
+      "value": 1.1224337439343042,
+      "format": "float3",
+      "source": "h2h_dev",
+      "desc": "H7 cost(pbc) / cost(B*)."
+    },
+    "HthCostRatioLo": {
+      "value": 0.9576825931150518,
+      "format": "float3",
+      "source": "h2h_dev",
+      "desc": "H7 cost ratio 95% CI lower bound."
+    },
+    "HthCostRatioHi": {
+      "value": 1.3448744764415665,
+      "format": "float3",
+      "source": "h2h_dev",
+      "desc": "H7 cost ratio 95% CI upper bound."
+    },
+    "HthFOneDiff": {
+      "value": -4.341491666666656,
+      "format": "signedfloat2",
+      "source": "h2h_dev",
+      "desc": "H7 F1(pbc) - F1(B*) in points."
+    },
+    "HthFOneDiffLo": {
+      "value": -13.811187499999988,
+      "format": "signedfloat2",
+      "source": "h2h_dev",
+      "desc": "H7 F1 difference 95% CI lower bound, points."
+    },
+    "HthFOneDiffHi": {
+      "value": 1.9230750000000036,
+      "format": "signedfloat2",
+      "source": "h2h_dev",
+      "desc": "H7 F1 difference 95% CI upper bound, points."
+    },
+    "HthRuleA": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "H7 rule A: cost ratio <= 0.70 with CI below 1.0."
+    },
+    "HthRuleB": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "H7 rule B: F1 difference >= -2.0 points."
+    },
+    "HthRuleC": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "H7 rule C: pbc on the empirical frontier."
+    },
+    "HthBstarArm": {
+      "value": "notes_reset",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "Baseline B* with the highest F1."
+    },
+    "HthBstarK": {
+      "value": 8,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Retrieval k of baseline B*."
+    },
+    "HthPairedQuestions": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Questions answered by both pbc and B*."
+    },
+    "HthRan": {
+      "value": "True",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "Whether H7 could be evaluated."
+    },
+    "HthModelReturned": {
+      "value": "gpt-6-luna",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "Model id(s) returned in the responses of the analysed runs."
+    },
+    "HthAgentlessKEightN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for agentless k=8."
+    },
+    "HthAgentlessKEightCost": {
+      "value": 0.2535,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "agentless k=8 list-price USD per 1000 questions."
+    },
+    "HthAgentlessKEightFOne": {
+      "value": 65.0960875,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "agentless k=8 F1 in points."
+    },
+    "HthAgentlessKEightGrounded": {
+      "value": 1.0,
+      "format": "pct1",
+      "source": "h2h_dev",
+      "desc": "agentless k=8 grounded-answer rate."
+    },
+    "HthAgentlessKEightFrontier": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "agentless k=8 is on the empirical cost-F1 frontier."
+    },
+    "HthMemgptKEightN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for memgpt k=8."
+    },
+    "HthMemgptKEightCost": {
+      "value": 0.23079166666666667,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "memgpt k=8 list-price USD per 1000 questions."
+    },
+    "HthMemgptKEightFOne": {
+      "value": 67.7286625,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "memgpt k=8 F1 in points."
+    },
+    "HthMemgptKEightGrounded": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "memgpt k=8 grounded-answer rate."
+    },
+    "HthMemgptKEightFrontier": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "memgpt k=8 is on the empirical cost-F1 frontier."
+    },
+    "HthNotesResetKTwoN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for notes_reset k=2."
+    },
+    "HthNotesResetKTwoCost": {
+      "value": 0.17966666666666664,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=2 list-price USD per 1000 questions."
+    },
+    "HthNotesResetKTwoFOne": {
+      "value": 60.2286625,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=2 F1 in points."
+    },
+    "HthNotesResetKTwoGrounded": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=2 grounded-answer rate."
+    },
+    "HthNotesResetKTwoFrontier": {
+      "value": "True",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=2 is on the empirical cost-F1 frontier."
+    },
+    "HthNotesResetKEightN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for notes_reset k=8."
+    },
+    "HthNotesResetKEightCost": {
+      "value": 0.22325,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=8 list-price USD per 1000 questions."
+    },
+    "HthNotesResetKEightFOne": {
+      "value": 68.56199583333333,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=8 F1 in points."
+    },
+    "HthNotesResetKEightGrounded": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=8 grounded-answer rate."
+    },
+    "HthNotesResetKEightFrontier": {
+      "value": "True",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "notes_reset k=8 is on the empirical cost-F1 frontier."
+    },
+    "HthPbcKThreeN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for pbc k=3."
+    },
+    "HthPbcKThreeCost": {
+      "value": 0.2505833333333333,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "pbc k=3 list-price USD per 1000 questions."
+    },
+    "HthPbcKThreeFOne": {
+      "value": 64.22050416666667,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "pbc k=3 F1 in points."
+    },
+    "HthPbcKThreeGrounded": {
+      "value": 1.0,
+      "format": "pct1",
+      "source": "h2h_dev",
+      "desc": "pbc k=3 grounded-answer rate."
+    },
+    "HthPbcKThreeFrontier": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "pbc k=3 is on the empirical cost-F1 frontier."
+    },
+    "HthReactKTwoN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for react k=2."
+    },
+    "HthReactKTwoCost": {
+      "value": 0.18566666666666667,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "react k=2 list-price USD per 1000 questions."
+    },
+    "HthReactKTwoFOne": {
+      "value": 59.092299999999994,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "react k=2 F1 in points."
+    },
+    "HthReactKTwoGrounded": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "react k=2 grounded-answer rate."
+    },
+    "HthReactKTwoFrontier": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "react k=2 is on the empirical cost-F1 frontier."
+    },
+    "HthReactKEightN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for react k=8."
+    },
+    "HthReactKEightCost": {
+      "value": 0.19495833333333334,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "react k=8 list-price USD per 1000 questions."
+    },
+    "HthReactKEightFOne": {
+      "value": 67.55640416666667,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "react k=8 F1 in points."
+    },
+    "HthReactKEightGrounded": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "react k=8 grounded-answer rate."
+    },
+    "HthReactKEightFrontier": {
+      "value": "True",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "react k=8 is on the empirical cost-F1 frontier."
+    },
+    "HthWindowtwoKEightN": {
+      "value": 24,
+      "format": "int",
+      "source": "h2h_dev",
+      "desc": "Runs for window2 k=8."
+    },
+    "HthWindowtwoKEightCost": {
+      "value": 0.21258333333333332,
+      "format": "float2",
+      "source": "h2h_dev",
+      "desc": "window2 k=8 list-price USD per 1000 questions."
+    },
+    "HthWindowtwoKEightFOne": {
+      "value": 66.339775,
+      "format": "float1",
+      "source": "h2h_dev",
+      "desc": "window2 k=8 F1 in points."
+    },
+    "HthWindowtwoKEightGrounded": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "window2 k=8 grounded-answer rate."
+    },
+    "HthWindowtwoKEightFrontier": {
+      "value": "False",
+      "format": "text",
+      "source": "h2h_dev",
+      "desc": "window2 k=8 is on the empirical cost-F1 frontier."
+    }
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "aggregates": {
+    "cache_read_largest_in_every_variant": true,
+    "cache_write_tokens_1h": 577954784,
+    "cost_split_sensitivity": {
+      "all_writes_5m": {
+        "cacheRead": 0.612558,
+        "cacheWrite": 0.258157,
+        "fresh": 0.000225,
+        "output": 0.129061
+      },
+      "both": {
+        "cacheRead": 0.664753,
+        "cacheWrite": 0.223379,
+        "fresh": 0.000194,
+        "output": 0.111674
+      },
+      "flat_hits_0.1x": {
+        "cacheRead": 0.605062,
+        "cacheWrite": 0.293114,
+        "fresh": 0.000177,
+        "output": 0.101647
+      },
+      "paper": {
+        "cacheRead": 0.549867,
+        "cacheWrite": 0.334079,
+        "fresh": 0.000202,
+        "output": 0.115853
+      }
+    },
+    "extraction": {
+      "after_freeze": 7710,
+      "bad_lines": 0,
+      "cross_file_duplicates": 732,
+      "files": 1484,
+      "files_emptied_by_dedup": 0,
+      "files_only_after_freeze": 113,
+      "files_without_requests": 139,
+      "line_cache_read": 66970854522,
+      "line_input": 68993429334,
+      "line_requests": 205073,
+      "no_id_lines": 0,
+      "repeated_lines": 122270,
+      "separator_lines": 21,
+      "separator_only_requests": 3,
+      "synthetic_lines": 403,
+      "usage_lines": 223262,
+      "write_split_mismatch": 4
+    },
+    "input_tokens": {
+      "cache_read": 29932804878,
+      "cache_write": 791979469,
+      "fresh": 731996,
+      "total": 30725516343
+    },
+    "list_price_cost_component_share": {
+      "cacheRead": 0.549867,
+      "cacheWrite": 0.334079,
+      "fresh": 0.000202,
+      "output": 0.115853
+    },
+    "list_price_role_share_pct": {
+      "Explore": 0.073,
+      "Plan": 0.054,
+      "architect": 2.673,
+      "experiment-auditor": 0.231,
+      "general-purpose": 4.509,
+      "main": 83.822,
+      "[REDACTED: unrelated]": 0.811,
+      "reviewer": 0.277,
+      "security-reviewer": 0.391,
+      "test-designer": 0.465,
+      "verifier": 0.01,
+      "workflow-subagent": 6.684
+    },
+    "models_priced": [
+      "claude-fable-5",
+      "claude-fable-5-1",
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-8",
+      "claude-opus-5",
+      "claude-opus-5-5",
+      "claude-sonnet-4-6",
+      "claude-sonnet-5",
+      "claude-sonnet-5-5"
+    ],
+    "output_tokens": 101078875,
+    "price_multipliers_over_base_input": {
+      "cache_hit": [
+        0.025,
+        0.05,
+        0.1
+      ],
+      "cache_write_1h": [
+        2.0
+      ],
+      "cache_write_5m": [
+        1.25
+      ]
+    },
+    "reconciliation": {
+      "deduplicated_cache_read_share_pct": 97.42,
+      "deduplicated_input_frozen": 30725516343,
+      "deduplicated_requests_frozen": 92147,
+      "harness_report_cache_read_share_pct": 97.4488,
+      "harness_report_cost_share_sum": 1.0,
+      "harness_report_input_tokens_unfrozen": 32743823348,
+      "harness_report_requests_unfrozen": 99861,
+      "harness_report_transcript_files_unfrozen": 1484,
+      "line_level_cache_read_share_pct": 97.0685,
+      "line_level_input_frozen": 68993429334,
+      "line_level_requests_frozen": 205073,
+      "line_to_request_factor": 2.2255,
+      "line_to_request_input_factor": 2.2455
+    },
+    "requests": 92147,
+    "transcripts": 1232,
+    "transcripts_by_kind": {
+      "main": 35,
+      "subagent": 1197
+    },
+    "unpriced_requests": 0
+  },
+  "figures": {
+    "AgentTypeCount": {
+      "desc": "distinct agent roles seen",
+      "format": "int",
+      "source": "tokenledger_log",
+      "value": 12
+    },
+    "CacheReadSharePct": {
+      "desc": "cache-read share of orchestrator input tokens",
+      "format": "pct1",
+      "source": "tokenledger_report",
+      "value": 97.42002231581505
+    },
+    "CacheWriteLongSharePct": {
+      "desc": "share of cache-write tokens written at the 1-hour rate",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 72.97598064376085
+    },
+    "CacheWriteSharePct": {
+      "desc": "cache-write share of orchestrator input tokens",
+      "format": "pct1",
+      "source": "tokenledger_log",
+      "value": 2.5775953125045907
+    },
+    "CostShareCacheReadPct": {
+      "desc": "cache-read share of list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 54.98666692117602
+    },
+    "CostShareCacheReadSensMaxPct": {
+      "desc": "cache-read cost share, highest across pricing-semantics variants",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 66.47525410337714
+    },
+    "CostShareCacheReadSensMinPct": {
+      "desc": "cache-read cost share, lowest across pricing-semantics variants",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 54.98666692117602
+    },
+    "CostShareCacheWritePct": {
+      "desc": "cache-write share of list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 33.407919281715735
+    },
+    "CostShareFreshPct": {
+      "desc": "uncached-input share of list-price cost",
+      "format": "pct3",
+      "source": "list_prices",
+      "value": 0.020152923362536542
+    },
+    "CostShareOutputPct": {
+      "desc": "output share of list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 11.58526087374571
+    },
+    "FreshInputSharePct": {
+      "desc": "uncached (fresh) share of orchestrator input tokens",
+      "format": "pct3",
+      "source": "tokenledger_log",
+      "value": 0.0023823716803599492
+    },
+    "LongSessionCount": {
+      "desc": "transcripts whose peak context exceeded the threshold",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 304
+    },
+    "MainLoopSharePct": {
+      "desc": "main-loop share of list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 83.82190863904805
+    },
+    "OrchFirstDate": {
+      "desc": "date of the first orchestrator request in the data (UTC)",
+      "format": "date",
+      "source": "tokenledger_log",
+      "value": "2026-06-07"
+    },
+    "OrchMainTranscripts": {
+      "desc": "main-loop transcripts (sessions)",
+      "format": "int",
+      "source": "tokenledger_log",
+      "value": 35
+    },
+    "OrchModelCount": {
+      "desc": "distinct orchestrator model ids in the data",
+      "format": "int",
+      "source": "tokenledger_log",
+      "value": 9
+    },
+    "OrchSubagentTranscripts": {
+      "desc": "subagent transcripts (runs)",
+      "format": "int",
+      "source": "tokenledger_log",
+      "value": 1197
+    },
+    "PriceAccessDate": {
+      "desc": "pricing page access date",
+      "format": "date",
+      "source": "list_prices",
+      "value": "2026-11-15"
+    },
+    "PriceHitMultMax": {
+      "desc": "largest cache-hit price over base input among models in the data",
+      "format": "float1",
+      "source": "list_prices",
+      "value": 0.1
+    },
+    "PriceHitMultMin": {
+      "desc": "smallest cache-hit price over base input among models in the data",
+      "format": "float3",
+      "source": "list_prices",
+      "value": 0.025
+    },
+    "PriceWriteLongMult": {
+      "desc": "1-hour cache write price over base input (all models in the data)",
+      "format": "float1",
+      "source": "list_prices",
+      "value": 2.0
+    },
+    "PriceWriteShortMult": {
+      "desc": "5-minute cache write price over base input (all models in the data)",
+      "format": "float2",
+      "source": "list_prices",
+      "value": 1.25
+    },
+    "ReconCacheReadGapPts": {
+      "desc": "cache-read share, line counting minus deduplicated, points",
+      "format": "float2",
+      "source": "tokenledger_log",
+      "value": 0.35156932184750644
+    },
+    "ReconLineFactor": {
+      "desc": "usage lines per deduplicated request (same frozen requests; a line counter, as the harness report then was, sees this many)",
+      "format": "float1",
+      "source": "tokenledger_log",
+      "value": 2.2254983884445507
+    },
+    "ReconToolShareSum": {
+      "desc": "sum of the harness report's printed cost shares",
+      "format": "float2",
+      "source": "harness_claude_report",
+      "value": 1.0
+    },
+    "RequestCount": {
+      "desc": "orchestrator API requests (deduplicated)",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 92147
+    },
+    "SnapshotDate": {
+      "desc": "freeze: requests before 00:00 UTC on this date",
+      "format": "date",
+      "source": "tokenledger_log",
+      "value": "2026-11-15"
+    },
+    "SplitFixLostRequests": {
+      "desc": "requests a str.splitlines() reader dropped (every line carried a raw Unicode line separator); recovered by the 16 Nov 2026 fix",
+      "format": "int",
+      "source": "tokenledger_log",
+      "value": 3
+    },
+    "SubagentTopOneName": {
+      "desc": "subagent role ranked 1",
+      "format": "text",
+      "source": "tokenledger_log",
+      "value": "workflow-subagent"
+    },
+    "SubagentTopOneSharePct": {
+      "desc": "list-price cost share of subagent role ranked 1",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 6.683653169675326
+    },
+    "SubagentTopThreeName": {
+      "desc": "subagent role ranked 3",
+      "format": "text",
+      "source": "tokenledger_log",
+      "value": "architect"
+    },
+    "SubagentTopThreeSharePct": {
+      "desc": "list-price cost share of subagent role ranked 3",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 2.6728387884624856
+    },
+    "SubagentTopTwoName": {
+      "desc": "subagent role ranked 2",
+      "format": "text",
+      "source": "tokenledger_log",
+      "value": "general-purpose"
+    },
+    "SubagentTopTwoSharePct": {
+      "desc": "list-price cost share of subagent role ranked 2",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 4.508951696340228
+    },
+    "TokenledgerVersion": {
+      "desc": "tokenledger-llm version used",
+      "format": "text",
+      "source": "tokenledger_report",
+      "value": "0.2.0"
+    },
+    "TotalInputTokens": {
+      "desc": "orchestrator input tokens (all kinds)",
+      "format": "billions1",
+      "source": "tokenledger_report",
+      "value": 30725516343
+    },
+    "TranscriptCount": {
+      "desc": "transcripts with at least one request",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 1232
+    }
+  },
+  "kind": "orchestrator_snapshot",
+  "provenance": {
+    "generated_at": "2026-11-16T05:03:33Z",
+    "generator": "tools/pull_evidence.py",
+    "notes": [
+      "Instrument: tokenledger-llm; the harness report is a reconciliation source only.",
+      "The harness report counted every transcript line that carries usage as a request (as recorded in evidence commit d7bf97f: 210,443 requests); one response spans several lines, so its totals were inflated by the line factor. It has since been corrected; ReconLineFactor and ReconCacheReadGapPts replicate the line-counting reader on the frozen requests (tokenledger_log).",
+      "Transcript lines are split on newline only. Before 16 Nov 2026 the extractor used str.splitlines(), which also breaks at raw U+2028/U+2029/U+0085 inside JSON strings; 21 usage lines failed to parse and 3 requests were lost (extraction.separator_lines, separator_only_requests).",
+      "Not registered: cost_split_sensitivity re-prices the same requests with every cache hit at a flat 0.1x base input, every write at the 5-minute rate, and both; cache reads are the largest cost component in all variants.",
+      "Long context: the pricing page lists a prompt-length surcharge only for Claude Haiku 5.5, which does not occur in the data; every model in the data has one rate per token kind.",
+      "Its printed cost shares now sum to 1.0000. The runs of 15 Nov 2026 (evidence commits d7bf97f, 3dc01a3) recorded a sum of 0.2133: the model-tier weight sat in the denominator only. The harness has since changed that computation. Not used either way.",
+      "List prices weight token kinds and models; they are not the operator's bill (subscription)."
+    ],
+    "sources": [
+      {
+        "command": "python tools/pull_evidence.py --only orchestrator",
+        "description": "per-request usage log (token counts, model, time, role; no content), kept in evidence/raw/claude_requests.jsonl",
+        "grade": "measured",
+        "id": "tokenledger_log",
+        "sha256": "7f1ae9cf1dabd080ba0c3e98bbb53124351adb963bca1c4c21db85ab59a47bd9"
+      },
+      {
+        "command": "tokenledger report --format anthropic --turn-key turn --step-key step --json evidence/raw/claude_requests.jsonl",
+        "description": "tokenledger-llm 0.2.0 (PyPI) over the de-duplicated per-request log extracted from Claude Code transcripts by tools/claude_usage.py (one record per message id; freeze 2026-11-15T00:00:00Z)",
+        "grade": "measured",
+        "id": "tokenledger_report",
+        "sha256": "7e1f4d08685bb943611ad27a6f7aedf7c9f2cbdeccfec2f858e0ba6241d78eca"
+      },
+      {
+        "description": "Anthropic list prices per model and token kind from the official pricing page (https://platform.claude.com/docs/en/about-claude/pricing, 'Model pricing'), accessed 2026-11-15; committed as evidence/params/anthropic_list_prices.json",
+        "grade": "model-parameter",
+        "id": "list_prices",
+        "sha256": "10bafadda30eadbb8f69cef83519443d845222b1df5dac7ace31d018b5dc85ac"
+      },
+      {
+        "command": "python [REDACTED: infrastructure] report --claude --json",
+        "description": "the harness's own Claude report, used only to reconcile against tokenledger",
+        "grade": "measured",
+        "id": "harness_claude_report",
+        "sha256": "5cc8cafa3311fe5bafa9b52852d2ed391064c15d3be8ec2cd9cbc6178a9764ae"
+      },
+      {
+        "description": "long-session threshold parsed from [REDACTED: infrastructure] source",
+        "grade": "model-parameter",
+        "id": "cost_model_parameters",
+        "sha256": "af10ca6302b7adccb2cf97ee38c53b957670322ed19eb9b2abdec60c47c33107"
+      }
+    ]
+  },
+  "schema_version": 1
+}

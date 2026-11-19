@@ -1,0 +1,45 @@
+{
+  "git_sha": "8d8bc798978424ee802314b79b3d768a92da5877",
+  "prereg_sha": "1f63cd0c11963fff8b98422135b174d79f39d677",
+  "config_sha256": "c62fb0ddba839de4ee790be199908bc4d4eff491499b42b0f104cb7b1440070e",
+  "dataset_sha256": "822b03f51ccaa1f1ba8d2e5902ea663404eb7ce66c9ec177a7d09b42d68f8556",
+  "python": "3.12.13",
+  "tokenledger": "0.2.0",
+  "github_run_id": "43805900879",
+  "github_run_url": "[REDACTED: infrastructure] private repository; available to the programme chairs on request",
+  "hostname": "[REDACTED: infrastructure]",
+  "started": "2026-11-16T04:46:38+00:00",
+  "ended": "2026-11-16T04:46:39+00:00",
+  "cloud_spend_total": 0.041781,
+  "cloud_spend_this_run": 0.0,
+  "prior_spend_usd": 0.041781,
+  "prior_spend": {
+    "requests": {
+      "out/h2h_dev/requests.jsonl": 0.041538,
+      "out/h2h_dev/requests_failed.jsonl": 0.0,
+      "experiments/spend/spend_ledger.jsonl": 0.000243
+    },
+    "embedding_logs": {},
+    "flag_usd": 0.0,
+    "n_unpriced_requests": 0,
+    "total": 0.041781
+  },
+  "max_usd": 3.04,
+  "budget_estimates": {},
+  "halted": null,
+  "harness": "v3",
+  "split": "smoke",
+  "prereg_v3_sha": "dc9634d15a235c48fcc96529685a40dfed9a209d",
+  "salt_nonce": "d4a21827e44d0cdff1d9b47cf1dedd6d",
+  "salts": {
+    "aob|k=6|rep1": "9ba6729f726b8f30"
+  },
+  "repeats": 1,
+  "shard": null,
+  "blocks": [
+    [
+      0,
+      3
+    ]
+  ]
+}

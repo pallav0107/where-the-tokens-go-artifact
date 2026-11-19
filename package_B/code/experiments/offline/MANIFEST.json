@@ -1,0 +1,230 @@
+{
+  "note": "Copied 2026-11-16 before the PREREG_v3 commit. Absolute local paths in the scripts are replaced by <LOCAL_PATH> (sha256_original is the file as run). The design-stage scripts ran on 16 Nov in a session scratchpad; none made an LLM call.",
+  "scripts": [
+    {
+      "path": "design_scripts/scripts/hop2.py",
+      "sha256_original": "0041c772be9964bde1e617a41e8a0a4afaacef18f17046f7f4c1487a6d913e9e",
+      "sha256_copy": "d7f2947e4b16b8d973a194e340e279b9e8366efccff8a3cb320f4eaabddf785c",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/pack.py",
+      "sha256_original": "10243a720ff1cd46cfc6f753de84a3c49b760a5374af8b9d9392b6fbc7a6715b",
+      "sha256_copy": "6548627b02f16998c856fbe9538d66c26c6bff7a69def511e9b7e6cbab6dbef8",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/retr1.py",
+      "sha256_original": "ac551812bd3cdc0a8b8a3ef4d04ab151bba30cb45ce6f42a07602a18aa8d7590",
+      "sha256_copy": "c1d9c2727ef3fe7552801e0cef5a2eeaa00405a1cee5d3e5838ba05e65a9398f",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/support1.py",
+      "sha256_original": "a370561161df0f369b70b15890a1e8e624bb6b03006136cd9106caf52b50a5c7",
+      "sha256_copy": "f89e369e9bb45286d5d64b9b2d25940f932b29eb7bade734b47e5ab72967dd96",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/support2.py",
+      "sha256_original": "5960775dbf453eef821ceed46042f6993b429c57ea4f9d8efdbc9607fd653f4f",
+      "sha256_copy": "e839566b1476220408d0846a673b53f10ae15f0a993d94b00677daee377a207a",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/xrun.py",
+      "sha256_original": "599223aab500dc162dcd2aef9a178c52e286556a9e82c5406c8d0f1d17c9f0ba",
+      "sha256_copy": "599223aab500dc162dcd2aef9a178c52e286556a9e82c5406c8d0f1d17c9f0ba",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/decomp.py",
+      "sha256_original": "d9a9b409cada5c666e1305cd64d91bc8489ace1539235d718ba589251e47ecaa",
+      "sha256_copy": "d9a9b409cada5c666e1305cd64d91bc8489ace1539235d718ba589251e47ecaa",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/pairsd.py",
+      "sha256_original": "dad1d298637f7655687b653d837a082d3b7fe3bd5770f21cf37103ee6291e3df",
+      "sha256_copy": "dad1d298637f7655687b653d837a082d3b7fe3bd5770f21cf37103ee6291e3df",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/calib.py",
+      "sha256_original": "05da355f6ff23dbf2840f266b636a1582461ca0fe8e9a7d64ca3d02e2b95efef",
+      "sha256_copy": "05da355f6ff23dbf2840f266b636a1582461ca0fe8e9a7d64ca3d02e2b95efef",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/recall_sim.py",
+      "sha256_original": "d95abf710267baf688128ca0a0664e9be171830ca73533db36023d8ea7236f82",
+      "sha256_copy": "fe2b1677ceaadfd9f0ec0211bfa06ff7eefac21bc190e25a44f3cb93e9629db6",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/recall_sim2.py",
+      "sha256_original": "968f3c863d59fdabd2e0dfd1965e1093dafdbdd276015a9709a07f8a98f76f0d",
+      "sha256_copy": "7808b8f7dd63a09b55dd520016e7c873e32338c96c5f7647239509d71f0dc44e",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/assemble_sim.py",
+      "sha256_original": "8d1f433f70234fcfee965690eab4e0c6f7c1d184d05cb02a36567a8d70c27946",
+      "sha256_copy": "22ab5ee470ed64f866e6e9e8e92af7bfd5a92cd7797b2dd15addd8bf0e26977c",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/assemble_tool_only.py",
+      "sha256_original": "a3bd7d0eb3ee49b79f911bc4fc5af1b5cf5a81c0422b4a97f1f17d7cd0c58ead",
+      "sha256_copy": "4af33c4690d6cd38cbccec993b66bdc669be4130089907a16924704527c92d68",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/tool_variants.py",
+      "sha256_original": "33b1d3aeee0a53b3d34c3073b94905f40935b4adcde5fb3bf64404e61490b555",
+      "sha256_copy": "2e71d82efcdad9a5ab7c52b955e9cd43e6352d12a833f34aa72bcbd55cf185c8",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/dev_questions.py",
+      "sha256_original": "3ac7e57ad47b91245ea44b2506e1fb49cbe83d9f15fab11683d566d4028536cb",
+      "sha256_copy": "3ac7e57ad47b91245ea44b2506e1fb49cbe83d9f15fab11683d566d4028536cb",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/reconstruct.py",
+      "sha256_original": "721c7d3efc0bebee0e8320be10a7ece21c4914b13d5b196124e61c98de31bbbe",
+      "sha256_copy": "e5979b01b58b4485e53e6862d19917327d3fc021d6c5a2ad5cb15ac70a13f411",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/scripts/queries.py",
+      "sha256_original": "bbf3a5969f7976ed2c1f17283ed563a127ef73de270756facd29a7bc8c670369",
+      "sha256_copy": "bbf3a5969f7976ed2c1f17283ed563a127ef73de270756facd29a7bc8c670369",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/req_analysis.py",
+      "sha256_original": "3779e279af1fc51b5143707a740c21a226d31896ea0355989e6a5feb3e1a48e8",
+      "sha256_copy": "3779e279af1fc51b5143707a740c21a226d31896ea0355989e6a5feb3e1a48e8",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/an1.py",
+      "sha256_original": "f4c89955e3f2d0ddff2a1d2287e50e4fe9d4166f617c7cf4ce661d6f03201b0d",
+      "sha256_copy": "f4c89955e3f2d0ddff2a1d2287e50e4fe9d4166f617c7cf4ce661d6f03201b0d",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/an2.py",
+      "sha256_original": "8b77d9837ca4e75eed422a653f26257e9d04a2e8f761da019e81da7b4b4393aa",
+      "sha256_copy": "8b77d9837ca4e75eed422a653f26257e9d04a2e8f761da019e81da7b4b4393aa",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/an3.py",
+      "sha256_original": "8ecf10ac8245904488b9ad0b3ca3626c6e5c0ccb1f1445a0b959971d3db4d1ff",
+      "sha256_copy": "8ecf10ac8245904488b9ad0b3ca3626c6e5c0ccb1f1445a0b959971d3db4d1ff",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/an4.py",
+      "sha256_original": "fa3813b005dd61263d7be504e574df76359ba08c58bd49d1d95dfcbba39514fa",
+      "sha256_copy": "fa3813b005dd61263d7be504e574df76359ba08c58bd49d1d95dfcbba39514fa",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/an5.py",
+      "sha256_original": "4890ee29956a36a0118c83901e6735fa5e58d2f0ddce725d4cff0ce0aeea3003",
+      "sha256_copy": "4890ee29956a36a0118c83901e6735fa5e58d2f0ddce725d4cff0ce0aeea3003",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/an6.py",
+      "sha256_original": "b9cfbb4514ed4a13825d3930fa8c587966fef9f9c5312de76869fbc74083de2a",
+      "sha256_copy": "b9cfbb4514ed4a13825d3930fa8c587966fef9f9c5312de76869fbc74083de2a",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/cost_sim.py",
+      "sha256_original": "98c108c6902063577a0569186c4296b326d49bb2b0cd92e7bce4577d7fb9a80b",
+      "sha256_copy": "98c108c6902063577a0569186c4296b326d49bb2b0cd92e7bce4577d7fb9a80b",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/inspect1.py",
+      "sha256_original": "260b2da2cee96e932792270a29453a7c18b0c2fcae86297f8bc731ba4305c872",
+      "sha256_copy": "260b2da2cee96e932792270a29453a7c18b0c2fcae86297f8bc731ba4305c872",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/inspect2.py",
+      "sha256_original": "f5d9952fcafe029d15480dcad057b2283678db00861a146b7260f00a9c2b8033",
+      "sha256_copy": "f5d9952fcafe029d15480dcad057b2283678db00861a146b7260f00a9c2b8033",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/inspect3.py",
+      "sha256_original": "072010d2592983bf39f043aadae3eac3cd3161e94682d4ffc477a11582cf19cf",
+      "sha256_copy": "072010d2592983bf39f043aadae3eac3cd3161e94682d4ffc477a11582cf19cf",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/scripts/musique_stats.py",
+      "sha256_original": "a398602daa8a27335187cc62a5543fd9a795f971f7d6dc2424496f27635a2547",
+      "sha256_copy": "a398602daa8a27335187cc62a5543fd9a795f971f7d6dc2424496f27635a2547",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/synth_scripts/calib_v3.py",
+      "sha256_original": "8529d86e414b7ac645e1bad2daeba3fd52b8bff96f2c3dd0fd80bfa8a581609e",
+      "sha256_copy": "01e8b29b14f8fc619517a85c80a0a190aa4e8b812907208566e4665316b48b02",
+      "paths_replaced": true
+    },
+    {
+      "path": "design_scripts/audit/verify_dev0.py",
+      "sha256_original": "8f3c2878b4c4b6f0db55c93452bbd74ba57ce2b808b98244b6062b3633400d79",
+      "sha256_copy": "8f3c2878b4c4b6f0db55c93452bbd74ba57ce2b808b98244b6062b3633400d79",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/pcreview_scripts/verify_dev0.py",
+      "sha256_original": "e60e7f500ecbe9d5de74d24f334da6d15920891311fd24e0af9d0ba1bac764d2",
+      "sha256_copy": "e60e7f500ecbe9d5de74d24f334da6d15920891311fd24e0af9d0ba1bac764d2",
+      "paths_replaced": false
+    },
+    {
+      "path": "design_scripts/pcreview_scripts/notes_share.py",
+      "sha256_original": "76c9955b477d30f04cb23de9533d1822b719e129f3b5f4da7ae6d619a33cd2f5",
+      "sha256_copy": "76c9955b477d30f04cb23de9533d1822b719e129f3b5f4da7ae6d619a33cd2f5",
+      "paths_replaced": false
+    }
+  ],
+  "dev_round0_artifact": [
+    {
+      "path": "v2_dev_round0_run43777353380/runs.jsonl",
+      "sha256_original": "8f165bcb4bb5df3c3165c0d60588ab640d91d90ce44109487b088536c8ea7d8a",
+      "sha256_copy": "8f165bcb4bb5df3c3165c0d60588ab640d91d90ce44109487b088536c8ea7d8a"
+    },
+    {
+      "path": "v2_dev_round0_run43777353380/requests.jsonl",
+      "sha256_original": "104de2f0faa6b68fdcae06759207a4adff9ba7b03de338f27304fa8a9ad91c44",
+      "sha256_copy": "104de2f0faa6b68fdcae06759207a4adff9ba7b03de338f27304fa8a9ad91c44"
+    },
+    {
+      "path": "v2_dev_round0_run43777353380/not_run.jsonl",
+      "sha256_original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256_copy": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "v2_dev_round0_run43777353380/tokenledger_report.json",
+      "sha256_original": "47570a52c9d284ee0e3ef785e49b433281cdf1b51e7ba1674a0734a65eff4304",
+      "sha256_copy": "47570a52c9d284ee0e3ef785e49b433281cdf1b51e7ba1674a0734a65eff4304"
+    },
+    {
+      "path": "v2_dev_round0_run43777353380/agent_h2h_dev_preliminary.json",
+      "sha256_original": "8d96d36dcbc65d146e098025c5c09146f97ab258a728054057915ed64684e64f",
+      "sha256_copy": "8d96d36dcbc65d146e098025c5c09146f97ab258a728054057915ed64684e64f"
+    }
+  ]
+}

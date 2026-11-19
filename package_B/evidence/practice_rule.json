@@ -1,0 +1,205 @@
+{
+  "aggregates": {
+    "h8_cost_ratio": 0.48725412005505164,
+    "horizons": {
+      "long_breakeven_at_rho_max": 1.1111111111111112,
+      "long_breakeven_at_rho_min": 1.0256410256410258,
+      "long_hours_at_rho_max": 19.0,
+      "long_hours_at_rho_min": 79.0,
+      "rho_max": 0.1,
+      "rho_min": 0.025,
+      "short_minutes_at_rho_max": 57.5,
+      "short_minutes_at_rho_min": 245.0,
+      "w_1h": 2.0,
+      "w_5m": 1.25
+    },
+    "leave_one_month_out": {
+      "by_month_left_out": {
+        "2026-06": 62.22320669661708,
+        "2026-07": 63.192524473224985,
+        "2026-08": 64.44795427389558,
+        "2026-09": 62.38383217638497,
+        "2026-10": 59.110845330977114,
+        "2026-11": 67.46327481274528
+      },
+      "full_pct": 63.33995060648083,
+      "max_pct": 67.46327481274528,
+      "min_pct": 59.110845330977114
+    },
+    "plain": {
+      "five_minute_extra_usd": 8534.227922449978,
+      "five_minute_more_pct": 53.66273792437195,
+      "mean_rewrite_tokens": 491529.2081447964,
+      "mean_rewrite_usd": 4.814409834087487
+    }
+  },
+  "figures": {
+    "IdleNetDropPts": {
+      "desc": "percentage points the idle share of re-written tokens falls net of the base rate",
+      "format": "float2",
+      "source": "cache_writes",
+      "value": 0.07535843394687207
+    },
+    "KhailoPingMin": {
+      "desc": "Khailo (arXiv 2607.19214): ping interval at a five-minute TTL, minutes (abstract)",
+      "format": "int",
+      "source": "khailo_abstract",
+      "value": 4
+    },
+    "PlainCostRatio": {
+      "desc": "H8 cost(aob) / cost(B*), two decimals (HthreeCostRatio, rounded)",
+      "format": "float2",
+      "source": "h2h3_test_r1_s0",
+      "value": 0.48725412005505164
+    },
+    "PlainFiveMinExtraOfTotalPct": {
+      "desc": "the same extra cost as a share of total list-price cost",
+      "format": "pct0",
+      "source": "cache_writes",
+      "value": 40.13296976888165
+    },
+    "PlainFiveMinExtraUsd": {
+      "desc": "five-minute counterfactual minus actual cost of the one-hour-written blocks (their writes and same-transcript reads), list-price USD, all transcripts",
+      "format": "int",
+      "source": "cache_writes",
+      "value": 8534.227922449978
+    },
+    "PlainFiveMinMorePct": {
+      "desc": "one-hour blocks: five-minute counterfactual cost over actual, percent more (CwLongFiveMinDeltaPct, unsigned, rounded)",
+      "format": "pct0",
+      "source": "cache_writes",
+      "value": 53.66273792437195
+    },
+    "RbLomoExpiryMaxPct": {
+      "desc": "expiry share of re-written tokens, leaving out one month: largest",
+      "format": "pct0",
+      "source": "share_robustness",
+      "value": 67.46327481274528
+    },
+    "RbLomoExpiryMinPct": {
+      "desc": "expiry share of re-written tokens, leaving out one month: smallest",
+      "format": "pct0",
+      "source": "share_robustness",
+      "value": 59.110845330977114
+    },
+    "RuleBreakevenLongMax": {
+      "desc": "one-hour write break-even reads (w-1)/(1-rho) at the largest read multiplier",
+      "format": "float2",
+      "source": "list_prices",
+      "value": 1.1111111111111112
+    },
+    "RuleBreakevenLongMin": {
+      "desc": "one-hour write break-even reads (w-1)/(1-rho) at the smallest read multiplier",
+      "format": "float2",
+      "source": "list_prices",
+      "value": 1.0256410256410258
+    },
+    "RuleHorizonKhailoMin": {
+      "desc": "Khailo's break-even idle tau(w/r - 1) at his ping interval, w and rho as here",
+      "format": "int",
+      "source": "khailo_abstract",
+      "value": 46.0
+    },
+    "RuleHorizonLongHours": {
+      "desc": "rule: break-even horizon (hours) for hourly pings vs one re-write, one-hour writes, largest read multiplier: w/rho - 1",
+      "format": "int",
+      "source": "list_prices",
+      "value": 19.0
+    },
+    "RuleHorizonLongMaxHours": {
+      "desc": "rule: the same horizon at the smallest read multiplier (hours)",
+      "format": "int",
+      "source": "list_prices",
+      "value": 79.0
+    },
+    "RuleHorizonShortMaxMin": {
+      "desc": "rule: five-minute-write horizon (minutes) at the smallest read multiplier",
+      "format": "int",
+      "source": "list_prices",
+      "value": 245.0
+    },
+    "RuleHorizonShortMin": {
+      "desc": "rule: break-even horizon (minutes) for five-minute writes, largest read multiplier: (w/rho - 1) x 5 min",
+      "format": "int",
+      "source": "list_prices",
+      "value": 57.5
+    },
+    "RuleMeanRewriteKTok": {
+      "desc": "rule: mean tokens per expiry re-write of an unchanged prefix (keepalive events)",
+      "format": "kilo",
+      "source": "cache_writes",
+      "value": 491529.2081447964
+    },
+    "RuleMeanRewriteUsd": {
+      "desc": "rule: mean list-price USD per expiry re-write of an unchanged prefix",
+      "format": "float2",
+      "source": "cache_writes",
+      "value": 4.814409834087487
+    },
+    "RulePingsPerRewriteMax": {
+      "desc": "prefix reads costing as much as one one-hour re-write: w/rho, smallest rho",
+      "format": "int",
+      "source": "list_prices",
+      "value": 80.0
+    },
+    "RulePingsPerRewriteMin": {
+      "desc": "prefix reads costing as much as one one-hour re-write: w/rho, largest rho",
+      "format": "int",
+      "source": "list_prices",
+      "value": 20.0
+    },
+    "TotalListCostUsd": {
+      "desc": "API-equivalent total cost of the frozen orchestrator requests, USD at list price",
+      "format": "int",
+      "source": "cache_writes",
+      "value": 21264.880151150082
+    }
+  },
+  "kind": "practice_rule",
+  "provenance": {
+    "generated_at": "2026-11-19T02:39:25Z",
+    "generator": "tools/practice_rule.py",
+    "notes": [
+      "Not pre-registered; combines committed evidence only (no new measurement).",
+      "The rule is derived from this audit's prices and gaps, not validated."
+    ],
+    "sources": [
+      {
+        "command": "evidence/params/anthropic_list_prices.json",
+        "description": "write and read multipliers",
+        "grade": "model-parameter",
+        "id": "list_prices",
+        "sha256": "10bafadda30eadbb8f69cef83519443d845222b1df5dac7ace31d018b5dc85ac"
+      },
+      {
+        "command": "evidence/cache_writes.json",
+        "description": "keepalive replay and one-hour payback",
+        "grade": "measured",
+        "id": "cache_writes",
+        "sha256": "88c677ef6b7c14402edd1c3a2fb353cec8ef9c52751862edcb1b32eb03010bf1"
+      },
+      {
+        "command": "evidence/share_robustness.json",
+        "description": "re-writes and expiry by calendar month",
+        "grade": "measured",
+        "id": "share_robustness",
+        "sha256": "123066193d94bc68484576f4ca2425d1509fe8b0d20a8b810af12935dced90aa"
+      },
+      {
+        "command": "evidence/agent_h2h_v3.json",
+        "description": "registered H8 cost ratio (restated)",
+        "grade": "measured",
+        "id": "h2h3_test_r1_s0",
+        "sha256": "ad5dd69a1053e4f68253bf755b14ef67352230ffdc570c1a7af2e7bda2576b47"
+      },
+      {
+        "command": "https://arxiv.org/abs/2607.19214 (abstract, fetched 19 Nov 2026)",
+        "description": "Khailo's ping interval and break-even formula; sha256 of the quoted sentence",
+        "grade": "documented-record",
+        "id": "khailo_abstract",
+        "sha256": "702b9ab8ede88a3fa83dcf6589bc98037402fd00e9bf10f8354799d953e63bb4"
+      }
+    ]
+  },
+  "schema_version": 1
+}

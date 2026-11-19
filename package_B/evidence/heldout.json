@@ -1,0 +1,667 @@
+{
+  "aggregates": {
+    "excluded": {
+      "E2_fewer_than_3_requests": 59,
+      "E3_unpriced_model": 0,
+      "E4_zero_cost_or_prompt": 0
+    },
+    "excluded_E1_no_request_before_freeze": {
+      "all_requests_in_earlier_transcript": 0,
+      "no_requests": 139,
+      "only_after_freeze": 113
+    },
+    "exploratory": {
+      "const_test": {
+        "mape": 158.32821199853686,
+        "r2_log": -0.005334408826527026,
+        "rmse_log": 1.3871760920499658
+      },
+      "corr_ln_ct_ln_i_test": 0.9982156138198514,
+      "ct_over_i_median_test": 1.2939770472959395,
+      "d_rmse_log_day_clustered_ci95": [
+        -1.1772152809165888,
+        -0.25416006344748354
+      ],
+      "test_days": 19
+    },
+    "freeze": "2026-11-15T00:00:00Z",
+    "n_eligible": 1173,
+    "n_test": 352,
+    "n_test_main": 18,
+    "n_train": 821,
+    "n_train_main": 17,
+    "n_units": 1232,
+    "prereg": {
+      "commit": "dd10b401ae681ff72666f763e30cd92bd36f8119",
+      "committed_at": "2026-11-15T12:33:30Z",
+      "path": "papers/agent2027-cost/PREREG_heldout.md",
+      "sha256": "c327f78a0c903c4aae52f0a5f44f8272df338b6051757d3df31f14a12859ef95"
+    },
+    "primary_cost": {
+      "a_minus_b": {
+        "d_mape": -65.73527380840234,
+        "d_mape_ci95": [
+          -87.74689538823607,
+          -43.71936782263704
+        ],
+        "d_rmse_log": -0.6096259156276944,
+        "d_rmse_log_ci95": [
+          -0.7649248762175237,
+          -0.46031251335365775
+        ]
+      },
+      "decision": "A predicts better",
+      "models": {
+        "A": {
+          "intercept": -10.630099369381114,
+          "slope": 0.7376210359349674,
+          "test": {
+            "mape": 89.67021557196965,
+            "r2_log": 0.6754798034827901,
+            "rmse_log": 0.7881287797765371
+          },
+          "train": {
+            "mape": 42.82649086502277,
+            "r2_log": 0.8635999031080608,
+            "rmse_log": 0.5258243505594906
+          }
+        },
+        "B": {
+          "intercept": 0.9105402899197459,
+          "slope": -0.08499125541413936,
+          "test": {
+            "mape": 155.405489380372,
+            "r2_log": -0.02072623310775845,
+            "rmse_log": 1.3977546954042315
+          },
+          "train": {
+            "mape": 153.62969173270739,
+            "r2_log": 0.0005209194179012222,
+            "rmse_log": 1.423377868928968
+          }
+        },
+        "S1": {
+          "intercept": -3.328990381133968,
+          "slope": 1.1213426135845737,
+          "test": {
+            "mape": 99.45699109886509,
+            "r2_log": 0.49960437194570295,
+            "rmse_log": 0.9786627870762573
+          },
+          "train": {
+            "mape": 52.98048615508372,
+            "r2_log": 0.8046260457221789,
+            "rmse_log": 0.6293129778288769
+          }
+        },
+        "S2": {
+          "intercept": -14.437978391520135,
+          "slope": 1.0994048776493806,
+          "test": {
+            "mape": 139.94611806162348,
+            "r2_log": 0.5468775075365497,
+            "rmse_log": 0.9312882679339244
+          },
+          "train": {
+            "mape": 54.98450846442697,
+            "r2_log": 0.7821461369837258,
+            "rmse_log": 0.6645321353796304
+          }
+        }
+      }
+    },
+    "secondary_tokens": {
+      "a_minus_b": {
+        "d_mape": -155.12930914221565,
+        "d_mape_ci95": [
+          -174.2732122739238,
+          -136.82248320710102
+        ],
+        "d_rmse_log": -1.6619292179147396,
+        "d_rmse_log_ci95": [
+          -1.8344819029212778,
+          -1.4869588203550896
+        ]
+      },
+      "decision": "A predicts better",
+      "models": {
+        "A": {
+          "intercept": 0.5464542006544324,
+          "slope": 0.9385808358453646,
+          "test": {
+            "mape": 9.57632215811157,
+            "r2_log": 0.9954222106431628,
+            "rmse_log": 0.1183217936219538
+          },
+          "train": {
+            "mape": 7.077289222001862,
+            "r2_log": 0.9970647111044924,
+            "rmse_log": 0.09134647416192095
+          }
+        },
+        "B": {
+          "intercept": 17.37794216634772,
+          "slope": -0.31933800292328074,
+          "test": {
+            "mape": 164.7056313003272,
+            "r2_log": -0.03630787552237247,
+            "rmse_log": 1.7802510115366934
+          },
+          "train": {
+            "mape": 220.78737324961284,
+            "r2_log": 0.005243934412022977,
+            "rmse_log": 1.6816075984453318
+          }
+        },
+        "S1": {
+          "intercept": 9.762680460160878,
+          "slope": 1.451433238047066,
+          "test": {
+            "mape": 32.300565681003675,
+            "r2_log": 0.9343053675923053,
+            "rmse_log": 0.44823089262499527
+          },
+          "train": {
+            "mape": 24.286960728209884,
+            "r2_log": 0.9612703458858437,
+            "rmse_log": 0.33180900812331393
+          }
+        },
+        "S2": {
+          "intercept": -4.3091255875546395,
+          "slope": 1.3997097321365053,
+          "test": {
+            "mape": 68.13135036942064,
+            "r2_log": 0.8947104051037945,
+            "rmse_log": 0.5674525725882037
+          },
+          "train": {
+            "mape": 37.90428778596463,
+            "r2_log": 0.904029356455161,
+            "rmse_log": 0.5223186902935022
+          }
+        }
+      }
+    },
+    "split_fix": {
+      "requests_recovered": 3,
+      "units_affected": 2,
+      "units_affected_in_test": 2
+    },
+    "test_first_ts": "2026-10-26",
+    "test_last_ts": "2026-11-14",
+    "test_subsets_cost": {
+      "main": {
+        "A": {
+          "mape": 31.652544384894725,
+          "r2_log": 0.9201862463751311,
+          "rmse_log": 0.5026485840435253
+        },
+        "B": {
+          "mape": 93.55036190450673,
+          "r2_log": -2.481766937301557,
+          "rmse_log": 3.319903375511744
+        },
+        "S1": {
+          "mape": 34.32217544760903,
+          "r2_log": 0.870653389026402,
+          "rmse_log": 0.6398867575655838
+        },
+        "S2": {
+          "mape": 73.28398851405824,
+          "r2_log": 0.8830167202170525,
+          "rmse_log": 0.6085377046883563
+        },
+        "n": 18
+      },
+      "subagent": {
+        "A": {
+          "mape": 92.79691641438686,
+          "r2_log": 0.5391890433063855,
+          "rmse_log": 0.8006283720305668
+        },
+        "B": {
+          "mape": 158.7389992443408,
+          "r2_log": -0.05318536538167229,
+          "rmse_log": 1.2103806878149663
+        },
+        "S1": {
+          "mape": 102.9672506249807,
+          "r2_log": 0.29021998320723197,
+          "rmse_log": 0.9936454812421287
+        },
+        "S2": {
+          "mape": 143.5386879174803,
+          "r2_log": 0.357256349272448,
+          "rmse_log": 0.9455586576808321
+        },
+        "n": 334
+      }
+    },
+    "tokenledger_version": "0.2.0",
+    "train_first_ts": "2026-06-07"
+  },
+  "figures": {
+    "HoAMape": {
+      "desc": "model A: test MAPE",
+      "format": "pct0",
+      "source": "tokenledger_report",
+      "value": 89.67021557196965
+    },
+    "HoARmse": {
+      "desc": "model A: test RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.7881287797765371
+    },
+    "HoARsq": {
+      "desc": "model A: test R^2 on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.6754798034827901
+    },
+    "HoASlope": {
+      "desc": "model A: fitted slope (training)",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.7376210359349674
+    },
+    "HoATrainRmse": {
+      "desc": "model A: training RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.5258243505594906
+    },
+    "HoBMape": {
+      "desc": "model B: test MAPE",
+      "format": "pct0",
+      "source": "tokenledger_report",
+      "value": 155.405489380372
+    },
+    "HoBRmse": {
+      "desc": "model B: test RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 1.3977546954042315
+    },
+    "HoBRsq": {
+      "desc": "model B: test R^2 on ln cost",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -0.02072623310775845
+    },
+    "HoBSlope": {
+      "desc": "model B: fitted slope (training)",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -0.08499125541413936
+    },
+    "HoBTrainRmse": {
+      "desc": "model B: training RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 1.423377868928968
+    },
+    "HoConstRmse": {
+      "desc": "exploratory: test RMSE of predicting the training mean of ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 1.3871760920499658
+    },
+    "HoCtLogCorr": {
+      "desc": "exploratory: correlation of ln(C x T) with ln(total input), test",
+      "format": "float3",
+      "source": "tokenledger_report",
+      "value": 0.9982156138198514
+    },
+    "HoCtRatioMedian": {
+      "desc": "exploratory: median of peak context x turns over total input, test",
+      "format": "float1",
+      "source": "tokenledger_report",
+      "value": 1.2939770472959395
+    },
+    "HoDayCiHigh": {
+      "desc": "exploratory: day-clustered bootstrap 97.5% of RMSE_A - RMSE_B",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -0.25416006344748354
+    },
+    "HoDayCiLow": {
+      "desc": "exploratory: day-clustered bootstrap 2.5% of RMSE_A - RMSE_B",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -1.1772152809165888
+    },
+    "HoDecision": {
+      "desc": "pre-registered decision, primary target",
+      "format": "text",
+      "source": "tokenledger_report",
+      "value": "A predicts better"
+    },
+    "HoDeltaRmse": {
+      "desc": "RMSE_A - RMSE_B on ln cost, test",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -0.6096259156276944
+    },
+    "HoDeltaRmseHigh": {
+      "desc": "bootstrap 97.5% of the difference",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -0.46031251335365775
+    },
+    "HoDeltaRmseLow": {
+      "desc": "bootstrap 2.5% of the difference",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -0.7649248762175237
+    },
+    "HoEligible": {
+      "desc": "eligible transcripts",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 1173
+    },
+    "HoExclNoRequests": {
+      "desc": "E1: transcript files with no request before the freeze",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 252
+    },
+    "HoExclShort": {
+      "desc": "excluded: fewer than 3 requests",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 59
+    },
+    "HoExclUnpriced": {
+      "desc": "excluded: unpriced model",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 0
+    },
+    "HoExclZero": {
+      "desc": "excluded: zero cost or prompt",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 0
+    },
+    "HoMainARmse": {
+      "desc": "model A: test RMSE on ln cost, main subset",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.5026485840435253
+    },
+    "HoMainBRmse": {
+      "desc": "model B: test RMSE on ln cost, main subset",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 3.319903375511744
+    },
+    "HoMainTestN": {
+      "desc": "main transcripts in the test set",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 18
+    },
+    "HoMinRequests": {
+      "desc": "minimum requests per transcript",
+      "format": "word",
+      "source": "prereg",
+      "value": 3
+    },
+    "HoPreregCommit": {
+      "desc": "commit that registered the plan",
+      "format": "text",
+      "source": "prereg",
+      "value": "dd10b40"
+    },
+    "HoPreregDate": {
+      "desc": "registration date",
+      "format": "date",
+      "source": "prereg",
+      "value": "2026-11-15"
+    },
+    "HoResamples": {
+      "desc": "bootstrap resamples",
+      "format": "int",
+      "source": "prereg",
+      "value": 2000
+    },
+    "HoSOneMape": {
+      "desc": "model S1: test MAPE",
+      "format": "pct0",
+      "source": "tokenledger_report",
+      "value": 99.45699109886509
+    },
+    "HoSOneRmse": {
+      "desc": "model S1: test RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.9786627870762573
+    },
+    "HoSOneRsq": {
+      "desc": "model S1: test R^2 on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.49960437194570295
+    },
+    "HoSOneSlope": {
+      "desc": "model S1: fitted slope (training)",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 1.1213426135845737
+    },
+    "HoSOneTrainRmse": {
+      "desc": "model S1: training RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.6293129778288769
+    },
+    "HoSTwoMape": {
+      "desc": "model S2: test MAPE",
+      "format": "pct0",
+      "source": "tokenledger_report",
+      "value": 139.94611806162348
+    },
+    "HoSTwoRmse": {
+      "desc": "model S2: test RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.9312882679339244
+    },
+    "HoSTwoRsq": {
+      "desc": "model S2: test R^2 on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.5468775075365497
+    },
+    "HoSTwoSlope": {
+      "desc": "model S2: fitted slope (training)",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 1.0994048776493806
+    },
+    "HoSTwoTrainRmse": {
+      "desc": "model S2: training RMSE on ln cost",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.6645321353796304
+    },
+    "HoSplitFixTestUnits": {
+      "desc": "of those, transcripts in the test set",
+      "format": "word",
+      "source": "tokenledger_report",
+      "value": 2
+    },
+    "HoSplitFixUnits": {
+      "desc": "transcripts holding a request recovered by the line-splitting fix",
+      "format": "word",
+      "source": "tokenledger_report",
+      "value": 2
+    },
+    "HoSubARmse": {
+      "desc": "model A: test RMSE on ln cost, subagent subset",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.8006283720305668
+    },
+    "HoSubBRmse": {
+      "desc": "model B: test RMSE on ln cost, subagent subset",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 1.2103806878149663
+    },
+    "HoSubTestN": {
+      "desc": "subagent transcripts in the test set",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 334
+    },
+    "HoTestDays": {
+      "desc": "exploratory: distinct start days in the test set",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 19
+    },
+    "HoTestFrom": {
+      "desc": "first-request date of the earliest test transcript",
+      "format": "date",
+      "source": "tokenledger_report",
+      "value": "2026-10-26"
+    },
+    "HoTestMainN": {
+      "desc": "main-loop transcripts in the test set",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 18
+    },
+    "HoTestN": {
+      "desc": "test transcripts",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 352
+    },
+    "HoTokARmse": {
+      "desc": "model A: test RMSE on ln tokens",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.1183217936219538
+    },
+    "HoTokARsq": {
+      "desc": "model A: test R^2 on ln tokens",
+      "format": "float3",
+      "source": "tokenledger_report",
+      "value": 0.9954222106431628
+    },
+    "HoTokBRmse": {
+      "desc": "model B: test RMSE on ln tokens",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 1.7802510115366934
+    },
+    "HoTokBRsq": {
+      "desc": "model B: test R^2 on ln tokens",
+      "format": "signedfloat2",
+      "source": "tokenledger_report",
+      "value": -0.03630787552237247
+    },
+    "HoTokDecision": {
+      "desc": "decision rule applied to the token target",
+      "format": "text",
+      "source": "tokenledger_report",
+      "value": "A predicts better"
+    },
+    "HoTokSOneRmse": {
+      "desc": "model S1: test RMSE on ln tokens",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.44823089262499527
+    },
+    "HoTokSOneRsq": {
+      "desc": "model S1: test R^2 on ln tokens",
+      "format": "float3",
+      "source": "tokenledger_report",
+      "value": 0.9343053675923053
+    },
+    "HoTokSTwoRmse": {
+      "desc": "model S2: test RMSE on ln tokens",
+      "format": "float2",
+      "source": "tokenledger_report",
+      "value": 0.5674525725882037
+    },
+    "HoTokSTwoRsq": {
+      "desc": "model S2: test R^2 on ln tokens",
+      "format": "float3",
+      "source": "tokenledger_report",
+      "value": 0.8947104051037945
+    },
+    "HoTrainMainN": {
+      "desc": "main-loop transcripts in the training set",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 17
+    },
+    "HoTrainN": {
+      "desc": "training transcripts",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 821
+    },
+    "HoTrainPct": {
+      "desc": "training share of the temporal split",
+      "format": "pct0",
+      "source": "prereg",
+      "value": 70.0
+    },
+    "HoUnits": {
+      "desc": "transcripts before exclusions",
+      "format": "int",
+      "source": "tokenledger_report",
+      "value": 1232
+    }
+  },
+  "kind": "heldout",
+  "provenance": {
+    "generated_at": "2026-11-16T05:03:36Z",
+    "generator": "tools/pull_evidence.py",
+    "notes": [
+      "One operator, one harness, one provider. Features and target come from the same transcript: the test concerns the form of the relation, not forecasting a conversation before it runs.",
+      "Deviation: the freeze was applied before ordering transcripts for cross-file de-duplication; the plan did not fix the order of these two steps.",
+      "Per-unit rows stay in evidence/raw/heldout_units.jsonl (gitignored); only aggregates here.",
+      "Deviation: the plan required every exclusion to be counted; E1 was not counted in the first run and was added after an independent audit (no change to any registered result). E1 counts transcript files on disk at read time, so it grows as conversations are recorded after the freeze; no registered result depends on it.",
+      "Not registered: aggregates.exploratory (constant baseline, closeness of model A's feature to total input, day-clustered interval) was added after the audit to qualify the reading; the secondary models S1/S2 and the main-loop/subagent subsets have no interval and are descriptive.",
+      "Deviation: the runs of 15 Nov 2026 (evidence commits d7bf97f, 3dc01a3, 8b76f16) split transcript lines with str.splitlines(), which also breaks at raw U+2028/U+2029/U+0085 inside JSON strings, so 3 request(s) were lost although the registered rule keeps one request per message id with a usage block. Fixed on 16 Nov 2026 (newline-only split) and re-run: 2 unit(s) changed, 2 of them in the test set. Compare the registered aggregates with those commits for the effect.",
+      "Code timing: tools/claude_usage.py and tools/heldout.py were committed after the registration (1e3e96b); the unit-building and pricing code in this file was committed together with the first results (d7bf97f), so git alone cannot show it predates them."
+    ],
+    "sources": [
+      {
+        "command": "python tools/pull_evidence.py --only orchestrator",
+        "description": "per-request usage log (token counts, model, time, role; no content), kept in evidence/raw/claude_requests.jsonl",
+        "grade": "measured",
+        "id": "tokenledger_log",
+        "sha256": "7f1ae9cf1dabd080ba0c3e98bbb53124351adb963bca1c4c21db85ab59a47bd9"
+      },
+      {
+        "command": "tokenledger report --format anthropic --turn-key turn --step-key step --json evidence/raw/claude_requests.jsonl",
+        "description": "tokenledger-llm 0.2.0 (PyPI) over the de-duplicated per-request log extracted from Claude Code transcripts by tools/claude_usage.py (one record per message id; freeze 2026-11-15T00:00:00Z)",
+        "grade": "measured",
+        "id": "tokenledger_report",
+        "sha256": "7e1f4d08685bb943611ad27a6f7aedf7c9f2cbdeccfec2f858e0ba6241d78eca"
+      },
+      {
+        "description": "Anthropic list prices per model and token kind from the official pricing page (https://platform.claude.com/docs/en/about-claude/pricing, 'Model pricing'), accessed 2026-11-15; committed as evidence/params/anthropic_list_prices.json",
+        "grade": "model-parameter",
+        "id": "list_prices",
+        "sha256": "10bafadda30eadbb8f69cef83519443d845222b1df5dac7ace31d018b5dc85ac"
+      },
+      {
+        "description": "pre-registration papers/agent2027-cost/PREREG_heldout.md, added in commit dd10b401ae68 at 2026-11-15T12:33:30Z before any per-unit value was computed; unchanged since",
+        "grade": "documented-record",
+        "id": "prereg",
+        "sha256": "c327f78a0c903c4aae52f0a5f44f8272df338b6051757d3df31f14a12859ef95"
+      }
+    ]
+  },
+  "schema_version": 1
+}

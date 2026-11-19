@@ -1,0 +1,37 @@
+# PREREG_v2 head-to-head: context policies vs the prefix-budget controller (one model:
+# OpenAI gpt-6-luna since PREREG_v2 Amendment 2; it replaced G-Lite before any call).
+# Run with: python -m agent.run_grid --config experiments/configs/h2h.yaml --split dev|test
+experiment: h2h
+dataset:
+  parquet_url: https://huggingface.co/datasets/hotpotqa/hotpot_qa/resolve/main/distractor/validation-00000-of-00001.parquet
+  sha256: c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6
+  cache_dir: ~/.cache/ieee-agent-exp
+  fixture: null
+  sample_seed: 20261115
+  n_questions: 48   # test = permutation positions 0-47 (the v1 sample)
+  n_smoke: 6        # positions 48-53, as in v1
+  n_dev: 24         # dev = positions 54-77
+agent:
+  max_steps: 10
+  temperature: 0
+  seed: 42
+  cell_order_seed: 20261117
+# Cells = arms x k (an arm without k is pbc, whose k is pbc.k0).
+arms:
+  - {name: react, k: [2, 8]}
+  - {name: notes_reset, k: [2, 8]}
+  - {name: window2, k: [8]}
+  - {name: memgpt, k: [8]}
+  - {name: agentless, k: [8]}
+  - {name: pbc}
+memgpt: {threshold: 6000}
+pbc: {k0: 3, k_hi: 8, e_max: 6000}
+models:
+  # Amendment 2, B3: temperature 0, seed 42 and reasoning effort "none" (lowest) are the
+  # provider defaults (agent/providers.py OpenAIProvider); max_output_tokens is sent as
+  # max_completion_tokens and bounds every request's worst-case cost (B7).
+  - {provider: openai, model: gpt-6-luna, reasoning_effort: none, max_output_tokens: 4096}
+budget:
+  max_usd: 5
+  est_input_tokens_per_run: 20000
+  est_output_tokens_per_run: 1500

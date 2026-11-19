@@ -1,0 +1,790 @@
+{
+  "aggregates": {
+    "composition": {
+      "A": {
+        "cache_read": 7468998,
+        "cache_write": 322922,
+        "cost_usd": 2.4175548,
+        "fresh": 490,
+        "read_share": 0.9584965370148645,
+        "read_share_ci": {
+          "hi": 0.963251450120451,
+          "lo": 0.9515925368428578,
+          "value": 0.9584965370148645
+        },
+        "requests": 245,
+        "rewrite": 14230,
+        "rewrite_share": 0.04406636896835769,
+        "rewrite_share_ci": {
+          "hi": 0.13029743464526072,
+          "lo": 0.0,
+          "value": 0.04406636896835769
+        },
+        "w1": 0,
+        "w5": 322922
+      },
+      "B": {
+        "cache_read": 7195774,
+        "cache_write": 864036,
+        "cost_usd": 3.7856494000000005,
+        "fresh": 506,
+        "read_share": 0.8927409297600739,
+        "read_share_ci": {
+          "hi": 0.9085321473871367,
+          "lo": 0.8738321178274646,
+          "value": 0.8927409297600739
+        },
+        "requests": 253,
+        "rewrite": 574708,
+        "rewrite_share": 0.6651435819803805,
+        "rewrite_share_ci": {
+          "hi": 0.6992550995964547,
+          "lo": 0.6284803146985956,
+          "value": 0.6651435819803805
+        },
+        "w1": 0,
+        "w5": 864036
+      }
+    },
+    "condition_c": {
+      "composition": {
+        "cost_usd": 1.9887190000000001,
+        "read_share": 0.939714564870395,
+        "requests": 131,
+        "rewrite_share": 0.3780505688220675
+      },
+      "direct_expiry": {
+        "exploratory_read_after_values": [
+          12659
+        ],
+        "exploratory_rest_rewritten_share": 1.0,
+        "full_rewrite_share": 0.0,
+        "median_write_over_prefix": 0.6587648525744463,
+        "min_gap_s": 3663.08,
+        "n": 5,
+        "pauses": [
+          {
+            "full_rewrite": false,
+            "gap_s": 3664.531,
+            "prefix_before": 36162,
+            "read_after": 12659,
+            "rest_rewritten": true,
+            "write_after": 25576,
+            "write_over_prefix": 0.707261766495216
+          },
+          {
+            "full_rewrite": false,
+            "gap_s": 3670.066,
+            "prefix_before": 25304,
+            "read_after": 12659,
+            "rest_rewritten": true,
+            "write_after": 14062,
+            "write_over_prefix": 0.5557224154283907
+          },
+          {
+            "full_rewrite": false,
+            "gap_s": 3663.08,
+            "prefix_before": 34085,
+            "read_after": 12659,
+            "rest_rewritten": true,
+            "write_after": 22454,
+            "write_over_prefix": 0.6587648525744463
+          },
+          {
+            "full_rewrite": false,
+            "gap_s": 3669.708,
+            "prefix_before": 36871,
+            "read_after": 12659,
+            "rest_rewritten": true,
+            "write_after": 25224,
+            "write_over_prefix": 0.684114887038594
+          },
+          {
+            "full_rewrite": false,
+            "gap_s": 3667.506,
+            "prefix_before": 28838,
+            "read_after": 12659,
+            "rest_rewritten": true,
+            "write_after": 16681,
+            "write_over_prefix": 0.5784381718565781
+          }
+        ]
+      },
+      "injected_pauses": 5,
+      "lifetime": "1h",
+      "rule": {
+        "events": 5,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "precision_ci": {
+          "hi": 1.0,
+          "lo": 1.0,
+          "value": 1.0
+        },
+        "recall": 1.0,
+        "recall_ci": {
+          "hi": 1.0,
+          "lo": 1.0,
+          "value": 1.0
+        },
+        "tn": 0,
+        "tp": 5
+      },
+      "runs": 5,
+      "runs_without_pause": 0
+    },
+    "decisions": {
+      "H1": "supported",
+      "H2": "supported",
+      "H3": "supported",
+      "H3C": "supported"
+    },
+    "direct_expiry": {
+      "exploratory_read_after_values": [
+        12784
+      ],
+      "exploratory_rest_rewritten_share": 1.0,
+      "full_rewrite_share": 0.0,
+      "median_write_over_prefix": 0.6216903467785512,
+      "min_gap_s": 363.42,
+      "n": 30,
+      "pauses": [
+        {
+          "full_rewrite": false,
+          "gap_s": 366.161,
+          "prefix_before": 19440,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 8522,
+          "write_over_prefix": 0.43837448559670783
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 366.265,
+          "prefix_before": 32013,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 21261,
+          "write_over_prefix": 0.6641364445693937
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 365.519,
+          "prefix_before": 41983,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 30223,
+          "write_over_prefix": 0.7198866207750756
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 364.774,
+          "prefix_before": 24043,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 12090,
+          "write_over_prefix": 0.502849062097076
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 363.682,
+          "prefix_before": 31461,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 19559,
+          "write_over_prefix": 0.6216903467785512
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 363.935,
+          "prefix_before": 34889,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 23041,
+          "write_over_prefix": 0.6604087248129783
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 364.781,
+          "prefix_before": 21289,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 11819,
+          "write_over_prefix": 0.5551693362769505
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 365.774,
+          "prefix_before": 29008,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 16804,
+          "write_over_prefix": 0.579288472145615
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 372.652,
+          "prefix_before": 33123,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 21307,
+          "write_over_prefix": 0.6432690275639283
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 365.393,
+          "prefix_before": 21430,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 9485,
+          "write_over_prefix": 0.4426038264115726
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 366.323,
+          "prefix_before": 26529,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 15024,
+          "write_over_prefix": 0.5663236458215538
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 365.145,
+          "prefix_before": 31857,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 19664,
+          "write_over_prefix": 0.6172583733559344
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 364.603,
+          "prefix_before": 23995,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 12976,
+          "write_over_prefix": 0.5407793290268806
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 366.24,
+          "prefix_before": 33646,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 22019,
+          "write_over_prefix": 0.6544314331569875
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 368.006,
+          "prefix_before": 38354,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 27309,
+          "write_over_prefix": 0.7120248214006362
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 367.543,
+          "prefix_before": 29384,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 17530,
+          "write_over_prefix": 0.5965831745167438
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 366.552,
+          "prefix_before": 38642,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 26872,
+          "write_over_prefix": 0.6954091403136483
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 366.033,
+          "prefix_before": 46571,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 34915,
+          "write_over_prefix": 0.7497154881793391
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 366.572,
+          "prefix_before": 24153,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 12036,
+          "write_over_prefix": 0.49832318966588
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 369.903,
+          "prefix_before": 26363,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 14067,
+          "write_over_prefix": 0.5335887417972158
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 370.589,
+          "prefix_before": 27549,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 15613,
+          "write_over_prefix": 0.5667356346872845
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 369.595,
+          "prefix_before": 36612,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 25712,
+          "write_over_prefix": 0.702283404348301
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 365.262,
+          "prefix_before": 49001,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 38142,
+          "write_over_prefix": 0.7783922777086182
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 364.83,
+          "prefix_before": 53447,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 43089,
+          "write_over_prefix": 0.8062005351095478
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 365.935,
+          "prefix_before": 20041,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 7803,
+          "write_over_prefix": 0.38935182875106034
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 370.282,
+          "prefix_before": 27582,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 16522,
+          "write_over_prefix": 0.5990138496120658
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 380.662,
+          "prefix_before": 32856,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 21336,
+          "write_over_prefix": 0.6493791088385683
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 363.42,
+          "prefix_before": 21756,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 10078,
+          "write_over_prefix": 0.46322853465710606
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 364.342,
+          "prefix_before": 25094,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 16799,
+          "write_over_prefix": 0.6694428947158684
+        },
+        {
+          "full_rewrite": false,
+          "gap_s": 365.984,
+          "prefix_before": 30986,
+          "read_after": 12784,
+          "rest_rewritten": true,
+          "write_after": 19991,
+          "write_over_prefix": 0.6451623313754599
+        }
+      ]
+    },
+    "excluded": {
+      "failed_runs": 0,
+      "pilot_runs": 3,
+      "unpaired_tasks": []
+    },
+    "ledger": {
+      "pilot_rows": 3,
+      "rows": 28,
+      "usd_pilots": 0.39404,
+      "usd_total": 8.585964
+    },
+    "lifetime": "5m",
+    "natural_long_gaps": 3,
+    "paired": {
+      "point_rewrite_diff_tokens": {
+        "hi": 67600.6,
+        "lo": 44865.1,
+        "mean": 54957.7,
+        "n": 10
+      },
+      "reconciliation": {
+        "mean_b_new_suffix_at_points": 4203.1,
+        "mean_off_point_term": 1143.9,
+        "mean_point_write": 54957.6,
+        "mean_registered": 54957.7,
+        "mean_rewrite_request_write": 60304.7,
+        "note": "Registered H2 outcome = re-written POSITIONS (cache_writes: min(C, read + write) - read, C = the previous request's read + write) of requests whose gap holds a planned point; A's planned points are its 0 s markers between the same tasks. mean_point_write counts every written token of those requests (adds the new suffix written after the cached prefix). mean_rewrite_request_write counts every written token of any request that read back less than C, at any position in the session (adds new suffix and re-writes after natural gaps, in either condition). Exactly: mean_rewrite_request_write = mean_registered + mean_b_new_suffix_at_points (new suffix written by B's post-pause requests) + mean_off_point_term (re-writing requests away from the points, B minus A, e.g. after natural gaps). The registered outcome is mean_registered; the others are descriptive.",
+        "per_session": [
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 4647,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 55084,
+            "b_point_write": 60006,
+            "b_rewrite_request_write": 60006,
+            "session": "django-3.0"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 2813,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 52041,
+            "b_point_write": 54690,
+            "b_rewrite_request_write": 54690,
+            "session": "django-3.1"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 5180,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 45068,
+            "b_point_write": 49930,
+            "b_rewrite_request_write": 49930,
+            "session": "django-3.2"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 2798,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 41464,
+            "b_point_write": 44173,
+            "b_rewrite_request_write": 44173,
+            "session": "django-4.0"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 4532,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 57643,
+            "b_point_write": 62304,
+            "b_rewrite_request_write": 62304,
+            "session": "django-4.1"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 3050,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 76245,
+            "b_point_write": 79317,
+            "b_rewrite_request_write": 79317,
+            "session": "django-4.2"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 2047,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 39713,
+            "b_point_write": 41716,
+            "b_rewrite_request_write": 41716,
+            "session": "django-5.0"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 5634,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 100708,
+            "b_point_write": 106943,
+            "b_rewrite_request_write": 106943,
+            "session": "sympy-1.1"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 4037,
+            "a_rewrite_request_write": 15143,
+            "b_point_rewrite": 42127,
+            "b_point_write": 45661,
+            "b_rewrite_request_write": 72243,
+            "session": "sympy-1.5"
+          },
+          {
+            "a_point_rewrite": 0,
+            "a_point_write": 7294,
+            "a_rewrite_request_write": 0,
+            "b_point_rewrite": 39484,
+            "b_point_write": 46868,
+            "b_rewrite_request_write": 46868,
+            "session": "xarray-2022.06"
+          }
+        ],
+        "registered": "point_rewrite_diff_tokens"
+      },
+      "rewrite_diff_tokens": {
+        "hi": 68406.1,
+        "lo": 46272.2,
+        "mean": 56047.8,
+        "n": 10
+      },
+      "rewrite_diff_usd": {
+        "hi": 0.17101525,
+        "lo": 0.1156805,
+        "mean": 0.1401195,
+        "n": 10
+      }
+    },
+    "paired_tasks": 10,
+    "pauses": {
+      "expired_after_pause": 21,
+      "injected": 30,
+      "planned_points_a": 30
+    },
+    "rule": {
+      "events": 33,
+      "false_idle_share_a": 1.0,
+      "fn": 0,
+      "fp": 3,
+      "precision": 0.9090909090909091,
+      "precision_any_gap": 1.0,
+      "precision_ci": {
+        "hi": 1.0,
+        "lo": 0.7692307692307693,
+        "value": 0.9090909090909091
+      },
+      "recall": 1.0,
+      "recall_any_gap": 1.0,
+      "recall_ci": {
+        "hi": 1.0,
+        "lo": 1.0,
+        "value": 1.0
+      },
+      "tn": 0,
+      "token_precision": 0.9331661397294791,
+      "token_recall": 1.0,
+      "tp": 30
+    },
+    "run_directories": 27,
+    "runs_total": 28
+  },
+  "figures": {
+    "PauseCFullRewritePct": {
+      "desc": "C: 61-minute pauses whose next request re-wrote the whole cached prefix",
+      "format": "pct0",
+      "source": "runs",
+      "value": 0.0
+    },
+    "PauseCReadSharePct": {
+      "desc": "C (one-hour caching): cache-read share of input",
+      "format": "pct1",
+      "source": "runs",
+      "value": 93.97145648703949
+    },
+    "PauseCRulePrecisionPct": {
+      "desc": "C: re-writes labelled expiry after more than an hour that followed the pause",
+      "format": "pct0",
+      "source": "runs",
+      "value": 100.0
+    },
+    "PauseCRuleRecallPct": {
+      "desc": "C: re-writes after the 61-minute pause labelled expiry after more than an hour",
+      "format": "pct0",
+      "source": "runs",
+      "value": 100.0
+    },
+    "PauseCRuns": {
+      "desc": "valid one-hour-caching runs with a 61-minute pause (C)",
+      "format": "int",
+      "source": "runs",
+      "value": 5
+    },
+    "PauseCostUsd": {
+      "desc": "API list-price cost of all 28 runs incl. pilot and re-runs, USD",
+      "format": "float2",
+      "source": "ledger",
+      "value": 8.585964
+    },
+    "PauseFalseIdlePctA": {
+      "desc": "no-pause runs: re-written tokens labelled idle",
+      "format": "pctlt1",
+      "source": "runs",
+      "value": 100.0
+    },
+    "PauseFullRewritePct": {
+      "desc": "injected pauses whose next request re-wrote the whole cached prefix (direct check)",
+      "format": "pct0",
+      "source": "runs",
+      "value": 0.0
+    },
+    "PauseHOne": {
+      "desc": "H1 decision",
+      "format": "text",
+      "source": "runs",
+      "value": "supported"
+    },
+    "PauseHThree": {
+      "desc": "H3 decision",
+      "format": "text",
+      "source": "runs",
+      "value": "supported"
+    },
+    "PauseHThreeC": {
+      "desc": "H3-C decision (Amendment 1)",
+      "format": "text",
+      "source": "runs",
+      "value": "supported"
+    },
+    "PauseHTwo": {
+      "desc": "H2 decision",
+      "format": "text",
+      "source": "runs",
+      "value": "supported"
+    },
+    "PauseLifetime": {
+      "desc": "cache lifetime of the writes (5m, 1h or mixed)",
+      "format": "text",
+      "source": "runs",
+      "value": "5m"
+    },
+    "PausePausesInjected": {
+      "desc": "pauses injected in valid pause runs",
+      "format": "int",
+      "source": "runs",
+      "value": 30
+    },
+    "PausePointDiffHi": {
+      "desc": "upper 95% bootstrap bound",
+      "format": "int",
+      "source": "runs",
+      "value": 67600.6
+    },
+    "PausePointDiffLo": {
+      "desc": "lower 95% bootstrap bound",
+      "format": "int",
+      "source": "runs",
+      "value": 44865.1
+    },
+    "PausePointDiffTokens": {
+      "desc": "mean paired re-written tokens at the pause points, B minus A",
+      "format": "int",
+      "source": "runs",
+      "value": 54957.7
+    },
+    "PauseReadSharePctA": {
+      "desc": "no-pause runs: cache-read share of input",
+      "format": "pct1",
+      "source": "runs",
+      "value": 95.84965370148645
+    },
+    "PauseReadSharePctB": {
+      "desc": "pause runs: cache-read share of input",
+      "format": "pct1",
+      "source": "runs",
+      "value": 89.2740929760074
+    },
+    "PauseRewriteSharePctA": {
+      "desc": "no-pause runs: re-write share of written tokens",
+      "format": "pct0",
+      "source": "runs",
+      "value": 4.406636896835769
+    },
+    "PauseRewriteSharePctB": {
+      "desc": "pause runs: re-write share of written tokens",
+      "format": "pct0",
+      "source": "runs",
+      "value": 66.51435819803805
+    },
+    "PauseRulePrecisionPct": {
+      "desc": "cause rule: re-writes labelled idle that followed an injected pause",
+      "format": "pct0",
+      "source": "runs",
+      "value": 90.9090909090909
+    },
+    "PauseRuleRecallPct": {
+      "desc": "cause rule: re-writes after injected pauses labelled idle",
+      "format": "pct0",
+      "source": "runs",
+      "value": 100.0
+    },
+    "PauseRunDiffTokens": {
+      "desc": "mean paired re-written tokens per run, B minus A",
+      "format": "int",
+      "source": "runs",
+      "value": 56047.8
+    },
+    "PauseRunDiffUsd": {
+      "desc": "mean paired re-write cost per run, B minus A, USD",
+      "format": "float2",
+      "source": "runs",
+      "value": 0.1401195
+    },
+    "PauseTasksPaired": {
+      "desc": "SWE-bench Verified tasks with a valid run in both conditions",
+      "format": "int",
+      "source": "runs",
+      "value": 10
+    },
+    "PauseWriteOverPrefix": {
+      "desc": "median, over injected pauses, of the next request's written tokens / cached prefix before",
+      "format": "float2",
+      "source": "runs",
+      "value": 0.6216903467785512
+    }
+  },
+  "kind": "pause_experiment",
+  "provenance": {
+    "generated_at": "2026-11-19T06:13:15Z",
+    "generator": "tools/pause_experiment.py",
+    "notes": [
+      "Pre-registered: experiments/PREREG_pause.md. Pilot runs are excluded; failed runs re-run once.",
+      "Measured with tools/claude_usage.py and tools/cache_writes.analyse per run (the paper's code).",
+      "Bootstrap: 10000 resamples of tasks, seed 2027, percentile 95% intervals."
+    ],
+    "sources": [
+      {
+        "command": "python tools/pause_experiment.py --runs <runs dir> --ledger <ledger.jsonl>",
+        "description": "container runs (transcripts, pause-hook logs, run metadata) of experiments/pause/runner.py; sha256 over every run's .json/.jsonl files in path order",
+        "grade": "measured",
+        "id": "runs",
+        "sha256": "d7880fd58ec8534093cc8346398515430155054997443fd89f0db91a639ee143"
+      },
+      {
+        "command": "experiments/pause/runner.py ledger",
+        "description": "per-run cost ledger (list prices)",
+        "grade": "measured",
+        "id": "ledger",
+        "sha256": "02b783e2303173999dd7539ade9c11e56ce5f02b141227c32eaf5d42a951acdf"
+      },
+      {
+        "command": "evidence/params/anthropic_list_prices.json",
+        "description": "Anthropic list prices",
+        "grade": "model-parameter",
+        "id": "list_prices",
+        "sha256": "10bafadda30eadbb8f69cef83519443d845222b1df5dac7ace31d018b5dc85ac"
+      }
+    ]
+  },
+  "schema_version": 1
+}

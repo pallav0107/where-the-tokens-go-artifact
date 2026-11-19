@@ -1,0 +1,259 @@
+{
+ "dataset": "princeton-nlp/SWE-bench_Verified",
+ "split": "test",
+ "seed": 2027,
+ "difficulty_bins": [
+  "1-4 hours",
+  ">4 hours"
+ ],
+ "pool_size": 45,
+ "n_candidates": 24,
+ "n_use": 20,
+ "sources": [
+  {
+   "file": "rows_0.json",
+   "sha256": "1c3850da017bd530532c42f80035df75ecc6ed7943e1494d0a5302c60d67ff3d"
+  },
+  {
+   "file": "rows_100.json",
+   "sha256": "ad2828da9a1a8ab3be3000672f287393ce83bc0102dc48be114e5e60ed0e18cb"
+  },
+  {
+   "file": "rows_200.json",
+   "sha256": "b0f1a84aa338d3ca7fdfc387d49435deb52dfa6cef00899b299cc5f7844a9370"
+  },
+  {
+   "file": "rows_300.json",
+   "sha256": "1e4db401e4969ddd52a497872be782d252fa5207c2988d3b139064f07222e28f"
+  },
+  {
+   "file": "rows_400.json",
+   "sha256": "a99ab0683594b82169e5a5531451f8cebddcbb6b6a0895654e7ed6e50ad80b0e"
+  }
+ ],
+ "pilot": {
+  "instance_id": "django__django-16631",
+  "repo": "django/django",
+  "difficulty": "1-4 hours",
+  "image": "swebench/sweb.eval.x86_64.django_1776_django-16631:latest",
+  "problem_sha256": "32af93df5e62a2e558611028be5030691d5720d2a172c9a0e83213c68d779a8a"
+ },
+ "tasks": [
+  {
+   "rank": 1,
+   "instance_id": "pytest-dev__pytest-6197",
+   "repo": "pytest-dev/pytest",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-6197:latest",
+   "problem_sha256": "ca576fd3db872eac6366a70f11be67886795dbb95d5719f2f9e8ff617c698371",
+   "use": true
+  },
+  {
+   "rank": 2,
+   "instance_id": "django__django-10554",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-10554:latest",
+   "problem_sha256": "2f72fa6137f1d53983cff629a05e06c42a2ad477ea4557746c4688cbd6aeb724",
+   "use": true
+  },
+  {
+   "rank": 3,
+   "instance_id": "sphinx-doc__sphinx-8548",
+   "repo": "sphinx-doc/sphinx",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-8548:latest",
+   "problem_sha256": "f0c8a912cffb03b9d6346146e11cf044329280bfe2a193fd9e46980b193cffb0",
+   "use": true
+  },
+  {
+   "rank": 4,
+   "instance_id": "django__django-16560",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-16560:latest",
+   "problem_sha256": "55bdf0c9598df4bb15567401559ad47ae47a817a1a61031101d6d4105e3e2da3",
+   "use": true
+  },
+  {
+   "rank": 5,
+   "instance_id": "sympy__sympy-14248",
+   "repo": "sympy/sympy",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-14248:latest",
+   "problem_sha256": "056549bbb76a727325fc85b052ecb5d1c9ba9d70d702cf011b407e3877e5c383",
+   "use": true
+  },
+  {
+   "rank": 6,
+   "instance_id": "sphinx-doc__sphinx-11510",
+   "repo": "sphinx-doc/sphinx",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-11510:latest",
+   "problem_sha256": "e7ae2e2a1619fdc7fa58451dae12c5dd8b268002fdb30b4b3f457a6a9ef26762",
+   "use": true
+  },
+  {
+   "rank": 7,
+   "instance_id": "django__django-13449",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-13449:latest",
+   "problem_sha256": "b082782316bb4c8f2899f9f31d81edd84d4ded60ed7627073f56014db30da0d9",
+   "use": true
+  },
+  {
+   "rank": 8,
+   "instance_id": "astropy__astropy-13579",
+   "repo": "astropy/astropy",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.astropy_1776_astropy-13579:latest",
+   "problem_sha256": "70a48b6e4c77b5abc12b1e750bbb70110b7215d19c9ea3550f2b7261be84021d",
+   "use": true
+  },
+  {
+   "rank": 9,
+   "instance_id": "pylint-dev__pylint-4551",
+   "repo": "pylint-dev/pylint",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-4551:latest",
+   "problem_sha256": "28e19b9ac4f2a25215824cc162bb26d6ef73d661478746cd0cfc2e0432fadb18",
+   "use": true
+  },
+  {
+   "rank": 10,
+   "instance_id": "scikit-learn__scikit-learn-25102",
+   "repo": "scikit-learn/scikit-learn",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-25102:latest",
+   "problem_sha256": "1a82e3a4fcebb5f0fc0f744df67eb1972fa38f469885fe52a1db5e9ae2ed4884",
+   "use": true
+  },
+  {
+   "rank": 11,
+   "instance_id": "sympy__sympy-17630",
+   "repo": "sympy/sympy",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-17630:latest",
+   "problem_sha256": "1edfd6e1183bb765b9186e8d8fdfe541d80ef44766baf7b722b7626235719599",
+   "use": true
+  },
+  {
+   "rank": 12,
+   "instance_id": "pydata__xarray-6992",
+   "repo": "pydata/xarray",
+   "difficulty": ">4 hours",
+   "image": "swebench/sweb.eval.x86_64.pydata_1776_xarray-6992:latest",
+   "problem_sha256": "2fd625e5f58b6b7b7c292b9ba90307e8583cad9d4ddb395fe9805bb06c74208b",
+   "use": true
+  },
+  {
+   "rank": 13,
+   "instance_id": "django__django-14007",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-14007:latest",
+   "problem_sha256": "61950a482ff12ae94f13cdf0032eeb04986240655411db0358161491ad853e0a",
+   "use": true
+  },
+  {
+   "rank": 14,
+   "instance_id": "django__django-14011",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-14011:latest",
+   "problem_sha256": "be59236cc1523a08327292712cb4cb8f939a49866e7355254a3efa586ae4fdd2",
+   "use": true
+  },
+  {
+   "rank": 15,
+   "instance_id": "sympy__sympy-18199",
+   "repo": "sympy/sympy",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-18199:latest",
+   "problem_sha256": "fb429ef2a603c20980fa2ed7dc66d00cc148ca8103d92b69662bb6c687f2e162",
+   "use": true
+  },
+  {
+   "rank": 16,
+   "instance_id": "django__django-15503",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-15503:latest",
+   "problem_sha256": "ae5996a2ff543fb4739d14e1d0080c854ac289205e0abe1d687645bc14af2123",
+   "use": true
+  },
+  {
+   "rank": 17,
+   "instance_id": "sphinx-doc__sphinx-7590",
+   "repo": "sphinx-doc/sphinx",
+   "difficulty": ">4 hours",
+   "image": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-7590:latest",
+   "problem_sha256": "23b9b88e30541f1109b04492ccf35a93a15fdeecb2b736bf22be5a2a6173f84e",
+   "use": true
+  },
+  {
+   "rank": 18,
+   "instance_id": "pylint-dev__pylint-8898",
+   "repo": "pylint-dev/pylint",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-8898:latest",
+   "problem_sha256": "fe9420583d351e0e81a7cbc876fef18b386ba1d375bcfb031830f3885d4f4347",
+   "use": true
+  },
+  {
+   "rank": 19,
+   "instance_id": "sympy__sympy-16597",
+   "repo": "sympy/sympy",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-16597:latest",
+   "problem_sha256": "1b04ffa8e91360cc91e2397541d3f8c5f34ffc0cb5cd84b0015747240c26932c",
+   "use": true
+  },
+  {
+   "rank": 20,
+   "instance_id": "django__django-12325",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-12325:latest",
+   "problem_sha256": "8f920ccb5f6169fecd052cc74e6c0149701d063e78802c8f33d585a69bb18c02",
+   "use": true
+  },
+  {
+   "rank": 21,
+   "instance_id": "django__django-14631",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-14631:latest",
+   "problem_sha256": "1d3f964a6347e618040724052803c6e2011af7a3288f08293494b40da803118d",
+   "use": false
+  },
+  {
+   "rank": 22,
+   "instance_id": "django__django-13837",
+   "repo": "django/django",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.django_1776_django-13837:latest",
+   "problem_sha256": "34e44d1cfd0354cf9ed68afafef69789c59418e2ea0620e23b6402522a2ae4ac",
+   "use": false
+  },
+  {
+   "rank": 23,
+   "instance_id": "sphinx-doc__sphinx-9461",
+   "repo": "sphinx-doc/sphinx",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9461:latest",
+   "problem_sha256": "cc2eb5d4afca2da5e00ca423f2dce2bf467613a98b9686da7dc19a08e1f4de0f",
+   "use": false
+  },
+  {
+   "rank": 24,
+   "instance_id": "pytest-dev__pytest-5787",
+   "repo": "pytest-dev/pytest",
+   "difficulty": "1-4 hours",
+   "image": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-5787:latest",
+   "problem_sha256": "3837cd101981ed22a8c48e65978c0784010ef055a815f30371345aa1220f520e",
+   "use": false
+  }
+ ]
+}

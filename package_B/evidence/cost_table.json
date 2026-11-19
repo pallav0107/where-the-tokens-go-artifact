@@ -1,0 +1,555 @@
+{
+  "aggregates": {
+    "all_tokens": 30826595218,
+    "cost_share": {
+      "fresh": 0.000202,
+      "output": 0.115853,
+      "read": 0.549867,
+      "write1h": 0.272914516270436,
+      "write5m": 0.06116467654672661
+    },
+    "issue_high": {
+      "fresh": 0.01216785241746566,
+      "output": 0.6818196626849617,
+      "read": 0.19035792947634547,
+      "write1h": 0.09448001469678775,
+      "write5m": 0.021174540724439302
+    },
+    "issue_low": {
+      "fresh": 0.009456003547020597,
+      "output": 0.5848655682519291,
+      "read": 0.2523560620456986,
+      "write1h": 0.12525143825891347,
+      "write5m": 0.028070927896438277
+    },
+    "meter_norm": 0.9716633394462372,
+    "meter_share": {
+      "fresh": 0.0008916835503025126,
+      "output": 0.1528546006495038,
+      "read": 0.5667348435414368,
+      "write1h": 0.22834333730178202,
+      "write5m": 0.0511755349569749
+    },
+    "rewrite_all": {
+      "cost_share": 0.24600084497617436,
+      "issue_high": 0.0851627966382707,
+      "issue_low": 0.11289967300838519,
+      "meter_share": 0.20582508650897652,
+      "token_share": 0.017827829674783514
+    },
+    "rewrite_by_cause": {
+      "compaction": {
+        "cost_share": 0.003988627981776456,
+        "issue_high": 0.0013808192964160073,
+        "issue_low": 0.0018305416590673543,
+        "meter_share": 0.0033372230875092115,
+        "token_share": 0.00030577801191926623
+      },
+      "config_change": {
+        "cost_share": 0.036557744564008544,
+        "issue_high": 0.012655890536311127,
+        "issue_low": 0.016777818009529107,
+        "meter_share": 0.030587297121637474,
+        "token_share": 0.002548785989641887
+      },
+      "gap_5_to_60min": {
+        "cost_share": 0.012761390521419103,
+        "issue_high": 0.0044178535480332536,
+        "issue_low": 0.005856714911447003,
+        "meter_share": 0.010677257260235476,
+        "token_share": 0.0016529449859661112
+      },
+      "gap_gt_60min": {
+        "cost_share": 0.16118751347933777,
+        "issue_high": 0.05580135073275404,
+        "issue_low": 0.07397542706251446,
+        "meter_share": 0.13486308922745657,
+        "token_share": 0.01129213851021541
+      },
+      "model_change": {
+        "cost_share": 0.012590419995173121,
+        "issue_high": 0.004358665425491501,
+        "issue_low": 0.005778249666707244,
+        "meter_share": 0.010534208876159917,
+        "token_share": 0.0006895338862330275
+      },
+      "within_lifetime": {
+        "cost_share": 0.018915148434459718,
+        "issue_high": 0.0065482170992648935,
+        "issue_low": 0.008680921699120178,
+        "meter_share": 0.01582601093597816,
+        "token_share": 0.001338648290807813
+      }
+    },
+    "rewrite_share_of_writes": 0.6939211311802327,
+    "rewrite_share_of_writes_meter_worst": 0.6235079391126656,
+    "token_share": {
+      "fresh": 2.3745600019186653e-05,
+      "output": 0.0032789503441813415,
+      "read": 0.9710058690011245,
+      "write1h": 0.018748576672603972,
+      "write5m": 0.006942858382070964
+    },
+    "tokens": {
+      "fresh": 731996,
+      "output": 101078875,
+      "read": 29932804878,
+      "write1h": 577954784,
+      "write5m": 214024685
+    }
+  },
+  "figures": {
+    "CwRewriteMeterWorstPct": {
+      "desc": "re-write share of written tokens if all of the metered window's excess transcript writes were re-writes",
+      "format": "pct0",
+      "source": "usage_audit",
+      "value": 62.35079391126656
+    },
+    "ExecModels": {
+      "desc": "subscription models that served executor sessions (provider prefix dropped)",
+      "format": "text",
+      "source": "kimi_report",
+      "value": "kimi-for-coding, k3"
+    },
+    "ExecShareOfOrchPct": {
+      "desc": "executor input over orchestrator input from the executor's first turn",
+      "format": "pct2",
+      "source": "harness_costs",
+      "value": 0.2807527305960207
+    },
+    "IssueScaleFactor": {
+      "desc": "orchestrator requests over the de-duplicated API calls issue #94177 analysed",
+      "format": "float1",
+      "source": "issue_94177",
+      "value": 28.768966593818295
+    },
+    "SubagentCostSharePct": {
+      "desc": "subagent roles' share of list-price cost (all roles but the main loop)",
+      "format": "pct1",
+      "source": "orchestrator_snapshot",
+      "value": 16.178
+    },
+    "TabFreshCostPct": {
+      "desc": "table: fresh share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 0.0202
+    },
+    "TabFreshIssueHiPct": {
+      "desc": "table: fresh cost share at the issue's ratios, larger end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 1.216785241746566
+    },
+    "TabFreshIssueLoPct": {
+      "desc": "table: fresh cost share at the issue's ratios, smaller end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.9456003547020596
+    },
+    "TabFreshMeterPct": {
+      "desc": "table: fresh cost share rescaled by the second meter's ratios",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 0.08916835503025126
+    },
+    "TabFreshTokPct": {
+      "desc": "table: fresh share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 0.0023745600019186653
+    },
+    "TabLongCostPct": {
+      "desc": "table: write1h share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 27.2914516270436
+    },
+    "TabLongIssueHiPct": {
+      "desc": "table: write1h cost share at the issue's ratios, larger end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 12.525143825891346
+    },
+    "TabLongIssueLoPct": {
+      "desc": "table: write1h cost share at the issue's ratios, smaller end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 9.448001469678776
+    },
+    "TabLongMeterPct": {
+      "desc": "table: write1h cost share rescaled by the second meter's ratios",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 22.8343337301782
+    },
+    "TabLongTokPct": {
+      "desc": "table: write1h share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 1.8748576672603972
+    },
+    "TabOutCostPct": {
+      "desc": "table: output share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 11.5853
+    },
+    "TabOutIssueHiPct": {
+      "desc": "table: output cost share at the issue's ratios, larger end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 68.18196626849617
+    },
+    "TabOutIssueLoPct": {
+      "desc": "table: output cost share at the issue's ratios, smaller end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 58.48655682519291
+    },
+    "TabOutMeterPct": {
+      "desc": "table: output cost share rescaled by the second meter's ratios",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 15.28546006495038
+    },
+    "TabOutTokPct": {
+      "desc": "table: output share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 0.32789503441813417
+    },
+    "TabReadCostPct": {
+      "desc": "table: read share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 54.9867
+    },
+    "TabReadIssueHiPct": {
+      "desc": "table: read cost share at the issue's ratios, larger end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 25.235606204569862
+    },
+    "TabReadIssueLoPct": {
+      "desc": "table: read cost share at the issue's ratios, smaller end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 19.035792947634548
+    },
+    "TabReadMeterPct": {
+      "desc": "table: read cost share rescaled by the second meter's ratios",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 56.673484354143675
+    },
+    "TabReadTokPct": {
+      "desc": "table: read share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 97.10058690011245
+    },
+    "TabRwAllCostPct": {
+      "desc": "table: re-writes (All) share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 24.600084497617438
+    },
+    "TabRwAllIssueHiPct": {
+      "desc": "table: re-writes (All) cost share at the issue's low ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 11.28996730083852
+    },
+    "TabRwAllIssueLoPct": {
+      "desc": "table: re-writes (All) cost share at the issue's high ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 8.51627966382707
+    },
+    "TabRwAllMeterPct": {
+      "desc": "table: re-writes (All) cost share, meter-rescaled",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 20.58250865089765
+    },
+    "TabRwAllTokPct": {
+      "desc": "table: re-writes (All) share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 1.7827829674783513
+    },
+    "TabRwCompactCostPct": {
+      "desc": "table: re-writes (Compact) share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 0.3988627981776456
+    },
+    "TabRwCompactIssueHiPct": {
+      "desc": "table: re-writes (Compact) cost share at the issue's low ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.18305416590673543
+    },
+    "TabRwCompactIssueLoPct": {
+      "desc": "table: re-writes (Compact) cost share at the issue's high ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.13808192964160074
+    },
+    "TabRwCompactMeterPct": {
+      "desc": "table: re-writes (Compact) cost share, meter-rescaled",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 0.3337223087509211
+    },
+    "TabRwCompactTokPct": {
+      "desc": "table: re-writes (Compact) share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 0.030577801191926622
+    },
+    "TabRwConfigCostPct": {
+      "desc": "table: re-writes (Config) share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 3.6557744564008545
+    },
+    "TabRwConfigIssueHiPct": {
+      "desc": "table: re-writes (Config) cost share at the issue's low ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 1.6777818009529106
+    },
+    "TabRwConfigIssueLoPct": {
+      "desc": "table: re-writes (Config) cost share at the issue's high ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 1.2655890536311127
+    },
+    "TabRwConfigMeterPct": {
+      "desc": "table: re-writes (Config) cost share, meter-rescaled",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 3.0587297121637476
+    },
+    "TabRwConfigTokPct": {
+      "desc": "table: re-writes (Config) share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 0.25487859896418874
+    },
+    "TabRwLongGapCostPct": {
+      "desc": "table: re-writes (LongGap) share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 16.118751347933777
+    },
+    "TabRwLongGapIssueHiPct": {
+      "desc": "table: re-writes (LongGap) cost share at the issue's low ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 7.397542706251446
+    },
+    "TabRwLongGapIssueLoPct": {
+      "desc": "table: re-writes (LongGap) cost share at the issue's high ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 5.580135073275404
+    },
+    "TabRwLongGapMeterPct": {
+      "desc": "table: re-writes (LongGap) cost share, meter-rescaled",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 13.486308922745657
+    },
+    "TabRwLongGapTokPct": {
+      "desc": "table: re-writes (LongGap) share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 1.129213851021541
+    },
+    "TabRwMidGapCostPct": {
+      "desc": "table: re-writes (MidGap) share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 1.2761390521419103
+    },
+    "TabRwMidGapIssueHiPct": {
+      "desc": "table: re-writes (MidGap) cost share at the issue's low ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.5856714911447003
+    },
+    "TabRwMidGapIssueLoPct": {
+      "desc": "table: re-writes (MidGap) cost share at the issue's high ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.44178535480332537
+    },
+    "TabRwMidGapMeterPct": {
+      "desc": "table: re-writes (MidGap) cost share, meter-rescaled",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 1.0677257260235475
+    },
+    "TabRwMidGapTokPct": {
+      "desc": "table: re-writes (MidGap) share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 0.16529449859661113
+    },
+    "TabRwModelCostPct": {
+      "desc": "table: re-writes (Model) share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 1.259041999517312
+    },
+    "TabRwModelIssueHiPct": {
+      "desc": "table: re-writes (Model) cost share at the issue's low ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.5778249666707245
+    },
+    "TabRwModelIssueLoPct": {
+      "desc": "table: re-writes (Model) cost share at the issue's high ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.4358665425491501
+    },
+    "TabRwModelMeterPct": {
+      "desc": "table: re-writes (Model) cost share, meter-rescaled",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 1.0534208876159916
+    },
+    "TabRwModelTokPct": {
+      "desc": "table: re-writes (Model) share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 0.06895338862330275
+    },
+    "TabRwWithinCostPct": {
+      "desc": "table: re-writes (Within) share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 1.8915148434459719
+    },
+    "TabRwWithinIssueHiPct": {
+      "desc": "table: re-writes (Within) cost share at the issue's low ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.8680921699120178
+    },
+    "TabRwWithinIssueLoPct": {
+      "desc": "table: re-writes (Within) cost share at the issue's high ratios",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 0.6548217099264894
+    },
+    "TabRwWithinMeterPct": {
+      "desc": "table: re-writes (Within) cost share, meter-rescaled",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 1.582601093597816
+    },
+    "TabRwWithinTokPct": {
+      "desc": "table: re-writes (Within) share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "cache_writes",
+      "value": 0.1338648290807813
+    },
+    "TabShortCostPct": {
+      "desc": "table: write5m share of list-price cost as recorded",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 6.116467654672661
+    },
+    "TabShortIssueHiPct": {
+      "desc": "table: write5m cost share at the issue's ratios, larger end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 2.8070927896438276
+    },
+    "TabShortIssueLoPct": {
+      "desc": "table: write5m cost share at the issue's ratios, smaller end",
+      "format": "pctlt1",
+      "source": "issue_28197",
+      "value": 2.1174540724439304
+    },
+    "TabShortMeterPct": {
+      "desc": "table: write5m cost share rescaled by the second meter's ratios",
+      "format": "pctlt1",
+      "source": "usage_audit",
+      "value": 5.117553495697489
+    },
+    "TabShortTokPct": {
+      "desc": "table: write5m share of all orchestrator tokens",
+      "format": "pctlt1",
+      "source": "orchestrator_snapshot",
+      "value": 0.6942858382070964
+    }
+  },
+  "kind": "cost_table",
+  "provenance": {
+    "generated_at": "2026-11-17T04:14:18Z",
+    "generator": "tools/cost_table.py",
+    "notes": [
+      "Not pre-registered (17 Nov 2026): a display table combining committed evidence; no new measurement.",
+      "Shares are of all orchestrator tokens (input and output) or of all list-price cost.",
+      "Meter: every kind's cost times the second meter's client/transcript ratio (one session window, one model, one client version), renormalised. Issue: output and uncached input times the issue's ratios."
+    ],
+    "sources": [
+      {
+        "command": "evidence/orchestrator_snapshot.json",
+        "description": "tokens and cost shares by kind",
+        "grade": "measured",
+        "id": "orchestrator_snapshot",
+        "sha256": "3a15c22d8737e4edd9d4ba4b3579572c131dd5b4972eb589c7de8c3939518078"
+      },
+      {
+        "command": "evidence/cache_writes.json",
+        "description": "write cost by TTL, re-writes by observed cause, input since the executor's first turn",
+        "grade": "measured",
+        "id": "cache_writes",
+        "sha256": "88c677ef6b7c14402edd1c3a2fb353cec8ef9c52751862edcb1b32eb03010bf1"
+      },
+      {
+        "command": "evidence/usage_audit.json",
+        "description": "pooled client/transcript ratios of the second meter (one session window)",
+        "grade": "measured",
+        "id": "usage_audit",
+        "sha256": "30e377db7925c5864fdc07f02642f1ebeb38cde199e08ad05f844a5186f99b11"
+      },
+      {
+        "command": "evidence/params/claude_code_issue_28197.json",
+        "description": "the issue's reported ratios",
+        "grade": "documented-record",
+        "id": "issue_28197",
+        "sha256": "38b9fc78f64646a0c0347a76fdf93a8e1492e0c8eac10058c68142f24088a3fc"
+      },
+      {
+        "command": "evidence/params/claude_code_issue_94177.json",
+        "description": "the de-duplicated API-call count a public issue analysed",
+        "grade": "documented-record",
+        "id": "issue_94177",
+        "sha256": "dc7929461b9656663cd2e266699857bc0e145ce678bc069c751462bee27d1d2b"
+      },
+      {
+        "command": "evidence/harness_costs.json",
+        "description": "executor input tokens",
+        "grade": "measured",
+        "id": "harness_costs",
+        "sha256": "70b2d34dcef3d95ce122611216ea70cda57328b1fed9a6aef6dcfb1ede960f19"
+      },
+      {
+        "command": "[REDACTED: infrastructure] report --json --limit 1000000 (the run in harness_costs)",
+        "description": "executor serving models (modelsServing), same sha256 as harness_costs' kimi_report",
+        "grade": "measured",
+        "id": "kimi_report",
+        "sha256": "552cb6858a0f248a42bc2e7a45154adef6af3a99745979fc782c576e6e312c69"
+      }
+    ]
+  },
+  "schema_version": 1
+}

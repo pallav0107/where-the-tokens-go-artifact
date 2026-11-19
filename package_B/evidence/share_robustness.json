@@ -1,0 +1,733 @@
+{
+  "aggregates": {
+    "bootstrap": {
+      "cache_read_pct": {
+        "hi": 97.69298300716686,
+        "lo": 96.86099327220987,
+        "point": 97.42002231581505
+      },
+      "expiry_pct": {
+        "hi": 69.55070788712251,
+        "lo": 50.98244162717631,
+        "point": 63.33995060648083
+      },
+      "ka_policy_saving_pct": {
+        "hi": 7.387471321376722,
+        "lo": -2.145473265322862,
+        "point": 5.483807204700629
+      },
+      "rewrite_total_cost_pct": {
+        "hi": 30.906095956390157,
+        "lo": 20.306819850876693,
+        "point": 24.600084497617438
+      },
+      "rewrite_write_cost_pct": {
+        "hi": 77.11572510060172,
+        "lo": 61.43898876297588,
+        "point": 73.63548831094212
+      }
+    },
+    "by_family": {
+      "fable": {
+        "any_expiry_pct": 66.89346824202606,
+        "causes": {
+          "compaction": 348337.0,
+          "config_change": 3264503.0,
+          "gap_5_to_60min": 8931842.0,
+          "gap_gt_60min": 30134203.0,
+          "model_change": 7511412.0,
+          "within_lifetime": 8210091.0
+        },
+        "expiry_pct": 51.59931985383385,
+        "input": 3367142000,
+        "largest_cause": "gap_gt_60min",
+        "read": 3276448686,
+        "read_pct": 97.30651947556711,
+        "requests": 8321,
+        "rewrite": 58400388
+      },
+      "haiku": {
+        "any_expiry_pct": null,
+        "causes": {
+          "compaction": 0.0,
+          "config_change": 0.0,
+          "gap_5_to_60min": 0.0,
+          "gap_gt_60min": 0.0,
+          "model_change": 0.0,
+          "within_lifetime": 0.0
+        },
+        "expiry_pct": null,
+        "input": 2711152,
+        "largest_cause": null,
+        "read": 2571412,
+        "read_pct": 94.84573347418367,
+        "requests": 91,
+        "rewrite": 0
+      },
+      "opus": {
+        "any_expiry_pct": 72.13392048648561,
+        "causes": {
+          "compaction": 8633357.0,
+          "config_change": 74913558.0,
+          "gap_5_to_60min": 18426439.0,
+          "gap_gt_60min": 311102326.0,
+          "model_change": 11254759.0,
+          "within_lifetime": 32498696.0
+        },
+        "expiry_pct": 68.10036886110602,
+        "input": 24563462163,
+        "largest_cause": "gap_gt_60min",
+        "read": 23938479731,
+        "read_pct": 97.45564192924965,
+        "requests": 68108,
+        "rewrite": 456829135
+      },
+      "sonnet": {
+        "any_expiry_pct": 88.6909514204948,
+        "causes": {
+          "compaction": 444401.0,
+          "config_change": 392333.0,
+          "gap_5_to_60min": 23596385.0,
+          "gap_gt_60min": 6861654.0,
+          "model_change": 2489811.0,
+          "within_lifetime": 557182.0
+        },
+        "expiry_pct": 19.98049255824526,
+        "input": 2792201028,
+        "largest_cause": "gap_5_to_60min",
+        "read": 2715305049,
+        "read_pct": 97.24604431311025,
+        "requests": 15627,
+        "rewrite": 34341766
+      }
+    },
+    "by_model": {
+      "claude-fable-5": {
+        "any_expiry_pct": 63.66458284181712,
+        "causes": {
+          "compaction": 138550.0,
+          "config_change": 2475467.0,
+          "gap_5_to_60min": 0.0,
+          "gap_gt_60min": 23420087.0,
+          "model_change": 7356566.0,
+          "within_lifetime": 3396011.0
+        },
+        "expiry_pct": 63.66458284181712,
+        "input": 2640206885,
+        "largest_cause": "gap_gt_60min",
+        "read": 2592198012,
+        "read_pct": 98.18162458128731,
+        "requests": 5339,
+        "rewrite": 36786681
+      },
+      "claude-fable-5-1": {
+        "any_expiry_pct": 72.38905385364944,
+        "causes": {
+          "compaction": 209787.0,
+          "config_change": 789036.0,
+          "gap_5_to_60min": 8931842.0,
+          "gap_gt_60min": 6714116.0,
+          "model_change": 154846.0,
+          "within_lifetime": 4814080.0
+        },
+        "expiry_pct": 31.064157573710055,
+        "input": 726935115,
+        "largest_cause": "gap_5_to_60min",
+        "read": 684250674,
+        "read_pct": 94.12816355693589,
+        "requests": 2982,
+        "rewrite": 21613707
+      },
+      "claude-haiku-4-5-20251001": {
+        "any_expiry_pct": null,
+        "causes": {
+          "compaction": 0.0,
+          "config_change": 0.0,
+          "gap_5_to_60min": 0.0,
+          "gap_gt_60min": 0.0,
+          "model_change": 0.0,
+          "within_lifetime": 0.0
+        },
+        "expiry_pct": null,
+        "input": 2711152,
+        "largest_cause": null,
+        "read": 2571412,
+        "read_pct": 94.84573347418367,
+        "requests": 91,
+        "rewrite": 0
+      },
+      "claude-opus-4-8": {
+        "any_expiry_pct": 70.49557718363894,
+        "causes": {
+          "compaction": 2284845.0,
+          "config_change": 18846004.0,
+          "gap_5_to_60min": 1057406.0,
+          "gap_gt_60min": 79124322.0,
+          "model_change": 2935903.0,
+          "within_lifetime": 9491603.0
+        },
+        "expiry_pct": 69.56590844056268,
+        "input": 5367443354,
+        "largest_cause": "gap_gt_60min",
+        "read": 5225401228,
+        "read_pct": 97.35363530396374,
+        "requests": 11707,
+        "rewrite": 113740083
+      },
+      "claude-opus-5": {
+        "any_expiry_pct": 67.44090457970373,
+        "causes": {
+          "compaction": 1113396.0,
+          "config_change": 42396256.0,
+          "gap_5_to_60min": 5821200.0,
+          "gap_gt_60min": 113112035.0,
+          "model_change": 5820067.0,
+          "within_lifetime": 8088825.0
+        },
+        "expiry_pct": 64.14000223950109,
+        "input": 7454045987,
+        "largest_cause": "gap_gt_60min",
+        "read": 7214799698,
+        "read_pct": 96.79038351229319,
+        "requests": 25054,
+        "rewrite": 176351779
+      },
+      "claude-opus-5-5": {
+        "any_expiry_pct": 78.2151462918552,
+        "causes": {
+          "compaction": 5235116.0,
+          "config_change": 13671298.0,
+          "gap_5_to_60min": 11547833.0,
+          "gap_gt_60min": 118865969.0,
+          "model_change": 2498789.0,
+          "within_lifetime": 14918268.0
+        },
+        "expiry_pct": 71.28938050941976,
+        "input": 11741972822,
+        "largest_cause": "gap_gt_60min",
+        "read": 11498278805,
+        "read_pct": 97.92459052073933,
+        "requests": 31347,
+        "rewrite": 166737273
+      },
+      "claude-sonnet-4-6": {
+        "any_expiry_pct": 64.05969121288308,
+        "causes": {
+          "compaction": 300109.0,
+          "config_change": 241622.0,
+          "gap_5_to_60min": 0.0,
+          "gap_gt_60min": 1242619.0,
+          "model_change": 0.0,
+          "within_lifetime": 155433.0
+        },
+        "expiry_pct": 64.05969121288308,
+        "input": 260311087,
+        "largest_cause": "gap_gt_60min",
+        "read": 255833720,
+        "read_pct": 98.27999373687837,
+        "requests": 2572,
+        "rewrite": 1939783
+      },
+      "claude-sonnet-5": {
+        "any_expiry_pct": 69.80610141682607,
+        "causes": {
+          "compaction": 96436.0,
+          "config_change": 0.0,
+          "gap_5_to_60min": 5288088.0,
+          "gap_gt_60min": 913396.0,
+          "model_change": 2489811.0,
+          "within_lifetime": 96140.0
+        },
+        "expiry_pct": 10.281509040372153,
+        "input": 886565570,
+        "largest_cause": "gap_5_to_60min",
+        "read": 868775253,
+        "read_pct": 97.99334447422765,
+        "requests": 4113,
+        "rewrite": 8883871
+      },
+      "claude-sonnet-5-5": {
+        "any_expiry_pct": 97.85622247228008,
+        "causes": {
+          "compaction": 47856.0,
+          "config_change": 150711.0,
+          "gap_5_to_60min": 18308297.0,
+          "gap_gt_60min": 4705639.0,
+          "model_change": 0.0,
+          "within_lifetime": 305609.0
+        },
+        "expiry_pct": 20.00857466789851,
+        "input": 1645324371,
+        "largest_cause": "gap_5_to_60min",
+        "read": 1590696076,
+        "read_pct": 96.67978570287646,
+        "requests": 8942,
+        "rewrite": 23518112
+      }
+    },
+    "by_month": {
+      "2026-06": {
+        "any_expiry_pct": 76.08518995545818,
+        "causes": {
+          "compaction": 707678.0,
+          "config_change": 6692523.0,
+          "gap_5_to_60min": 1057406.0,
+          "gap_gt_60min": 38432677.0,
+          "model_change": 1335433.0,
+          "within_lifetime": 3676740.0
+        },
+        "expiry_pct": 74.04789526630695,
+        "input": 2208093624,
+        "largest_cause": "gap_gt_60min",
+        "read": 2144475802,
+        "read_pct": 97.11888022733586,
+        "requests": 7053,
+        "rewrite": 51902457
+      },
+      "2026-07": {
+        "any_expiry_pct": 67.79007016262393,
+        "causes": {
+          "compaction": 1292801.0,
+          "config_change": 11749766.0,
+          "gap_5_to_60min": 3486498.0,
+          "gap_gt_60min": 59867794.0,
+          "model_change": 9665463.0,
+          "within_lifetime": 7394274.0
+        },
+        "expiry_pct": 64.05946349683013,
+        "input": 6254028925,
+        "largest_cause": "gap_gt_60min",
+        "read": 6121045716,
+        "read_pct": 97.87363936760174,
+        "requests": 16781,
+        "rewrite": 93456596
+      },
+      "2026-08": {
+        "any_expiry_pct": 65.57501839452654,
+        "causes": {
+          "compaction": 498029.0,
+          "config_change": 24935430.0,
+          "gap_5_to_60min": 7418376.0,
+          "gap_gt_60min": 69911872.0,
+          "model_change": 7591943.0,
+          "within_lifetime": 7570734.0
+        },
+        "expiry_pct": 59.284334538740715,
+        "input": 4704196240,
+        "largest_cause": "gap_gt_60min",
+        "read": 4542259846,
+        "read_pct": 96.5576182255526,
+        "requests": 16547,
+        "rewrite": 117926384
+      },
+      "2026-09": {
+        "any_expiry_pct": 83.2864876390339,
+        "causes": {
+          "compaction": 67948.0,
+          "config_change": 3033258.0,
+          "gap_5_to_60min": 0.0,
+          "gap_gt_60min": 20936728.0,
+          "model_change": 0.0,
+          "within_lifetime": 1100271.0
+        },
+        "expiry_pct": 83.2864876390339,
+        "input": 538581176,
+        "largest_cause": "gap_gt_60min",
+        "read": 511847397,
+        "read_pct": 95.03625819258117,
+        "requests": 880,
+        "rewrite": 25138205
+      },
+      "2026-10": {
+        "any_expiry_pct": 79.74737169421236,
+        "causes": {
+          "compaction": 3663622.0,
+          "config_change": 24603263.0,
+          "gap_5_to_60min": 20764034.0,
+          "gap_gt_60min": 149291787.0,
+          "model_change": 1591040.0,
+          "within_lifetime": 13329421.0
+        },
+        "expiry_pct": 70.01011525963689,
+        "input": 11836300623,
+        "largest_cause": "gap_gt_60min",
+        "read": 11523985406,
+        "read_pct": 97.36137812862647,
+        "requests": 32993,
+        "rewrite": 213243167
+      },
+      "2026-11": {
+        "any_expiry_pct": 58.21100030727815,
+        "causes": {
+          "compaction": 3196017.0,
+          "config_change": 7556154.0,
+          "gap_5_to_60min": 18228352.0,
+          "gap_gt_60min": 9657325.0,
+          "model_change": 1072103.0,
+          "within_lifetime": 8194529.0
+        },
+        "expiry_pct": 20.159544577041647,
+        "input": 5184315755,
+        "largest_cause": "gap_5_to_60min",
+        "read": 5089190711,
+        "read_pct": 98.16513791799319,
+        "requests": 17893,
+        "rewrite": 47904480
+      }
+    },
+    "cause_sensitivity": {
+      "version_marker_rewrite_pct": 9.462795644697517,
+      "with_version": {
+        "compaction": 1.7151723877627822,
+        "config_change": 14.296670072224243,
+        "gap_5_to_60min": 9.271711790606297,
+        "gap_gt_60min": 63.33995060648083,
+        "model_change": 3.8677388039461427,
+        "within_lifetime": 7.508756338979709
+      },
+      "without_version": {
+        "compaction": 1.7151723877627822,
+        "config_change": 10.301599834848723,
+        "gap_5_to_60min": 9.271711790606297,
+        "gap_gt_60min": 66.72480392257172,
+        "model_change": 3.8677388039461427,
+        "within_lifetime": 8.11897326026433
+      }
+    },
+    "clusters": 35,
+    "level": 0.95,
+    "main_clusters": 35,
+    "replicates": 2000,
+    "seed": 7,
+    "stability_model": {
+      "any_expiry_max_pct": 97.85622247228008,
+      "any_expiry_min_pct": 63.66458284181712,
+      "eligible": [
+        "claude-fable-5",
+        "claude-fable-5-1",
+        "claude-opus-4-8",
+        "claude-opus-5",
+        "claude-opus-5-5",
+        "claude-sonnet-4-6",
+        "claude-sonnet-5",
+        "claude-sonnet-5-5"
+      ],
+      "excluded": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "expiry_largest": 5,
+      "expiry_max_pct": 71.28938050941976,
+      "expiry_min_pct": 10.281509040372153,
+      "expiry_not_largest": [
+        "claude-fable-5-1",
+        "claude-sonnet-5",
+        "claude-sonnet-5-5"
+      ],
+      "min_requests": 1000,
+      "read_max_pct": 98.27999373687837,
+      "read_min_pct": 94.12816355693589
+    },
+    "stability_month": {
+      "any_expiry_max_pct": 79.74737169421236,
+      "any_expiry_min_pct": 58.21100030727815,
+      "eligible": [
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-10",
+        "2026-11"
+      ],
+      "excluded": [
+        "2026-09"
+      ],
+      "expiry_largest": 4,
+      "expiry_max_pct": 74.04789526630695,
+      "expiry_min_pct": 20.159544577041647,
+      "expiry_not_largest": [
+        "2026-11"
+      ],
+      "min_requests": 1000,
+      "read_max_pct": 98.16513791799319,
+      "read_min_pct": 96.5576182255526
+    }
+  },
+  "figures": {
+    "RbAnyExpiryMinPct": {
+      "desc": "lowest share of re-writes by expiry of either lifetime over ranged months and models",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 58.21100030727815
+    },
+    "RbClusters": {
+      "desc": "session clusters resampled in the bootstrap",
+      "format": "int",
+      "source": "transcripts",
+      "value": 35
+    },
+    "RbExpiryHiPct": {
+      "desc": "expiry share of re-written tokens: 95% bootstrap high",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 69.55070788712251
+    },
+    "RbExpiryLoPct": {
+      "desc": "expiry share of re-written tokens: 95% bootstrap low",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 50.98244162717631
+    },
+    "RbKaHiPct": {
+      "desc": "keepalive policy saving: 95% bootstrap high",
+      "format": "signedpct1",
+      "source": "transcripts",
+      "value": 7.387471321376722
+    },
+    "RbKaLoPct": {
+      "desc": "keepalive policy saving: 95% bootstrap low",
+      "format": "signedpct1",
+      "source": "transcripts",
+      "value": -2.145473265322862
+    },
+    "RbLevelPct": {
+      "desc": "coverage of the session-bootstrap intervals",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 95.0
+    },
+    "RbMinRequests": {
+      "desc": "requests a month or model needs to be ranged",
+      "format": "int",
+      "source": "transcripts",
+      "value": 1000
+    },
+    "RbModelAll": {
+      "desc": "model ids with any request",
+      "format": "int",
+      "source": "transcripts",
+      "value": 9
+    },
+    "RbModelAnyExpiryMaxPct": {
+      "desc": "highest per-model share of re-writes by expiry of either lifetime",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 97.85622247228008
+    },
+    "RbModelAnyExpiryMinPct": {
+      "desc": "lowest per-model share of re-writes by expiry of either lifetime",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 63.66458284181712
+    },
+    "RbModelCount": {
+      "desc": "model ids with enough requests",
+      "format": "int",
+      "source": "transcripts",
+      "value": 8
+    },
+    "RbModelExpiryLargest": {
+      "desc": "ranged model ids whose largest re-write cause is expiry",
+      "format": "int",
+      "source": "transcripts",
+      "value": 5
+    },
+    "RbModelExpiryMaxPct": {
+      "desc": "highest per-model expiry share of re-writes",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 71.28938050941976
+    },
+    "RbModelExpiryMinPct": {
+      "desc": "lowest per-model expiry share of re-writes",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 10.281509040372153
+    },
+    "RbModelExpiryNotLargest": {
+      "desc": "ranged model ids whose largest re-write cause is not expiry over an hour",
+      "format": "int",
+      "source": "transcripts",
+      "value": 3
+    },
+    "RbModelReadMaxPct": {
+      "desc": "highest per-model cache-read share of input",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 98.27999373687837
+    },
+    "RbModelReadMinPct": {
+      "desc": "lowest per-model cache-read share of input",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 94.12816355693589
+    },
+    "RbMonthAll": {
+      "desc": "calendar months with any request",
+      "format": "int",
+      "source": "transcripts",
+      "value": 6
+    },
+    "RbMonthAnyExpiryMaxPct": {
+      "desc": "highest monthly share of re-writes by expiry of either lifetime",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 79.74737169421236
+    },
+    "RbMonthAnyExpiryMinPct": {
+      "desc": "lowest monthly share of re-writes by expiry of either lifetime",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 58.21100030727815
+    },
+    "RbMonthCount": {
+      "desc": "calendar months with enough requests",
+      "format": "int",
+      "source": "transcripts",
+      "value": 5
+    },
+    "RbMonthExpiryLargest": {
+      "desc": "ranged months whose largest re-write cause is expiry",
+      "format": "int",
+      "source": "transcripts",
+      "value": 4
+    },
+    "RbMonthExpiryMaxPct": {
+      "desc": "highest monthly expiry share of re-writes",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 74.04789526630695
+    },
+    "RbMonthExpiryMinPct": {
+      "desc": "lowest monthly expiry share of re-writes",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 20.159544577041647
+    },
+    "RbMonthExpiryNotLargest": {
+      "desc": "ranged months whose largest re-write cause is not expiry over an hour",
+      "format": "int",
+      "source": "transcripts",
+      "value": 1
+    },
+    "RbMonthReadMaxPct": {
+      "desc": "highest monthly cache-read share of input",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 98.16513791799319
+    },
+    "RbMonthReadMinPct": {
+      "desc": "lowest monthly cache-read share of input",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 96.5576182255526
+    },
+    "RbNoVersionConfigPct": {
+      "desc": "config-change share of re-writes without the client-version marker",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 10.301599834848723
+    },
+    "RbNoVersionLongGapPct": {
+      "desc": "expiry share of re-writes without the client-version marker",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 66.72480392257172
+    },
+    "RbReadHiPct": {
+      "desc": "cache-read share of input: 95% session-bootstrap high",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 97.69298300716686
+    },
+    "RbReadLoPct": {
+      "desc": "cache-read share of input: 95% session-bootstrap low",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 96.86099327220987
+    },
+    "RbReadMaxPct": {
+      "desc": "highest cache-read share of input over ranged months and model ids",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 98.27999373687837
+    },
+    "RbReadMinPct": {
+      "desc": "lowest cache-read share of input over ranged months and model ids",
+      "format": "pct1",
+      "source": "transcripts",
+      "value": 94.12816355693589
+    },
+    "RbReplicates": {
+      "desc": "bootstrap replicates",
+      "format": "int",
+      "source": "transcripts",
+      "value": 2000
+    },
+    "RbRwTotalCostHiPct": {
+      "desc": "re-write share of total list-price cost: 95% bootstrap high",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 30.906095956390157
+    },
+    "RbRwTotalCostLoPct": {
+      "desc": "re-write share of total list-price cost: 95% bootstrap low",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 20.306819850876693
+    },
+    "RbRwWriteCostHiPct": {
+      "desc": "re-write share of cache-write cost: 95% bootstrap high",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 77.11572510060172
+    },
+    "RbRwWriteCostLoPct": {
+      "desc": "re-write share of cache-write cost: 95% bootstrap low",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 61.43898876297588
+    }
+  },
+  "kind": "share_robustness",
+  "provenance": {
+    "generated_at": "2026-11-17T13:22:29Z",
+    "generator": "tools/share_robustness.py",
+    "notes": [
+      "Not pre-registered (17 Nov 2026): session bootstrap, month and model splits, cause-rule sensitivity.",
+      "Cluster = a main-loop session with its subagent runs; 2000 replicates, seed 7, percentile 95% intervals; the keepalive base rate is re-estimated in each replicate.",
+      "Months (UTC) and model ids with fewer than 1000 requests are listed in the aggregates but not ranged; the threshold was fixed before the split was looked at. The either-lifetime expiry share was added after seeing the split (post hoc).",
+      "Cause-rule sensitivity: a client-version change is not counted as a config change; list deltas and system-prompt changes still are.",
+      "Analysis record sha256 942a24ad44d16794."
+    ],
+    "sources": [
+      {
+        "command": "python tools/share_robustness.py (tools/cache_writes.py chain mode)",
+        "description": "the frozen requests re-extracted with cause annotations; the log hashes to the orchestrator snapshot's tokenledger_log",
+        "grade": "measured",
+        "id": "transcripts",
+        "sha256": "7f1ae9cf1dabd080ba0c3e98bbb53124351adb963bca1c4c21db85ab59a47bd9"
+      },
+      {
+        "command": "evidence/params/anthropic_list_prices.json",
+        "description": "Anthropic list prices",
+        "grade": "model-parameter",
+        "id": "list_prices",
+        "sha256": "10bafadda30eadbb8f69cef83519443d845222b1df5dac7ace31d018b5dc85ac"
+      },
+      {
+        "command": "evidence/orchestrator_snapshot.json",
+        "description": "reported figures the full-sample values must reproduce",
+        "grade": "measured",
+        "id": "reported_orchestrator_snapshot",
+        "sha256": "3a15c22d8737e4edd9d4ba4b3579572c131dd5b4972eb589c7de8c3939518078"
+      },
+      {
+        "command": "evidence/cache_writes.json",
+        "description": "reported figures the full-sample values must reproduce",
+        "grade": "measured",
+        "id": "reported_cache_writes",
+        "sha256": "88c677ef6b7c14402edd1c3a2fb353cec8ef9c52751862edcb1b32eb03010bf1"
+      }
+    ]
+  },
+  "schema_version": 1
+}

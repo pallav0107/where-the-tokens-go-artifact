@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "kind": "agent_h2h",
+  "provenance": {
+    "generated_at": "2026-11-15T23:36:10Z",
+    "generator": "experiments/analyze_v2.py",
+    "notes": [
+      "Cost = mean USD per question at the cited list prices (usd_list: every request incl. summariser requests). PREREG_v2 Amendment 2: OpenAI gpt-6-luna, standard tier, so this is the billed amount; cache writes are priced at 1.25x input and cached reads at 0.1x.",
+      "H7: paired cluster bootstrap over questions, 2000 replicates, seed 7; B* = highest-F1 baseline point, ties lower cost.",
+      "Analysed split: test."
+    ],
+    "sources": [
+      {
+        "id": "no_runs_yet",
+        "grade": "measured",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command": "python -m agent.run_grid --out out/no_runs_yet",
+        "description": "Grid output 'no_runs_yet': 0 run records, 0 request records"
+      },
+      {
+        "id": "prereg",
+        "grade": "documented-record",
+        "sha256": "861a45e88d18d90bc5fe05b0918da5b9bb392c184bddc82cc43ee6d832b65c23",
+        "command": "experiments/PREREG_v2.md",
+        "description": "Pre-registration experiments/PREREG_v2.md, section 6 specifies H7; registration commit 260aa004ccbdb146cfdc0694bab86b2c68b870ff"
+      }
+    ]
+  },
+  "aggregates": {
+    "split": "test",
+    "n_runs": 0,
+    "points": [],
+    "model": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "label": "OpenAI gpt-6-luna",
+      "returned": []
+    },
+    "frontier": [],
+    "H7": {
+      "decision": "not yet run",
+      "reason": "needs priced pbc and baseline runs"
+    },
+    "not_run": []
+  },
+  "figures": {
+    "HthModel": {
+      "value": "OpenAI gpt-6-luna",
+      "format": "text",
+      "source": "prereg",
+      "desc": "Model of every arm (PREREG_v2 Amendment 2; experiments/configs/h2h.yaml)."
+    },
+    "HthDecision": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 decision (PREREG_v2 section 6)."
+    },
+    "HthCostRatio": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 cost(pbc) / cost(B*)."
+    },
+    "HthCostRatioLo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 cost ratio 95% CI lower bound."
+    },
+    "HthCostRatioHi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 cost ratio 95% CI upper bound."
+    },
+    "HthFOneDiff": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 F1(pbc) - F1(B*) in points."
+    },
+    "HthFOneDiffLo": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 F1 difference 95% CI lower bound, points."
+    },
+    "HthFOneDiffHi": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 F1 difference 95% CI upper bound, points."
+    },
+    "HthRuleA": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 rule A: cost ratio <= 0.70 with CI below 1.0."
+    },
+    "HthRuleB": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 rule B: F1 difference >= -2.0 points."
+    },
+    "HthRuleC": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "H7 rule C: pbc on the empirical frontier."
+    },
+    "HthBstarArm": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "Baseline B* with the highest F1."
+    },
+    "HthBstarK": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "Retrieval k of baseline B*."
+    },
+    "HthPairedQuestions": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "Questions answered by both pbc and B*."
+    },
+    "HthRan": {
+      "value": "False",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "Whether H7 could be evaluated."
+    },
+    "HthModelReturned": {
+      "value": "not yet run",
+      "format": "text",
+      "source": "no_runs_yet",
+      "desc": "Model id(s) returned in the responses of the analysed runs."
+    }
+  }
+}

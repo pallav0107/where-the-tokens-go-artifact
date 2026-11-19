@@ -1,0 +1,28 @@
+# Main experiment grid (experiments/PREREG.md sections 3-5).
+# Model list per PREREG Amendment 1 (Gemini only).
+experiment: main-grid
+dataset:
+  parquet_url: https://huggingface.co/datasets/hotpotqa/hotpot_qa/resolve/main/distractor/validation-00000-of-00001.parquet
+  sha256: c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6
+  cache_dir: ~/.cache/ieee-agent-exp
+  fixture: null
+  sample_seed: 20261115
+  n_questions: 48
+  n_smoke: 6
+agent:
+  max_steps: 10
+  temperature: 0
+  seed: 42
+  cell_order_seed: 20261116
+policies: [carry_all, reset_summary]
+ks: [2, 8]
+models:
+  # PREREG Amendment 1: Gemini only. G-Flash and G-Lite are resolved at run time from the
+  # key's model list by the rule in Amendment A1; exact ids are recorded per request.
+  - {provider: gemini, model: auto-flash, thinking_budget: 0, max_output_tokens: 4096}
+  - {provider: gemini, model: auto-flash-lite, thinking_budget: 0, max_output_tokens: 4096}
+budget:
+  max_usd: 5
+  # Replaced at run time by the smoke-run means (Amendment A4) when --est-from is given.
+  est_input_tokens_per_run: 20000
+  est_output_tokens_per_run: 1500

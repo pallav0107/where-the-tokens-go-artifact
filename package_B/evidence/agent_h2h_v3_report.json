@@ -1,0 +1,2242 @@
+{
+  "schema_version": 1,
+  "kind": "agent_h2h_v3_report",
+  "provenance": {
+    "generated_at": "2026-11-17T04:11:03Z",
+    "generator": "experiments/report_v3.py",
+    "notes": [
+      "Descriptive post-test figures; the registered H8 decision is in agent_h2h_v3.json (analyze_v3.py)."
+    ],
+    "sources": [
+      {
+        "id": "testruns",
+        "grade": "measured",
+        "sha256": "f25e1c145bdeadef94dc66d9ddb6a98f27fd69a6d1cc5cfd43c76bd69b2bfc7d",
+        "command": "python experiments/report_v3.py --input <test shard dirs>",
+        "description": "PREREG_v3 test runs: Grid output 'h2h3_test_r1_s0': 5400 run records, 10022 request records; Actions run: 43975815163 ([REDACTED: infrastructure] private repository; available to the programme chairs on request); Grid output 'h2h3_test_r1_s1': 5400 run records, 10242 request records; Actions run: 43975815163 ([REDACTED: infrastructure] private repository; available to the programme chairs on request)"
+      },
+      {
+        "id": "posttest",
+        "grade": "measured",
+        "sha256": "a6a7bba29202fbf476a458f166953f3afdc2d32d74f00daaa483093352f36cff",
+        "command": "python experiments/offline/posttest_v3_checks.py",
+        "description": "Post-test checklist output (DECISIONS.md D52)"
+      }
+    ]
+  },
+  "aggregates": {
+    "billed_h8": {
+      "decision": "not supported",
+      "reason": null,
+      "cost_key": "cost",
+      "bstar": {
+        "arm": "agentless",
+        "k": 8,
+        "f1": 0.7615465916666667,
+        "cost": 0.0002104402777777778
+      },
+      "aob": {
+        "k": 6,
+        "f1": 0.738175311111111,
+        "cost": 9.586388888888889e-05
+      },
+      "n_paired_questions": 240,
+      "cost_ratio": 0.4555396424163628,
+      "cost_ratio_ci": [
+        0.4364609491573854,
+        0.4778529627794284
+      ],
+      "f1_diff": -0.02337128055555553,
+      "f1_diff_ci": [
+        -0.0554583756597222,
+        0.008099439513888843
+      ],
+      "rule_a": true,
+      "rule_b": false,
+      "rule_c": true,
+      "rule_d": true,
+      "dominated_by": [],
+      "rule_d_cells": [
+        {
+          "a": [
+            "aob",
+            6
+          ],
+          "b": [
+            "agentless",
+            8
+          ],
+          "n": 240,
+          "cost_ratio": 0.4555396424163628,
+          "cost_ratio_ci": [
+            0.4364609491573854,
+            0.4778529627794284
+          ],
+          "f1_diff": -0.02337128055555553,
+          "f1_diff_ci": [
+            -0.0554583756597222,
+            0.008099439513888843
+          ],
+          "em_diff": -0.023611111111111072,
+          "em_diff_ci": [
+            -0.055555555555555594,
+            0.008333333333333333
+          ]
+        },
+        {
+          "a": [
+            "aob",
+            6
+          ],
+          "b": [
+            "memgpt",
+            8
+          ],
+          "n": 240,
+          "cost_ratio": 0.3729205500175596,
+          "cost_ratio_ci": [
+            0.34641623178008873,
+            0.4019050406253512
+          ],
+          "f1_diff": -0.015442666666666582,
+          "f1_diff_ci": [
+            -0.05215289986111117,
+            0.02212114475694454
+          ],
+          "em_diff": -0.004166666666666667,
+          "em_diff_ci": [
+            -0.04586805555555567,
+            0.03888888888888893
+          ]
+        },
+        {
+          "a": [
+            "aob",
+            6
+          ],
+          "b": [
+            "notes_reset",
+            8
+          ],
+          "n": 240,
+          "cost_ratio": 0.33696060770271025,
+          "cost_ratio_ci": [
+            0.3097364341093135,
+            0.3653344957132202
+          ],
+          "f1_diff": -0.009238697222222333,
+          "f1_diff_ci": [
+            -0.0481631281597223,
+            0.031709365243055565
+          ],
+          "em_diff": 0.009722222222222143,
+          "em_diff_ci": [
+            -0.03472222222222226,
+            0.05694444444444453
+          ]
+        },
+        {
+          "a": [
+            "aob",
+            6
+          ],
+          "b": [
+            "react",
+            2
+          ],
+          "n": 240,
+          "cost_ratio": 0.5008017529730162,
+          "cost_ratio_ci": [
+            0.46831803093413255,
+            0.5378607314087208
+          ],
+          "f1_diff": 0.005517969444444522,
+          "f1_diff_ci": [
+            -0.029240581805555655,
+            0.04274584680555556
+          ],
+          "em_diff": 0.01805555555555536,
+          "em_diff_ci": [
+            -0.02222222222222226,
+            0.0625
+          ]
+        },
+        {
+          "a": [
+            "aob",
+            6
+          ],
+          "b": [
+            "react",
+            8
+          ],
+          "n": 240,
+          "cost_ratio": 0.4072598965063519,
+          "cost_ratio_ci": [
+            0.38505481738930447,
+            0.431377557736741
+          ],
+          "f1_diff": -0.0162807777777779,
+          "f1_diff_ci": [
+            -0.05333296875000002,
+            0.019739203194444475
+          ],
+          "em_diff": -0.002777777777777857,
+          "em_diff_ci": [
+            -0.04583333333333333,
+            0.04027777777777762
+          ]
+        },
+        {
+          "a": [
+            "aob",
+            6
+          ],
+          "b": [
+            "window2",
+            8
+          ],
+          "n": 240,
+          "cost_ratio": 0.3967602492469706,
+          "cost_ratio_ci": [
+            0.3698351740736676,
+            0.42523944834831
+          ],
+          "f1_diff": -0.011610341666666812,
+          "f1_diff_ci": [
+            -0.05036941250000001,
+            0.02719347517361109
+          ],
+          "em_diff": -2.3684757858670006e-16,
+          "em_diff_ci": [
+            -0.043055555555555715,
+            0.0430555555555556
+          ]
+        }
+      ],
+      "rule_d_failed": []
+    },
+    "sensitivity": {
+      "runs_with_timeouts": 52,
+      "added_usd_total": 0.00424085,
+      "decision": "not supported",
+      "cost_ratio": 0.45480613455402263,
+      "cost_ratio_ci": [
+        0.43622646484459854,
+        0.47706672161217356
+      ],
+      "rules": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "bstar": {
+        "arm": "agentless",
+        "k": 8,
+        "f1": 0.7615465916666667,
+        "cost": 0.00021132569444444444
+      }
+    }
+  },
+  "figures": {
+    "VthreeAgentlessKEightFOne": {
+      "value": 76.15465916666668,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('agentless', 8) F1, points."
+    },
+    "VthreeAgentlessKEightFOneLo": {
+      "value": 71.96573655208333,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('agentless', 8) F1 95% CI low."
+    },
+    "VthreeAgentlessKEightFOneHi": {
+      "value": 80.45536465625005,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('agentless', 8) F1 95% CI high."
+    },
+    "VthreeAgentlessKEightEM": {
+      "value": 61.11111111111111,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('agentless', 8) EM, points."
+    },
+    "VthreeAgentlessKEightBilled": {
+      "value": 0.2104402777777778,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('agentless', 8) billed USD per 1000 questions."
+    },
+    "VthreeAgentlessKEightNeutral": {
+      "value": 0.1967847222222222,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('agentless', 8) cache-neutral USD per 1000 questions."
+    },
+    "VthreeAgentlessKEightReq": {
+      "value": 2.0,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('agentless', 8) requests per question."
+    },
+    "VthreeAgentlessKEightInTok": {
+      "value": 1774.4722222222222,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('agentless', 8) input tokens per question."
+    },
+    "VthreeAgentlessKEightOutTok": {
+      "value": 38.675,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('agentless', 8) output tokens per question."
+    },
+    "VthreeAgentlessKEightHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('agentless', 8) cache hit rate."
+    },
+    "VthreeAgentlessKEightLat": {
+      "value": 9.906405555555555,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('agentless', 8) latency per question, s."
+    },
+    "VthreeAgentlessKEightTimeouts": {
+      "value": 7,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('agentless', 8) timed-out (unconfirmed) attempts."
+    },
+    "VthreeAgentlessKEightAobRatio": {
+      "value": 0.4555396424163628,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('agentless', 8)."
+    },
+    "VthreeAgentlessKEightAobRatioLo": {
+      "value": 0.4364609491573854,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAgentlessKEightAobRatioHi": {
+      "value": 0.4778529627794284,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAgentlessKEightAobDiff": {
+      "value": -2.337128055555553,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('agentless', 8) F1, points."
+    },
+    "VthreeAgentlessKEightAobDiffLo": {
+      "value": -5.54583756597222,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAgentlessKEightAobDiffHi": {
+      "value": 0.8099439513888843,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAgentlessKEightAobNRatio": {
+      "value": 0.48725412005505164,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('agentless', 8)."
+    },
+    "VthreeAgentlessKEightAobNRatioLo": {
+      "value": 0.4686052259548836,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAgentlessKEightAobNRatioHi": {
+      "value": 0.5097985168081149,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobKSixFOne": {
+      "value": 73.8175311111111,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob', 6) F1, points."
+    },
+    "VthreeAobKSixFOneLo": {
+      "value": 69.53685475694445,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob', 6) F1 95% CI low."
+    },
+    "VthreeAobKSixFOneHi": {
+      "value": 78.54469601041664,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob', 6) F1 95% CI high."
+    },
+    "VthreeAobKSixEM": {
+      "value": 58.75,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob', 6) EM, points."
+    },
+    "VthreeAobKSixBilled": {
+      "value": 0.09586388888888889,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob', 6) billed USD per 1000 questions."
+    },
+    "VthreeAobKSixNeutral": {
+      "value": 0.09588416666666666,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob', 6) cache-neutral USD per 1000 questions."
+    },
+    "VthreeAobKSixReq": {
+      "value": 1.0833333333333333,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('aob', 6) requests per question."
+    },
+    "VthreeAobKSixInTok": {
+      "value": 857.4319444444444,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob', 6) input tokens per question."
+    },
+    "VthreeAobKSixOutTok": {
+      "value": 20.281944444444445,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob', 6) output tokens per question."
+    },
+    "VthreeAobKSixHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('aob', 6) cache hit rate."
+    },
+    "VthreeAobKSixLat": {
+      "value": 3.7211305555555554,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob', 6) latency per question, s."
+    },
+    "VthreeAobKSixTimeouts": {
+      "value": 2,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob', 6) timed-out (unconfirmed) attempts."
+    },
+    "VthreeAobLlmqKSixFOne": {
+      "value": 73.13820277777778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) F1, points."
+    },
+    "VthreeAobLlmqKSixFOneLo": {
+      "value": 68.83863319097223,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) F1 95% CI low."
+    },
+    "VthreeAobLlmqKSixFOneHi": {
+      "value": 77.62467335069448,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) F1 95% CI high."
+    },
+    "VthreeAobLlmqKSixEM": {
+      "value": 57.49999999999999,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) EM, points."
+    },
+    "VthreeAobLlmqKSixBilled": {
+      "value": 0.11317916666666666,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) billed USD per 1000 questions."
+    },
+    "VthreeAobLlmqKSixNeutral": {
+      "value": 0.1131488888888889,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) cache-neutral USD per 1000 questions."
+    },
+    "VthreeAobLlmqKSixReq": {
+      "value": 2.040277777777778,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) requests per question."
+    },
+    "VthreeAobLlmqKSixInTok": {
+      "value": 917.1,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) input tokens per question."
+    },
+    "VthreeAobLlmqKSixOutTok": {
+      "value": 42.87777777777778,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) output tokens per question."
+    },
+    "VthreeAobLlmqKSixHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) cache hit rate."
+    },
+    "VthreeAobLlmqKSixLat": {
+      "value": 6.673693055555556,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) latency per question, s."
+    },
+    "VthreeAobLlmqKSixTimeouts": {
+      "value": 3,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_llmq', 6) timed-out (unconfirmed) attempts."
+    },
+    "VthreeAobLlmqKSixAobRatio": {
+      "value": 0.8470100258930656,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('aob_llmq', 6)."
+    },
+    "VthreeAobLlmqKSixAobRatioLo": {
+      "value": 0.8238253007011666,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobLlmqKSixAobRatioHi": {
+      "value": 0.8737678003839052,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobLlmqKSixAobDiff": {
+      "value": 0.6793283333333614,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('aob_llmq', 6) F1, points."
+    },
+    "VthreeAobLlmqKSixAobDiffLo": {
+      "value": -2.1491999340277737,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobLlmqKSixAobDiffHi": {
+      "value": 3.323956506944456,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobLlmqKSixAobNRatio": {
+      "value": 0.8474158925309816,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('aob_llmq', 6)."
+    },
+    "VthreeAobLlmqKSixAobNRatioLo": {
+      "value": 0.8242978972220569,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobLlmqKSixAobNRatioHi": {
+      "value": 0.874161335999018,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNogateKSixFOne": {
+      "value": 71.76123055555556,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) F1, points."
+    },
+    "VthreeAobNogateKSixFOneLo": {
+      "value": 67.15596638541669,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) F1 95% CI low."
+    },
+    "VthreeAobNogateKSixFOneHi": {
+      "value": 76.44498881597225,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) F1 95% CI high."
+    },
+    "VthreeAobNogateKSixEM": {
+      "value": 55.694444444444436,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) EM, points."
+    },
+    "VthreeAobNogateKSixBilled": {
+      "value": 0.08817916666666667,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) billed USD per 1000 questions."
+    },
+    "VthreeAobNogateKSixNeutral": {
+      "value": 0.08818486111111111,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) cache-neutral USD per 1000 questions."
+    },
+    "VthreeAobNogateKSixReq": {
+      "value": 1.0,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) requests per question."
+    },
+    "VthreeAobNogateKSixInTok": {
+      "value": 790.5083333333333,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) input tokens per question."
+    },
+    "VthreeAobNogateKSixOutTok": {
+      "value": 18.268055555555556,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) output tokens per question."
+    },
+    "VthreeAobNogateKSixHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) cache hit rate."
+    },
+    "VthreeAobNogateKSixLat": {
+      "value": 5.346619444444444,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) latency per question, s."
+    },
+    "VthreeAobNogateKSixTimeouts": {
+      "value": 4,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nogate', 6) timed-out (unconfirmed) attempts."
+    },
+    "VthreeAobNogateKSixAobRatio": {
+      "value": 1.0871489549370763,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('aob_nogate', 6)."
+    },
+    "VthreeAobNogateKSixAobRatioLo": {
+      "value": 1.0526091219513236,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNogateKSixAobRatioHi": {
+      "value": 1.1301725758538357,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNogateKSixAobDiff": {
+      "value": 2.056300555555571,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('aob_nogate', 6) F1, points."
+    },
+    "VthreeAobNogateKSixAobDiffLo": {
+      "value": 0.3631751006944534,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNogateKSixAobDiffHi": {
+      "value": 4.002880118055561,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNogateKSixAobNRatio": {
+      "value": 1.0873086996854773,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('aob_nogate', 6)."
+    },
+    "VthreeAobNogateKSixAobNRatioLo": {
+      "value": 1.0527835738042548,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNogateKSixAobNRatioHi": {
+      "value": 1.1302455293189295,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNohopKSixFOne": {
+      "value": 71.17538777777777,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) F1, points."
+    },
+    "VthreeAobNohopKSixFOneLo": {
+      "value": 66.51538644097225,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) F1 95% CI low."
+    },
+    "VthreeAobNohopKSixFOneHi": {
+      "value": 76.02276438888894,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) F1 95% CI high."
+    },
+    "VthreeAobNohopKSixEM": {
+      "value": 57.36111111111111,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) EM, points."
+    },
+    "VthreeAobNohopKSixBilled": {
+      "value": 0.09726944444444444,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) billed USD per 1000 questions."
+    },
+    "VthreeAobNohopKSixNeutral": {
+      "value": 0.09727152777777778,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) cache-neutral USD per 1000 questions."
+    },
+    "VthreeAobNohopKSixReq": {
+      "value": 1.1083333333333334,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) requests per question."
+    },
+    "VthreeAobNohopKSixInTok": {
+      "value": 870.1388888888889,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) input tokens per question."
+    },
+    "VthreeAobNohopKSixOutTok": {
+      "value": 20.51527777777778,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) output tokens per question."
+    },
+    "VthreeAobNohopKSixHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) cache hit rate."
+    },
+    "VthreeAobNohopKSixLat": {
+      "value": 3.0337763888888887,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) latency per question, s."
+    },
+    "VthreeAobNohopKSixTimeouts": {
+      "value": 1,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nohop', 6) timed-out (unconfirmed) attempts."
+    },
+    "VthreeAobNohopKSixAobRatio": {
+      "value": 0.9855498757746247,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('aob_nohop', 6)."
+    },
+    "VthreeAobNohopKSixAobRatioLo": {
+      "value": 0.9508887412229831,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNohopKSixAobRatioHi": {
+      "value": 1.023467818385947,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNohopKSixAobDiff": {
+      "value": 2.642143333333351,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('aob_nohop', 6) F1, points."
+    },
+    "VthreeAobNohopKSixAobDiffLo": {
+      "value": -0.704945381944441,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNohopKSixAobDiffHi": {
+      "value": 5.937688979166658,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNohopKSixAobNRatio": {
+      "value": 0.9857372332602748,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('aob_nohop', 6)."
+    },
+    "VthreeAobNohopKSixAobNRatioLo": {
+      "value": 0.9512577764186173,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNohopKSixAobNRatioHi": {
+      "value": 1.0236487333090976,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNopackKSixFOne": {
+      "value": 76.0907675,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) F1, points."
+    },
+    "VthreeAobNopackKSixFOneLo": {
+      "value": 72.0141981041667,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) F1 95% CI low."
+    },
+    "VthreeAobNopackKSixFOneHi": {
+      "value": 80.45255872916673,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) F1 95% CI high."
+    },
+    "VthreeAobNopackKSixEM": {
+      "value": 60.0,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) EM, points."
+    },
+    "VthreeAobNopackKSixBilled": {
+      "value": 0.13352916666666667,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) billed USD per 1000 questions."
+    },
+    "VthreeAobNopackKSixNeutral": {
+      "value": 0.11864333333333334,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) cache-neutral USD per 1000 questions."
+    },
+    "VthreeAobNopackKSixReq": {
+      "value": 1.0569444444444445,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) requests per question."
+    },
+    "VthreeAobNopackKSixInTok": {
+      "value": 1089.3569444444445,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) input tokens per question."
+    },
+    "VthreeAobNopackKSixOutTok": {
+      "value": 19.415277777777778,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) output tokens per question."
+    },
+    "VthreeAobNopackKSixHit": {
+      "value": 0.13348853872761327,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) cache hit rate."
+    },
+    "VthreeAobNopackKSixLat": {
+      "value": 2.8546430555555555,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) latency per question, s."
+    },
+    "VthreeAobNopackKSixTimeouts": {
+      "value": 1,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('aob_nopack', 6) timed-out (unconfirmed) attempts."
+    },
+    "VthreeAobNopackKSixAobRatio": {
+      "value": 0.7179247147418897,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('aob_nopack', 6)."
+    },
+    "VthreeAobNopackKSixAobRatioLo": {
+      "value": 0.692243659411263,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNopackKSixAobRatioHi": {
+      "value": 0.7477033750662366,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNopackKSixAobDiff": {
+      "value": -2.2732363888888925,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('aob_nopack', 6) F1, points."
+    },
+    "VthreeAobNopackKSixAobDiffLo": {
+      "value": -4.44421197916666,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNopackKSixAobDiffHi": {
+      "value": -0.25565815624999927,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeAobNopackKSixAobNRatio": {
+      "value": 0.8081715505857889,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('aob_nopack', 6)."
+    },
+    "VthreeAobNopackKSixAobNRatioLo": {
+      "value": 0.7851545636915341,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeAobNopackKSixAobNRatioHi": {
+      "value": 0.8352623714962295,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeClosedBookKZeroFOne": {
+      "value": 46.55771430555555,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('closed_book', 0) F1, points."
+    },
+    "VthreeClosedBookKZeroFOneLo": {
+      "value": 41.252002628472226,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('closed_book', 0) F1 95% CI low."
+    },
+    "VthreeClosedBookKZeroFOneHi": {
+      "value": 52.24037865277778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('closed_book', 0) F1 95% CI high."
+    },
+    "VthreeClosedBookKZeroEM": {
+      "value": 35.0,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('closed_book', 0) EM, points."
+    },
+    "VthreeClosedBookKZeroBilled": {
+      "value": 0.018322222222222222,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('closed_book', 0) billed USD per 1000 questions."
+    },
+    "VthreeClosedBookKZeroNeutral": {
+      "value": 0.01836027777777778,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('closed_book', 0) cache-neutral USD per 1000 questions."
+    },
+    "VthreeClosedBookKZeroReq": {
+      "value": 1.0,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('closed_book', 0) requests per question."
+    },
+    "VthreeClosedBookKZeroInTok": {
+      "value": 112.99166666666666,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('closed_book', 0) input tokens per question."
+    },
+    "VthreeClosedBookKZeroOutTok": {
+      "value": 14.122222222222222,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('closed_book', 0) output tokens per question."
+    },
+    "VthreeClosedBookKZeroHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('closed_book', 0) cache hit rate."
+    },
+    "VthreeClosedBookKZeroLat": {
+      "value": 2.873904166666667,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('closed_book', 0) latency per question, s."
+    },
+    "VthreeClosedBookKZeroTimeouts": {
+      "value": 1,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('closed_book', 0) timed-out (unconfirmed) attempts."
+    },
+    "VthreeClosedBookKZeroAobRatio": {
+      "value": 5.232110369921171,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('closed_book', 0)."
+    },
+    "VthreeClosedBookKZeroAobRatioLo": {
+      "value": 5.0493778762295625,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeClosedBookKZeroAobRatioHi": {
+      "value": 5.45173011686938,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeClosedBookKZeroAobDiff": {
+      "value": 27.259816805555566,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('closed_book', 0) F1, points."
+    },
+    "VthreeClosedBookKZeroAobDiffLo": {
+      "value": 21.637002447916675,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeClosedBookKZeroAobDiffHi": {
+      "value": 32.53912352430556,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeClosedBookKZeroAobNRatio": {
+      "value": 5.222370152957018,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('closed_book', 0)."
+    },
+    "VthreeClosedBookKZeroAobNRatioLo": {
+      "value": 5.04028667972172,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeClosedBookKZeroAobNRatioHi": {
+      "value": 5.44288665530518,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeMemgptKEightFOne": {
+      "value": 75.36179777777777,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('memgpt', 8) F1, points."
+    },
+    "VthreeMemgptKEightFOneLo": {
+      "value": 71.2287824930556,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('memgpt', 8) F1 95% CI low."
+    },
+    "VthreeMemgptKEightFOneHi": {
+      "value": 79.60526851041665,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('memgpt', 8) F1 95% CI high."
+    },
+    "VthreeMemgptKEightEM": {
+      "value": 59.166666666666664,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('memgpt', 8) EM, points."
+    },
+    "VthreeMemgptKEightBilled": {
+      "value": 0.2570625,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('memgpt', 8) billed USD per 1000 questions."
+    },
+    "VthreeMemgptKEightNeutral": {
+      "value": 0.23881027777777777,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('memgpt', 8) cache-neutral USD per 1000 questions."
+    },
+    "VthreeMemgptKEightReq": {
+      "value": 2.459722222222222,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('memgpt', 8) requests per question."
+    },
+    "VthreeMemgptKEightInTok": {
+      "value": 1814.45,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('memgpt', 8) input tokens per question."
+    },
+    "VthreeMemgptKEightOutTok": {
+      "value": 114.73055555555555,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('memgpt', 8) output tokens per question."
+    },
+    "VthreeMemgptKEightHit": {
+      "value": 1.7013113860643414,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('memgpt', 8) cache hit rate."
+    },
+    "VthreeMemgptKEightLat": {
+      "value": 11.501358333333334,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('memgpt', 8) latency per question, s."
+    },
+    "VthreeMemgptKEightTimeouts": {
+      "value": 7,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('memgpt', 8) timed-out (unconfirmed) attempts."
+    },
+    "VthreeMemgptKEightAobRatio": {
+      "value": 0.3729205500175596,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('memgpt', 8)."
+    },
+    "VthreeMemgptKEightAobRatioLo": {
+      "value": 0.34641623178008873,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeMemgptKEightAobRatioHi": {
+      "value": 0.4019050406253512,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeMemgptKEightAobDiff": {
+      "value": -1.5442666666666582,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('memgpt', 8) F1, points."
+    },
+    "VthreeMemgptKEightAobDiffLo": {
+      "value": -5.2152899861111175,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeMemgptKEightAobDiffHi": {
+      "value": 2.212114475694454,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeMemgptKEightAobNRatio": {
+      "value": 0.40150770544260495,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('memgpt', 8)."
+    },
+    "VthreeMemgptKEightAobNRatioLo": {
+      "value": 0.37351873277285236,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeMemgptKEightAobNRatioHi": {
+      "value": 0.43302990079340214,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeNotesResetKTwoFOne": {
+      "value": 71.38995916666667,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) F1, points."
+    },
+    "VthreeNotesResetKTwoFOneLo": {
+      "value": 66.94878519791668,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) F1 95% CI low."
+    },
+    "VthreeNotesResetKTwoFOneHi": {
+      "value": 76.10719855555558,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) F1 95% CI high."
+    },
+    "VthreeNotesResetKTwoEM": {
+      "value": 54.86111111111111,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) EM, points."
+    },
+    "VthreeNotesResetKTwoBilled": {
+      "value": 0.23701944444444445,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) billed USD per 1000 questions."
+    },
+    "VthreeNotesResetKTwoNeutral": {
+      "value": 0.2370101388888889,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) cache-neutral USD per 1000 questions."
+    },
+    "VthreeNotesResetKTwoReq": {
+      "value": 2.9430555555555555,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) requests per question."
+    },
+    "VthreeNotesResetKTwoInTok": {
+      "value": 1360.9277777777777,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) input tokens per question."
+    },
+    "VthreeNotesResetKTwoOutTok": {
+      "value": 201.8347222222222,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) output tokens per question."
+    },
+    "VthreeNotesResetKTwoHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) cache hit rate."
+    },
+    "VthreeNotesResetKTwoLat": {
+      "value": 12.617294444444443,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) latency per question, s."
+    },
+    "VthreeNotesResetKTwoTimeouts": {
+      "value": 6,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('notes_reset', 2) timed-out (unconfirmed) attempts."
+    },
+    "VthreeNotesResetKTwoAobRatio": {
+      "value": 0.4044557994538658,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('notes_reset', 2)."
+    },
+    "VthreeNotesResetKTwoAobRatioLo": {
+      "value": 0.3703686641225902,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeNotesResetKTwoAobRatioHi": {
+      "value": 0.44190123802730785,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeNotesResetKTwoAobDiff": {
+      "value": 2.4275719444444497,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('notes_reset', 2) F1, points."
+    },
+    "VthreeNotesResetKTwoAobDiffLo": {
+      "value": -1.1890413819444339,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeNotesResetKTwoAobDiffHi": {
+      "value": 6.330794333333338,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeNotesResetKTwoAobNRatio": {
+      "value": 0.4045572358894631,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('notes_reset', 2)."
+    },
+    "VthreeNotesResetKTwoAobNRatioLo": {
+      "value": 0.37046323229545286,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeNotesResetKTwoAobNRatioHi": {
+      "value": 0.4420156566906428,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeNotesResetKEightFOne": {
+      "value": 74.74140083333334,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) F1, points."
+    },
+    "VthreeNotesResetKEightFOneLo": {
+      "value": 70.38252856944447,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) F1 95% CI low."
+    },
+    "VthreeNotesResetKEightFOneHi": {
+      "value": 78.8433121111111,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) F1 95% CI high."
+    },
+    "VthreeNotesResetKEightEM": {
+      "value": 57.77777777777777,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) EM, points."
+    },
+    "VthreeNotesResetKEightBilled": {
+      "value": 0.28449583333333334,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) billed USD per 1000 questions."
+    },
+    "VthreeNotesResetKEightNeutral": {
+      "value": 0.25992444444444446,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) cache-neutral USD per 1000 questions."
+    },
+    "VthreeNotesResetKEightReq": {
+      "value": 2.3986111111111112,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) requests per question."
+    },
+    "VthreeNotesResetKEightInTok": {
+      "value": 1793.05,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) input tokens per question."
+    },
+    "VthreeNotesResetKEightOutTok": {
+      "value": 161.23888888888888,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) output tokens per question."
+    },
+    "VthreeNotesResetKEightHit": {
+      "value": 0.17048852204034715,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) cache hit rate."
+    },
+    "VthreeNotesResetKEightLat": {
+      "value": 9.469447222222223,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) latency per question, s."
+    },
+    "VthreeNotesResetKEightTimeouts": {
+      "value": 4,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('notes_reset', 8) timed-out (unconfirmed) attempts."
+    },
+    "VthreeNotesResetKEightAobRatio": {
+      "value": 0.33696060770271025,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('notes_reset', 8)."
+    },
+    "VthreeNotesResetKEightAobRatioLo": {
+      "value": 0.3097364341093135,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeNotesResetKEightAobRatioHi": {
+      "value": 0.3653344957132202,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeNotesResetKEightAobDiff": {
+      "value": -0.9238697222222333,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('notes_reset', 8) F1, points."
+    },
+    "VthreeNotesResetKEightAobDiffLo": {
+      "value": -4.81631281597223,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeNotesResetKEightAobDiffHi": {
+      "value": 3.1709365243055565,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeNotesResetKEightAobNRatio": {
+      "value": 0.36889245592736364,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('notes_reset', 8)."
+    },
+    "VthreeNotesResetKEightAobNRatioLo": {
+      "value": 0.33991528578807356,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeNotesResetKEightAobNRatioHi": {
+      "value": 0.3986805921614242,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreePbcKThreeFOne": {
+      "value": 73.13276222222223,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('pbc', 3) F1, points."
+    },
+    "VthreePbcKThreeFOneLo": {
+      "value": 68.69401618055558,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('pbc', 3) F1 95% CI low."
+    },
+    "VthreePbcKThreeFOneHi": {
+      "value": 77.35788784027778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('pbc', 3) F1 95% CI high."
+    },
+    "VthreePbcKThreeEM": {
+      "value": 56.25,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('pbc', 3) EM, points."
+    },
+    "VthreePbcKThreeBilled": {
+      "value": 0.29255694444444447,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('pbc', 3) billed USD per 1000 questions."
+    },
+    "VthreePbcKThreeNeutral": {
+      "value": 0.2871822222222223,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('pbc', 3) cache-neutral USD per 1000 questions."
+    },
+    "VthreePbcKThreeReq": {
+      "value": 2.7041666666666666,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('pbc', 3) requests per question."
+    },
+    "VthreePbcKThreeInTok": {
+      "value": 1805.8291666666667,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('pbc', 3) input tokens per question."
+    },
+    "VthreePbcKThreeOutTok": {
+      "value": 213.19861111111112,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('pbc', 3) output tokens per question."
+    },
+    "VthreePbcKThreeHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('pbc', 3) cache hit rate."
+    },
+    "VthreePbcKThreeLat": {
+      "value": 13.916552777777778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('pbc', 3) latency per question, s."
+    },
+    "VthreePbcKThreeTimeouts": {
+      "value": 8,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('pbc', 3) timed-out (unconfirmed) attempts."
+    },
+    "VthreePbcKThreeAobRatio": {
+      "value": 0.32767599849981743,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('pbc', 3)."
+    },
+    "VthreePbcKThreeAobRatioLo": {
+      "value": 0.3009529686151141,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreePbcKThreeAobRatioHi": {
+      "value": 0.35790607708919725,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreePbcKThreeAobDiff": {
+      "value": 0.6847688888889062,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('pbc', 3) F1, points."
+    },
+    "VthreePbcKThreeAobDiffLo": {
+      "value": -2.938168100694439,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreePbcKThreeAobDiffHi": {
+      "value": 4.405150270833328,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreePbcKThreeAobNRatio": {
+      "value": 0.3338791862696547,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('pbc', 3)."
+    },
+    "VthreePbcKThreeAobNRatioLo": {
+      "value": 0.3080523656027695,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreePbcKThreeAobNRatioHi": {
+      "value": 0.3628951641879236,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeRagoneKEightFOne": {
+      "value": 64.92548125,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('rag1', 8) F1, points."
+    },
+    "VthreeRagoneKEightFOneLo": {
+      "value": 59.80528177083335,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('rag1', 8) F1 95% CI low."
+    },
+    "VthreeRagoneKEightFOneHi": {
+      "value": 70.25439487847225,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('rag1', 8) F1 95% CI high."
+    },
+    "VthreeRagoneKEightEM": {
+      "value": 51.94444444444445,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('rag1', 8) EM, points."
+    },
+    "VthreeRagoneKEightBilled": {
+      "value": 0.08525972222222222,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('rag1', 8) billed USD per 1000 questions."
+    },
+    "VthreeRagoneKEightNeutral": {
+      "value": 0.08472875,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('rag1', 8) cache-neutral USD per 1000 questions."
+    },
+    "VthreeRagoneKEightReq": {
+      "value": 1.0,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('rag1', 8) requests per question."
+    },
+    "VthreeRagoneKEightInTok": {
+      "value": 778.1416666666667,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('rag1', 8) input tokens per question."
+    },
+    "VthreeRagoneKEightOutTok": {
+      "value": 13.829166666666667,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('rag1', 8) output tokens per question."
+    },
+    "VthreeRagoneKEightHit": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('rag1', 8) cache hit rate."
+    },
+    "VthreeRagoneKEightLat": {
+      "value": 2.8055652777777778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('rag1', 8) latency per question, s."
+    },
+    "VthreeRagoneKEightTimeouts": {
+      "value": 1,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('rag1', 8) timed-out (unconfirmed) attempts."
+    },
+    "VthreeRagoneKEightAobRatio": {
+      "value": 1.124374867642988,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('rag1', 8)."
+    },
+    "VthreeRagoneKEightAobRatioLo": {
+      "value": 1.0812790074987864,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeRagoneKEightAobRatioHi": {
+      "value": 1.1779589074463965,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeRagoneKEightAobDiff": {
+      "value": 8.892049861111104,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('rag1', 8) F1, points."
+    },
+    "VthreeRagoneKEightAobDiffLo": {
+      "value": 4.5671369895833225,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeRagoneKEightAobDiffHi": {
+      "value": 13.261128298611116,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeRagoneKEightAobNRatio": {
+      "value": 1.1316603474814237,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('rag1', 8)."
+    },
+    "VthreeRagoneKEightAobNRatioLo": {
+      "value": 1.0890026812235034,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeRagoneKEightAobNRatioHi": {
+      "value": 1.1848543660937956,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeReactKTwoFOne": {
+      "value": 73.26573416666666,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 2) F1, points."
+    },
+    "VthreeReactKTwoFOneLo": {
+      "value": 68.96933074305554,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 2) F1 95% CI low."
+    },
+    "VthreeReactKTwoFOneHi": {
+      "value": 77.55058937152782,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 2) F1 95% CI high."
+    },
+    "VthreeReactKTwoEM": {
+      "value": 56.94444444444444,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 2) EM, points."
+    },
+    "VthreeReactKTwoBilled": {
+      "value": 0.19142083333333335,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('react', 2) billed USD per 1000 questions."
+    },
+    "VthreeReactKTwoNeutral": {
+      "value": 0.19467625000000002,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('react', 2) cache-neutral USD per 1000 questions."
+    },
+    "VthreeReactKTwoReq": {
+      "value": 2.723611111111111,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('react', 2) requests per question."
+    },
+    "VthreeReactKTwoInTok": {
+      "value": 1325.6652777777779,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('react', 2) input tokens per question."
+    },
+    "VthreeReactKTwoOutTok": {
+      "value": 124.21944444444445,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('react', 2) output tokens per question."
+    },
+    "VthreeReactKTwoHit": {
+      "value": 4.731062705413111,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('react', 2) cache hit rate."
+    },
+    "VthreeReactKTwoLat": {
+      "value": 7.625934722222222,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 2) latency per question, s."
+    },
+    "VthreeReactKTwoTimeouts": {
+      "value": 0,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('react', 2) timed-out (unconfirmed) attempts."
+    },
+    "VthreeReactKTwoAobRatio": {
+      "value": 0.5008017529730162,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('react', 2)."
+    },
+    "VthreeReactKTwoAobRatioLo": {
+      "value": 0.46831803093413255,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeReactKTwoAobRatioHi": {
+      "value": 0.5378607314087208,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeReactKTwoAobDiff": {
+      "value": 0.5517969444444523,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('react', 2) F1, points."
+    },
+    "VthreeReactKTwoAobDiffLo": {
+      "value": -2.9240581805555657,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeReactKTwoAobDiffHi": {
+      "value": 4.274584680555556,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeReactKTwoAobNRatio": {
+      "value": 0.49253140363381076,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('react', 2)."
+    },
+    "VthreeReactKTwoAobNRatioLo": {
+      "value": 0.45544567137572745,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeReactKTwoAobNRatioHi": {
+      "value": 0.5326153498855463,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeReactKEightFOne": {
+      "value": 75.44560888888888,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 8) F1, points."
+    },
+    "VthreeReactKEightFOneLo": {
+      "value": 71.26446043750005,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 8) F1 95% CI low."
+    },
+    "VthreeReactKEightFOneHi": {
+      "value": 79.62158972569449,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 8) F1 95% CI high."
+    },
+    "VthreeReactKEightEM": {
+      "value": 59.02777777777778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 8) EM, points."
+    },
+    "VthreeReactKEightBilled": {
+      "value": 0.2353875,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('react', 8) billed USD per 1000 questions."
+    },
+    "VthreeReactKEightNeutral": {
+      "value": 0.23591416666666667,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('react', 8) cache-neutral USD per 1000 questions."
+    },
+    "VthreeReactKEightReq": {
+      "value": 2.3,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('react', 8) requests per question."
+    },
+    "VthreeReactKEightInTok": {
+      "value": 1838.1972222222223,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('react', 8) input tokens per question."
+    },
+    "VthreeReactKEightOutTok": {
+      "value": 104.18888888888888,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('react', 8) output tokens per question."
+    },
+    "VthreeReactKEightHit": {
+      "value": 12.4906498063471,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('react', 8) cache hit rate."
+    },
+    "VthreeReactKEightLat": {
+      "value": 12.710791666666667,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('react', 8) latency per question, s."
+    },
+    "VthreeReactKEightTimeouts": {
+      "value": 7,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('react', 8) timed-out (unconfirmed) attempts."
+    },
+    "VthreeReactKEightAobRatio": {
+      "value": 0.4072598965063519,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('react', 8)."
+    },
+    "VthreeReactKEightAobRatioLo": {
+      "value": 0.38505481738930447,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeReactKEightAobRatioHi": {
+      "value": 0.431377557736741,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeReactKEightAobDiff": {
+      "value": -1.6280777777777902,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('react', 8) F1, points."
+    },
+    "VthreeReactKEightAobDiffLo": {
+      "value": -5.333296875000002,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeReactKEightAobDiffHi": {
+      "value": 1.9739203194444475,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeReactKEightAobNRatio": {
+      "value": 0.4064366630518867,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('react', 8)."
+    },
+    "VthreeReactKEightAobNRatioLo": {
+      "value": 0.37730423241454597,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeReactKEightAobNRatioHi": {
+      "value": 0.4379495809935413,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeWindowtwoKEightFOne": {
+      "value": 74.97856527777778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('window2', 8) F1, points."
+    },
+    "VthreeWindowtwoKEightFOneLo": {
+      "value": 70.5761637152778,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('window2', 8) F1 95% CI low."
+    },
+    "VthreeWindowtwoKEightFOneHi": {
+      "value": 79.22933434375004,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('window2', 8) F1 95% CI high."
+    },
+    "VthreeWindowtwoKEightEM": {
+      "value": 58.75,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('window2', 8) EM, points."
+    },
+    "VthreeWindowtwoKEightBilled": {
+      "value": 0.24161666666666667,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('window2', 8) billed USD per 1000 questions."
+    },
+    "VthreeWindowtwoKEightNeutral": {
+      "value": 0.22959444444444443,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "('window2', 8) cache-neutral USD per 1000 questions."
+    },
+    "VthreeWindowtwoKEightReq": {
+      "value": 2.3041666666666667,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "('window2', 8) requests per question."
+    },
+    "VthreeWindowtwoKEightInTok": {
+      "value": 1773.736111111111,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('window2', 8) input tokens per question."
+    },
+    "VthreeWindowtwoKEightOutTok": {
+      "value": 104.44166666666666,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('window2', 8) output tokens per question."
+    },
+    "VthreeWindowtwoKEightHit": {
+      "value": 5.9287129333093205,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "('window2', 8) cache hit rate."
+    },
+    "VthreeWindowtwoKEightLat": {
+      "value": 7.514980555555556,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "('window2', 8) latency per question, s."
+    },
+    "VthreeWindowtwoKEightTimeouts": {
+      "value": 1,
+      "format": "int",
+      "source": "testruns",
+      "desc": "('window2', 8) timed-out (unconfirmed) attempts."
+    },
+    "VthreeWindowtwoKEightAobRatio": {
+      "value": 0.3967602492469706,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB billed cost / ('window2', 8)."
+    },
+    "VthreeWindowtwoKEightAobRatioLo": {
+      "value": 0.3698351740736676,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeWindowtwoKEightAobRatioHi": {
+      "value": 0.42523944834831,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeWindowtwoKEightAobDiff": {
+      "value": -1.1610341666666812,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "AoB F1 - ('window2', 8) F1, points."
+    },
+    "VthreeWindowtwoKEightAobDiffLo": {
+      "value": -5.036941250000001,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeWindowtwoKEightAobDiffHi": {
+      "value": 2.719347517361109,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeWindowtwoKEightAobNRatio": {
+      "value": 0.41762407143029984,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB cache-neutral cost / ('window2', 8)."
+    },
+    "VthreeWindowtwoKEightAobNRatioLo": {
+      "value": 0.3898130658478976,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeWindowtwoKEightAobNRatioHi": {
+      "value": 0.4480397996916386,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeBilledDecision": {
+      "value": "not supported",
+      "format": "text",
+      "source": "testruns",
+      "desc": "H8 on billed USD (secondary)."
+    },
+    "VthreeBilledRatio": {
+      "value": 0.4555396424163628,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "Billed cost(aob)/cost(B*)."
+    },
+    "VthreeBilledRatioLo": {
+      "value": 0.4364609491573854,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeBilledRatioHi": {
+      "value": 0.4778529627794284,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeSensRatio": {
+      "value": 0.45480613455402263,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "Billed ratio with each timed-out attempt priced at its retry's cost."
+    },
+    "VthreeSensRatioLo": {
+      "value": 0.43622646484459854,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeSensRatioHi": {
+      "value": 0.47706672161217356,
+      "format": "float3",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeSensDecision": {
+      "value": "not supported",
+      "format": "text",
+      "source": "testruns",
+      "desc": "H8 decision in the sensitivity analysis."
+    },
+    "VthreeAobOverMin": {
+      "value": 0.0,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "Share of AoB requests at or above 1,024 prompt tokens."
+    },
+    "VthreeAobMaxPrompt": {
+      "value": 939,
+      "format": "int",
+      "source": "testruns",
+      "desc": "Largest AoB prompt, tokens."
+    },
+    "VthreeAobReqPerRun": {
+      "value": 1.0833333333333333,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "AoB answer requests per run."
+    },
+    "VthreeAobSupported": {
+      "value": 90.97222222222221,
+      "format": "pct1",
+      "source": "testruns",
+      "desc": "AoB answers supported by the gate."
+    },
+    "VthreeIsoTokens": {
+      "value": 9000,
+      "format": "int",
+      "source": "testruns",
+      "desc": "Tokens flagged by the registered cache check (same-request retries, D51)."
+    },
+    "VthreeIsoRequests": {
+      "value": 7,
+      "format": "int",
+      "source": "testruns",
+      "desc": "Requests flagged by it."
+    },
+    "VthreeTimeoutsTotal": {
+      "value": 53,
+      "format": "int",
+      "source": "testruns",
+      "desc": "Timed-out attempts, all arms."
+    },
+    "VthreeRuns": {
+      "value": 10800,
+      "format": "int",
+      "source": "testruns",
+      "desc": "Test runs."
+    },
+    "VthreeCiLevel": {
+      "value": 95,
+      "format": "pct0",
+      "source": "testruns",
+      "desc": "Confidence level of every interval (percentile bootstrap)."
+    },
+    "VthreeRepSdMax": {
+      "value": 1.2901928736591237,
+      "format": "float1",
+      "source": "testruns",
+      "desc": "Largest SD of a cell's three per-repeat F1 means, points."
+    },
+    "VthreeAgreeMin": {
+      "value": 63.33333333333333,
+      "format": "pct0",
+      "source": "testruns",
+      "desc": "Smallest share of questions with the same normalised answer in all repeats."
+    },
+    "VthreeAgreeMax": {
+      "value": 87.5,
+      "format": "pct0",
+      "source": "testruns",
+      "desc": "Largest such share."
+    },
+    "VthreeFrontierBilled": {
+      "value": "Agentless, AoB, AoB without the gate, AoB without packing, closed book, the one-request reference",
+      "format": "text",
+      "source": "testruns",
+      "desc": "Cells on the billed cost-F1 frontier."
+    },
+    "VthreeFrontierSame": {
+      "value": "True",
+      "format": "text",
+      "source": "testruns",
+      "desc": "Whether the cache-neutral frontier equals the billed one."
+    },
+    "VthreeExplNopackDiff": {
+      "value": -0.06389166666666075,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "EXPLORATORY: F1(aob_nopack) - F1(B*), points."
+    },
+    "VthreeExplNopackDiffLo": {
+      "value": -2.906017170138888,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI low."
+    },
+    "VthreeExplNopackDiffHi": {
+      "value": 2.7509575208333215,
+      "format": "signedfloat2",
+      "source": "testruns",
+      "desc": "Its CI high."
+    },
+    "VthreeExplNopackNeutral": {
+      "value": 0.602909270564986,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "EXPLORATORY: cache-neutral cost(aob_nopack)/cost(B*)."
+    },
+    "VthreeExplNopackBilled": {
+      "value": 0.6345228588211227,
+      "format": "float2",
+      "source": "testruns",
+      "desc": "EXPLORATORY: billed cost(aob_nopack)/cost(B*)."
+    }
+  }
+}

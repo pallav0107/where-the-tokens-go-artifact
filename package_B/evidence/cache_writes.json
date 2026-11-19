@@ -1,0 +1,506 @@
+{
+  "aggregates": {
+    "annotated_requests": 92147,
+    "base_rate": {
+      "exposure_tokens": 13997808401,
+      "rate": 0.001131665654093989,
+      "requests": 32363,
+      "rewrite_tokens": 15840839.0,
+      "sessions": 31
+    },
+    "by_ttl": {
+      "1h": {
+        "new_suffix": 112304731.0,
+        "rewrite": 465650053.0
+      },
+      "5m": {
+        "new_suffix": 130103449.0,
+        "rewrite": 83921236.0
+      }
+    },
+    "config_marker_rewrite": {
+      "after_list_delta": 67841219,
+      "prompt_changed": 1695133,
+      "version_changed": 52004808
+    },
+    "five_minute": {
+      "breakeven_reads": 0.266810270382244,
+      "cost_5m_counterfactual_usd": 2708.058203303167,
+      "cost_actual_usd": 2634.7565545531684,
+      "cost_uncached_usd": 23115.648098531292,
+      "read_tokens": 5325642985.906284,
+      "reads_per_token": 24.883311875479617,
+      "share_never_reread": 0.04671185874359649,
+      "share_paid_back": 0.9532881412564035,
+      "tokens": 214024685.0
+    },
+    "input_since_executor_first_turn": {
+      "from": "2026-08-01",
+      "tokens": 22263393794
+    },
+    "keepalive": {
+      "avoidable_tokens": 325495953.9530319,
+      "breakeven_pings_weighted": 27.637872083663915,
+      "cheaper_tokens": 290497042,
+      "events": 663,
+      "median_gap_hours_token_weighted": 3.4740883333333334,
+      "oracle_saving_usd": 2195.1085561718005,
+      "ping_cost_usd": 1525.7903212709978,
+      "policy_avoided_rewrite_usd": 2603.4268903497205,
+      "policy_ping_cost_usd": 1437.3018605500001,
+      "policy_pings": 19,
+      "policy_saving_usd": 1166.1250297997224,
+      "policy_sessions": 35,
+      "rewrite_cost_usd": 3191.9537200000036,
+      "rewrite_tokens": 325883865
+    },
+    "new_suffix": 242408180,
+    "one_hour": {
+      "breakeven_reads": 1.0908801269748647,
+      "cost_5m_counterfactual_usd": 24437.680210846906,
+      "cost_actual_usd": 15903.452288396928,
+      "cost_uncached_usd": 123247.12735546778,
+      "read_tokens": 23775818436.093716,
+      "reads_per_token": 41.13785211974942,
+      "share_never_reread": 0.03892914423325765,
+      "share_paid_back": 0.9198041327284224,
+      "tokens": 577954784.0
+    },
+    "rewrite": 549571289,
+    "rewrite_by_cause": {
+      "compaction": 9426095.0,
+      "config_change": 78570394.0,
+      "gap_5_to_60min": 50954666.0,
+      "gap_gt_60min": 348098183.0,
+      "model_change": 21255982.0,
+      "within_lifetime": 41265969.0
+    },
+    "rewrite_by_cause_pre_rev3": {
+      "compaction": 9426095.0,
+      "gap_5_to_60min": 77449985.0,
+      "gap_gt_60min": 414691327.0,
+      "model_change": 21255982.0,
+      "within_lifetime": 26747900.0
+    },
+    "rewrite_by_gap": {
+      "5_to_60min": 86058318,
+      "gt_60min": 423625866,
+      "le_5min": 39887105
+    },
+    "rewrite_chain_by_cause": {
+      "compaction": {
+        "broken": 9426095.0,
+        "intact": 0,
+        "unknown": 0
+      },
+      "config_change": {
+        "broken": 791761.0,
+        "intact": 77778633.0,
+        "unknown": 0
+      },
+      "gap_5_to_60min": {
+        "broken": 0.0,
+        "intact": 50954666.0,
+        "unknown": 0
+      },
+      "gap_gt_60min": {
+        "broken": 22214318.0,
+        "intact": 325883865.0,
+        "unknown": 0
+      },
+      "model_change": {
+        "broken": 3581475.0,
+        "intact": 17674507.0,
+        "unknown": 0
+      },
+      "within_lifetime": {
+        "broken": 3055826.0,
+        "intact": 38210143.0,
+        "unknown": 0
+      }
+    },
+    "rewrite_cost_by_cause_usd": {
+      "compaction": 84.81769599999997,
+      "config_change": 777.3960567500002,
+      "gap_5_to_60min": 271.3694399999999,
+      "gap_gt_60min": 3427.633156000006,
+      "model_change": 267.73377225,
+      "within_lifetime": 402.2283645
+    },
+    "rewrite_cost_by_gap_usd": {
+      "5_to_60min": 652.35243625,
+      "gt_60min": 4154.103440750008,
+      "le_5min": 424.72260849999986
+    },
+    "rewrite_gt_60min_net_of_base_rate": 347684034.68318796,
+    "rewrite_shrunk_by_cause": {
+      "compaction": 9426095.0,
+      "config_change": 19322512.0,
+      "gap_5_to_60min": 3658285.0,
+      "gap_gt_60min": 6756537.0,
+      "model_change": 13927414.0,
+      "within_lifetime": 13214106.0
+    },
+    "sessions": {
+      "long_gaps_total": 909,
+      "max_hours": 3684.5923069444443,
+      "median_hours": 48.9036225,
+      "median_long_gaps": 2,
+      "median_requests": 248,
+      "min_hours": 0.013964444444444444,
+      "sessions": 35
+    },
+    "total_cost_usd": 21264.880151150082,
+    "unpriced_requests": 0,
+    "write_cost_by_ttl_usd": {
+      "1h": 5803.49447999992,
+      "5m": 1300.6595162500016
+    },
+    "write_cost_usd": {
+      "new_suffix": 1872.975510750004,
+      "rewrite": 5231.178485499999
+    },
+    "write_tokens": 791979469
+  },
+  "figures": {
+    "CwBaseRatePct": {
+      "desc": "base rate: within-lifetime re-written tokens per cached token per request in one-hour sessions (no model, compaction or config change)",
+      "format": "pct2",
+      "source": "transcripts",
+      "value": 0.1131665654093989
+    },
+    "CwBaseRateRequests": {
+      "desc": "requests in one-hour sessions the base rate is estimated from",
+      "format": "int",
+      "source": "transcripts",
+      "value": 32363
+    },
+    "CwCauseCompactCostPct": {
+      "desc": "compaction re-writes, share of total list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 0.3988627981776456
+    },
+    "CwCauseCompactPct": {
+      "desc": "re-written tokens after a compaction marker (and no model change)",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 1.7151723877627822
+    },
+    "CwCauseConfigCostPct": {
+      "desc": "list/prompt/version-change re-writes, share of total list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 3.6557744564008545
+    },
+    "CwCauseConfigPct": {
+      "desc": "re-written tokens after a tool/agent/MCP-list delta, a changed system-prompt snapshot or a changed client version (no model change or compaction)",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 14.296670072224243
+    },
+    "CwCauseLongGapCostPct": {
+      "desc": "expiry re-writes after more than an hour, share of total list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 16.118751347933777
+    },
+    "CwCauseLongGapNetPct": {
+      "desc": "expiry re-written tokens net of the base rate of non-expiry invalidations",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 63.26459217253395
+    },
+    "CwCauseLongGapPct": {
+      "desc": "re-written tokens after a gap of more than an hour, no observed other cause (expiry)",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 63.33995060648083
+    },
+    "CwCauseMidGapCostPct": {
+      "desc": "five-minute-entry expiry re-writes (five to sixty minutes), share of total cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 1.2761390521419103
+    },
+    "CwCauseMidGapPct": {
+      "desc": "re-written five-minute entries after a gap of five to sixty minutes (expiry)",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 9.271711790606297
+    },
+    "CwCauseModelCostPct": {
+      "desc": "model-change re-writes, share of total list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 1.259041999517312
+    },
+    "CwCauseModelPct": {
+      "desc": "re-written tokens whose request changed model from the previous request",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 3.8677388039461427
+    },
+    "CwCausePreRevLongGapPct": {
+      "desc": "pre-rev3 rule (no list/prompt/version markers): re-written tokens after a gap of more than an hour",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 75.45724008882858
+    },
+    "CwCauseWithinCostPct": {
+      "desc": "within-lifetime re-writes (not expiry), share of total list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 1.8915148434459719
+    },
+    "CwCauseWithinPct": {
+      "desc": "re-written tokens within their entries' lifetime (gap at most five minutes, or one-hour entries within the hour), no observed cause: not expiry",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 7.508756338979709
+    },
+    "CwCompactChainBrokenPct": {
+      "desc": "compaction re-writes whose message chain does not reach the previous request",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 100.0
+    },
+    "CwExpiryTotalCostPct": {
+      "desc": "share of total list-price cost spent re-writing a prefix after an idle gap of more than an hour",
+      "format": "pct0",
+      "source": "list_prices",
+      "value": 19.535042808719236
+    },
+    "CwLongBreakeven": {
+      "desc": "re-reads a one-hour write needs to pay back, token-weighted over models",
+      "format": "float2",
+      "source": "list_prices",
+      "value": 1.0908801269748647
+    },
+    "CwLongFiveMinDeltaPct": {
+      "desc": "one-hour blocks: five-minute counterfactual cost over actual, percent change",
+      "format": "signedpct1",
+      "source": "list_prices",
+      "value": 53.66273792437195
+    },
+    "CwLongGapChainPct": {
+      "desc": "expiry re-writes after more than an hour: share whose message chain is unbroken",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 93.61837576727598
+    },
+    "CwLongGapShrunkPct": {
+      "desc": "expiry re-writes whose prompt was shorter than the previous request's cached prefix (content removed, as microcompact would)",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 1.9409860004928552
+    },
+    "CwLongNeverPct": {
+      "desc": "share of one-hour-written tokens never re-read in their transcript",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 3.892914423325765
+    },
+    "CwLongPaidPct": {
+      "desc": "share of one-hour-written tokens re-read at least the break-even number of times",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 91.98041327284224
+    },
+    "CwLongReads": {
+      "desc": "same-transcript re-reads per one-hour-written token",
+      "format": "float1",
+      "source": "tokenledger_log",
+      "value": 41.13785211974942
+    },
+    "CwLongSavingPct": {
+      "desc": "one-hour blocks: list-price saving of writing and re-reading over sending uncached",
+      "format": "pct0",
+      "source": "list_prices",
+      "value": 87.09628968265655
+    },
+    "CwNewSharePct": {
+      "desc": "share of cache-write tokens that extend the cached prefix (new suffix)",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 30.607886881976736
+    },
+    "CwOneHourSessions": {
+      "desc": "transcripts with at least 99% of written tokens at the one-hour rate",
+      "format": "int",
+      "source": "transcripts",
+      "value": 31
+    },
+    "CwRewriteCostSharePct": {
+      "desc": "share of list-price cache-write cost spent on re-writes",
+      "format": "pct0",
+      "source": "list_prices",
+      "value": 73.63548831094212
+    },
+    "CwRewriteLongGapPct": {
+      "desc": "re-write tokens after a gap of more than an hour (expiry)",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 77.08296893944909
+    },
+    "CwRewriteMidGapPct": {
+      "desc": "re-write tokens after a gap of five to sixty minutes",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 15.659172835719225
+    },
+    "CwRewriteSharePct": {
+      "desc": "share of cache-write tokens re-writing positions cached before",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 69.39211311802327
+    },
+    "CwRewriteShortGapPct": {
+      "desc": "re-write tokens after a gap of at most five minutes (invalidation)",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 7.257858224831683
+    },
+    "CwRewriteTotalCostPct": {
+      "desc": "re-writes' share of total list-price cost",
+      "format": "pct0",
+      "source": "list_prices",
+      "value": 24.600084497617438
+    },
+    "CwShortNeverPct": {
+      "desc": "share of five-minute-written tokens never re-read in their transcript",
+      "format": "pct0",
+      "source": "tokenledger_log",
+      "value": 4.671185874359649
+    },
+    "CwShortReads": {
+      "desc": "same-transcript re-reads per five-minute-written token",
+      "format": "float1",
+      "source": "tokenledger_log",
+      "value": 24.883311875479617
+    },
+    "CwWithinChainPct": {
+      "desc": "within-lifetime re-writes: share whose message chain is unbroken",
+      "format": "pct0",
+      "source": "transcripts",
+      "value": 92.59480372313564
+    },
+    "KaCheaperPct": {
+      "desc": "expiry re-written tokens (unbroken chain) for which hourly pings over the gap would have cost less, net of the base rate (hindsight)",
+      "format": "pct0",
+      "source": "list_prices",
+      "value": 89.1412779825721
+    },
+    "KaMedianGapHours": {
+      "desc": "median idle gap (hours) of expiry re-writes of an unchanged prefix, token-weighted",
+      "format": "float1",
+      "source": "transcripts",
+      "value": 3.4740883333333334
+    },
+    "KaOracleSavingPct": {
+      "desc": "hindsight saving of pinging only where cheaper, share of total list-price cost",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 10.322694229024757
+    },
+    "KaPolicyPings": {
+      "desc": "capped policy: most hourly pings per idle period (w / rho - 1: the pings plus the returning read cost one full re-write)",
+      "format": "int",
+      "source": "list_prices",
+      "value": 19
+    },
+    "KaPolicySavingPct": {
+      "desc": "capped keepalive policy on main-loop sessions, net of every ping (also after each session's last request): share of total list-price cost saved",
+      "format": "pct1",
+      "source": "list_prices",
+      "value": 5.483807204700629
+    },
+    "KaRefPings": {
+      "desc": "pings (prefix reads) costing as much as one full-prefix one-hour re-write at the largest hit multiplier (one-hour write multiplier / hit multiplier)",
+      "format": "int",
+      "source": "list_prices",
+      "value": 20.0
+    },
+    "KaWeightedPings": {
+      "desc": "the same ratio at each re-write's own model and write-tier prices, weighted by re-written tokens",
+      "format": "int",
+      "source": "list_prices",
+      "value": 27.637872083663915
+    },
+    "OrchInputSinceExec": {
+      "desc": "orchestrator input tokens (all kinds) on or after the executor's first delegated turn",
+      "format": "billions1",
+      "source": "tokenledger_log",
+      "value": 22263393794
+    },
+    "SessMedianDays": {
+      "desc": "main-loop sessions: median wall-clock duration (days)",
+      "format": "float1",
+      "source": "tokenledger_log",
+      "value": 2.0376509375
+    },
+    "SessMedianHours": {
+      "desc": "main-loop sessions: median wall-clock duration, first to last request (hours)",
+      "format": "float1",
+      "source": "tokenledger_log",
+      "value": 48.9036225
+    },
+    "SessMedianLongGaps": {
+      "desc": "main-loop sessions: median idle gaps of over an hour per session",
+      "format": "int",
+      "source": "tokenledger_log",
+      "value": 2
+    },
+    "SessMedianRequests": {
+      "desc": "main-loop sessions: median requests per session",
+      "format": "int",
+      "source": "tokenledger_log",
+      "value": 248
+    }
+  },
+  "kind": "cache_writes",
+  "provenance": {
+    "generated_at": "2026-11-17T04:07:01Z",
+    "generator": "tools/cache_writes.py",
+    "notes": [
+      "Not pre-registered (17 Nov 2026; revised 17 Nov 2026 for rev3): re-writes by observed cause, the unbroken-message-chain check, the TTL-tier rule, list/prompt/version markers, the base rate of non-expiry invalidations, keepalive (hindsight and a capped policy), main-loop session statistics, and the orchestrator input since the executor's first turn.",
+      "Positional model per transcript; re-reads counted within the writing transcript only, so reads by other transcripts of a shared prefix are missed (re-reads are a lower bound).",
+      "Gap = time since the transcript's previous request, which refreshed every live entry.",
+      "Cause order: model change, compaction marker, list/prompt/version change, then gap and the TTL tier of the covering entries; one-hour entries re-written within the hour are not expiry. Microcompact leaves no marker; the base rate covers unobserved non-expiry invalidations.",
+      "A resumed session's first full write counts as a new-suffix write, so re-writes are a lower bound.",
+      "Keepalive assumes the prefix is held at the one-hour rate, nets out the base rate and ignores the pings' own uncached and output tokens; the hindsight figure knows the user returned, the capped policy does not.",
+      "Analysis record sha256 a7219946c0ed1eab."
+    ],
+    "sources": [
+      {
+        "command": "python tools/cache_writes.py --log <the snapshot's evidence/raw/claude_requests.jsonl>",
+        "description": "the per-request usage log the orchestrator snapshot was measured on (same sha256)",
+        "grade": "measured",
+        "id": "tokenledger_log",
+        "sha256": "7f1ae9cf1dabd080ba0c3e98bbb53124351adb963bca1c4c21db85ab59a47bd9"
+      },
+      {
+        "command": "evidence/params/anthropic_list_prices.json",
+        "description": "Anthropic list prices per model and token kind (as in the orchestrator snapshot)",
+        "grade": "model-parameter",
+        "id": "list_prices",
+        "sha256": "10bafadda30eadbb8f69cef83519443d845222b1df5dac7ace31d018b5dc85ac"
+      },
+      {
+        "command": "python tools/cache_writes.py (tools/claude_usage.py chain mode)",
+        "description": "cause annotations (model id, compaction markers, parentUuid chain) from re-reading the transcripts; the re-extracted log hashes to the snapshot's tokenledger_log",
+        "grade": "measured",
+        "id": "transcripts",
+        "sha256": "7f1ae9cf1dabd080ba0c3e98bbb53124351adb963bca1c4c21db85ab59a47bd9"
+      },
+      {
+        "command": "evidence/harness_costs.json",
+        "description": "the executor's first delegated-turn date (figures.ExecFirstDate)",
+        "grade": "measured",
+        "id": "harness_costs",
+        "sha256": "70b2d34dcef3d95ce122611216ea70cda57328b1fed9a6aef6dcfb1ede960f19"
+      }
+    ]
+  },
+  "schema_version": 1
+}

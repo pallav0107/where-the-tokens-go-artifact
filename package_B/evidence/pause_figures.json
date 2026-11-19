@@ -1,0 +1,217 @@
+{
+  "aggregates": {
+    "client_version": "2.1.326",
+    "direct_pauses": 35,
+    "false_positives": 3,
+    "full_rewrite_n": 0,
+    "model": "claude-sonnet-5-5",
+    "natural_long_gaps": 3,
+    "pilot_runs": 3,
+    "precision_any_gap_pct": 100.0,
+    "precision_hi_pct": 100.0,
+    "precision_lo_pct": 76.92307692307693,
+    "read_ci_a": [
+      95.15925368428579,
+      96.3251450120451
+    ],
+    "read_ci_b": [
+      87.38321178274646,
+      90.85321473871367
+    ],
+    "recall_any_gap_pct": 100.0,
+    "rest_rewritten_n": 35,
+    "sessions_c": 5,
+    "sessions_failed": 0,
+    "sessions_paired": 10,
+    "sessions_valid": 25,
+    "shared_prefix_tokens": 12784,
+    "tasks_hard": 26,
+    "tasks_medium": 14,
+    "tasks_per_session": 4,
+    "tasks_total": 40
+  },
+  "figures": {
+    "PauseClientVersion": {
+      "desc": "registered Claude Code version",
+      "format": "text",
+      "source": "prereg",
+      "value": "2.1.326"
+    },
+    "PauseDirectPauses": {
+      "desc": "injected pauses in the direct check, B + C",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 35
+    },
+    "PauseFalsePositives": {
+      "desc": "H3 events labelled idle without an injected pause",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 3
+    },
+    "PauseFullRewriteN": {
+      "desc": "pauses followed by a full re-write",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 0
+    },
+    "PauseModel": {
+      "desc": "registered model",
+      "format": "text",
+      "source": "prereg",
+      "value": "claude-sonnet-5-5"
+    },
+    "PauseNaturalGaps": {
+      "desc": "natural gaps longer than the lifetime",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 3
+    },
+    "PausePilotRuns": {
+      "desc": "excluded pilot runs",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 3
+    },
+    "PausePrecisionAnyGapPct": {
+      "desc": "precision with any gap beyond the lifetime as truth",
+      "format": "pct0",
+      "source": "pause_experiment",
+      "value": 100.0
+    },
+    "PausePrecisionHiPct": {
+      "desc": "H3 precision, 95% bootstrap high",
+      "format": "pct0",
+      "source": "pause_experiment",
+      "value": 100.0
+    },
+    "PausePrecisionLoPct": {
+      "desc": "H3 precision, 95% bootstrap low",
+      "format": "pct0",
+      "source": "pause_experiment",
+      "value": 76.92307692307693
+    },
+    "PauseReadCiHiA": {
+      "desc": "A: cache-read share, 95% bootstrap high",
+      "format": "pct1",
+      "source": "pause_experiment",
+      "value": 96.3251450120451
+    },
+    "PauseReadCiHiB": {
+      "desc": "B: cache-read share, 95% bootstrap high",
+      "format": "pct1",
+      "source": "pause_experiment",
+      "value": 90.85321473871367
+    },
+    "PauseReadCiLoA": {
+      "desc": "A: cache-read share, 95% bootstrap low",
+      "format": "pct1",
+      "source": "pause_experiment",
+      "value": 95.15925368428579
+    },
+    "PauseReadCiLoB": {
+      "desc": "B: cache-read share, 95% bootstrap low",
+      "format": "pct1",
+      "source": "pause_experiment",
+      "value": 87.38321178274646
+    },
+    "PauseRecallAnyGapPct": {
+      "desc": "recall with any gap beyond the lifetime as truth",
+      "format": "pct0",
+      "source": "pause_experiment",
+      "value": 100.0
+    },
+    "PauseRestRewrittenN": {
+      "desc": "pauses after which everything not read back was re-written (exploratory)",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 35
+    },
+    "PauseSessionsC": {
+      "desc": "one-hour-caching sessions (C)",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 5
+    },
+    "PauseSessionsFailed": {
+      "desc": "analysed sessions that failed",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 0
+    },
+    "PauseSessionsPaired": {
+      "desc": "sessions run in both A and B",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 10
+    },
+    "PauseSessionsValid": {
+      "desc": "valid analysed sessions, A + B + C",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 25
+    },
+    "PauseSharedPrefixTokens": {
+      "desc": "tokens read back after every five-minute pause (shared head)",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 12784
+    },
+    "PauseTasksHard": {
+      "desc": "tasks annotated 1-4 hours or more",
+      "format": "int",
+      "source": "sessions",
+      "value": 26
+    },
+    "PauseTasksMedium": {
+      "desc": "tasks annotated 15 min - 1 hour",
+      "format": "int",
+      "source": "sessions",
+      "value": 14
+    },
+    "PauseTasksPerSession": {
+      "desc": "tasks chained per session",
+      "format": "word",
+      "source": "sessions",
+      "value": 4
+    },
+    "PauseTasksTotal": {
+      "desc": "SWE-bench Verified tasks in the sessions",
+      "format": "int",
+      "source": "sessions",
+      "value": 40
+    }
+  },
+  "kind": "pause_figures",
+  "provenance": {
+    "generated_at": "2026-11-19T06:14:10Z",
+    "generator": "tools/pause_figures.py",
+    "notes": [
+      "Restates and regroups committed pause-experiment evidence; no new measurement."
+    ],
+    "sources": [
+      {
+        "command": "evidence/pause_experiment.json",
+        "description": "pause experiment aggregates",
+        "grade": "measured",
+        "id": "pause_experiment",
+        "sha256": "a186142449222a6c79c9591ea266aed51ed4072a60a9c67b32fd27b2ab9e15e3"
+      },
+      {
+        "command": "experiments/pause/sessions.json",
+        "description": "registered sessions and tasks",
+        "grade": "documented-record",
+        "id": "sessions",
+        "sha256": "53449073897e9c5d9f0730d3a7895850880f26bb6d9f788f172923906bfef217"
+      },
+      {
+        "command": "experiments/PREREG_pause.md",
+        "description": "registered client version and model",
+        "grade": "documented-record",
+        "id": "prereg",
+        "sha256": "025b5d9f2ab33fca270618d6aa16fd1cb4b2d0fb01efd226a587986f5e877347"
+      }
+    ]
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,407 @@
+{
+  "aggregates": {
+    "arms": {
+      "box-ollama": {
+        "gap0_median_pp_s": 0.737542,
+        "lifetime_min": 5,
+        "n_sessions": 18
+      },
+      "spark-ollama": {
+        "gap0_median_pp_s": 0.765627,
+        "lifetime_min": 30,
+        "n_sessions": 15
+      }
+    },
+    "series_medians": {
+      "control": {
+        "0": 1.0,
+        "10": 1.0240312841631762,
+        "2": 1.0365256188718528,
+        "4": 0.9862504848966925,
+        "6": 1.0327744449973681
+      },
+      "local": {
+        "0": 1.0,
+        "10": 16.08073574115101,
+        "2": 0.9825826868164795,
+        "4": 0.9657660173929077,
+        "6": 15.962130970168477
+      },
+      "ping": {
+        "10": 0.9514441211483549
+      }
+    },
+    "series_medians_pp_s": {
+      "control": {
+        "0": 0.765627,
+        "10": 0.784026,
+        "2": 0.793592,
+        "4": 0.7551,
+        "6": 0.79072
+      },
+      "local": {
+        "0": 0.737542,
+        "10": 11.860218,
+        "2": 0.724696,
+        "4": 0.712293,
+        "6": 11.772742
+      },
+      "ping": {
+        "10": 0.70173
+      }
+    },
+    "sessions": [
+      {
+        "arm": "box-ollama",
+        "block": 1,
+        "condition": "0",
+        "gap_min": 0,
+        "pp_s": 0.734595,
+        "rel": 0.9960042953486038,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 2,
+        "condition": "0",
+        "gap_min": 0,
+        "pp_s": 0.737542,
+        "rel": 1.0,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 3,
+        "condition": "0",
+        "gap_min": 0,
+        "pp_s": 0.750361,
+        "rel": 1.0173807050988282,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 1,
+        "condition": "2",
+        "gap_min": 2,
+        "pp_s": 0.767654,
+        "rel": 1.0408275054166405,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 2,
+        "condition": "2",
+        "gap_min": 2,
+        "pp_s": 0.724696,
+        "rel": 0.9825826868164795,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 3,
+        "condition": "2",
+        "gap_min": 2,
+        "pp_s": 0.711722,
+        "rel": 0.9649918241944186,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 1,
+        "condition": "4",
+        "gap_min": 4,
+        "pp_s": 0.705569,
+        "rel": 0.9566492484495798,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 2,
+        "condition": "4",
+        "gap_min": 4,
+        "pp_s": 0.715957,
+        "rel": 0.9707338700711281,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 3,
+        "condition": "4",
+        "gap_min": 4,
+        "pp_s": 0.712293,
+        "rel": 0.9657660173929077,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 1,
+        "condition": "6",
+        "gap_min": 6,
+        "pp_s": 11.772742,
+        "rel": 15.962130970168477,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 2,
+        "condition": "6",
+        "gap_min": 6,
+        "pp_s": 11.815736,
+        "rel": 16.020424599548228,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 3,
+        "condition": "6",
+        "gap_min": 6,
+        "pp_s": 11.750369,
+        "rel": 15.93179642650859,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 1,
+        "condition": "10",
+        "gap_min": 10,
+        "pp_s": 11.859687,
+        "rel": 16.080015782152067,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 2,
+        "condition": "10",
+        "gap_min": 10,
+        "pp_s": 11.860218,
+        "rel": 16.08073574115101,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 3,
+        "condition": "10",
+        "gap_min": 10,
+        "pp_s": 11.869113,
+        "rel": 16.092796071274584,
+        "series": "local"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 1,
+        "condition": "10+ping",
+        "gap_min": 10,
+        "pp_s": 0.69598,
+        "rel": 0.9436479549639207,
+        "series": "ping"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 2,
+        "condition": "10+ping",
+        "gap_min": 10,
+        "pp_s": 0.703249,
+        "rel": 0.9535036648760341,
+        "series": "ping"
+      },
+      {
+        "arm": "box-ollama",
+        "block": 3,
+        "condition": "10+ping",
+        "gap_min": 10,
+        "pp_s": 0.70173,
+        "rel": 0.9514441211483549,
+        "series": "ping"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 1,
+        "condition": "0",
+        "gap_min": 0,
+        "pp_s": 0.765627,
+        "rel": 1.0,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 2,
+        "condition": "0",
+        "gap_min": 0,
+        "pp_s": 0.789879,
+        "rel": 1.0316759988871866,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 3,
+        "condition": "0",
+        "gap_min": 0,
+        "pp_s": 0.760732,
+        "rel": 0.9936065473135091,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 1,
+        "condition": "2",
+        "gap_min": 2,
+        "pp_s": 0.769089,
+        "rel": 1.00452178410636,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 2,
+        "condition": "2",
+        "gap_min": 2,
+        "pp_s": 0.793592,
+        "rel": 1.0365256188718528,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 3,
+        "condition": "2",
+        "gap_min": 2,
+        "pp_s": 0.814669,
+        "rel": 1.0640546898163206,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 1,
+        "condition": "4",
+        "gap_min": 4,
+        "pp_s": 0.759942,
+        "rel": 0.9925747132742184,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 2,
+        "condition": "4",
+        "gap_min": 4,
+        "pp_s": 0.75468,
+        "rel": 0.9857019149011204,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 3,
+        "condition": "4",
+        "gap_min": 4,
+        "pp_s": 0.7551,
+        "rel": 0.9862504848966925,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 1,
+        "condition": "6",
+        "gap_min": 6,
+        "pp_s": 0.815642,
+        "rel": 1.0653255436393962,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 2,
+        "condition": "6",
+        "gap_min": 6,
+        "pp_s": 0.79072,
+        "rel": 1.0327744449973681,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 3,
+        "condition": "6",
+        "gap_min": 6,
+        "pp_s": 0.760487,
+        "rel": 0.9932865481494253,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 1,
+        "condition": "10",
+        "gap_min": 10,
+        "pp_s": 0.784026,
+        "rel": 1.0240312841631762,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 2,
+        "condition": "10",
+        "gap_min": 10,
+        "pp_s": 0.809713,
+        "rel": 1.057581563868568,
+        "series": "control"
+      },
+      {
+        "arm": "spark-ollama",
+        "block": 3,
+        "condition": "10",
+        "gap_min": 10,
+        "pp_s": 0.752844,
+        "rel": 0.9833038803490473,
+        "series": "control"
+      }
+    ]
+  },
+  "figures": {
+    "LiveFigGaps": {
+      "desc": "idle gaps (min) of the plotted E1 sessions: the live-check figure's x ticks",
+      "format": "text",
+      "source": "raw_box_ollama",
+      "value": "0,2,4,6,10"
+    }
+  },
+  "kind": "gateway_live_sessions",
+  "provenance": {
+    "generated_at": "2026-11-17T21:39:01Z",
+    "generator": "tools/live_figure_data.py",
+    "notes": [
+      "Pre-registered experiment (algorithm/experiments/PREREG_GATEWAY_LIVE.md); this file only re-expresses the analyzer's sessions for a figure and decides nothing.",
+      "pp_s: prompt_eval_s of the session's measured request (role measured); rel: pp_s over the median pp_s of the same arm at gap 0. Arms differ in hardware, so only rel is plotted.",
+      "Series: local = box-ollama gaps 0-10 min; control = spark-ollama gaps 0-10 min (negative control only); ping = box-ollama 10 min with keepalive pings, relative to box-ollama gap 0."
+    ],
+    "sources": [
+      {
+        "command": "algorithm/benchmarks/gateway_live/run_live.py --arm box-ollama",
+        "description": "per-request timings and token counts (numbers only, no content), arm box-ollama, runs/20261117T123643Z-box-ollama/requests.jsonl",
+        "grade": "measured",
+        "id": "raw_box_ollama",
+        "sha256": "f8cdd85d8c97dd719ff613a90f0e28ad91ddb28bf75b8127a0892e7323fd47f0"
+      },
+      {
+        "description": "run manifest (server, model, keep-alive lifetime), runs/20261117T123643Z-box-ollama/manifest.json",
+        "grade": "measured",
+        "id": "manifest_box_ollama",
+        "sha256": "5db34ec5bd034b8f9d16dffefce94c4539107f89fc116ce9a421ea9ad7b4b37b"
+      },
+      {
+        "command": "algorithm/benchmarks/gateway_live/run_live.py --arm spark-ollama",
+        "description": "per-request timings and token counts (numbers only, no content), arm spark-ollama, runs/20261117T140319Z-spark-ollama/requests.jsonl",
+        "grade": "measured",
+        "id": "raw_spark_ollama",
+        "sha256": "f30c186ef047fb78668d6829cbb08ff4755f621506da42e605af6a534e76329c"
+      },
+      {
+        "description": "run manifest (server, model, keep-alive lifetime), runs/20261117T140319Z-spark-ollama/manifest.json",
+        "grade": "measured",
+        "id": "manifest_spark_ollama",
+        "sha256": "63d96d4645f0f01f9a23ac53854a3c2077a1e928c4d898ce3c00100307e8e857"
+      },
+      {
+        "command": "algorithm/benchmarks/gateway_live/analyze.py",
+        "description": "registered analyzer output (evidence/gateway_live.json); per arm and gap, n and PP min/median/max checked equal to these sessions",
+        "grade": "measured",
+        "id": "gateway_live",
+        "sha256": "dc6e1cdab08b0cc4c085eebff744b4fce152cc55e9d832a140f28372ce4e2468"
+      }
+    ]
+  },
+  "schema_version": 1
+}
