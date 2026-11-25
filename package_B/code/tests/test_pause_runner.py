@@ -183,3 +183,24 @@ class SessionPlans(unittest.TestCase):
     def test_api_error_detection(self):
         self.assertTrue(runner.task_api_error({"is_error": True, "result": "API Error: 529 overloaded"}))
         self.assertFalse(runner.task_api_error({"is_error": True, "subtype": "error_max_turns"}))
+
+
+class Amendment3Settings(unittest.TestCase):
+    """Amendment 3: injected configuration stays in force, so each change alters the request only at its boundary."""
+
+    def test_settings_are_cumulative_and_start_after_their_boundary(self):
+        s1 = {b: list(v) for b, v in runner.A3_TEMPLATES["S1"].items()}
+        self.assertEqual(runner.a3_task_settings(s1, 1, "claude-sonnet-5-5"), ("claude-sonnet-5-5", []))
+        self.assertEqual(runner.a3_task_settings(s1, 2, "claude-sonnet-5-5"),
+                         ("claude-sonnet-5-5", ["--mcp-config", runner.A3_MCP_CONFIG]))
+        self.assertEqual(runner.a3_task_settings(s1, 3, "claude-sonnet-5-5"),
+                         ("claude-sonnet-5-5", ["--mcp-config", runner.A3_MCP_CONFIG, "--disallowedTools", "Edit"]))
+        self.assertEqual(runner.a3_task_settings(s1, 4, "claude-sonnet-5-5")[0], runner.A3_SWITCH_MODEL)
+
+    def test_pauses_only_where_injected(self):
+        self.assertEqual(runner.a3_pauses(runner.A3_TEMPLATES["S1"], 360), {"1": 0, "2": 360, "3": 0})
+        self.assertEqual(runner.a3_pauses(runner.A3_TEMPLATES["S2"], 360), {"1": 0, "2": 360, "3": 360})
+
+    def test_every_boundary_type_appears_once_per_template_pair(self):
+        seen = sorted("+".join(sorted(v)) for t in runner.A3_TEMPLATES.values() for v in t.values())
+        self.assertEqual(seen, sorted(["mcp", "pause+tools", "model", "tools", "mcp+pause", "model+pause"]))

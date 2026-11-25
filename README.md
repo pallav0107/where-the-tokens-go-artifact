@@ -11,11 +11,12 @@ Repository: https://github.com/pallav0107/where-the-tokens-go-artifact.
 Pre-registrations, with every registered version and its commit history:
 https://github.com/pallav0107/where-the-tokens-go-preregistrations.
 
-Release note: this material is published only after the author, who owns the source repository,
-has reviewed and approved it.
+Release note: rounds 1-7 were published only after the author, who owns the source repository,
+had reviewed and approved them. Round 8 was published at the author's instruction after the
+automated checks recorded in `MANIFEST.json` (`redaction_round_8`).
 
 Source: private repository; available to the programme chairs on request. Files come from commits
-`de84195`, `9e86a6b`, `1c815e9` and `3bd6629`; each file's source commit and git blob hash are in `MANIFEST.json`.
+`de84195`, `9e86a6b`, `1c815e9`, `3bd6629` and `03cc639`; each file's source commit and git blob hash are in `MANIFEST.json`.
 
 ## Layout
 
@@ -27,15 +28,15 @@ Source: private repository; available to the programme chairs on request. Files 
 | `package_A/PREREG_v2.md` | v2, with Amendment 2. Superseded after dev round 0. |
 | `package_A/PREREG_v3.md` | v3, with Amendments 1-5. This is the comparison the paper reports. |
 | `package_A/versions/` | Each earlier registered version, exactly as it stood at its registration or amendment commit (file name = commit). |
-| `package_A/PREREG_pause.md` | The controlled pause experiment, with Amendments 1 and 2 (byte-identical to the copy in the public pre-registration repository, where its earlier versions are). |
+| `package_A/PREREG_pause.md` | The controlled pause experiment, with Amendments 1, 2 and 3 (byte-identical to the copy in the public pre-registration repository, where its earlier versions are). |
 | `package_A/DECISIONS_excerpt.md` | The decision-log entries that the pre-registrations cite, plus the entries that record each registration. Line numbers match the original. |
 | `package_B/` | The data, code and aggregate evidence. |
 | `package_B/data/` | The controlled experiment's per-request and per-run records: every v3 shard directory (test, dev rounds 0 and 1, smoke, failed smoke) and the superseded v2 dev round 0. Also `provenance_by_dispatch/`, which holds the provenance of each of the 15 CI dispatches, including every salt nonce. |
 | `package_B/code/` | `agent/` (the agent, arms, harness and grid runner, with tests), the analysis scripts in `experiments/` with their configs, tests and offline inputs, the evidence producers in `tools/`, and `contrib/`, a zero-dependency contributor script that computes the paper's figures from anyone's own Claude Code logs and writes aggregates only. |
 | `package_B/code/experiments/pause/` | The controlled pause experiment (`PREREG_pause.md`): the dispatcher `runner.py`, the allowlist egress proxy, the API stub for dry runs, the cost ledger and budget stop, task and session selection with the selected `tasks.json` and `sessions.json`, SWE-bench grading, and `image/` (the two Dockerfiles, the container entry and session scripts, and the pause hook). |
-| `package_B/code/tools/` | The evidence producers, among them `pause_experiment.py` (the pause analysis; it needs the run directories, which are not released), `pause_figures.py`, `pause_figure_data.py`, `practice_rule.py` and `cost_figure_data.py`, which run on the released evidence alone. |
+| `package_B/code/tools/` | The evidence producers, among them `pause_experiment.py` (the pause analysis; it needs the run directories, which are not released), `pause_figures.py`, `pause_figure_data.py`, `practice_rule.py` and `cost_figure_data.py`, which run on the released evidence alone, and `prereg_outcomes.py` (the counts in the registered-outcomes table; one of its inputs is not released, see "Left out"). |
 | `package_B/code/tests/` | Tests of the pause experiment's code, of its analysis and figures (including `pause_figure_data.py`), and of `practice_rule.py` and `cost_figure_data.py` (standard library only). |
-| `package_B/evidence/` | The aggregate evidence files behind the paper's numbers, including `pause_experiment.json` and `pause_figures.json` (the pause experiment), `practice_rule.json`, and `cost_table.json`, `cache_writes.json` and `share_robustness.json`, which those producers read. `generated/cost_shares.dat` is the data of the cost-share figure and `generated/pause_points.dat` that of the per-pause figure (Fig. 1). |
+| `package_B/evidence/` | The aggregate evidence files behind the paper's numbers, including `pause_experiment.json` and `pause_figures.json` (the pause experiment, with the Amendment 3 arms), `prereg_outcomes.json` (the registered-outcomes table), `practice_rule.json`, and `cost_table.json`, `cache_writes.json` and `share_robustness.json`, which those producers read. `generated/cost_shares.dat` is the data of the cost-share figure and `generated/pause_points.dat` that of the per-pause figure (Fig. 1). |
 | `package_B/verify/compare_evidence.py` | Compares a re-computed evidence file with a published one. |
 | `MANIFEST.json` | One record per registration or amendment: the commit, the author date, GitHub's server-side first-push time, the original file's git blob hash and the released file's sha256. It also lists every file's sha256 and source, the Actions run times and the hashes of the archived CI artifacts. |
 | `REDACTION_LOG.md` | Each changed line, with its category and the reason. The removed text is never shown. |
@@ -66,7 +67,9 @@ local UTC offset are written in UTC.
   request timestamps are cut to dates, the v1 local model alias is described neutrally, and
   three evidence files about the private harness are removed (see "Left out"). Rounds 5 and 6
   added the files behind later revisions of the paper (round 6: the pause experiment and the
-  practitioner-rule and cost-figure producers), with their own rows (4 and 2).
+  practitioner-rule and cost-figure producers), with their own rows (4 and 2). Round 7 added the per-pause figure. Round 8 added the Amendment 3
+  files behind the submitted paper (source commit `03cc639`), with no new redaction rows; the
+  registration is the public pre-registration repository's copy.
 - The cited authors of published work (for example "Yao et al. 2023") are kept as bibliographic
   references.
 
@@ -141,16 +144,19 @@ python ../verify/compare_evidence.py ../evidence/pause_figures.json /tmp/pause_f
 python ../verify/compare_evidence.py ../evidence/practice_rule.json /tmp/practice_rule.json
 python -c "import sys; from pathlib import Path; sys.path.insert(0, 'tools'); import cost_figure_data as c; \
 sys.exit(c.dat_command(Path('../evidence/cost_table.json'), Path('../evidence/generated/cost_shares.dat'), True))"
-python -c "import sys; from pathlib import Path; sys.path.insert(0, 'tools'); import pause_figure_data as p; \nsys.exit(p.dat_command(Path('../evidence/pause_experiment.json'), Path('../evidence/generated/pause_points.dat'), True))"
+python -c "import sys; from pathlib import Path; sys.path.insert(0, 'tools'); import pause_figure_data as p; \
+sys.exit(p.dat_command(Path('../evidence/pause_experiment.json'), Path('../evidence/generated/pause_points.dat'), True))"
 ```
 
-Result on a Linux CPU machine (Python 3.12.3, clean virtual environment, 19 Nov 2026, round 7): 82 tests
+Result on a Linux CPU machine (Python 3.12.3, clean virtual environment, 25 Nov 2026, round 8): 98 tests
 pass, none skipped (the pause-hook tests need `bash` and `flock`). Both comparisons report
-`aggregates: IDENTICAL` and `figures: IDENTICAL` (41 figures in `pause_figures.json`, 20 in
+`aggregates: IDENTICAL` and `figures: IDENTICAL` (43 figures in `pause_figures.json`, 20 in
 `practice_rule.json`), and the last two commands print `PASS: cost_shares.dat matches cost_table.json`
 and `PASS: pause_points.dat matches pause_experiment.json`.
-Two source hashes in the provenance differ, as expected: `prereg` in `pause_figures.json` (the
-recorded hash is that of the unredacted registration; the released copy differs on line 48) and
+Three source hashes in the provenance differ, as expected: `prereg` in `pause_figures.json` (the
+recorded hash is that of the unredacted registration; the released copy differs on line 48),
+`pause_experiment` in `pause_figures.json` (it was generated from an earlier write of
+`pause_experiment.json`; the recomputed figures are identical, so no value it reads changed) and
 `h2h3_test_r1_s0` in `practice_rule.json` (the hash of the unredacted `agent_h2h_v3.json`; see the
 round-1 rows of that file).
 
@@ -234,6 +240,12 @@ needs Docker, the official SWE-bench instance images and an Anthropic API key), 
   evidence about the private harness (executor usage, an internal A/B and a baseline table). No
   figure in the paper comes from them. Removed in round 4; their producer functions in
   `tools/pull_evidence.py` are marked stubs that keep the line count.
+- **`evidence/gateway_live.json` and `tests/test_prereg_outcomes.py`:** the live check's record
+  names the author's own machines and local model aliases, which earlier rounds treat as
+  infrastructure details. Its five hypotheses are registered in the public pre-registration
+  repository (`PREREG_live_check.md`), and `prereg_outcomes.json` gives the counts the paper uses
+  (5 of 5 supported). `prereg_outcomes.py` reads it, so the producer is released
+  for reading but does not run on the released files, and its test, which runs it, is left out.
 - **`README_REVIEW.md`:** the guide that accompanies the review copy. It is not part of the
   release, is not in the repository, and `make_archive.py` leaves it out.
 - **`tools/privacy_scan.py`:** it encodes infrastructure names to search for them.

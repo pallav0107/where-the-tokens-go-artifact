@@ -95,6 +95,9 @@ def derive(a: dict[str, Any], sessions: dict[str, Any], prereg: str) -> dict[str
     shared = set(b.get("exploratory_read_after_values") or [])
     if len(shared) != 1:
         blocked(f"read-back after the pauses is not one constant value: {sorted(shared)}")
+    shared_c = set(c.get("exploratory_read_after_values") or [])
+    if len(shared_c) != 1:
+        blocked(f"read-back after the C pauses is not one constant value: {sorted(shared_c)}")
     h1_lo, h3_min, level = thresholds(flat)
     rows_b, rows_c = b["pauses"], c["pauses"]
     if len(rows_b) != b["n"] or len(rows_c) != c["n"]:
@@ -133,11 +136,12 @@ def derive(a: dict[str, Any], sessions: dict[str, Any], prereg: str) -> dict[str
         "full_rewrite_n": round(b["full_rewrite_share"] * b["n"] + c["full_rewrite_share"] * c["n"]),
         "rest_rewritten_n": round(b["exploratory_rest_rewritten_share"] * b["n"]
                                   + c["exploratory_rest_rewritten_share"] * c["n"]),
-        "shared_prefix_tokens": shared.pop(),
+        "shared_prefix_tokens": shared.pop(), "shared_prefix_tokens_c": shared_c.pop(),
         "h1_lower_bound_pct": h1_lo, "h3_min_pct": h3_min, "ci_level_pct": level,
-        "rule_tp": r_["tp"], "rule_fp": r_["fp"], "rule_fn": r_["fn"], "precision_pct": r_["precision"] * 100,
+        "rule_tp": r_["tp"], "rule_fp": r_["fp"], "rule_fn": r_["fn"], "rule_tn": r_["tn"],
+        "precision_pct": r_["precision"] * 100,
         "idle_share_a_pct": r_["false_idle_share_a"] * 100,
-        "c_events": rc["events"], "c_tp": rc["tp"], "c_fp": rc["fp"], "c_fn": rc["fn"],
+        "c_events": rc["events"], "c_tp": rc["tp"], "c_fp": rc["fp"], "c_fn": rc["fn"], "c_tn": rc["tn"],
         "half_rewrite_b": half_b, "pauses_b": b["n"], "half_rewrite_c": half_c, "pauses_c": c["n"],
         "rewrite_per_pause_b": per_pause_b,
     }
@@ -179,6 +183,8 @@ def build() -> dict[str, Any]:
                                       "pauses after which everything not read back was re-written (exploratory)"),
         "PauseSharedPrefixTokens": figure(f["shared_prefix_tokens"], "int", src,
                                           "tokens read back after every five-minute pause (shared head)"),
+        "PauseSharedPrefixTokensC": figure(f["shared_prefix_tokens_c"], "int", src,
+                                           "tokens read back after every one-hour pause (shared head, C)"),
         "PauseHOneLoPct": figure(f["h1_lower_bound_pct"], "pct0", "prereg",
                                  "H1 threshold: bootstrap lower bound of the cache-read share above this percent"),
         "PauseHThreeMinPct": figure(f["h3_min_pct"], "pct0", "prereg",
@@ -186,6 +192,8 @@ def build() -> dict[str, Any]:
         "PauseCiLevelPct": figure(f["ci_level_pct"], "pct0", "prereg", "registered bootstrap interval level, percent"),
         "PauseRuleTP": figure(f["rule_tp"], "int", src, "H3 events: re-writes after an injected pause labelled idle"),
         "PauseRuleFN": figure(f["rule_fn"], "word", src, "H3 events: re-writes after an injected pause not labelled idle"),
+        "PauseRuleTN": figure(f["rule_tn"], "word", src,
+                              "H3 events: re-writes without an injected pause not labelled idle (true negatives)"),
         "PausePrecisionOnePct": figure(f["precision_pct"], "pct1", src, "H3 precision, one decimal"),
         "PauseIdleSharePctA": figure(f["idle_share_a_pct"], "pct0", src,
                                      "condition A: share of re-written tokens labelled idle (registered)"),

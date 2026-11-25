@@ -310,5 +310,219 @@ class Analysis(unittest.TestCase):
         self.assertNotIn(str(self.root), text)  # no local paths
 
 
+
+# ---------------------------------------------------------------- Amendment 3
+def transcript_a3(reqs):
+    """reqs: (secs, read, write, model, pre) where pre lists markers written just before the request:
+    "delta" (a deferred_tools_delta attachment, the rule's list-delta marker) or "shape:<hash>" (a new
+    api-request-shape line, which the published rule does not read)."""
+    lines, parent = [], None
+    for i, (secs, rd, wr, model, pre) in enumerate(reqs):
+        u_user, u_asst = f"user-{i}", f"asst-{i}"
+        lines.append(json.dumps({"type": "user", "uuid": u_user, "parentUuid": parent, "timestamp": iso(secs - 1),
+                                 "message": {"role": "user", "content": "x"}}))
+        prev = u_user
+        for j, m in enumerate(pre):
+            if m == "delta":
+                u = f"att-{i}-{j}"
+                lines.append(json.dumps({"type": "attachment", "uuid": u, "parentUuid": prev, "timestamp": iso(secs - 1),
+                                         "attachment": {"type": "deferred_tools_delta", "addedNames": ["mcp__n__a"]}}))
+                prev = u
+            else:
+                lines.append(json.dumps({"type": "api-request-shape", "shapeHash": m.split(":", 1)[1],
+                                         "timestamp": iso(secs - 1)}))
+        usage = {"input_tokens": FRESH, "cache_read_input_tokens": rd, "cache_creation_input_tokens": wr,
+                 "output_tokens": 10, "cache_creation": {"ephemeral_5m_input_tokens": wr, "ephemeral_1h_input_tokens": 0}}
+        lines.append(json.dumps({"type": "assistant", "uuid": u_asst, "parentUuid": prev, "timestamp": iso(secs),
+                                 "version": "2.1.326", "message": {"id": f"msg_{i}", "model": model, "usage": usage}}))
+        parent = u_asst
+    return "\n".join(lines) + "\n"
+
+
+SON, OPUS = "claude-sonnet-5-5", "claude-opus-5-5"
+# S2 = TL | MCP+P | MS+P. Task starts 0, 10, 381, 756; pauses 20-380 and 395-755.
+S2_REQS = [(1, 0, 10000, SON, ["shape:h1"]), (5, 10000, 1000, SON, []),
+           (11, 0, 11500, SON, ["shape:h2"]), (15, 11500, 500, SON, []),          # TL: re-writes 11000, gap 6 s
+           (385, 0, 12500, SON, ["delta"]), (390, 12500, 500, SON, []),           # MCP+P: re-writes 12000
+           (760, 0, 13500, OPUS, [])]                                              # MS+P: re-writes 13000
+S2_TASKS, S2_PAUSES = [0, 10, 381, 756], [(2, 20, 380), (3, 395, 755)]
+# S1 = MCP | TL+P | MS. Task starts 0, 10, 381, 400; pause 20-380.
+S1_REQS = [(1, 0, 10000, SON, ["shape:h1"]), (5, 10000, 1000, SON, []),
+           (11, 11000, 200, SON, ["delta"]), (15, 11200, 300, SON, []),            # MCP: reads the prefix back
+           (385, 0, 12000, SON, ["shape:h2"]), (390, 12000, 500, SON, []),         # TL+P: re-writes 11500, gap 370 s
+           (401, 0, 13000, OPUS, [])]                                              # MS: re-writes 12500, gap 11 s
+S1_TASKS, S1_PAUSES = [0, 10, 381, 400], [(2, 20, 380)]
+TEMPLATES = {"S1": {"1": ["mcp"], "2": ["tools", "pause"], "3": ["model"]},
+             "S2": {"1": ["tools"], "2": ["mcp", "pause"], "3": ["model", "pause"]}}
+
+
+def write_a3_run(root, session, cond, reqs, task_starts, pauses, status="ok"):
+    run_id = f"{session}__{cond}__r1"
+    d = root / run_id
+    (d / "projects" / "-testbed").mkdir(parents=True)
+    (d / "out" / "pause").mkdir(parents=True)
+    (d / "out" / "inject").mkdir(parents=True)
+    (d / "projects" / "-testbed" / "s.jsonl").write_text(transcript_a3(reqs), encoding="utf-8")
+    all_p = {c: (s, e) for c, s, e in pauses}
+    rows = []
+    for b in (1, 2, 3):
+        s, e = all_p.get(b, (task_starts[b] - 1, task_starts[b] - 1))
+        rows.append(json.dumps({"call": b, "start": iso(s), "end": iso(e), "seconds": int(e - s)}) + "\n")
+    (d / "out" / "pause" / "pauses.jsonl").write_text("".join(rows), encoding="utf-8")
+    tmpl = TEMPLATES.get(cond)
+    if tmpl:
+        (d / "out" / "inject" / "injections.jsonl").write_text("".join(
+            json.dumps({"boundary": b, "types": tmpl[str(b)], "dispatched": iso(task_starts[b])}) + "\n"
+            for b in (1, 2, 3)), encoding="utf-8")
+    (d / "meta.json").write_text(json.dumps({
+        "run_id": run_id, "instance_id": session, "session_id": session, "condition": cond, "status": status,
+        "attempt": 1, "pilot": False, "inject": tmpl,
+        "tasks": [{"k": k + 1, "start": iso(t)} for k, t in enumerate(task_starts)]}), encoding="utf-8")
+    return d
+
+
+class Amendment3(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def s_arm(self):
+        write_a3_run(self.root, "s1", "S1", S1_REQS, S1_TASKS, S1_PAUSES)
+        write_a3_run(self.root, "s1", "S2", S2_REQS, S2_TASKS, S2_PAUSES)
+        return pe.evaluate_amend3_s(pe.load_runs(self.root), PRICES, n_boot=200)
+
+    def test_wilson_interval(self):
+        lo, hi = pe.wilson(3, 4)
+        self.assertAlmostEqual(lo, 0.3006, places=3)
+        self.assertAlmostEqual(hi, 0.9544, places=3)
+        self.assertEqual(pe.wilson(0, 0), (None, None))
+
+    def test_boundary_events_get_truth_from_the_injection_log(self):
+        s = self.s_arm()
+        by = {(b["template"], b["boundary"]): b for b in s["boundaries"]}
+        self.assertEqual(by[("S2", 1)]["type"], "TL")
+        self.assertEqual(by[("S2", 1)]["rewrite"], 11000)
+        self.assertEqual(by[("S2", 1)]["dominant"], "within_lifetime")
+        self.assertEqual(by[("S2", 2)]["type"], "MCP+P")
+        self.assertEqual(by[("S2", 2)]["dominant"], "config_change")
+        self.assertEqual(by[("S2", 3)]["type"], "MS+P")
+        self.assertEqual(by[("S2", 3)]["dominant"], "model_change")
+        self.assertEqual(by[("S1", 1)]["type"], "MCP")
+        self.assertEqual(by[("S1", 1)]["rewrite"], 0)
+        self.assertEqual(by[("S1", 2)]["type"], "TL+P")
+        self.assertEqual(by[("S1", 2)]["dominant"], "gap_5_to_60min")
+        self.assertEqual(by[("S1", 3)]["dominant"], "model_change")
+
+    def test_registered_metrics_and_decisions(self):
+        s = self.s_arm()
+        m = s["metrics"]
+        self.assertEqual((m["spec"]["tn"], m["spec"]["fp"]), (3, 1))
+        self.assertAlmostEqual(m["spec"]["value"], 0.75)
+        self.assertAlmostEqual(m["spec_recorded"]["value"], 1.0)
+        self.assertAlmostEqual(m["order_model"]["value"], 1.0)
+        self.assertAlmostEqual(m["order_mcp"]["value"], 0.0)
+        self.assertAlmostEqual(s["manipulation"]["m1"]["value"], 1.0)
+        self.assertAlmostEqual(s["manipulation"]["m2"]["value"], 1.0)
+        self.assertTrue(s["manipulation"]["mcp_truth_idle"])
+        self.assertEqual(s["decisions"], {"spec": "fail", "spec_recorded": "pass", "order_model": "pass",
+                                          "order_mcp": "fail"})
+        self.assertEqual(s["confusion"]["MCP"], {"no_event": 1})
+        self.assertEqual(s["confusion"]["TL+P"], {"gap_5_to_60min": 1})
+
+    def test_mcp_plus_pause_truth_needs_the_manipulation_check(self):
+        bad = [r if i != 2 else (11, 0, 11200, SON, ["delta"]) for i, r in enumerate(S1_REQS)]  # MCP invalidated
+        write_a3_run(self.root, "s1", "S1", bad, S1_TASKS, S1_PAUSES)
+        write_a3_run(self.root, "s1", "S2", S2_REQS, S2_TASKS, S2_PAUSES)
+        s = pe.evaluate_amend3_s(pe.load_runs(self.root), PRICES, n_boot=50)
+        self.assertFalse(s["manipulation"]["mcp_truth_idle"])
+        self.assertIsNone(s["metrics"]["order_mcp"]["value"])
+        self.assertEqual(s["decisions"]["order_mcp"], "excluded (truth ambiguous)")
+
+    def test_exploratory_shape_marker_counts_tool_changes_as_config(self):
+        s = self.s_arm()
+        e = s["exploratory_shape_marker"]
+        self.assertAlmostEqual(e["spec"]["value"], 1.0)
+        self.assertEqual(e["confusion"]["TL+P"], {"config_change": 1})
+
+    def k_run(self, read_after, write_after):
+        reqs = [(1, 0, 10000, SON, []), (5, 10000, 1000, SON, []), (380, read_after, write_after, SON, [])]
+        return write_a3_run(self.root, "k1", "K", reqs, [0, 379, 1000, 1001], [(1, 10, 370)])
+
+    def test_k_full_rewrite_without_other_activity_supports_concurrency(self):
+        self.k_run(0, 11500)
+        k = pe.evaluate_amend3_k(pe.load_runs(self.root), [])
+        self.assertEqual((k["valid_pauses"], k["excluded_pauses"]), (1, 0))
+        self.assertAlmostEqual(k["full_rewrite_share"], 1.0)
+        self.assertEqual(k["decision"], "supported")
+        self.assertEqual(k["first_request_read"], [0])
+
+    def test_k_head_read_back_does_not_support_and_nearby_activity_excludes(self):
+        self.k_run(9000, 2500)
+        k = pe.evaluate_amend3_k(pe.load_runs(self.root), [])
+        self.assertEqual(k["decision"], "not supported")
+        other = [{"run_id": "x", "t": pe.parse_ts(iso(300)), "tokens": 20000}]
+        k2 = pe.evaluate_amend3_k(pe.load_runs(self.root), other)
+        self.assertEqual((k2["valid_pauses"], k2["excluded_pauses"]), (0, 1))
+        self.assertIsNone(k2["full_rewrite_share"])
+        self.assertEqual(k2["decision"], "inconclusive")
+
+    def test_existing_check_finds_a_warm_request_from_another_run(self):
+        write_run(self.root, "t1__B__r1", "t1", "B", B_REQS, B_PAUSES)
+        # another container's request covering 12000 tokens 95 s before t1's post-pause request (385 s)
+        write_run(self.root, "t2__A__r1", "t2", "A", [(285, 9000, 3000), (290, 12000, 10)], A_PAUSES)
+        c = pe.existing_concurrency_check(pe.load_runs(self.root), [])
+        self.assertEqual((c["pauses"], c["with_warm_request"]), (1, 1))
+        self.assertAlmostEqual(c["nearest_s"]["B"]["min"], 95.0)
+        self.assertEqual((c["run_directories"], c["first_request_read_cached"]), (2, 1))
+        only_b = [r for r in pe.load_runs(self.root) if r["condition"] == "B"]
+        self.assertEqual(pe.existing_concurrency_check(only_b, [])["with_warm_request"], 0)
+        led = [{"run_id": "pilot", "first_request": iso(200), "last_request": iso(300)}]
+        self.assertEqual(pe.existing_concurrency_check(only_b, led)["with_warm_request"], 1)
+
+    def test_main_adds_amendment3_aggregates_figures_and_sources(self):
+        orig, a3 = self.root / "runs", self.root / "runs-a3"
+        orig.mkdir()
+        a3.mkdir()
+        write_run(orig, "t1__B__r1", "t1", "B", B_REQS, B_PAUSES)
+        write_run(orig, "t1__A__r1", "t1", "A", A_REQS, A_PAUSES)
+        write_a3_run(a3, "s1", "S1", S1_REQS, S1_TASKS, S1_PAUSES)
+        write_a3_run(a3, "s1", "S2", S2_REQS, S2_TASKS, S2_PAUSES)
+        k = [(5001, 0, 10000, SON, []), (5005, 10000, 1000, SON, []), (5380, 0, 11500, SON, [])]
+        write_a3_run(a3, "k1", "K", k, [5000, 5379, 6000, 6001], [(1, 5010, 5370)])
+        led, led3, out = self.root / "l.jsonl", a3 / "ledger.jsonl", self.root / "o.json"
+        led.write_text(json.dumps({"run_id": "t1__B__r1", "usd": 1.0}) + "\n", encoding="utf-8")
+        led3.write_text(json.dumps({"run_id": "s1__S1__r1", "usd": 0.5}) + "\n", encoding="utf-8")
+        pe.main(["--runs", str(orig), "--ledger", str(led), "--a3-runs", str(a3), "--a3-ledger", str(led3),
+                 "--out", str(out), "--n-boot", "50"])
+        data = json.loads(out.read_text(encoding="utf-8"))
+        a = data["aggregates"]["amendment3"]
+        self.assertEqual(a["specificity_arm"]["decisions"]["spec"], "fail")
+        self.assertEqual(a["concurrency_arm"]["decision"], "supported")
+        self.assertEqual(a["existing_concurrency_check"]["pauses"], 1)
+        self.assertAlmostEqual(a["ledger"]["usd_total"], 0.5)
+        self.assertEqual(data["figures"]["PauseSpecPct"]["value"], 75.0)
+        self.assertEqual(data["figures"]["PauseKDecision"]["value"], "supported")
+        self.assertIn("runs_a3", {s["id"] for s in data["provenance"]["sources"]})
+        self.assertNotIn("boundaries", a["specificity_arm"])     # aggregates only in the evidence file
+
+    def test_main_reports_resolved_counts_from_the_grading_summary(self):
+        write_run(self.root, "t1__B__r1", "t1", "B", B_REQS, B_PAUSES)
+        write_run(self.root, "t1__A__r1", "t1", "A", A_REQS, A_PAUSES)
+        g, out = self.root / "summary.json", self.root / "o.json"
+        g.write_text(json.dumps({"A": {"submitted": 40, "resolved": 21, "empty_patches": 1, "error": 0, "completed": 39},
+                                 "B": {"submitted": 40, "resolved": 19, "empty_patches": 0, "error": 1, "completed": 39}}),
+                     encoding="utf-8")
+        pe.main(["--runs", str(self.root), "--ledger", str(self.root / "none.jsonl"), "--grading", str(g),
+                 "--out", str(out), "--n-boot", "50"])
+        data = json.loads(out.read_text(encoding="utf-8"))
+        self.assertEqual(data["aggregates"]["resolved"]["A"]["resolved"], 21)
+        self.assertEqual(data["figures"]["PauseResolvedB"]["value"], 19)
+        self.assertEqual(data["figures"]["PauseGradedA"]["value"], 40)
+        self.assertIn("grading", {s["id"] for s in data["provenance"]["sources"]})
+
+
 if __name__ == "__main__":
     unittest.main()

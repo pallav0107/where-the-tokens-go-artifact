@@ -32,15 +32,54 @@ def predictions(runs: Path) -> dict[str, list[dict]]:
     return out
 
 
+def predictions_sessions(runs: Path) -> dict[str, list[dict]]:
+    """Amendment 2 chained sessions: one prediction per task, the final diff of that task (out/task_K/patch.diff)."""
+    best: dict[tuple[str, str], tuple[int, Path, dict]] = {}
+    for meta_path in sorted(runs.glob("*/meta.json")):
+        m = json.loads(meta_path.read_text())
+        if m.get("pilot") or m.get("status") != "ok":
+            continue
+        key = (m["instance_id"], m["condition"])
+        if key not in best or m["attempt"] > best[key][0]:
+            best[key] = (m["attempt"], meta_path.parent, m)
+    out: dict[str, list[dict]] = {}
+    for (_, cond), (_, d, m) in sorted(best.items()):
+        for t in m.get("tasks", []):
+            patch = d / "out" / f"task_{t['k']}" / "patch.diff"
+            out.setdefault(cond, []).append({
+                "instance_id": t["instance_id"], "model_name_or_path": f"claude-code-pause-{cond}",
+                "model_patch": patch.read_text(encoding="utf-8", errors="replace") if patch.exists() else ""})
+    return out
+
+
+def summarise(gdir: Path, preds: dict[str, list[dict]]) -> dict:
+    """Resolved counts per condition from the harness reports (<model>.<run_id>.json)."""
+    out = {}
+    for cond, ps in sorted(preds.items()):
+        rep = gdir / f"claude-code-pause-{cond}.cachepause_{cond}.json"
+        r = json.loads(rep.read_text()) if rep.exists() else {}
+        out[cond] = {"submitted": len(ps), "empty_patches": sum(1 for p in ps if not p["model_patch"].strip()),
+                     "resolved": len(r.get("resolved_ids", [])) if r else None,
+                     "error": len(r.get("error_ids", [])) if r else None,
+                     "completed": len(r.get("completed_ids", [])) if r else None, "report": rep.name if r else None}
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--work", type=Path, default=Path.home() / "work" / "cache-pause")
     ap.add_argument("--python", default="venv-swebench/bin/python")
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--sessions", action="store_true", help="Amendment 2 chained sessions: grade every task's diff")
+    ap.add_argument("--summary-only", action="store_true", help="only write grading/summary.json from the reports")
     args = ap.parse_args()
-    gdir = args.work / "grading"
+    gdir = args.work / ("grading-sessions" if args.sessions else "grading")
     gdir.mkdir(exist_ok=True)
-    for cond, preds in predictions(args.work / "runs").items():
+    allp = (predictions_sessions if args.sessions else predictions)(args.work / "runs")
+    if args.summary_only:
+        (gdir / "summary.json").write_text(json.dumps(summarise(gdir, allp), indent=1, sort_keys=True))
+        return 0
+    for cond, preds in allp.items():
         if not preds:
             continue
         pf = gdir / f"predictions_{cond}.jsonl"
@@ -49,6 +88,7 @@ def main() -> int:
                         "--dataset_name", "princeton-nlp/SWE-bench_Verified", "--predictions_path", str(pf),
                         "--instance_ids", *[p["instance_id"] for p in preds], "--max_workers", str(args.workers),
                         "--namespace", "swebench", "--run_id", f"cachepause_{cond}"], cwd=gdir, check=False)
+    (gdir / "summary.json").write_text(json.dumps(summarise(gdir, allp), indent=1, sort_keys=True))
     return 0
 
 

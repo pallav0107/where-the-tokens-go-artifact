@@ -299,6 +299,37 @@ def task_api_error(res: dict) -> bool:
                                                                  "rate limit", "529", "401"))
 
 
+# ---------------------------------------------------------------- Amendment 3 (PREREG_pause.md)
+# Specificity arm: at each task boundary b (after task b) the listed invalidators are injected; every
+# configuration change stays in force for the rest of the session (cumulative), so it changes the
+# request only at its own boundary. "pause" = the condition-B 360 s sleep in the dispatcher.
+A3_SWITCH_MODEL = "claude-opus-5-5"
+A3_MCP_CONFIG = "/opt/pause/mcp.json"
+A3_TEMPLATES = {"S1": {"1": ("mcp",), "2": ("tools", "pause"), "3": ("model",)},
+                "S2": {"1": ("tools",), "2": ("mcp", "pause"), "3": ("model", "pause")}}
+A3_K_SESSIONS = 4          # concurrency arm: the first 4 sessions in session order, condition-B pauses, one at a time
+A3_FILES = ("session.sh", "mcp_stub.js", "mcp.json")   # copied into an S container (images keep Amendment 2's)
+
+
+def a3_task_settings(template: dict, k: int, model: str) -> tuple[str, list[str]]:
+    """Model and extra CLI arguments of task k: every injection at a boundary before task k stays in force."""
+    m, extra = model, []
+    for b in range(1, k):
+        for x in template.get(str(b), ()):
+            if x == "model":
+                m = A3_SWITCH_MODEL
+            elif x == "mcp":
+                extra += ["--mcp-config", A3_MCP_CONFIG]
+            elif x == "tools":
+                extra += ["--disallowedTools", "Edit"]
+    return m, extra
+
+
+def a3_pauses(template: dict, pause_seconds: int) -> dict:
+    """Pause after task b: pause_seconds where "pause" is injected, else a 0 s marker (as condition A)."""
+    return {b: (pause_seconds if "pause" in template.get(b, ()) else 0) for b in ("1", "2", "3")}
+
+
 def run_session(spec: dict, args, lg: ledger_mod.Ledger, prices: dict) -> dict:
     run_id = spec["run_id"]
     d = args.runs / run_id
@@ -334,9 +365,18 @@ def run_session(spec: dict, args, lg: ledger_mod.Ledger, prices: dict) -> dict:
         sh(*create, image, "hold")
     finally:
         keyfile.unlink(missing_ok=True)
+    inject = spec.get("inject")
+    if inject is not None:                       # Amendment 3: the per-task-settings driver and the MCP server
+        meta["inject"] = inject
+        for f in A3_FILES:                       # docker cp keeps the host mode: stage with 0755 (git stores 0644)
+            staged = d / f"a3_{f}"
+            shutil.copyfile(HERE / "image" / f, staged)
+            os.chmod(staged, 0o755)
+            sh("docker", "cp", str(staged), f"{name}:/opt/pause/{f}")
     meta["start"] = now()
     sh("docker", "start", name)
     pauses: list[dict] = []
+    injections: list[dict] = []
     spent, api_error = 0.0, False
     for k, task in enumerate(spec["tasks"], start=1):
         budget = round(args.session_budget_usd - spent, 2)
@@ -347,6 +387,17 @@ def run_session(spec: dict, args, lg: ledger_mod.Ledger, prices: dict) -> dict:
         (d / f"prompt_{k}.txt").write_text(prompt, encoding="utf-8")
         sh("docker", "exec", name, "mkdir", "-p", f"/out/task_{k}")
         sh("docker", "cp", str(d / f"prompt_{k}.txt"), f"{name}:/out/task_{k}/prompt.txt")
+        if inject is not None:
+            model, extra = a3_task_settings(inject, k, args.model)
+            if model != args.model:
+                (d / f"model_{k}.txt").write_text(model + "\n", encoding="utf-8")
+                sh("docker", "cp", str(d / f"model_{k}.txt"), f"{name}:/out/task_{k}/model")
+            if extra:
+                (d / f"extra_args_{k}.txt").write_text("".join(a + "\n" for a in extra), encoding="utf-8")
+                sh("docker", "cp", str(d / f"extra_args_{k}.txt"), f"{name}:/out/task_{k}/extra_args")
+            if k > 1:
+                injections.append({"boundary": k - 1, "types": list(inject.get(str(k - 1), ())),
+                                   "model": model, "extra_args": extra, "dispatched": now()})
         try:
             sh("docker", "exec", "-e", f"CC_MAX_BUDGET_USD={budget}", name, "/opt/pause/session.sh", "task", str(k),
                task["base_commit"], check=False, timeout=args.wall_seconds + 300)
@@ -362,7 +413,7 @@ def run_session(spec: dict, args, lg: ledger_mod.Ledger, prices: dict) -> dict:
                               "subtype": res.get("subtype"), "terminal_reason": res.get("terminal_reason"),
                               "num_turns": res.get("num_turns"), "cli_usd": cost, "rc": ex.get("rc"),
                               "start": ex.get("start"), "end": ex.get("end"), "api_error": err,
-                              "session_id_cli": res.get("session_id")})
+                              "session_id_cli": res.get("session_id"), "model": ex.get("model")})
         if meta.get("stopped"):
             break
         secs = spec["pauses"].get(str(k))
@@ -376,6 +427,10 @@ def run_session(spec: dict, args, lg: ledger_mod.Ledger, prices: dict) -> dict:
     sh("docker", "rm", "-f", name, check=False)
     (d / "out" / "pause").mkdir(parents=True, exist_ok=True)
     (d / "out" / "pause" / "pauses.jsonl").write_text("".join(json.dumps(p) + "\n" for p in pauses), encoding="utf-8")
+    if inject is not None:                       # Amendment 3 ground truth: what was injected at each boundary
+        (d / "out" / "inject").mkdir(parents=True, exist_ok=True)
+        (d / "out" / "inject" / "injections.jsonl").write_text("".join(json.dumps(x) + "\n" for x in injections),
+                                                               encoding="utf-8")
     for p in d.rglob("*"):                       # defence in depth: the key must never be on disk
         if p.is_file() and key.encode() in p.read_bytes():
             p.write_bytes(p.read_bytes().replace(key.encode(), b"[REDACTED]"))
@@ -436,6 +491,8 @@ def session_specs(args) -> list[dict]:
                 chosen.append(x)
             else:
                 print(f"WARNING: session {x['session_id']} image failed; reported, not replaced", flush=True)
+    if getattr(args, "amend3", None):
+        return a3_specs(args, d, chosen, prompts)
     conds = args.conditions or {"authcheck": "A", "dry": "AB", "pilot": "A", "full": "ABC"}[args.plan]
 
     def spec(x: dict, c: str) -> dict:
@@ -452,6 +509,22 @@ def session_specs(args) -> list[dict]:
             out.append(cs[k])
             k += 1
     return out + cs[k:]
+
+
+def a3_specs(args, d: dict, chosen: list[dict], prompts: dict) -> list[dict]:
+    """Amendment 3. S: every built session under templates S1 and S2 (started together, like A and B).
+    K: condition-B pauses on the first A3_K_SESSIONS sessions in session order, run one at a time."""
+    def spec(x: dict, c: str) -> dict:
+        tmpl = A3_TEMPLATES.get(c)
+        pauses = a3_pauses(tmpl, args.pause_seconds) if tmpl else {b: args.pause_seconds for b in ("1", "2", "3")}
+        return {"run_id": f"{x['session_id']}__{c}__r1", "session_id": x["session_id"], "instance_id": x["session_id"],
+                "condition": c, "attempt": 1, "plan": args.plan, "pauses": pauses, "cache_1h": False,
+                "image": args.image, "inject": ({b: list(v) for b, v in tmpl.items()} if tmpl else None),
+                "tasks": [{**t, "problem": prompts[t["instance_id"]]} for t in x["tasks"]]}
+    if args.amend3 == "K":
+        order = [x["session_id"] for x in d["sessions"]][:A3_K_SESSIONS]
+        return [spec(x, "K") for x in chosen if x["session_id"] in order]
+    return [spec(x, c) for x in chosen for c in ("S1", "S2")]
 
 
 # ---------------------------------------------------------------- plans
@@ -543,7 +616,14 @@ def cmd_run(args) -> int:
                 return False
             time.sleep(60)
 
+    first = {"started": False}
+
     def gated(spec: dict) -> None:
+        if getattr(args, "amend3", None) == "K":   # one at a time, with an idle gap before every session but the first
+            if first["started"]:
+                print(f"{now()} K: idle {args.run_gap_seconds}s before {spec['run_id']}", flush=True)
+                time.sleep(args.run_gap_seconds)
+            first["started"] = True
         if not image_ready(spec):
             with LOCK:
                 ab_waiting.discard(spec["run_id"])
@@ -596,8 +676,14 @@ def cmd_run(args) -> int:
             with LOCK:
                 in_flight["n"] -= 1
 
+    a3 = getattr(args, "amend3", None)
     print(f"{now()} plan {args.plan}: {len(specs)} runs, concurrency {args.concurrency}, model {args.model}, "
-          + (f"chained sessions (Amendment 2): B {args.pause_seconds}s between consecutive tasks; C {args.c_pause_seconds}s "
+          + (f"Amendment 3 arm {a3}: " + (f"templates {A3_TEMPLATES}, pause {args.pause_seconds}s, switch model "
+                                          f"{A3_SWITCH_MODEL}" if a3 == "S" else
+                                          f"condition-B pauses {args.pause_seconds}s, one session at a time, "
+                                          f"{args.run_gap_seconds}s idle between sessions")
+             if a3 else
+             f"chained sessions (Amendment 2): B {args.pause_seconds}s between consecutive tasks; C {args.c_pause_seconds}s "
              f"between tasks 2 and 3 with one-hour caching; hook logs tool calls only"
              if args.sessions else
              f"B: {args.pause_seconds}s at tool calls {CONDITIONS['B'][0]}; C: {args.c_pause_seconds}s at tool call "
@@ -660,10 +746,19 @@ def main() -> int:
     r.add_argument("--cache-1h", action="store_true",
                    help="set ENABLE_PROMPT_CACHING_1H=1 (one-hour writes; pauses must then be 3660 s)")
     r.add_argument("--runs-subdir", default=None, help="override the runs directory name (e.g. a second dry run)")
+    r.add_argument("--amend3", choices=("S", "K"), default=None,
+                   help="Amendment 3 with --sessions: S = injected invalidators (templates S1, S2); K = condition-B "
+                        "sessions one at a time (forces concurrency 1)")
+    r.add_argument("--run-gap-seconds", type=int, default=420, help="Amendment 3 K: idle seconds between sessions")
     sp.add_parser("ledger")
     args = ap.parse_args()
     if args.cmd == "run" and args.concurrency > 8:
         raise SystemExit("BLOCKED: concurrency is capped at 8 on the shared host")
+    if args.cmd == "run" and args.amend3:
+        if not args.sessions:
+            raise SystemExit("BLOCKED: --amend3 needs --sessions")
+        if args.amend3 == "K":
+            args.concurrency = 1
     return {"build": cmd_build, "infra": cmd_infra, "run": cmd_run, "ledger": cmd_ledger}[args.cmd](args)
 
 

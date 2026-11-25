@@ -109,9 +109,41 @@ def load_runs(root: Path) -> list[dict[str, Any]]:
             for r, ann in zip(recs, claude_usage.annotations(transcripts), strict=True):
                 for k in ("after_compact", "chain_from_prev", "after_list_delta", "prompt_changed", "version_changed"):
                     r[k] = ann[k]
+            for r, changed in zip(recs, shape_changes(transcripts), strict=True):
+                r["shape_changed"] = changed    # Amendment 3 exploratory only; the rule never reads it
+        inj = d / "out" / "inject" / "injections.jsonl"
         runs.append({**meta, "records": recs, "pauses": read_pauses(d / "out" / "pause" / "pauses.jsonl"),
+                     "injections": ([json.loads(x) for x in inj.read_text(encoding="utf-8").splitlines() if x.strip()]
+                                    if inj.exists() else []),
                      "inputs": sorted(p for p in d.rglob("*") if p.is_file() and p.suffix in (".jsonl", ".json"))})
     return runs
+
+
+def shape_changes(transcripts: list[Any]) -> list[bool]:
+    """Per request (records() order): the client's latest api-request-shape hash before this request differs
+    from the latest one before the previous request (both must exist). Amendment 3, exploratory: a change of
+    the request's tools or system blocks that the client records but the published cause rule does not read."""
+    out: list[bool] = []
+    for t in transcripts:
+        shapes: list[tuple[int, str]] = []
+        if t.path is not None:
+            text = Path(t.path).read_text(encoding="utf-8", errors="replace")
+            for n, line in enumerate(text.split("\n")):     # same line numbering as claude_usage.read_transcript
+                if '"api-request-shape"' in line:
+                    try:
+                        ev = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+                    if isinstance(ev, dict) and ev.get("type") == "api-request-shape" and ev.get("shapeHash"):
+                        shapes.append((n, str(ev["shapeHash"])))
+        for si, r in enumerate(t.requests):
+            if si == 0:
+                out.append(False)
+                continue
+            lo, hi = sorted((t.requests[si - 1].order, r.order))
+            a, b = claude_usage._prompt_at(shapes, lo), claude_usage._prompt_at(shapes, hi)
+            out.append(a is not None and b is not None and a != b)
+    return out
 
 
 def run_metrics(run: dict[str, Any], prices: dict[str, dict[str, float]]) -> dict[str, Any]:
@@ -368,6 +400,296 @@ def direct_expiry_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "min_gap_s": min((r["gap_s"] for r in rows), default=None)}
 
 
+# ---------------------------------------------------------------- Amendment 3 (PREREG_pause.md)
+A3_TYPE = {"model": "MS", "tools": "TL", "mcp": "MCP", "model+pause": "MS+P", "pause+tools": "TL+P",
+           "mcp+pause": "MCP+P"}
+A3_TYPES = ("MS", "TL", "MCP", "MS+P", "TL+P", "MCP+P")
+A3_NOT_IDLE = ("MS", "TL", "MS+P", "TL+P")     # truth: the injected change alone invalidates the prefix
+A3_RECORDED = ("MS", "MS+P")                    # ... and the rule reads a marker for it
+A3_PASS = 0.90
+M1_REWRITE, M2_READ, M2_PASS = 0.5, 0.95, 0.90
+K_SUPPORTED, K_NOT_SUPPORTED, K_WINDOW_S = 0.90, 0.10, 300.0
+Z95 = 1.959963984540054
+
+
+def wilson(k: int, n: int, z: float = Z95) -> tuple[float | None, float | None]:
+    """Wilson score interval for k successes out of n."""
+    if not n:
+        return None, None
+    p = k / n
+    den = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / den
+    h = z * (p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5 / den
+    return max(0.0, c - h), min(1.0, c + h)
+
+
+def dominant(causes: dict[str, float]) -> str | None:
+    """The cause with the largest share (ties: the rule's cause order)."""
+    if not causes:
+        return None
+    order = cache_writes.CAUSES
+    return max(order, key=lambda c: (causes.get(c, 0.0), -order.index(c)))
+
+
+def _main_sequence(run: dict[str, Any], prices: dict[str, dict[str, float]]) -> tuple[list[tuple], list[dict]]:
+    """(ts, row, record, previous row of the same transcript) for main-transcript requests in time order, with
+    the cache_writes trace rows (the rule's causes); also every trace row."""
+    trace = cache_writes.new_trace()
+    cache_writes.analyse(run["records"], prices, trace=trace)
+    recs: dict[Any, list[dict[str, Any]]] = {}
+    for r in run["records"]:
+        recs.setdefault(r["turn"], []).append(r)
+    rows: dict[Any, list[dict[str, Any]]] = {}
+    for row in trace["requests"]:
+        rows.setdefault(row["turn"], []).append(row)
+    seq = []
+    for turn, rr in recs.items():
+        rr.sort(key=lambda r: r["step"])
+        for i, (rec, row) in enumerate(zip(rr, rows[turn], strict=True)):
+            if rec.get("kind", "main") == "main":
+                seq.append((parse_ts(row["ts"]), row, rec, rows[turn][i - 1] if i else None))
+    seq.sort(key=lambda x: x[0])
+    return seq, trace["requests"]
+
+
+def a3_boundaries(run: dict[str, Any], prices: dict[str, dict[str, float]]) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Boundary requests of one S run (the first main-transcript request at or after the start of task b+1)
+    with the injected type, the rule's causes, and the exploratory shape-marker variant; plus all-event counts."""
+    seq, all_rows = _main_sequence(run, prices)
+    tasks = run.get("tasks") or []
+    inj = {int(x["boundary"]): x for x in run.get("injections", [])}
+    out = []
+    for b in sorted(inj):
+        if b >= len(tasks) or not tasks[b].get("start"):
+            continue                                  # task b+1 never started: boundary not reached
+        start = parse_ts(tasks[b]["start"])
+        hit = next((x for x in seq if x[0] >= start), None)
+        if hit is None or hit[3] is None:
+            continue
+        t, row, rec, prev = hit
+        pre = prev["read"] + prev["write"]
+        causes = row["causes"]
+        shape_causes = causes
+        if row["rewrite"] and rec.get("shape_changed") and not (causes.get("model_change") or causes.get("compaction")):
+            shape_causes = {"config_change": 1.0}
+        out.append({"session": run.get("instance_id"), "template": run.get("condition"), "boundary": b,
+                    "type": A3_TYPE["+".join(sorted(inj[b]["types"]))], "prefix_before": pre,
+                    "read": row["read"], "write": row["write"], "rewrite": row["rewrite"],
+                    "rewrite_over_prefix": row["rewrite"] / pre if pre else None,
+                    "read_over_prefix": row["read"] / pre if pre else None,
+                    "gap_s": (t - parse_ts(prev["ts"])).total_seconds(), "model": rec["model"],
+                    "after_list_delta": bool(rec.get("after_list_delta")), "shape_changed": bool(rec.get("shape_changed")),
+                    "causes": causes, "idle": idle_share(causes), "dominant": dominant(causes),
+                    "idle_shape": idle_share(shape_causes), "dominant_shape": dominant(shape_causes)})
+    bts = {(x["boundary"]) for x in out}
+    ev = [r for r in all_rows if r["rewrite"]]
+    n_b = sum(1 for x in out if x["rewrite"])
+    other_idle = sum(1 for r in ev if idle_share(r["causes"]) >= 0.5) - sum(1 for x in out if x["rewrite"] and x["idle"] >= 0.5)
+    return out, {"events": len(ev), "boundary_events": n_b, "other_events": len(ev) - n_b,
+                 "other_labelled_idle": other_idle, "boundaries_reached": len(bts)}
+
+
+def _share_metric(per_run: list[list[dict[str, Any]]], select, success, n_boot: int, seed: int) -> dict[str, Any]:
+    evs = [x for run in per_run for x in run if select(x)]
+    k, n = sum(1 for x in evs if success(x)), len(evs)
+
+    def stat(cl):
+        e = [x for run in cl for x in run if select(x)]
+        return sum(1 for x in e if success(x)) / len(e) if e else None
+    ci = cluster_ci(per_run, stat, n_boot, seed) if n else {"lo": None, "hi": None}
+    lo, hi = wilson(k, n)
+    return {"k": k, "n": n, "value": k / n if n else None, "wilson_lo": lo, "wilson_hi": hi,
+            "boot_lo": ci["lo"], "boot_hi": ci["hi"]}
+
+
+def _a3_metrics(per_run: list[list[dict[str, Any]]], idle_key: str, dom_key: str, mcp_ok: bool,
+                n_boot: int, seed: int) -> dict[str, Any]:
+    def ev(types):
+        return lambda x: x["rewrite"] > 0 and x["type"] in types
+    spec = _share_metric(per_run, ev(A3_NOT_IDLE), lambda x: x[idle_key] < 0.5, n_boot, seed)
+    spec.update(tn=spec["k"], fp=spec["n"] - spec["k"])
+    rec = _share_metric(per_run, ev(A3_RECORDED), lambda x: x[idle_key] < 0.5, n_boot, seed)
+    rec.update(tn=rec["k"], fp=rec["n"] - rec["k"])
+    om = _share_metric(per_run, ev(("MS+P",)), lambda x: x[dom_key] == "model_change", n_boot, seed)
+    oc = _share_metric(per_run, ev(("MCP+P",)), lambda x: x[idle_key] >= 0.5, n_boot, seed)
+    if not mcp_ok:
+        oc = {**oc, "value": None, "excluded": "MCP+P truth ambiguous (manipulation check M2 below 0.90)"}
+    conf: dict[str, dict[str, int]] = {}
+    for x in (x for run in per_run for x in run):
+        key = x[dom_key] if x["rewrite"] else "no_event"
+        conf.setdefault(x["type"], {})
+        conf[x["type"]][key] = conf[x["type"]].get(key, 0) + 1
+    return {"spec": spec, "spec_recorded": rec, "order_model": om, "order_mcp": oc,
+            "confusion": {t: dict(sorted(conf[t].items())) for t in A3_TYPES if t in conf}}
+
+
+def _a3_decision(m: dict[str, Any]) -> str:
+    if m.get("excluded"):
+        return "excluded (truth ambiguous)"
+    if m["value"] is None:
+        return "no events"
+    return "pass" if m["value"] >= A3_PASS else "fail"
+
+
+def evaluate_amend3_s(runs: list[dict[str, Any]], prices: dict[str, dict[str, float]], n_boot: int = N_BOOT,
+                      seed: int = SEED) -> dict[str, Any]:
+    """Specificity arm (Amendment 3): boundary events of valid S1/S2 runs against the injected truth."""
+    best, excl = select_valid(runs)
+    s_runs = [best[k] for k in sorted(best) if k[1] in ("S1", "S2")]
+    per_run, allev = [], {"events": 0, "boundary_events": 0, "other_events": 0, "other_labelled_idle": 0}
+    for r in s_runs:
+        bds, a = a3_boundaries(r, prices)
+        per_run.append(bds)
+        for k in allev:
+            allev[k] += a[k]
+    flat = [x for run in per_run for x in run]
+    m1_rows = [x for x in flat if x["type"] in A3_NOT_IDLE]
+    m2_rows = [x for x in flat if x["type"] == "MCP"]
+    m1k = sum(1 for x in m1_rows if x["prefix_before"] and x["rewrite"] >= M1_REWRITE * x["prefix_before"])
+    m2k = sum(1 for x in m2_rows if x["prefix_before"] and x["read"] >= M2_READ * x["prefix_before"])
+    m1 = {"k": m1k, "n": len(m1_rows), "value": m1k / len(m1_rows) if m1_rows else None}
+    m2 = {"k": m2k, "n": len(m2_rows), "value": m2k / len(m2_rows) if m2_rows else None}
+    mcp_ok = m2["value"] is not None and m2["value"] >= M2_PASS
+    reg = _a3_metrics(per_run, "idle", "dominant", mcp_ok, n_boot, seed)
+    shp = _a3_metrics(per_run, "idle_shape", "dominant_shape", mcp_ok, n_boot, seed)
+    by_type = {t: {"boundaries": sum(1 for x in flat if x["type"] == t),
+                   "events": sum(1 for x in flat if x["type"] == t and x["rewrite"])} for t in A3_TYPES}
+    return {
+        "runs": len(s_runs), "excluded": excl, "boundaries_reached": len(flat), "by_type": by_type,
+        "manipulation": {"m1": m1, "m2": m2, "mcp_truth_idle": mcp_ok},
+        "metrics": {k: reg[k] for k in ("spec", "spec_recorded", "order_model", "order_mcp")},
+        "decisions": {k: _a3_decision(reg[k]) for k in ("spec", "spec_recorded", "order_model", "order_mcp")},
+        "confusion": reg["confusion"],
+        "exploratory_shape_marker": {**{k: shp[k] for k in ("spec", "spec_recorded", "order_model", "order_mcp")},
+                                     "confusion": shp["confusion"]},
+        "exploratory_all_events": allev,
+        "boundaries": flat,
+    }
+
+
+def post_pause_requests(run: dict[str, Any]) -> list[dict[str, Any]]:
+    """Per injected pause, the first request whose gap since its transcript's previous request holds it."""
+    injected = [p for p in run["pauses"] if p["seconds"] > 0]
+    by_turn: dict[Any, list[dict[str, Any]]] = {}
+    for r in run["records"]:
+        by_turn.setdefault(r["turn"], []).append(r)
+    first: dict[int, dict[str, Any]] = {}
+    for rr in by_turn.values():
+        rr.sort(key=lambda r: r["step"])
+        for prev, r in zip(rr, rr[1:]):
+            pt, t = parse_ts(prev["ts"]), parse_ts(r["ts"])
+            p = pause_in_gap(pt, t, injected)
+            if p is not None and (p["call"] not in first or t < first[p["call"]]["t"]):
+                pu, u = prev["usage"], r["usage"]
+                first[p["call"]] = {"call": p["call"], "t": t, "gap_s": (t - pt).total_seconds(),
+                                    "prefix_before": pu["cache_read_input_tokens"] + pu["cache_creation_input_tokens"],
+                                    "write_after": u["cache_creation_input_tokens"],
+                                    "read_after": u["cache_read_input_tokens"]}
+    return [first[c] for c in sorted(first)]
+
+
+def activity(runs: list[dict[str, Any]], ledger_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Every request of every run directory (time, tokens covered = read + write), plus the first-to-last
+    request interval of ledger rows that have no run directory (e.g. a pilot run elsewhere)."""
+    out: list[dict[str, Any]] = []
+    have = {r.get("run_id") for r in runs}
+    for r in runs:
+        for rec in r["records"]:
+            u = rec["usage"]
+            out.append({"run_id": r.get("run_id"), "t": parse_ts(rec["ts"]),
+                        "tokens": u["cache_read_input_tokens"] + u["cache_creation_input_tokens"]})
+    for row in ledger_rows:
+        if row.get("run_id") not in have and row.get("first_request") and row.get("last_request"):
+            out.append({"run_id": row["run_id"], "start": parse_ts(row["first_request"]),
+                        "end": parse_ts(row["last_request"]), "tokens": None})
+    return out
+
+
+def _nearby(acts: list[dict[str, Any]], own: Any, t: dt.datetime, window_s: float,
+            min_tokens: int = 0) -> list[float]:
+    """Seconds before t of other runs' activity within (t - window_s, t]; an interval counts at its end."""
+    lo = t - dt.timedelta(seconds=window_s)
+    out = []
+    for a in acts:
+        if a["run_id"] == own:
+            continue
+        if "t" in a:
+            if lo <= a["t"] < t and a["tokens"] >= min_tokens:
+                out.append((t - a["t"]).total_seconds())
+        elif a["start"] < t and a["end"] >= lo:
+            out.append(max(0.0, (t - min(a["end"], t)).total_seconds()))
+    return out
+
+
+def evaluate_amend3_k(runs: list[dict[str, Any]], other: list[dict[str, Any]]) -> dict[str, Any]:
+    """Concurrency arm (Amendment 3): registered full re-write check after each pause of the one-at-a-time
+    condition-B sessions; a pause with any other run's request in the 300 s before is excluded."""
+    best, excl = select_valid(runs)
+    k_runs = [best[k] for k in sorted(best) if k[1] == "K"]
+    acts = activity(runs, []) + list(other)
+    rows, first = [], []
+    for r in k_runs:
+        recs = sorted((x for x in r["records"] if x.get("kind", "main") == "main"), key=lambda x: parse_ts(x["ts"]))
+        if recs:
+            first.append(recs[0]["usage"]["cache_read_input_tokens"])
+        for p in post_pause_requests(r):
+            near = _nearby(acts, r.get("run_id"), p["t"], K_WINDOW_S)
+            rows.append({**direct_expiry_row(p), "session": r.get("instance_id"), "call": p["call"],
+                         "valid": not near, "other_activity_s": min(near) if near else None})
+    valid = [x for x in rows if x["valid"]]
+    k = sum(1 for x in valid if x["full_rewrite"])
+    share = k / len(valid) if valid else None
+    if share is None:
+        decision = "inconclusive"
+    elif share >= K_SUPPORTED:
+        decision = "supported"
+    elif share <= K_NOT_SUPPORTED:
+        decision = "not supported"
+    else:
+        decision = "inconclusive"
+    lo, hi = wilson(k, len(valid))
+    return {"runs": len(k_runs), "excluded": excl, "pauses": len(rows), "valid_pauses": len(valid),
+            "excluded_pauses": len(rows) - len(valid), "full_rewrite_k": k, "full_rewrite_share": share,
+            "full_rewrite_wilson_lo": lo, "full_rewrite_wilson_hi": hi, "decision": decision,
+            "first_request_read": first, "read_after_values": sorted({x["read_after"] for x in valid}),
+            "median_write_over_prefix": direct_expiry_summary(valid)["median_write_over_prefix"], "pauses_detail": rows}
+
+
+def existing_concurrency_check(runs: list[dict[str, Any]], ledger_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Amendment 3, exploratory, existing data: for each injected pause of the valid B and C runs, whether a
+    request of another run covering at least the post-pause read occurred within the cache lifetime before
+    the post-pause request; and how many run directories' first request read cached tokens."""
+    acts = activity(runs, ledger_rows)
+    best, _ = select_valid(runs)
+    res: dict[str, dict[str, Any]] = {}
+    for key in sorted(best):
+        if key[1] not in ("B", "C"):
+            continue
+        r = best[key]
+        w5 = sum(x["usage"]["cache_creation"]["ephemeral_5m_input_tokens"] for x in r["records"])
+        w1 = sum(x["usage"]["cache_creation"]["ephemeral_1h_input_tokens"] for x in r["records"])
+        life = LIFETIME_S.get(lifetime_tier(w5, w1), LIFETIME_S["5m"])
+        c = res.setdefault(key[1], {"pauses": 0, "with_warm_request": 0, "nearest": []})
+        for p in post_pause_requests(r):
+            near = _nearby(acts, r.get("run_id"), p["t"], life, p["read_after"])
+            c["pauses"] += 1
+            if near:
+                c["with_warm_request"] += 1
+                c["nearest"].append(min(near))
+    firsts = []
+    for r in runs:
+        recs = sorted(r["records"], key=lambda x: parse_ts(x["ts"]))
+        if recs:
+            firsts.append(recs[0]["usage"]["cache_read_input_tokens"])
+    return {"label": "exploratory (Amendment 3; existing data, computed before the amendment)",
+            "pauses": sum(c["pauses"] for c in res.values()),
+            "with_warm_request": sum(c["with_warm_request"] for c in res.values()),
+            "by_condition": {k: {"pauses": c["pauses"], "with_warm_request": c["with_warm_request"]} for k, c in res.items()},
+            "nearest_s": {k: {"min": min(c["nearest"]) if c["nearest"] else None,
+                              "max": max(c["nearest"]) if c["nearest"] else None} for k, c in res.items()},
+            "run_directories": len(firsts), "first_request_read_cached": sum(1 for f in firsts if f > 0)}
+
+
 def decisions(agg: dict[str, Any]) -> dict[str, str]:
     """Pre-registered decision rules (PREREG_pause.md)."""
     def lo(c):
@@ -426,6 +748,62 @@ def build_figures(agg: dict[str, Any], dec: dict[str, str], cost: float, ledger_
         "PauseHTwo": figure(dec["H2"], "text", "runs", "H2 decision"),
         "PauseHThree": figure(dec["H3"], "text", "runs", "H3 decision"),
     }
+    a3 = agg.get("amendment3", {})
+    ex = a3.get("existing_concurrency_check")
+    if ex:
+        f.update({
+            "PauseExistingPauses": figure(ex["pauses"], "int", "runs", "injected pauses of valid B and C runs (existing-data check)"),
+            "PauseExistingWarm": figure(ex["with_warm_request"], "int", "runs",
+                                        "of those, pauses with another run's request covering the post-pause read within the "
+                                        "lifetime before it (exploratory)"),
+            "PauseExistingRunDirs": figure(ex["run_directories"], "int", "runs", "run directories of the original runs"),
+            "PauseExistingFirstRead": figure(ex["first_request_read_cached"], "int", "runs",
+                                             "run directories whose first request read cached tokens (exploratory)"),
+        })
+    s = a3.get("specificity_arm")
+    if s:
+        m, sh = s["metrics"], s["exploratory_shape_marker"]
+        f.update({
+            "PauseSRuns": figure(s["runs"], "int", "runs_a3", "valid specificity-arm runs (Amendment 3)"),
+            "PauseSBoundaries": figure(s["boundaries_reached"], "int", "runs_a3", "specificity-arm boundaries reached"),
+            "PauseSpecPct": figure(_pct(m["spec"]["value"]), "pct0", "runs_a3",
+                                   "S-spec: specificity of the idle label over not-idle boundary events (MS, TL, MS+P, TL+P)"),
+            "PauseSpecLoPct": figure(_pct(m["spec"]["wilson_lo"]), "pct0", "runs_a3", "S-spec Wilson 95% lower bound"),
+            "PauseSpecHiPct": figure(_pct(m["spec"]["wilson_hi"]), "pct0", "runs_a3", "S-spec Wilson 95% upper bound"),
+            "PauseSpecTn": figure(m["spec"]["tn"], "int", "runs_a3", "S-spec true negatives"),
+            "PauseSpecFp": figure(m["spec"]["fp"], "int", "runs_a3", "S-spec false positives (labelled idle)"),
+            "PauseSpecRecordedPct": figure(_pct(m["spec_recorded"]["value"]), "pct0", "runs_a3",
+                                           "S-spec-recorded: specificity over model-switch events (MS, MS+P)"),
+            "PauseOrderModelPct": figure(_pct(m["order_model"]["value"]), "pct0", "runs_a3",
+                                         "S-order-model: MS+P events whose dominant cause is model_change"),
+            "PauseOrderMcpPct": figure(_pct(m["order_mcp"]["value"]), "pct0", "runs_a3",
+                                       "S-order-mcp: MCP+P events labelled idle (the true cause)"),
+            "PauseSpecDecision": figure(s["decisions"]["spec"], "text", "runs_a3", "S-spec decision (pass mark 0.90)"),
+            "PauseSpecRecordedDecision": figure(s["decisions"]["spec_recorded"], "text", "runs_a3", "S-spec-recorded decision"),
+            "PauseOrderModelDecision": figure(s["decisions"]["order_model"], "text", "runs_a3", "S-order-model decision"),
+            "PauseOrderMcpDecision": figure(s["decisions"]["order_mcp"], "text", "runs_a3", "S-order-mcp decision"),
+            "PauseMOnePct": figure(_pct(s["manipulation"]["m1"]["value"]), "pct0", "runs_a3",
+                                   "M1: MS/TL/MS+P/TL+P boundaries that re-wrote at least half the cached prefix"),
+            "PauseMTwoPct": figure(_pct(s["manipulation"]["m2"]["value"]), "pct0", "runs_a3",
+                                   "M2: MCP boundaries that read back at least 95% of the cached prefix"),
+            "PauseShapeSpecPct": figure(_pct(sh["spec"]["value"]), "pct0", "runs_a3",
+                                        "exploratory: S-spec with the client's request-shape change counted as a config change"),
+        })
+    k = a3.get("concurrency_arm")
+    if k:
+        f.update({
+            "PauseKRuns": figure(k["runs"], "int", "runs_a3", "valid one-at-a-time condition-B runs (K)"),
+            "PauseKValidPauses": figure(k["valid_pauses"], "int", "runs_a3", "K pauses with no other run's request in the 300 s before"),
+            "PauseKFullRewritePct": figure(_pct(k["full_rewrite_share"]), "pct0", "runs_a3",
+                                           "K-direct: valid K pauses whose next request re-wrote the whole cached prefix"),
+            "PauseKDecision": figure(k["decision"], "text", "runs_a3", "K-direct decision on the concurrency explanation"),
+        })
+    for c, v in sorted(agg.get("resolved", {}).items()):
+        f[f"PauseResolved{c}"] = figure(v["resolved"], "int", "grading", f"condition {c}: final diffs resolved (SWE-bench harness)")
+        f[f"PauseGraded{c}"] = figure(v["submitted"], "int", "grading", f"condition {c}: final diffs submitted for grading")
+    if a3.get("ledger"):
+        f["PauseAThreeCostUsd"] = figure(a3["ledger"]["usd_total"], "float2", "ledger_a3",
+                                         "API list-price cost of all Amendment 3 runs, USD")
     return {k: v for k, v in f.items() if v["value"] is not None}
 
 
@@ -437,6 +815,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--n-boot", type=int, default=N_BOOT)
     ap.add_argument("--include-pilot", action="store_true",
                     help="checking the pilot or a dry run only: analyse pilot runs (never for the evidence file)")
+    ap.add_argument("--a3-runs", type=Path, default=None, help="Amendment 3 runs directory (S and K arms)")
+    ap.add_argument("--a3-ledger", type=Path, default=None, help="Amendment 3 ledger")
+    ap.add_argument("--grading", type=Path, default=None,
+                    help="summary.json of experiments/pause/grade.py --sessions (registered secondary outcome)")
     args = ap.parse_args(argv)
     if args.include_pilot and args.out.resolve() == (EVIDENCE / "pause_experiment.json").resolve():
         sys.exit("BLOCKED: --include-pilot output may not overwrite the registered evidence file")
@@ -462,6 +844,41 @@ def main(argv: list[str] | None = None) -> int:
                                        for r in lrows if r.get("plan", "full") != "full")}
     agg["runs_total"] = len({r["run_id"] for r in lrows} | {r["run_id"] for r in runs})
     agg["run_directories"] = len(runs)
+    agg["amendment3"] = {"existing_concurrency_check": existing_concurrency_check(runs, lrows)}
+    extra_sources = []
+    if args.a3_runs is not None:
+        a3runs = load_runs(args.a3_runs)
+        l3raw = args.a3_ledger.read_bytes() if args.a3_ledger is not None and args.a3_ledger.exists() else b""
+        l3rows = [json.loads(x) for x in l3raw.decode("utf-8").splitlines() if x.strip()]
+        s_arm = evaluate_amend3_s(a3runs, prices, n_boot=args.n_boot)
+        s_arm.pop("boundaries")                 # per-boundary rows stay out of the evidence file (aggregates only)
+        other = activity(runs, lrows) + [a for a in activity(a3runs, l3rows) if "start" in a]
+        k_arm = evaluate_amend3_k(a3runs, other)
+        k_arm.pop("pauses_detail")
+        agg["amendment3"].update({
+            "specificity_arm": s_arm, "concurrency_arm": k_arm,
+            "ledger": {"rows": len(l3rows), "usd_total": sum(max(float(r.get("usd") or 0), float(r.get("cli_usd") or 0))
+                                                              for r in l3rows),
+                       "infra_fail_rows": sum(r.get("status") != "ok" for r in l3rows)},
+            "run_directories": len(a3runs)})
+        h3 = hashlib.sha256()
+        for r in a3runs:
+            for p in r["inputs"]:
+                h3.update(p.relative_to(args.a3_runs).as_posix().encode() + b"\0" + p.read_bytes())
+        extra_sources = [
+            {"id": "runs_a3", "grade": "measured", "sha256": h3.hexdigest(),
+             "command": "python tools/pause_experiment.py ... --a3-runs <runs-a3 dir> --a3-ledger <ledger.jsonl>",
+             "description": "Amendment 3 container runs (specificity arm S1/S2, concurrency arm K): transcripts, "
+                            "pause and injection logs, run metadata; sha256 as for runs"},
+            {"id": "ledger_a3", "grade": "measured", "sha256": sha256_bytes(l3raw),
+             "command": "experiments/pause/runner.py run ... --runs-subdir runs-a3", "description": "Amendment 3 cost ledger"}]
+    if args.grading is not None:              # registered secondary outcome (no hypothesis): resolved rate
+        graw = args.grading.read_bytes().replace(b"\r\n", b"\n")
+        agg["resolved"] = {c: {k: v.get(k) for k in ("submitted", "resolved", "completed", "error", "empty_patches")}
+                           for c, v in sorted(json.loads(graw.decode("utf-8")).items())}
+        extra_sources.append({"id": "grading", "grade": "measured", "sha256": sha256_bytes(graw),
+                              "command": "experiments/pause/grade.py --sessions",
+                              "description": "official SWE-bench harness reports of the kept final diffs, per condition"})
     write_json(args.out, {
         "schema_version": 1, "kind": "pause_experiment",
         "provenance": {"generated_at": utc_now(), "generator": GENERATOR, "sources": [
@@ -473,11 +890,18 @@ def main(argv: list[str] | None = None) -> int:
              "command": "experiments/pause/runner.py ledger", "description": "per-run cost ledger (list prices)"},
             {"id": "list_prices", "grade": "model-parameter", "sha256": sha256_bytes(praw),
              "command": "evidence/params/anthropic_list_prices.json", "description": "Anthropic list prices"},
-        ], "notes": [
+        ] + extra_sources, "notes": [
             "Pre-registered: experiments/PREREG_pause.md. Pilot runs are excluded; failed runs re-run once.",
             "Measured with tools/claude_usage.py and tools/cache_writes.analyse per run (the paper's code).",
-            f"Bootstrap: {args.n_boot} resamples of tasks, seed {SEED}, percentile 95% intervals.",
-        ]},
+            f"Bootstrap: {args.n_boot} resamples of sessions (each chains the registered tasks, Amendment 2), "
+            f"seed {SEED}, percentile 95% intervals.",
+        ] + ([
+            "Amendment 3 (PREREG_pause.md): specificity arm S1/S2 and one-at-a-time arm K under aggregates.amendment3; "
+            "Amendment 3 bootstrap intervals resample runs. existing_concurrency_check is exploratory.",
+            "Correction to the Amendment 3 text: it states the nearest warm request before a B post-pause read as 2 s "
+            "(a rounded figure from the pre-registration computation); the computed value is "
+            "aggregates.amendment3.existing_concurrency_check.nearest_s.B.min.",
+        ] if args.a3_runs is not None else [])},
         "aggregates": agg,
         "figures": build_figures(agg, dec, cost, len(lrows)),
     })

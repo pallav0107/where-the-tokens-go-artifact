@@ -1,5 +1,249 @@
 {
   "aggregates": {
+    "amendment3": {
+      "concurrency_arm": {
+        "decision": "inconclusive",
+        "excluded": {
+          "failed_runs": 0,
+          "pilot_runs": 0
+        },
+        "excluded_pauses": 0,
+        "first_request_read": [
+          11360,
+          0,
+          11360,
+          0
+        ],
+        "full_rewrite_k": 4,
+        "full_rewrite_share": 0.3333333333333333,
+        "full_rewrite_wilson_hi": 0.6093779111272004,
+        "full_rewrite_wilson_lo": 0.13812009109121315,
+        "median_write_over_prefix": 0.7417176282903483,
+        "pauses": 12,
+        "read_after_values": [
+          0,
+          11360
+        ],
+        "runs": 4,
+        "valid_pauses": 12
+      },
+      "existing_concurrency_check": {
+        "by_condition": {
+          "B": {
+            "pauses": 30,
+            "with_warm_request": 30
+          },
+          "C": {
+            "pauses": 5,
+            "with_warm_request": 5
+          }
+        },
+        "first_request_read_cached": 23,
+        "label": "exploratory (Amendment 3; existing data, computed before the amendment)",
+        "nearest_s": {
+          "B": {
+            "max": 246.791,
+            "min": 1.521
+          },
+          "C": {
+            "max": 1490.647,
+            "min": 2.092
+          }
+        },
+        "pauses": 35,
+        "run_directories": 27,
+        "with_warm_request": 35
+      },
+      "ledger": {
+        "infra_fail_rows": 0,
+        "rows": 24,
+        "usd_total": 11.350566
+      },
+      "run_directories": 24,
+      "specificity_arm": {
+        "boundaries_reached": 60,
+        "by_type": {
+          "MCP": {
+            "boundaries": 10,
+            "events": 0
+          },
+          "MCP+P": {
+            "boundaries": 10,
+            "events": 10
+          },
+          "MS": {
+            "boundaries": 10,
+            "events": 10
+          },
+          "MS+P": {
+            "boundaries": 10,
+            "events": 10
+          },
+          "TL": {
+            "boundaries": 10,
+            "events": 10
+          },
+          "TL+P": {
+            "boundaries": 10,
+            "events": 10
+          }
+        },
+        "confusion": {
+          "MCP": {
+            "no_event": 10
+          },
+          "MCP+P": {
+            "config_change": 10
+          },
+          "MS": {
+            "model_change": 10
+          },
+          "MS+P": {
+            "model_change": 10
+          },
+          "TL": {
+            "within_lifetime": 10
+          },
+          "TL+P": {
+            "gap_5_to_60min": 10
+          }
+        },
+        "decisions": {
+          "order_mcp": "fail",
+          "order_model": "pass",
+          "spec": "fail",
+          "spec_recorded": "pass"
+        },
+        "excluded": {
+          "failed_runs": 0,
+          "pilot_runs": 0
+        },
+        "exploratory_all_events": {
+          "boundary_events": 50,
+          "events": 52,
+          "other_events": 2,
+          "other_labelled_idle": 2
+        },
+        "exploratory_shape_marker": {
+          "confusion": {
+            "MCP": {
+              "no_event": 10
+            },
+            "MCP+P": {
+              "config_change": 10
+            },
+            "MS": {
+              "model_change": 10
+            },
+            "MS+P": {
+              "model_change": 10
+            },
+            "TL": {
+              "config_change": 10
+            },
+            "TL+P": {
+              "config_change": 10
+            }
+          },
+          "order_mcp": {
+            "boot_hi": 0.0,
+            "boot_lo": 0.0,
+            "k": 0,
+            "n": 10,
+            "value": 0.0,
+            "wilson_hi": 0.2775327998628892,
+            "wilson_lo": 0.0
+          },
+          "order_model": {
+            "boot_hi": 1.0,
+            "boot_lo": 1.0,
+            "k": 10,
+            "n": 10,
+            "value": 1.0,
+            "wilson_hi": 0.9999999999999999,
+            "wilson_lo": 0.7224672001371107
+          },
+          "spec": {
+            "boot_hi": 1.0,
+            "boot_lo": 1.0,
+            "fp": 0,
+            "k": 40,
+            "n": 40,
+            "tn": 40,
+            "value": 1.0,
+            "wilson_hi": 1.0,
+            "wilson_lo": 0.9123783988027135
+          },
+          "spec_recorded": {
+            "boot_hi": 1.0,
+            "boot_lo": 1.0,
+            "fp": 0,
+            "k": 20,
+            "n": 20,
+            "tn": 20,
+            "value": 1.0,
+            "wilson_hi": 1.0,
+            "wilson_lo": 0.8388748419471806
+          }
+        },
+        "manipulation": {
+          "m1": {
+            "k": 33,
+            "n": 40,
+            "value": 0.825
+          },
+          "m2": {
+            "k": 10,
+            "n": 10,
+            "value": 1.0
+          },
+          "mcp_truth_idle": true
+        },
+        "metrics": {
+          "order_mcp": {
+            "boot_hi": 0.0,
+            "boot_lo": 0.0,
+            "k": 0,
+            "n": 10,
+            "value": 0.0,
+            "wilson_hi": 0.2775327998628892,
+            "wilson_lo": 0.0
+          },
+          "order_model": {
+            "boot_hi": 1.0,
+            "boot_lo": 1.0,
+            "k": 10,
+            "n": 10,
+            "value": 1.0,
+            "wilson_hi": 0.9999999999999999,
+            "wilson_lo": 0.7224672001371107
+          },
+          "spec": {
+            "boot_hi": 0.85,
+            "boot_lo": 0.65,
+            "fp": 10,
+            "k": 30,
+            "n": 40,
+            "tn": 30,
+            "value": 0.75,
+            "wilson_hi": 0.858128813609037,
+            "wilson_lo": 0.5980603857923197
+          },
+          "spec_recorded": {
+            "boot_hi": 1.0,
+            "boot_lo": 1.0,
+            "fp": 0,
+            "k": 20,
+            "n": 20,
+            "tn": 20,
+            "value": 1.0,
+            "wilson_hi": 1.0,
+            "wilson_lo": 0.8388748419471806
+          }
+        },
+        "runs": 20
+      }
+    },
     "composition": {
       "A": {
         "cache_read": 7468998,
@@ -590,6 +834,12 @@
     "runs_total": 28
   },
   "figures": {
+    "PauseAThreeCostUsd": {
+      "desc": "API list-price cost of all Amendment 3 runs, USD",
+      "format": "float2",
+      "source": "ledger_a3",
+      "value": 11.350566
+    },
     "PauseCFullRewritePct": {
       "desc": "C: 61-minute pauses whose next request re-wrote the whole cached prefix",
       "format": "pct0",
@@ -625,6 +875,30 @@
       "format": "float2",
       "source": "ledger",
       "value": 8.585964
+    },
+    "PauseExistingFirstRead": {
+      "desc": "run directories whose first request read cached tokens (exploratory)",
+      "format": "int",
+      "source": "runs",
+      "value": 23
+    },
+    "PauseExistingPauses": {
+      "desc": "injected pauses of valid B and C runs (existing-data check)",
+      "format": "int",
+      "source": "runs",
+      "value": 35
+    },
+    "PauseExistingRunDirs": {
+      "desc": "run directories of the original runs",
+      "format": "int",
+      "source": "runs",
+      "value": 27
+    },
+    "PauseExistingWarm": {
+      "desc": "of those, pauses with another run's request covering the post-pause read within the lifetime before it (exploratory)",
+      "format": "int",
+      "source": "runs",
+      "value": 35
     },
     "PauseFalseIdlePctA": {
       "desc": "no-pause runs: re-written tokens labelled idle",
@@ -662,11 +936,71 @@
       "source": "runs",
       "value": "supported"
     },
+    "PauseKDecision": {
+      "desc": "K-direct decision on the concurrency explanation",
+      "format": "text",
+      "source": "runs_a3",
+      "value": "inconclusive"
+    },
+    "PauseKFullRewritePct": {
+      "desc": "K-direct: valid K pauses whose next request re-wrote the whole cached prefix",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 33.33333333333333
+    },
+    "PauseKRuns": {
+      "desc": "valid one-at-a-time condition-B runs (K)",
+      "format": "int",
+      "source": "runs_a3",
+      "value": 4
+    },
+    "PauseKValidPauses": {
+      "desc": "K pauses with no other run's request in the 300 s before",
+      "format": "int",
+      "source": "runs_a3",
+      "value": 12
+    },
     "PauseLifetime": {
       "desc": "cache lifetime of the writes (5m, 1h or mixed)",
       "format": "text",
       "source": "runs",
       "value": "5m"
+    },
+    "PauseMOnePct": {
+      "desc": "M1: MS/TL/MS+P/TL+P boundaries that re-wrote at least half the cached prefix",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 82.5
+    },
+    "PauseMTwoPct": {
+      "desc": "M2: MCP boundaries that read back at least 95% of the cached prefix",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 100.0
+    },
+    "PauseOrderMcpDecision": {
+      "desc": "S-order-mcp decision",
+      "format": "text",
+      "source": "runs_a3",
+      "value": "fail"
+    },
+    "PauseOrderMcpPct": {
+      "desc": "S-order-mcp: MCP+P events labelled idle (the true cause)",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 0.0
+    },
+    "PauseOrderModelDecision": {
+      "desc": "S-order-model decision",
+      "format": "text",
+      "source": "runs_a3",
+      "value": "pass"
+    },
+    "PauseOrderModelPct": {
+      "desc": "S-order-model: MS+P events whose dominant cause is model_change",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 100.0
     },
     "PausePausesInjected": {
       "desc": "pauses injected in valid pause runs",
@@ -740,6 +1074,72 @@
       "source": "runs",
       "value": 0.1401195
     },
+    "PauseSBoundaries": {
+      "desc": "specificity-arm boundaries reached",
+      "format": "int",
+      "source": "runs_a3",
+      "value": 60
+    },
+    "PauseSRuns": {
+      "desc": "valid specificity-arm runs (Amendment 3)",
+      "format": "int",
+      "source": "runs_a3",
+      "value": 20
+    },
+    "PauseShapeSpecPct": {
+      "desc": "exploratory: S-spec with the client's request-shape change counted as a config change",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 100.0
+    },
+    "PauseSpecDecision": {
+      "desc": "S-spec decision (pass mark 0.90)",
+      "format": "text",
+      "source": "runs_a3",
+      "value": "fail"
+    },
+    "PauseSpecFp": {
+      "desc": "S-spec false positives (labelled idle)",
+      "format": "int",
+      "source": "runs_a3",
+      "value": 10
+    },
+    "PauseSpecHiPct": {
+      "desc": "S-spec Wilson 95% upper bound",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 85.8128813609037
+    },
+    "PauseSpecLoPct": {
+      "desc": "S-spec Wilson 95% lower bound",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 59.806038579231966
+    },
+    "PauseSpecPct": {
+      "desc": "S-spec: specificity of the idle label over not-idle boundary events (MS, TL, MS+P, TL+P)",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 75.0
+    },
+    "PauseSpecRecordedDecision": {
+      "desc": "S-spec-recorded decision",
+      "format": "text",
+      "source": "runs_a3",
+      "value": "pass"
+    },
+    "PauseSpecRecordedPct": {
+      "desc": "S-spec-recorded: specificity over model-switch events (MS, MS+P)",
+      "format": "pct0",
+      "source": "runs_a3",
+      "value": 100.0
+    },
+    "PauseSpecTn": {
+      "desc": "S-spec true negatives",
+      "format": "int",
+      "source": "runs_a3",
+      "value": 30
+    },
     "PauseTasksPaired": {
       "desc": "SWE-bench Verified tasks with a valid run in both conditions",
       "format": "int",
@@ -755,12 +1155,14 @@
   },
   "kind": "pause_experiment",
   "provenance": {
-    "generated_at": "2026-11-19T06:13:15Z",
+    "generated_at": "2026-11-19T20:49:33Z",
     "generator": "tools/pause_experiment.py",
     "notes": [
       "Pre-registered: experiments/PREREG_pause.md. Pilot runs are excluded; failed runs re-run once.",
       "Measured with tools/claude_usage.py and tools/cache_writes.analyse per run (the paper's code).",
-      "Bootstrap: 10000 resamples of tasks, seed 2027, percentile 95% intervals."
+      "Bootstrap: 10000 resamples of sessions (each chains the registered tasks, Amendment 2), seed 2027, percentile 95% intervals.",
+      "Amendment 3 (PREREG_pause.md): specificity arm S1/S2 and one-at-a-time arm K under aggregates.amendment3; Amendment 3 bootstrap intervals resample runs. existing_concurrency_check is exploratory.",
+      "Correction to the Amendment 3 text: it states the nearest warm request before a B post-pause read as 2 s (a rounded figure from the pre-registration computation); the computed value is aggregates.amendment3.existing_concurrency_check.nearest_s.B.min."
     ],
     "sources": [
       {
@@ -783,6 +1185,20 @@
         "grade": "model-parameter",
         "id": "list_prices",
         "sha256": "10bafadda30eadbb8f69cef83519443d845222b1df5dac7ace31d018b5dc85ac"
+      },
+      {
+        "command": "python tools/pause_experiment.py ... --a3-runs <runs-a3 dir> --a3-ledger <ledger.jsonl>",
+        "description": "Amendment 3 container runs (specificity arm S1/S2, concurrency arm K): transcripts, pause and injection logs, run metadata; sha256 as for runs",
+        "grade": "measured",
+        "id": "runs_a3",
+        "sha256": "89c9b38ed83ff525eae310b0208667715ead44aa0961bfc8b19f1e238b39424a"
+      },
+      {
+        "command": "experiments/pause/runner.py run ... --runs-subdir runs-a3",
+        "description": "Amendment 3 cost ledger",
+        "grade": "measured",
+        "id": "ledger_a3",
+        "sha256": "b00414df64c0b0405fa992c0cd4d89df5e9f3c5ef0bb1dade512c0b7e6f77513"
       }
     ]
   },

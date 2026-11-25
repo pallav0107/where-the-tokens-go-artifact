@@ -18,7 +18,7 @@ def agg():
         "paired_tasks": 2,
         "excluded": {"failed_runs": 0, "pilot_runs": 3},
         "natural_long_gaps": 3,
-        "rule": {"tp": 30, "fp": 3, "fn": 0, "precision": 30 / 33, "precision_ci": ci(0.909, 0.769, 1.0),
+        "rule": {"tp": 30, "fp": 3, "fn": 0, "tn": 0, "precision": 30 / 33, "precision_ci": ci(0.909, 0.769, 1.0),
                  "precision_any_gap": 1.0, "recall_any_gap": 1.0, "false_idle_share_a": 1.0},
         "direct_expiry": {"n": 3, "full_rewrite_share": 0.0, "exploratory_rest_rewritten_share": 1.0,
                           "exploratory_read_after_values": [12784], "pauses": PAUSES_B},
@@ -26,7 +26,7 @@ def agg():
         "paired": {"reconciliation": {"per_session": [
             {"b_point_rewrite": 7216 + 27216, "a_point_rewrite": 0}, {"b_point_rewrite": 6000, "a_point_rewrite": 0}]}},
         "condition_c": {"runs": 2, "injected_pauses": 2,
-                        "rule": {"events": 2, "tp": 2, "fp": 0, "fn": 0},
+                        "rule": {"events": 2, "tp": 2, "fp": 0, "fn": 0, "tn": 0},
                         "direct_expiry": {"n": 2, "full_rewrite_share": 0.0,
                                           "exploratory_rest_rewritten_share": 1.0,
                                           "exploratory_read_after_values": [12659], "pauses": PAUSES_C}},
@@ -87,6 +87,25 @@ class Derive(unittest.TestCase):
         self.assertAlmostEqual(f["precision_pct"], 3000 / 33)
         self.assertAlmostEqual(f["idle_share_a_pct"], 100.0)
 
+    def test_true_negatives_are_reported(self):
+        # Every re-write followed a gap beyond the lifetime: no re-write from another cause (tn = 0),
+        # so the experiment cannot test the rule's specificity.
+        f = pf.derive(agg(), SESSIONS, PREREG)
+        self.assertEqual((f["rule_tn"], f["c_tn"]), (0, 0))
+        other = agg()
+        other["rule"]["tn"] = 4
+        self.assertEqual(pf.derive(other, SESSIONS, PREREG)["rule_tn"], 4)
+
+    def test_shared_head_per_condition(self):
+        f = pf.derive(agg(), SESSIONS, PREREG)
+        self.assertEqual((f["shared_prefix_tokens"], f["shared_prefix_tokens_c"]), (12784, 12659))
+
+    def test_shared_head_in_c_must_be_one_value(self):
+        bad = agg()
+        bad["condition_c"]["direct_expiry"]["exploratory_read_after_values"] = [12659, 12700]
+        with self.assertRaises(SystemExit):
+            pf.derive(bad, SESSIONS, PREREG)
+
     def test_half_prefix_rewrites_per_condition(self):
         f = pf.derive(agg(), SESSIONS, PREREG)
         self.assertEqual((f["half_rewrite_b"], f["pauses_b"]), (1, 3))
@@ -134,6 +153,8 @@ class OnCommittedEvidence(unittest.TestCase):
         self.assertEqual(figs["PauseHalfRewriteB"]["value"], 21)       # = pauses.expired_after_pause
         self.assertEqual(figs["PauseHalfRewriteC"]["value"], 4)
         self.assertEqual((figs["PauseRuleTP"]["value"], figs["PauseRuleFN"]["value"]), (30, 0))
+        self.assertEqual(figs["PauseRuleTN"]["value"], 0)
+        self.assertEqual(figs["PauseSharedPrefixTokensC"]["value"], 12659)
         self.assertAlmostEqual(figs["PauseRewritePerPauseB"]["value"], 54957.7 / 3, delta=0.1)
 
 

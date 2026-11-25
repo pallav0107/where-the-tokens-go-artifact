@@ -1,6 +1,6 @@
 {
   "title": "AGENT 2027 workshop paper: open-science material (redacted)",
-  "status": "Release, round 7 (2026-11-19). Every round was reviewed and approved by the author before publication.",
+  "status": "Release, round 8 (2026-11-25). Rounds 1-7 were reviewed and approved by the author before publication; round 8 was published at the author's instruction after the automated checks listed in redaction_round_8.",
   "creator": {
     "creator_name": "Pallav Pokhriyal",
     "creator_affiliation": "Kfintech",
@@ -740,6 +740,15 @@
   },
   "files": [
     {
+      "path": ".zenodo.json",
+      "sha256": "cc60b7883adf0c931a2252d62b0fbc9ae32416df604c98a3e569ea60dbc18d81",
+      "bytes": 1154,
+      "source": "added in round 8: Zenodo archiving metadata, not from the repository",
+      "source_blob": null,
+      "lines": 29,
+      "redaction_rows": 0
+    },
+    {
       "path": "LICENSE",
       "sha256": "60918adfe5e896f6bb550b680a7e8235493bfc3732dc5ef0999a659b2401f146",
       "bytes": 1234,
@@ -799,13 +808,14 @@
     },
     {
       "path": "package_A/PREREG_pause.md",
-      "sha256": "13ea56a910230344f352b931953053b34addeb8e9d48f952aa034891afe3c694",
-      "bytes": 10830,
-      "source": "experiments/PREREG_pause.md@1c815e9",
-      "source_blob": "648a5fa46f0a7ab0f81574dbe7562f4b702fb224",
-      "lines": 135,
+      "sha256": "c8e063c2f776850f7b357e1ae4dae6406ae8cfbf707b8048cef00bef508067ca",
+      "bytes": 20196,
+      "source": "experiments/PREREG_pause.md@03cc639",
+      "source_blob": "c0b35cf5636b41b500a4bdc54104e85d56a3365c",
+      "lines": 245,
       "redaction_rows": 0,
-      "redaction_rows_round_6": 1
+      "redaction_rows_round_6": 1,
+      "note": "Round 8: the public pre-registration repository's copy at 983a7fa (Amendments 1-3); differs from the source only on line 48, the round-6 row."
     },
     {
       "path": "package_A/PREREG_v2.md",
@@ -1441,11 +1451,11 @@
     },
     {
       "path": "package_B/code/experiments/pause/grade.py",
-      "sha256": "4ab31df9aec193464b72a2a128d50e4818bba7c36835944cd864dcacabddd2b6",
-      "bytes": 2571,
-      "source": "experiments/pause/grade.py@1c815e9",
-      "source_blob": "1d1bdc4711803d0765f9b80bb9011e7b2644db2c",
-      "lines": 56,
+      "sha256": "4e0ed132ff69694ca1e9d4095d750a94b7b839f478eeb0888330195641a88cf3",
+      "bytes": 4953,
+      "source": "experiments/pause/grade.py@03cc639",
+      "source_blob": "04310855d0de2f84cc15c73d175e49ee82f97828",
+      "lines": 96,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1480,6 +1490,26 @@
       "identical_to_source": true
     },
     {
+      "path": "package_B/code/experiments/pause/image/mcp.json",
+      "sha256": "3cc45c2fdcdbc8f29a582612052dafc9aebf094637044598fb2ee35155a31030",
+      "bytes": 115,
+      "lines": 1,
+      "source": "experiments/pause/image/mcp.json@03cc639",
+      "source_blob": "3e425667f673a7ff14ea82b03a84be54e35a9ffe",
+      "redaction_rows": 0,
+      "identical_to_source": true
+    },
+    {
+      "path": "package_B/code/experiments/pause/image/mcp_stub.js",
+      "sha256": "f3b8bcd6cf8cd20ba9b379dcfff009f249868de272e17249c4f0ae4db5d04c0d",
+      "bytes": 1222,
+      "lines": 19,
+      "source": "experiments/pause/image/mcp_stub.js@03cc639",
+      "source_blob": "4f4d1fc0336c852e69d4a3371827204ef421fce3",
+      "redaction_rows": 0,
+      "identical_to_source": true
+    },
+    {
       "path": "package_B/code/experiments/pause/image/pause_hook.sh",
       "sha256": "2b1b143f9a849f5f0df7b60d488576eaab50d53a75f506e9ff6d80be210c4119",
       "bytes": 1266,
@@ -1491,11 +1521,11 @@
     },
     {
       "path": "package_B/code/experiments/pause/image/session.sh",
-      "sha256": "031a310ad2a2d823babffd946801809ac6b4eb37faa8a1d843ee1ab14aa24b08",
-      "bytes": 2608,
-      "source": "experiments/pause/image/session.sh@1c815e9",
-      "source_blob": "7dcddb13007e5c2d7143365ad0bfd4b376eb48f8",
-      "lines": 48,
+      "sha256": "49de1e82f477344e56a85bd17bbbef8526ac35f9c664a0aa98a0d958f69eb2ea",
+      "bytes": 3011,
+      "source": "experiments/pause/image/session.sh@03cc639",
+      "source_blob": "9b9f14c764142ab9f78e9733ba21859a4225e6ab",
+      "lines": 53,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1511,11 +1541,11 @@
     },
     {
       "path": "package_B/code/experiments/pause/runner.py",
-      "sha256": "65cafaa24ed7bf95c95189940aed3ff0943675740752cc1eafbb8999e3c56bf7",
-      "bytes": 37120,
-      "source": "experiments/pause/runner.py@1c815e9",
-      "source_blob": "320fea1bbcbd0feb1e60da16bd8b4c2d99acf65c",
-      "lines": 671,
+      "sha256": "be2273c02ea69f7c6a38a2062e2eb00d33291e6dabd88271b28d54fc9b2921e2",
+      "bytes": 43100,
+      "source": "experiments/pause/runner.py@03cc639",
+      "source_blob": "7efa3045f61e91395adfb7003c47fbfd650703d9",
+      "lines": 766,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1551,11 +1581,11 @@
     },
     {
       "path": "package_B/code/experiments/pause/stub_api.py",
-      "sha256": "e809fb6c0bbe7c7876619fc1620dc5f8441d1dd6fb2e2e23bec15b90dbddcde8",
-      "bytes": 9329,
-      "source": "experiments/pause/stub_api.py@1c815e9",
-      "source_blob": "da0c4856582acd0043aa132438cf9f34079490d9",
-      "lines": 188,
+      "sha256": "89fc5be543ce7629f561b71a202ff31f27c1645f91446fe0755b659094e0cb45",
+      "bytes": 9792,
+      "source": "experiments/pause/stub_api.py@03cc639",
+      "source_blob": "b6a010aaf383a60f737ae7c2db9276f01d07c0dd",
+      "lines": 192,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1707,11 +1737,11 @@
     },
     {
       "path": "package_B/code/tests/test_pause_experiment.py",
-      "sha256": "32fe682e430beb948f9584a19aa4766e1ab6053e807290680f682299fc84acca",
-      "bytes": 18209,
-      "source": "tests/test_pause_experiment.py@1c815e9",
-      "source_blob": "49273e4e73f24b9c506f698f29c8bb116f089efc",
-      "lines": 314,
+      "sha256": "eb6631ff0328bc58e2923ea26e4ab946e9633a115048c321748c8361bf85fdcd",
+      "bytes": 31189,
+      "source": "tests/test_pause_experiment.py@03cc639",
+      "source_blob": "d76d4c661849b5c479add009c137fff01d566419",
+      "lines": 528,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1727,11 +1757,11 @@
     },
     {
       "path": "package_B/code/tests/test_pause_figures.py",
-      "sha256": "39f2804a358f03d6e5d3896198632a2cf65873bc56caefa277c7ed2e3db28699",
-      "bytes": 7517,
-      "source": "tests/test_pause_figures.py@3bd6629",
-      "source_blob": "037b1ef086ed68e4b9e659c7d45071d29679dc72",
-      "lines": 141,
+      "sha256": "b50b5782b992ced0560ddaf3a27d933fe05dc1ef4c3d54094a23b6b72db6dffa",
+      "bytes": 8571,
+      "source": "tests/test_pause_figures.py@03cc639",
+      "source_blob": "c0cc3143ededaebee9dfe629ac0f62b3ad4af567",
+      "lines": 162,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1757,11 +1787,11 @@
     },
     {
       "path": "package_B/code/tests/test_pause_runner.py",
-      "sha256": "2e2faa3cb929af261cccce19c19d7ea814dbe1984c503cf866a6e55cca6c84a7",
-      "bytes": 9109,
-      "source": "tests/test_pause_runner.py@1c815e9",
-      "source_blob": "d62e5b25bd695b51985b1bf44614928b006d261a",
-      "lines": 185,
+      "sha256": "cde03b5725ee45d86dd2bdef39b7d473caceee2d5c4ca3e084766ce2fcc3dcde",
+      "bytes": 10531,
+      "source": "tests/test_pause_runner.py@03cc639",
+      "source_blob": "2aaffc364b1eed145977a2235623417ce6ffc712",
+      "lines": 206,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1883,11 +1913,11 @@
     },
     {
       "path": "package_B/code/tools/pause_experiment.py",
-      "sha256": "c879f1052096738d549fac0ed02df506974f8f539bce6b54563f6274122fb1fc",
-      "bytes": 29625,
-      "source": "tools/pause_experiment.py@1c815e9",
-      "source_blob": "964df16462ac653a4456a4a74159cc667b3b70a1",
-      "lines": 490,
+      "sha256": "d1aea0fc83ba5559cb535aa74052a2edbdabcb3d408f49e89c1061888f35358c",
+      "bytes": 56058,
+      "source": "tools/pause_experiment.py@03cc639",
+      "source_blob": "32b98080f5211541f5f9b8ae0ed46194d3b495ea",
+      "lines": 914,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1903,11 +1933,11 @@
     },
     {
       "path": "package_B/code/tools/pause_figures.py",
-      "sha256": "bc4a74b0cd3a83a450897180c2e4ab326cff645fecf0d854499803ddb9bc55b1",
-      "bytes": 14780,
-      "source": "tools/pause_figures.py@3bd6629",
-      "source_blob": "4784eb799d83330633f47b1d1867f1011f70e651",
-      "lines": 230,
+      "sha256": "7217ec132bc20f8011adcbcef68d512070d95f076ad64b8b2392b06873b85d4b",
+      "bytes": 15421,
+      "source": "tools/pause_figures.py@03cc639",
+      "source_blob": "ad9dfdebfb7443f4354f95558f75b7acd63678f0",
+      "lines": 238,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -1918,6 +1948,16 @@
       "source": "tools/practice_rule.py@1c815e9",
       "source_blob": "78e8bf5b6491734dc411033f5442581b75d65f53",
       "lines": 180,
+      "redaction_rows": 0,
+      "identical_to_source": true
+    },
+    {
+      "path": "package_B/code/tools/prereg_outcomes.py",
+      "sha256": "72c747a1505400ec435900c36705394d5fc3b4e864e5a084b7627dda0be82861",
+      "bytes": 2781,
+      "lines": 73,
+      "source": "tools/prereg_outcomes.py@03cc639",
+      "source_blob": "0b6f41df65d13585fd2a86521a6c74aebc3e59ed",
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -2833,21 +2873,21 @@
     },
     {
       "path": "package_B/evidence/pause_experiment.json",
-      "sha256": "a186142449222a6c79c9591ea266aed51ed4072a60a9c67b32fd27b2ab9e15e3",
-      "bytes": 23679,
-      "source": "evidence/pause_experiment.json@1c815e9",
-      "source_blob": "99c94261c83f55a4920240842dfae9cc13e82740",
-      "lines": 790,
+      "sha256": "40db105e8989a74570a32103d020b7ebffd60061bfcd2be5fcfafbf37da71ee2",
+      "bytes": 35359,
+      "source": "evidence/pause_experiment.json@03cc639",
+      "source_blob": "4416b493507f538614b8d948d0068c649a2c8144",
+      "lines": 1206,
       "redaction_rows": 0,
       "identical_to_source": true
     },
     {
       "path": "package_B/evidence/pause_figures.json",
-      "sha256": "536fc1ae4b660d2e15a385cd3303753ea82d7ff231078bac58e84e708668863f",
-      "bytes": 9377,
-      "source": "evidence/pause_figures.json@3bd6629",
-      "source_blob": "9dae4f3c66efbeebb0327e2b65477cb95d609019",
-      "lines": 330,
+      "sha256": "3c5f10d85d517e539e91ed77af1d63f964a66c0bd0572b18ed1148d6c066f34c",
+      "bytes": 9850,
+      "source": "evidence/pause_figures.json@03cc639",
+      "source_blob": "2ea7fa894af0875fd613f849fdf7d4e459163ec2",
+      "lines": 345,
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -2858,6 +2898,16 @@
       "source": "evidence/practice_rule.json@1c815e9",
       "source_blob": "e342626cf3ec9f3d8cfb0683d1ffd6ab91d053be",
       "lines": 205,
+      "redaction_rows": 0,
+      "identical_to_source": true
+    },
+    {
+      "path": "package_B/evidence/prereg_outcomes.json",
+      "sha256": "a350159187036786768d5c1ed40e3c05e457e0c8a5d7181266da4c976216d720",
+      "bytes": 1120,
+      "lines": 45,
+      "source": "evidence/prereg_outcomes.json@03cc639",
+      "source_blob": "80158c2ef5a875b6996cdbb1f7bae84117551c79",
       "redaction_rows": 0,
       "identical_to_source": true
     },
@@ -3089,5 +3139,44 @@
       "package_B/evidence/pause_figures.json"
     ],
     "rows": 0
+  },
+  "redaction_round_8": {
+    "date": "2026-11-25",
+    "source_commit": "03cc639",
+    "source_commit_full": "03cc63987f7e35a577168b50e4994e965caba7bc",
+    "scope": "Pause experiment Amendment 3 (specificity and one-at-a-time arms) and the registered-outcomes table, as reported in the submitted paper (v5): refreshed registration, runner, grading, stub, analysis, figures, tests and evidence, plus the MCP stub and the prereg_outcomes producer and evidence. All byte-identical to the source except the registration, which is the public pre-registration repository's copy.",
+    "added": [
+      ".zenodo.json",
+      "package_B/code/experiments/pause/image/mcp.json",
+      "package_B/code/experiments/pause/image/mcp_stub.js",
+      "package_B/code/tools/prereg_outcomes.py",
+      "package_B/evidence/prereg_outcomes.json"
+    ],
+    "refreshed": [
+      "package_A/PREREG_pause.md",
+      "package_B/code/experiments/pause/grade.py",
+      "package_B/code/experiments/pause/image/session.sh",
+      "package_B/code/experiments/pause/runner.py",
+      "package_B/code/experiments/pause/stub_api.py",
+      "package_B/code/tests/test_pause_experiment.py",
+      "package_B/code/tests/test_pause_figures.py",
+      "package_B/code/tests/test_pause_runner.py",
+      "package_B/code/tools/pause_experiment.py",
+      "package_B/code/tools/pause_figures.py",
+      "package_B/evidence/pause_experiment.json",
+      "package_B/evidence/pause_figures.json"
+    ],
+    "rows": 0,
+    "not_released": [
+      {
+        "what": "evidence/gateway_live.json",
+        "reason": "the live check's record names the author's own machines and local model aliases (infrastructure details); its hypotheses are public in PREREG_live_check.md and prereg_outcomes.json carries the counts the paper uses"
+      },
+      {
+        "what": "tests/test_prereg_outcomes.py",
+        "reason": "it runs prereg_outcomes.py, which needs evidence/gateway_live.json"
+      }
+    ],
+    "checks": "Linux, Python 3.12.3: 98 tests pass; pause_figures.json and practice_rule.json recompute IDENTICAL; cost_shares.dat and pause_points.dat PASS; personal and infrastructure pattern scan of every added or refreshed file found nothing to redact."
   }
 }

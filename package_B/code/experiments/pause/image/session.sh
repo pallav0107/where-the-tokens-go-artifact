@@ -32,16 +32,21 @@ JSON
     # keep ignored files (editable-install metadata); drop the previous task's edits and new files
     git reset -q --hard && git clean -fdq && git checkout -qf "$base" || { echo "checkout failed" > "$o/stderr.txt"; exit 3; }
     cont=(); [ "$k" -gt 1 ] && cont=(--continue)
+    # Amendment 3 (injected invalidators): optional per-task model override and extra CLI arguments, one per
+    # line; without these files the command is exactly that of Amendment 2
+    model="${MODEL}"; [ -s "$o/model" ] && model="$(cat "$o/model")"
+    extra=(); [ -s "$o/extra_args" ] && mapfile -t extra < "$o/extra_args"
     start=$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)
-    nice -n 10 timeout --kill-after=30 "${WALL_SECONDS}" claude -p "$(cat "$o/prompt.txt")" "${cont[@]}" \
-      --model "${MODEL}" --max-turns "${MAX_TURNS}" --output-format json \
+    nice -n 10 timeout --kill-after=30 "${WALL_SECONDS}" claude -p "$(cat "$o/prompt.txt")" "${cont[@]}" "${extra[@]}" \
+      --model "${model}" --max-turns "${MAX_TURNS}" --output-format json \
       --max-budget-usd "${CC_MAX_BUDGET_USD}" --dangerously-skip-permissions > "$o/result.json" 2> "$o/stderr.txt"
     rc=$?
     end=$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)
     git add -A >/dev/null 2>&1
     git diff --cached > "$o/patch.diff" 2>/dev/null
-    printf '{"task":%d,"rc":%d,"start":"%s","end":"%s","base_commit":"%s","continue":%s}\n' "$k" "$rc" "$start" "$end" \
-      "$base" "$([ "$k" -gt 1 ] && echo true || echo false)" > "$o/exit.json"
+    printf '{"task":%d,"rc":%d,"start":"%s","end":"%s","base_commit":"%s","continue":%s,"model":"%s","extra_args":%d}\n' \
+      "$k" "$rc" "$start" "$end" "$base" "$([ "$k" -gt 1 ] && echo true || echo false)" "$model" "${#extra[@]}" \
+      > "$o/exit.json"
     exit 0
     ;;
   *) echo "usage: session.sh hold | task K BASE_COMMIT" >&2; exit 2 ;;

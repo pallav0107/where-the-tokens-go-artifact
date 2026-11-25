@@ -1,0 +1,45 @@
+{
+  "aggregates": {
+    "live_n": 5,
+    "live_supported": 5,
+    "live_verdicts": {
+      "H1": "SUPPORTED",
+      "H2": "SUPPORTED",
+      "H3": "SUPPORTED",
+      "H4": "SUPPORTED",
+      "H5": "SUPPORTED"
+    }
+  },
+  "figures": {
+    "PregLiveN": {
+      "desc": "pre-registered live-check hypotheses",
+      "format": "word",
+      "source": "gateway_live",
+      "value": 5
+    },
+    "PregLiveSupportedN": {
+      "desc": "live-check hypotheses supported",
+      "format": "word",
+      "source": "gateway_live",
+      "value": 5
+    }
+  },
+  "kind": "prereg_outcomes",
+  "provenance": {
+    "generated_at": "2026-11-19T11:40:26Z",
+    "generator": "tools/prereg_outcomes.py",
+    "notes": [
+      "Restates committed live-check verdicts as counts; no new measurement."
+    ],
+    "sources": [
+      {
+        "command": "evidence/gateway_live.json",
+        "description": "pre-registered live check of the second harness",
+        "grade": "measured",
+        "id": "gateway_live",
+        "sha256": "dc6e1cdab08b0cc4c085eebff744b4fce152cc55e9d832a140f28372ce4e2468"
+      }
+    ]
+  },
+  "schema_version": 1
+}

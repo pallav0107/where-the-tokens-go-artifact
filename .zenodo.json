@@ -1,0 +1,29 @@
+{
+  "title": "Where the Tokens Go: open-science package (data, code and pre-registrations)",
+  "upload_type": "dataset",
+  "description": "<p>Data, code and aggregate evidence behind the paper <em>Where the Tokens Go: How Prompt Caching Shapes the Cost of an LLM Coding Agent</em> (AGENT 2027 workshop at ICSE 2027, short paper, under review), with its pre-registrations. Personal and infrastructure details are redacted; every redaction is logged in REDACTION_LOG.md, and MANIFEST.json gives each file's sha256 and source.</p><p>Code is under the MIT licence (LICENSE) and data under CC BY 4.0 (LICENSE-DATA).</p>",
+  "creators": [
+    {
+      "name": "Pokhriyal, Pallav",
+      "affiliation": "Kfintech",
+      "orcid": "0009-0001-5356-7663"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "prompt caching",
+    "LLM coding agents",
+    "token cost",
+    "pre-registration",
+    "SWE-bench"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/pallav0107/where-the-tokens-go-preregistrations",
+      "relation": "references",
+      "resource_type": "other",
+      "scheme": "url"
+    }
+  ]
+}

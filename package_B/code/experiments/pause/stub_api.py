@@ -141,7 +141,11 @@ class Handler(BaseHTTPRequestHandler):
         model = body.get("model") or "stub"
         self._record({"path": path, "model": model, "stream": bool(body.get("stream")),
                       "n_tools": len(body.get("tools") or []), "n_messages": len(body.get("messages") or []), "cache_ttls": dict(cache_ttls(body)),
-                      "usage": usage, "stop": stop})
+                      "usage": usage, "stop": stop,
+                      # Amendment 3 smoke: which part of the cacheable prefix an injected change alters
+                      "tool_names": [t.get("name") for t in body.get("tools") or [] if isinstance(t, dict)],
+                      "tools_sha": hashlib.sha256(json.dumps(body.get("tools"), sort_keys=True).encode()).hexdigest()[:12],
+                      "system_sha": hashlib.sha256(json.dumps(body.get("system"), sort_keys=True).encode()).hexdigest()[:12]})
         out_tokens = 20
         if not body.get("stream"):
             return self._send(200, {"id": mid, "type": "message", "role": "assistant", "model": model,

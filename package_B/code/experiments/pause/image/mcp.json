@@ -1,0 +1,1 @@
+{"mcpServers": {"notes": {"type": "stdio", "command": "/usr/local/bin/node", "args": ["/opt/pause/mcp_stub.js"]}}}

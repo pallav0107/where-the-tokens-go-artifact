@@ -3,6 +3,7 @@
     "c_events": 5,
     "c_fn": 0,
     "c_fp": 0,
+    "c_tn": 0,
     "c_tp": 5,
     "ci_level_pct": 95,
     "client_version": "2.1.326",
@@ -36,12 +37,14 @@
     "rewrite_per_pause_b": 18319.233333333334,
     "rule_fn": 0,
     "rule_fp": 3,
+    "rule_tn": 0,
     "rule_tp": 30,
     "sessions_c": 5,
     "sessions_failed": 0,
     "sessions_paired": 10,
     "sessions_valid": 25,
     "shared_prefix_tokens": 12784,
+    "shared_prefix_tokens_c": 12659,
     "tasks_hard": 26,
     "tasks_medium": 14,
     "tasks_per_session": 4,
@@ -234,6 +237,12 @@
       "source": "pause_experiment",
       "value": 0
     },
+    "PauseRuleTN": {
+      "desc": "H3 events: re-writes without an injected pause not labelled idle (true negatives)",
+      "format": "word",
+      "source": "pause_experiment",
+      "value": 0
+    },
     "PauseRuleTP": {
       "desc": "H3 events: re-writes after an injected pause labelled idle",
       "format": "int",
@@ -270,6 +279,12 @@
       "source": "pause_experiment",
       "value": 12784
     },
+    "PauseSharedPrefixTokensC": {
+      "desc": "tokens read back after every one-hour pause (shared head, C)",
+      "format": "int",
+      "source": "pause_experiment",
+      "value": 12659
+    },
     "PauseTasksHard": {
       "desc": "tasks annotated 1-4 hours or more",
       "format": "int",
@@ -297,7 +312,7 @@
   },
   "kind": "pause_figures",
   "provenance": {
-    "generated_at": "2026-11-19T07:01:01Z",
+    "generated_at": "2026-11-19T11:39:53Z",
     "generator": "tools/pause_figures.py",
     "notes": [
       "Restates and regroups committed pause-experiment evidence; no new measurement."
