@@ -1,5 +1,9 @@
 # AGENT 2027 paper: open-science material (redacted)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24526674.svg)](https://doi.org/10.5281/zenodo.24526674)
+
+Archived on Zenodo (round 8, the upload archive built by `make_archive.py`): [doi:10.5281/zenodo.24526674](https://doi.org/10.5281/zenodo.24526674); [doi:10.5281/zenodo.24526673](https://doi.org/10.5281/zenodo.24526673) always resolves to the latest version.
+
 The data, code and aggregate evidence behind the paper, with its pre-registrations. Personal and
 infrastructure details are redacted; every redaction is logged in `REDACTION_LOG.md`.
 
